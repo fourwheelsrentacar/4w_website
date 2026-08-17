@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "About 4WHEELS Rent a Car | Serving Lahore Since 2008";
+const description = "Learn about 4WHEELS Rent a Car located in Johar Town Phase 1, Lahore. Serving Lahore Since 2008 with reliable self-drive and chauffeur-driven car rental services.";
+---
+
+<Layout title={title} description={description} canonicalPath="/about/">
+  <!-- Header Banner -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-block bg-slate-800 text-red-400 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-slate-700">
+          {BUSINESS_INFO.trustBadge}
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          About 4WHEELS Rent a Car
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed">
+          Customer-focused car rental services based in Johar Town Phase 1, Lahore. Serving Lahore Since 2008.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl space-y-8 text-slate-700 leading-relaxed">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Who We Are</h2>
+        <p class="mb-4">
+          <strong>4WHEELS Rent a Car</strong> is a Lahore-based vehicle rental provider operating out of Johar Town Phase 1, <strong>serving Lahore since 2008</strong>. We specialize in providing practical, hassle-free car rental options for local residents, business professionals, overseas visitors, and families traveling in and around Lahore.
+        </p>
+        <p>
+          Our objective is straightforward: offer reliable vehicles, straightforward booking procedures, clear pricing guidance, and transparent communication.
+        </p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-3">
+        <h3 class="text-xl font-bold text-slate-900">Core Services</h3>
+        <ul class="space-y-2 text-sm font-medium text-slate-800">
+          <li class="flex items-center gap-2">
+            <span class="text-red-600 font-bold">•</span> Self-Drive Car Rentals for independent travel
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-red-600 font-bold">•</span> Chauffeur-Driven Cars for stress-free commuting
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-red-600 font-bold">•</span> Lahore Airport transfers (Allama Iqbal International Airport)
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-red-600 font-bold">•</span> Daily short-term and monthly long-term rentals
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-red-600 font-bold">•</span> Tailored corporate vehicle arrangements
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Our Service Location</h2>
+        <p class="mb-4">
+          Our office is conveniently situated at <strong>5, F1, Block F1, Johar Town Phase 1, Lahore</strong>. This central location allows efficient dispatch of vehicles to key areas across Lahore, including Gulberg, DHA, Model Town, Canal Bank Road, and Allama Iqbal International Airport.
+        </p>
+        <p>
+          To check vehicle availability or discuss your upcoming rental requirements, contact us directly via phone at <strong>0321 6616644</strong> or message us on WhatsApp.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Questions or Rental Inquiries?"
+      subheading="Get in touch with 4WHEELS Rent a Car today."
+      ctaType="general"
+    />
+  </div>
+</Layout>

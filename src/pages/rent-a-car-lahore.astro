@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Rent a Car Lahore | Self Drive & Driver Service | 4WHEELS";
+const description = "Looking to rent a car in Lahore? 4WHEELS provides self-drive cars and rental cars with drivers for daily, monthly, corporate, and airport travel in Lahore.";
+
+const faqs = [
+  {
+    question: "How do I rent a car in Lahore with 4WHEELS?",
+    answer: "You can call or WhatsApp 4WHEELS directly at 0321 6616644. Share your travel dates, vehicle preference, and whether you prefer self-drive or a driver."
+  },
+  {
+    question: "Are both self-drive and driver options available in Lahore?",
+    answer: "Yes, 4WHEELS offers both self-drive options for independent drivers and experienced drivers for hassle-free travel."
+  },
+  {
+    question: "What rental durations are available?",
+    answer: "We accommodate daily rentals, short multi-day bookings, and long-term monthly rentals depending on vehicle availability."
+  },
+  {
+    question: "Do you service Allama Iqbal International Airport?",
+    answer: "Yes, we provide airport pickup and drop-off services across Lahore."
+  }
+];
+---
+
+<Layout title={title} description={description} canonicalPath="/rent-a-car-lahore/">
+  <!-- Header Banner -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          Rent a Car in Lahore
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          Reliable car rental solutions in Lahore for local trips, corporate requirements, monthly needs, and airport transfers. Choose self-drive or rent a car with a driver.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            📞 Call {BUSINESS_INFO.phoneDisplay}
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            💬 WhatsApp Availability
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Details Content -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-8 space-y-8 text-slate-700 leading-relaxed">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Comprehensive Car Rental Services in Lahore</h2>
+          <p class="mb-4">
+            Finding a reliable car rental service in Lahore requires flexibility, clear terms, and quick communication. Whether you need a vehicle for a quick daily errand, business meetings across town, or an airport drop-off, 4WHEELS Rent a Car provides flexible rental arrangements designed around your schedule.
+          </p>
+          <p>
+            Operating out of Johar Town Phase 1, we serve customers throughout Lahore, including Gulberg, DHA, Model Town, Johar Town, and Allama Iqbal International Airport.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+          <h3 class="text-xl font-bold text-slate-900">Rental Services Offered</h3>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+            <li class="flex items-center gap-2 font-medium text-slate-800">
+              <span class="text-red-600">✓</span> Self-Drive Car Rental
+            </li>
+            <li class="flex items-center gap-2 font-medium text-slate-800">
+              <span class="text-red-600">✓</span> Chauffeur-Driven Cars
+            </li>
+            <li class="flex items-center gap-2 font-medium text-slate-800">
+              <span class="text-red-600">✓</span> Daily Rental Options
+            </li>
+            <li class="flex items-center gap-2 font-medium text-slate-800">
+              <span class="text-red-600">✓</span> Long-Term Monthly Rental
+            </li>
+            <li class="flex items-center gap-2 font-medium text-slate-800">
+              <span class="text-red-600">✓</span> Lahore Airport Transfers
+            </li>
+            <li class="flex items-center gap-2 font-medium text-slate-800">
+              <span class="text-red-600">✓</span> Corporate Rental Services
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Self Drive or With Driver Options</h2>
+          <p class="mb-4">
+            We understand that different trips require different services. If you prefer driving independently around Lahore, our self-drive option provides privacy and convenience. For those who prefer to avoid traffic or focus on business during the ride, our chauffeur-driven cars offer a comfortable, stress-free alternative.
+          </p>
+          <p>
+            Contact 4WHEELS directly to discuss your travel dates and verify current vehicle availability for both options.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">How to Book Your Car Rental in Lahore</h2>
+          <ol class="list-decimal pl-5 space-y-3 font-medium">
+            <li>
+              <span class="text-slate-900 font-bold">Reach Out:</span> Call 0321 6616644 or send a message on WhatsApp.
+            </li>
+            <li>
+              <span class="text-slate-900 font-bold">Provide Travel Details:</span> Let us know your rental duration, preferred dates, and whether you require a driver.
+            </li>
+            <li>
+              <span class="text-slate-900 font-bold">Confirm Booking:</span> Verify available options and finalize your rental arrangement.
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800 space-y-4">
+          <h3 class="text-xl font-bold border-b border-slate-800 pb-3">Book Your Rental Car</h3>
+          <p class="text-sm text-slate-300">
+            Speak directly with 4WHEELS Rent a Car in Lahore to confirm vehicle availability for your travel dates.
+          </p>
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            📞 Call 0321 6616644
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            💬 WhatsApp Message
+          </a>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <h3 class="font-bold text-slate-900 text-base">Location & Coverage</h3>
+          <p class="text-xs text-slate-600">
+            <strong>Address:</strong> {BUSINESS_INFO.address.fullAddress}
+          </p>
+          <p class="text-xs text-slate-600">
+            <strong>Coverage Areas:</strong> Johar Town, Gulberg, DHA, Model Town, Mall Road, Lahore Airport, and surrounding regions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services Cards -->
+  <section class="py-12 bg-slate-100 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-slate-900 mb-8 text-center">Explore Specific Rental Categories</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ServiceCard
+          title="Self Drive Car Rental"
+          description="Explore self-drive availability, use cases, and booking requirements."
+          href="/self-drive-car-rental-lahore/"
+        />
+        <ServiceCard
+          title="Cars With Driver"
+          description="Chauffeur-driven vehicles for executive travel, events, and local transport."
+          href="/car-with-driver-lahore/"
+        />
+        <ServiceCard
+          title="Lahore Airport Transfers"
+          description="Convenient pickup and drop-off services for Lahore Airport."
+          href="/lahore-airport-car-rental/"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <FAQ items={faqs} />
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection />
+  </div>
+</Layout>

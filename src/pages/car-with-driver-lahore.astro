@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Cars With Driver Lahore | Professional Chauffeur Rental | 4WHEELS";
+const description = "Rent a car with a driver in Lahore with 4WHEELS. Professional chauffeur services for business meetings, airport journeys, family travel, and daily bookings.";
+
+const faqs = [
+  {
+    question: "Why should I rent a car with a driver in Lahore?",
+    answer: "Renting a car with a driver allows you to travel stress-free through Lahore traffic, avoid parking hassles, and focus on your business or family activities."
+  },
+  {
+    question: "Are drivers available for airport pickups and drop-offs?",
+    answer: "Yes, our drivers provide punctual pickup and drop-off services for Allama Iqbal International Airport Lahore."
+  },
+  {
+    question: "Can I book a car with driver for full-day travel?",
+    answer: "Yes, we accommodate full-day bookings for business trips, city tours, weddings, and family events."
+  }
+];
+---
+
+<Layout title={title} description={description} canonicalPath="/car-with-driver-lahore/">
+  <!-- Header Banner -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-block bg-red-900/60 border border-red-700 text-red-300 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+          Chauffeur-Driven Service
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          Cars With Driver in Lahore
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          Travel comfortably and punctually across Lahore with 4WHEELS professional chauffeur-driven car rentals for business, airport travel, and personal trips.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            📞 Call {BUSINESS_INFO.phoneDisplay}
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            💬 WhatsApp Booking
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Details Content -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-8 space-y-8 text-slate-700 leading-relaxed">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Relaxed & Professional Chauffeur Service</h2>
+          <p class="mb-4">
+            Navigating Lahore traffic and finding parking in busy commercial hubs like Gulberg, Johar Town, or MM Alam Road can be challenging. Renting a car with an experienced driver ensures you arrive at your destination relaxed and on time.
+          </p>
+          <p>
+            4WHEELS provides courteous, knowledgeable drivers familiar with Lahore routes, highways, and airport arrival procedures.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Ideal For:</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 bg-white border border-slate-200 rounded-xl">
+              <h3 class="font-bold text-slate-900 mb-1">💼 Business Meetings</h3>
+              <p class="text-slate-600 text-sm">Focus on work or call preparation while your driver handles traffic.</p>
+            </div>
+            <div class="p-4 bg-white border border-slate-200 rounded-xl">
+              <h3 class="font-bold text-slate-900 mb-1">✈️ Airport Journeys</h3>
+              <p class="text-slate-600 text-sm">Punctual transfers to and from Allama Iqbal International Airport.</p>
+            </div>
+            <div class="p-4 bg-white border border-slate-200 rounded-xl">
+              <h3 class="font-bold text-slate-900 mb-1">👨‍👩‍👧 Family Travel & Events</h3>
+              <p class="text-slate-600 text-sm">Safe, comfortable family transport for weddings, dinners, and shopping.</p>
+            </div>
+            <div class="p-4 bg-white border border-slate-200 rounded-xl">
+              <h3 class="font-bold text-slate-900 mb-1">📅 Daily Bookings</h3>
+              <p class="text-slate-600 text-sm">Full-day or multi-day vehicle booking with dedicated driver support.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">How to Book a Driver Service</h2>
+          <ol class="list-decimal pl-5 space-y-2 font-medium">
+            <li>Contact 4WHEELS at 0321 6616644 or on WhatsApp.</li>
+            <li>Provide your pickup point in Lahore, pickup time, and destination details.</li>
+            <li>Receive confirmation for your driver and vehicle arrangement.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800 space-y-4">
+          <h3 class="text-xl font-bold border-b border-slate-800 pb-3">Book Chauffeur Service</h3>
+          <p class="text-sm text-slate-300">
+            Contact 4WHEELS to verify driver availability for your upcoming journey.
+          </p>
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            📞 Call 0321 6616644
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            💬 WhatsApp Message
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <FAQ items={faqs} />
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Need a Car With Driver in Lahore?"
+      subheading="Contact 4WHEELS to confirm driver availability and book your vehicle."
+    />
+  </div>
+</Layout>

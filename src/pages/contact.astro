@@ -1,0 +1,164 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Contact 4WHEELS Rent a Car Lahore | Call or WhatsApp";
+const description = "Contact 4WHEELS Rent a Car in Lahore. Call 0321 6616644 or WhatsApp us to check vehicle availability, inquire about rates, and book your rental car in Johar Town.";
+---
+
+<Layout title={title} description={description} canonicalPath="/contact/">
+  <!-- Header Banner -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          Contact 4WHEELS Rent a Car
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed">
+          Get in touch with our team to check vehicle availability, verify rental options, or place a booking in Lahore.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Contact Details & Direct CTAs -->
+      <div class="lg:col-span-6 space-y-8">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Direct Contact Information</h2>
+          <p class="text-slate-600 mb-6 leading-relaxed">
+            For the fastest response and real-time vehicle availability check, call us or send a direct WhatsApp message.
+          </p>
+
+          <div class="space-y-4">
+            <a
+              href={BUSINESS_INFO.telLink}
+              class="flex items-center gap-4 p-4 rounded-xl bg-red-50 border border-red-200 text-red-900 hover:bg-red-100 transition-colors"
+            >
+              <div class="w-12 h-12 bg-red-600 text-white font-bold text-xl rounded-full flex items-center justify-center shrink-0">📞</div>
+              <div>
+                <div class="text-xs text-red-700 font-semibold uppercase tracking-wider">Phone Booking & Support</div>
+                <div class="text-xl font-black text-red-600">{BUSINESS_INFO.phoneDisplay}</div>
+                <div class="text-xs text-slate-600">Tap to call directly</div>
+              </div>
+            </a>
+
+            <a
+              href={BUSINESS_INFO.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 hover:bg-emerald-100 transition-colors"
+            >
+              <div class="w-12 h-12 bg-emerald-600 text-white font-bold text-xl rounded-full flex items-center justify-center shrink-0">💬</div>
+              <div>
+                <div class="text-xs text-emerald-700 font-semibold uppercase tracking-wider">WhatsApp Reservation</div>
+                <div class="text-xl font-black text-emerald-600">0321 6616644</div>
+                <div class="text-xs text-slate-600">Click to start WhatsApp chat</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Office Location Details -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h3 class="text-xl font-bold text-slate-900 border-b border-slate-100 pb-3">Office Location</h3>
+          <div class="space-y-2 text-sm text-slate-700">
+            <p><strong>Business Name:</strong> {BUSINESS_INFO.name}</p>
+            <p><strong>Address:</strong> {BUSINESS_INFO.address.fullAddress}</p>
+            <p><strong>City:</strong> Lahore, Punjab, Pakistan</p>
+          </div>
+          <div class="pt-2">
+            <a
+              href="https://maps.google.com/?q=Johar+Town+Phase+1+Lahore"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold py-2.5 px-5 rounded-lg transition-colors"
+            >
+              📍 View Location in Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Basic Booking Enquiry Form -->
+      <div class="lg:col-span-6 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Send a Rental Enquiry</h2>
+        <p class="text-slate-600 text-sm mb-6">Fill out your rental details below and our team will contact you to confirm vehicle availability.</p>
+
+        <form action="#" method="POST" class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you! Your enquiry has been received. Please call or WhatsApp 0321 6616644 for instant availability confirmation.');">
+          <div>
+            <label for="name" class="block text-sm font-semibold text-slate-700 mb-1">Your Name *</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="e.g. Ali Ahmed"
+              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 text-slate-900"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-semibold text-slate-700 mb-1">Phone Number *</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              placeholder="e.g. 0300 1234567"
+              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 text-slate-900"
+            />
+          </div>
+
+          <div>
+            <label for="rental_type" class="block text-sm font-semibold text-slate-700 mb-1">Rental Service Type *</label>
+            <select
+              id="rental_type"
+              name="rental_type"
+              required
+              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 text-slate-900"
+            >
+              <option value="">Select rental option...</option>
+              <option value="Self Drive">Self Drive Car Rental</option>
+              <option value="With Driver">Car With Driver</option>
+              <option value="Airport Transfer">Lahore Airport Transfer</option>
+              <option value="Monthly Rental">Monthly Rental</option>
+              <option value="Corporate Rental">Corporate Rental</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="preferred_date" class="block text-sm font-semibold text-slate-700 mb-1">Preferred Date / Duration</label>
+            <input
+              type="text"
+              id="preferred_date"
+              name="preferred_date"
+              placeholder="e.g. Starting 25th Oct, for 3 days"
+              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 text-slate-900"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-semibold text-slate-700 mb-1">Message / Special Requirements</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="3"
+              placeholder="Provide any additional details..."
+              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 text-slate-900"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-base shadow-md"
+          >
+            Submit Enquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>

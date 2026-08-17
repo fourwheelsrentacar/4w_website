@@ -1,0 +1,22 @@
+---
+import { BUSINESS_INFO } from '../data/business';
+---
+
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900 border-t border-slate-800 p-2 sm:hidden shadow-2xl">
+  <div class="grid grid-cols-2 gap-2">
+    <a
+      href={BUSINESS_INFO.telLink}
+      class="bg-red-600 active:bg-red-700 text-white font-bold py-2.5 rounded-lg text-center text-sm flex items-center justify-center gap-1.5 shadow-md"
+    >
+      <span>📞 Call Now</span>
+    </a>
+    <a
+      href={BUSINESS_INFO.whatsappLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="bg-emerald-600 active:bg-emerald-700 text-white font-bold py-2.5 rounded-lg text-center text-sm flex items-center justify-center gap-1.5 shadow-md"
+    >
+      <span>💬 WhatsApp</span>
+    </a>
+  </div>
+</div>

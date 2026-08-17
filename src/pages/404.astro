@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Page Not Found | 4WHEELS Rent a Car Lahore";
+const description = "The page you are looking for could not be found. Return to 4WHEELS Rent a Car homepage or contact us directly.";
+---
+
+<Layout title={title} description={description} canonicalPath="/404/">
+  <section class="py-20 md:py-32 text-center max-w-3xl mx-auto px-4">
+    <div class="text-red-600 font-black text-6xl md:text-8xl mb-4">404</div>
+    <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">Page Not Found</h1>
+    <p class="text-slate-600 mb-8 leading-relaxed">
+      Sorry, the page you are looking for does not exist or has been moved. You can navigate back home or explore our rental options below.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href="/"
+        class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-6 rounded-lg transition-colors text-sm"
+      >
+        🏠 Go to Homepage
+      </a>
+      <a
+        href="/rent-a-car-lahore/"
+        class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-sm"
+      >
+        🚗 Rent a Car Options
+      </a>
+      <a
+        href="/contact/"
+        class="w-full sm:w-auto bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-3 px-6 rounded-lg transition-colors text-sm"
+      >
+        📞 Contact Us
+      </a>
+    </div>
+  </section>
+</Layout>
