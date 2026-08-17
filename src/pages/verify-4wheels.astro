@@ -1,0 +1,126 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SEOHead from '../components/SEOHead.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const pageTitle = `Verify Official Business - ${BUSINESS_INFO.name}`;
+const pageDescription = `Official verification portal for ${BUSINESS_INFO.name} in Johar Town, Lahore. Check official phone, WhatsApp, location, and social links to prevent brand confusion.`;
+---
+
+<html lang="en">
+  <head>
+    <SEOHead title={pageTitle} description={pageDescription} canonicalUrl={`${BUSINESS_INFO.siteUrl}/verify-4wheels/`} />
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    <Header />
+
+    <main class="max-w-4xl mx-auto px-4 py-12">
+      <!-- Breadcrumb -->
+      <nav class="text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2">
+          <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+          <li><span>/</span></li>
+          <li class="font-medium text-slate-800">Verify 4WHEELS</li>
+        </ol>
+      </nav>
+
+      <div class="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-slate-200">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+          <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+          <span>Official Trust & Verification Portal</span>
+        </div>
+
+        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+          Verify Official 4WHEELS Rent a Car
+        </h1>
+
+        <p class="mt-4 text-lg text-slate-600 leading-relaxed">
+          To ensure you receive genuine service and protect your funds, verify that you are communicating directly with our official Johar Town office before completing any booking.
+        </p>
+
+        <!-- Official Channels Table -->
+        <div class="mt-8 border border-slate-200 rounded-xl overflow-hidden">
+          <div class="bg-slate-900 text-white px-6 py-4 font-bold text-lg">
+            Official Verified Channels
+          </div>
+          <div class="divide-y divide-slate-200 bg-slate-50 text-sm">
+            <div class="px-6 py-4 grid grid-cols-1 md:grid-cols-3 gap-2">
+              <span class="font-bold text-slate-700">Official Business Name:</span>
+              <span class="md:col-span-2 text-slate-900 font-semibold">{BUSINESS_INFO.name}</span>
+            </div>
+
+            <div class="px-6 py-4 grid grid-cols-1 md:grid-cols-3 gap-2">
+              <span class="font-bold text-slate-700">Phone & WhatsApp:</span>
+              <span class="md:col-span-2 text-red-600 font-extrabold text-base">{BUSINESS_INFO.phoneDisplay}</span>
+            </div>
+
+            <div class="px-6 py-4 grid grid-cols-1 md:grid-cols-3 gap-2">
+              <span class="font-bold text-slate-700">International WhatsApp:</span>
+              <span class="md:col-span-2 text-slate-900 font-mono">+{BUSINESS_INFO.whatsappRaw}</span>
+            </div>
+
+            <div class="px-6 py-4 grid grid-cols-1 md:grid-cols-3 gap-2">
+              <span class="font-bold text-slate-700">Physical Location:</span>
+              <span class="md:col-span-2 text-slate-900">{BUSINESS_INFO.address.fullAddress}</span>
+            </div>
+
+            <div class="px-6 py-4 grid grid-cols-1 md:grid-cols-3 gap-2">
+              <span class="font-bold text-slate-700">Official Web Domain:</span>
+              <span class="md:col-span-2 text-slate-900 font-mono">{BUSINESS_INFO.siteUrl}</span>
+            </div>
+
+            <div class="px-6 py-4 grid grid-cols-1 md:grid-cols-3 gap-2">
+              <span class="font-bold text-slate-700">Facebook Page:</span>
+              <a href={BUSINESS_INFO.socials.facebook} target="_blank" rel="noopener noreferrer" class="md:col-span-2 text-red-600 underline font-medium hover:text-red-700 break-all">
+                {BUSINESS_INFO.socials.facebook}
+              </a>
+            </div>
+
+            <div class="px-6 py-4 grid grid-cols-1 md:grid-cols-3 gap-2">
+              <span class="font-bold text-slate-700">Google Profile:</span>
+              <a href={BUSINESS_INFO.socials.googleBusiness} target="_blank" rel="noopener noreferrer" class="md:col-span-2 text-red-600 underline font-medium hover:text-red-700 break-all">
+                {BUSINESS_INFO.socials.googleBusiness}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verification Rules -->
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-6">
+            <h2 class="text-emerald-900 font-bold text-lg mb-3">✓ Always Confirm:</h2>
+            <ul class="space-y-2 text-xs text-emerald-950 font-medium">
+              <li>• Matching phone number strictly: <strong>0321 6616644</strong></li>
+              <li>• Physical office location in <strong>Johar Town Phase 1, Lahore</strong></li>
+              <li>• Direct communication with official 4WHEELS staff</li>
+            </ul>
+          </div>
+
+          <div class="bg-red-50 border border-red-200 rounded-xl p-6">
+            <h2 class="text-red-900 font-bold text-lg mb-3">⚠️ Warning Indicators:</h2>
+            <ul class="space-y-2 text-xs text-red-950 font-medium">
+              <li>• Requests to send payment to unverified personal mobile accounts</li>
+              <li>• Websites with alternative spelling (e.g. 4wheelsrental.pk) using different numbers</li>
+              <li>• Refusal to provide physical office pickup in Johar Town</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Direct Action Buttons -->
+        <div class="mt-10 pt-8 border-t border-slate-200 flex flex-wrap gap-4 items-center justify-between">
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">Need immediate confirmation?</h3>
+            <p class="text-xs text-slate-500">Contact our Johar Town desk directly.</p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a href={`tel:${BUSINESS_INFO.phoneRaw}`} class="px-5 py-2.5 bg-red-600 text-white font-bold text-xs rounded-xl hover:bg-red-700 transition">Call 0321 6616644</a>
+            <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-emerald-600 text-white font-bold text-xs rounded-xl hover:bg-emerald-700 transition">WhatsApp Official</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

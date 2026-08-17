@@ -1,0 +1,81 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SEOHead from '../components/SEOHead.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const pageTitle = `Editorial Policy & Publishing Standards - ${BUSINESS_INFO.name}`;
+const pageDescription = `Editorial principles, fact-checking procedures, and content guidelines for 4WHEELS Car Rental Guides in Lahore.`;
+---
+
+<html lang="en">
+  <head>
+    <SEOHead title={pageTitle} description={pageDescription} canonicalUrl={`${BUSINESS_INFO.siteUrl}/editorial-policy/`} />
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    <Header />
+
+    <main class="max-w-4xl mx-auto px-4 py-12">
+      <!-- Breadcrumb -->
+      <nav class="text-xs text-slate-500 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2">
+          <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+          <li><span>/</span></li>
+          <li class="font-medium text-slate-800">Editorial Policy</li>
+        </ol>
+      </nav>
+
+      <article class="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200">
+        <span class="inline-block px-3 py-1 bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wider rounded-full mb-3">Content Integrity</span>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">Editorial Policy & Publishing Standards</h1>
+        <p class="text-lg text-slate-600 leading-relaxed mb-8">
+          The 4WHEELS Car Rental Guide exists to provide transparent, practical, and factual guidance for individuals, families, and business travelers renting vehicles in Lahore.
+        </p>
+
+        <div class="prose prose-slate max-w-none text-sm md:text-base leading-relaxed space-y-6">
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">1. Fact-Checking and Operational Accuracy</h2>
+            <p class="text-slate-600">
+              Articles published on our Knowledge Hub are reviewed by the 4WHEELS Editorial Team to ensure practical claims reflect actual business operations in Lahore. We do not manufacture fake statistics, invent government certifications, or scrape competitor content.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">2. Pricing Transparency</h2>
+            <p class="text-slate-600">
+              Vehicle rental rates in Lahore vary based on seasonal demand, rental duration, fuel market shifts, and specific model availability. We do not publish assumed or fixed prices inside educational guides. All pricing quotes are issued dynamically via direct inquiry at <strong>0321 6616644</strong> or official WhatsApp.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">3. Legal and Regulatory References</h2>
+            <p class="text-slate-600">
+              Information regarding driving licences, traffic rules, or overseas documentation represents practical rental advice. Government and legal regulations must always be verified against official traffic authorities or national laws.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">4. Review Dates and Updates</h2>
+            <p class="text-slate-600">
+              Car rental policies evolve. Articles carry explicit publication and review dates (e.g., <code>dateModified</code>). When operational policies or local traffic conditions change, relevant articles receive updates to maintain factual accuracy.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">5. Separation of Guidance and Promotion</h2>
+            <p class="text-slate-600">
+              Educational guides focus on solving customer questions objectively. Where 4WHEELS services or contact details are mentioned, they are presented clearly as verified contact options.
+            </p>
+          </section>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-slate-200 flex flex-wrap justify-between items-center text-xs text-slate-500">
+          <span>Questions regarding our editorial policy?</span>
+          <a href="/contact/" class="text-red-600 font-bold hover:underline">Contact Editorial Team &rarr;</a>
+        </div>
+      </article>
+    </main>
+
+    <Footer />
+  </body>
+</html>

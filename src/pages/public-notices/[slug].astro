@@ -1,0 +1,100 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SEOHead from '../../components/SEOHead.astro';
+import { getCollection, render } from 'astro:content';
+import { BUSINESS_INFO } from '../../data/business';
+
+export async function getStaticPaths() {
+  const pressItems = await getCollection('press');
+  const publicNotices = pressItems.filter((item) => item.data.type === 'Public Notice');
+  return publicNotices.map((item) => ({
+    params: { slug: item.data.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+
+const pageTitle = `${item.data.title} - ${BUSINESS_INFO.name}`;
+const pageDescription = item.data.summary;
+---
+
+<html lang="en">
+  <head>
+    <SEOHead title={pageTitle} description={pageDescription} canonicalUrl={`${BUSINESS_INFO.siteUrl}/public-notices/${item.data.slug}/`} />
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    <Header />
+
+    <main class="max-w-4xl mx-auto px-4 py-12">
+      <!-- Breadcrumb -->
+      <nav class="text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2">
+          <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+          <li><span>/</span></li>
+          <li><a href="/press/" class="hover:text-red-600 transition">Press Centre</a></li>
+          <li><span>/</span></li>
+          <li><a href="/public-notices/" class="hover:text-red-600 transition">Public Notices</a></li>
+          <li><span>/</span></li>
+          <li class="font-medium text-slate-800">{item.data.slug}</li>
+        </ol>
+      </nav>
+
+      <article class="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-slate-200">
+        <header class="border-b border-slate-200 pb-8 mb-8">
+          <div class="flex items-center space-x-3 mb-4">
+            <span class="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-md">Public Brand Protection Notice</span>
+            <span class="text-xs text-slate-400">•</span>
+            <time class="text-xs text-slate-500">{item.data.datePublished}</time>
+            <span class="text-xs text-slate-400">•</span>
+            <span class="text-xs font-bold text-red-600 uppercase tracking-wider">{item.data.status}</span>
+          </div>
+
+          <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            {item.data.title}
+          </h1>
+        </header>
+
+        {item.data.entityName && (
+          <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 mb-8">
+            <h2 class="text-red-900 font-bold text-lg mb-2">Subject Entity Details (Non-Affiliated):</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-red-950 font-medium">
+              <p><strong>Name/Label:</strong> {item.data.entityName}</p>
+              <p><strong>Observed Website:</strong> {item.data.entityWebsite}</p>
+              <p><strong>Observed Phone:</strong> {item.data.entityPhone}</p>
+              {item.data.entityEmail && <p><strong>Observed Email:</strong> {item.data.entityEmail}</p>}
+            </div>
+          </div>
+        )}
+
+        <div class="prose prose-slate max-w-none prose-headings:font-bold prose-a:text-red-600">
+          <Content />
+        </div>
+
+        <div class="mt-12 bg-slate-900 text-white rounded-2xl p-8 border-l-4 border-red-600">
+          <h3 class="text-xl font-bold mb-2">Official 4WHEELS Contact Details</h3>
+          <p class="text-sm text-slate-300 mb-6 leading-relaxed">
+            Please ensure you are communicating directly with the authentic 4WHEELS Rent a Car team based in Johar Town, Lahore.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-4 text-xs font-medium mb-6 text-slate-300">
+            <p><strong class="text-white">Official Phone:</strong> {BUSINESS_INFO.phoneDisplay}</p>
+            <p><strong class="text-white">Official WhatsApp:</strong> {BUSINESS_INFO.whatsappDisplay}</p>
+            <p><strong class="text-white">Office Location:</strong> {BUSINESS_INFO.address.fullAddress}</p>
+            <p><strong class="text-white">Official Website:</strong> {BUSINESS_INFO.siteUrl}</p>
+          </div>
+
+          <div class="flex flex-wrap gap-4">
+            <a href={`tel:${BUSINESS_INFO.phoneRaw}`} class="px-5 py-2.5 bg-red-600 text-white font-bold text-xs rounded-lg hover:bg-red-700 transition">Call Official Line</a>
+            <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-emerald-600 text-white font-bold text-xs rounded-lg hover:bg-emerald-700 transition">WhatsApp Official Line</a>
+            <a href="/verify-4wheels/" class="px-5 py-2.5 bg-slate-800 text-slate-200 font-bold text-xs rounded-lg hover:bg-slate-700 transition">Verification Portal</a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <Footer />
+  </body>
+</html>

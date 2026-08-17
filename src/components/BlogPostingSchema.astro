@@ -1,0 +1,47 @@
+---
+import { BUSINESS_INFO } from '../data/business';
+
+export interface Props {
+  article: {
+    title: string;
+    description: string;
+    slug: string;
+    datePublished: string;
+    dateModified: string;
+    heroImage: string;
+    author: string;
+  };
+}
+
+const { article } = Astro.props;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": article.title,
+  "description": article.description,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${BUSINESS_INFO.siteUrl}/blog/${article.slug}/`
+  },
+  "image": article.heroImage.startsWith('http') ? article.heroImage : `${BUSINESS_INFO.siteUrl}${article.heroImage}`,
+  "datePublished": article.datePublished,
+  "dateModified": article.dateModified,
+  "author": {
+    "@type": "Organization",
+    "name": article.author,
+    "url": `${BUSINESS_INFO.siteUrl}/authors/4wheels-editorial-team/`
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": BUSINESS_INFO.name,
+    "url": BUSINESS_INFO.siteUrl,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${BUSINESS_INFO.siteUrl}/brand/logo-primary.png`
+    }
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
