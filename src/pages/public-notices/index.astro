@@ -1,0 +1,75 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SEOHead from '../../components/SEOHead.astro';
+import { getCollection } from 'astro:content';
+import { BUSINESS_INFO } from '../../data/business';
+
+const pageTitle = `Public Brand Protection Notices - ${BUSINESS_INFO.name}`;
+const pageDescription = `Official public notices and brand protection statements published by ${BUSINESS_INFO.name} regarding non-affiliated entity names and market confusion.`;
+
+const pressItems = await getCollection('press');
+const notices = pressItems.filter((item) => item.data.type === 'Public Notice');
+---
+
+<html lang="en">
+  <head>
+    <SEOHead title={pageTitle} description={pageDescription} canonicalUrl={`${BUSINESS_INFO.siteUrl}/public-notices/`} />
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    <Header />
+
+    <main class="max-w-5xl mx-auto px-4 py-12">
+      <!-- Breadcrumb -->
+      <nav class="text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2">
+          <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+          <li><span>/</span></li>
+          <li><a href="/press/" class="hover:text-red-600 transition">Press Centre</a></li>
+          <li><span>/</span></li>
+          <li class="font-medium text-slate-800">Public Notices</li>
+        </ol>
+      </nav>
+
+      <div class="border-b border-slate-200 pb-8 mb-12">
+        <span class="inline-block px-3 py-1 bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wider rounded-full mb-3">Brand Protection</span>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Public Brand Notices Archive</h1>
+        <p class="mt-4 text-xl text-slate-600 max-w-3xl">
+          Official notices published by {BUSINESS_INFO.name} management regarding non-affiliated lookalike operations and customer protection.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        {notices.map((notice) => (
+          <article class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200 border-l-4 border-l-red-600">
+            <div class="flex flex-wrap items-center gap-3 mb-3 text-xs">
+              <span class="px-2.5 py-1 bg-red-100 text-red-800 font-bold rounded">{notice.data.status}</span>
+              <span class="text-slate-400">•</span>
+              <time class="text-slate-500">{notice.data.datePublished}</time>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 mb-3 hover:text-red-600 transition">
+              <a href={`/public-notices/${notice.data.slug}/`}>{notice.data.title}</a>
+            </h2>
+
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              {notice.data.summary}
+            </p>
+
+            {notice.data.entityWebsite && (
+              <div class="bg-slate-50 rounded-xl p-4 text-xs text-slate-700 mb-4 border border-slate-200">
+                <p><strong>Non-Affiliated Entity Mentioned:</strong> {notice.data.entityName} ({notice.data.entityWebsite} - Phone: {notice.data.entityPhone})</p>
+              </div>
+            )}
+
+            <a href={`/public-notices/${notice.data.slug}/`} class="inline-flex items-center text-xs font-bold text-red-600 hover:text-red-700 uppercase tracking-wider">
+              View Official Statement &rarr;
+            </a>
+          </article>
+        ))}
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

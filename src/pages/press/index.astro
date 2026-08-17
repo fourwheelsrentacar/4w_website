@@ -1,0 +1,111 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SEOHead from '../../components/SEOHead.astro';
+import { getCollection } from 'astro:content';
+import { BUSINESS_INFO } from '../../data/business';
+
+const pageTitle = `Press Centre & Official Newsroom - ${BUSINESS_INFO.name}`;
+const pageDescription = `Official newsroom, public announcements, brand protection notices, and media assets for ${BUSINESS_INFO.name} in Lahore.`;
+
+const pressItems = await getCollection('press');
+const activeNotices = pressItems.filter(p => p.data.index);
+---
+
+<html lang="en">
+  <head>
+    <SEOHead title={pageTitle} description={pageDescription} canonicalUrl={`${BUSINESS_INFO.siteUrl}/press/`} />
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    <Header />
+
+    <main class="max-w-6xl mx-auto px-4 py-12">
+      <!-- Breadcrumb -->
+      <nav class="text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2">
+          <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+          <li><span>/</span></li>
+          <li class="font-medium text-slate-800">Press Centre</li>
+        </ol>
+      </nav>
+
+      <div class="border-b border-slate-200 pb-8 mb-12">
+        <span class="inline-block px-3 py-1 bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wider rounded-full mb-3">Official Communications</span>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">4WHEELS Newsroom & Media Hub</h1>
+        <p class="mt-4 text-xl text-slate-600 max-w-3xl">
+          Official company announcements, public brand protection notices, verification guidelines, and press assets.
+        </p>
+      </div>
+
+      <!-- Grid Layout -->
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+        <!-- Main Press Stream -->
+        <div class="md:col-span-2 space-y-6">
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Latest Public Notices & Announcements</h2>
+
+          {activeNotices.map((notice) => (
+            <article class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:border-slate-300 transition">
+              <div class="flex items-center space-x-3 mb-3">
+                <span class="px-2.5 py-1 bg-red-50 text-red-700 text-xs font-bold rounded-md">{notice.data.type}</span>
+                <span class="text-xs text-slate-400">•</span>
+                <time class="text-xs text-slate-500">{notice.data.datePublished}</time>
+                <span class="text-xs text-slate-400">•</span>
+                <span class="text-xs font-semibold text-emerald-600">{notice.data.status}</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-900 mb-2 hover:text-red-600 transition">
+                <a href={notice.data.type === 'Public Notice' ? `/public-notices/${notice.data.slug}/` : `/press/${notice.data.slug}/`}>
+                  {notice.data.title}
+                </a>
+              </h3>
+
+              <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                {notice.data.summary}
+              </p>
+
+              <a href={notice.data.type === 'Public Notice' ? `/public-notices/${notice.data.slug}/` : `/press/${notice.data.slug}/`} class="inline-flex items-center text-xs font-bold text-red-600 hover:text-red-700 uppercase tracking-wider">
+                Read Full Statement &rarr;
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <!-- Press Sidebar -->
+        <div class="space-y-6">
+          <!-- Quick Brand Assets Box -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+            <h3 class="text-lg font-bold text-slate-900 mb-3">Media Brand Kit</h3>
+            <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+              Access vector logos, official brand guidelines, color palettes, and spelling rules.
+            </p>
+            <a href="/press/brand-assets/" class="block text-center py-2.5 px-4 bg-slate-900 text-white font-bold text-xs rounded-xl hover:bg-slate-800 transition mb-2">
+              View Brand Assets & Logos
+            </a>
+            <a href="/brand/" class="block text-center py-2.5 px-4 bg-slate-100 text-slate-800 font-bold text-xs rounded-xl hover:bg-slate-200 transition">
+              Brand Guidelines
+            </a>
+          </div>
+
+          <!-- Official Company Details -->
+          <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-sm">
+            <h3 class="text-lg font-bold mb-3">Official Business Details</h3>
+            <div class="space-y-3 text-xs text-slate-300">
+              <p><strong class="text-white">Business Name:</strong> {BUSINESS_INFO.name}</p>
+              <p><strong class="text-white">Phone / WhatsApp:</strong> {BUSINESS_INFO.phoneDisplay}</p>
+              <p><strong class="text-white">Location:</strong> {BUSINESS_INFO.address.fullAddress}</p>
+              <p><strong class="text-white">Serving Since:</strong> {BUSINESS_INFO.establishedYear}</p>
+              <p><strong class="text-white">Official Website:</strong> {BUSINESS_INFO.siteUrl}</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-800">
+              <a href="/verify-4wheels/" class="block text-center py-2 px-3 bg-red-600 text-white font-bold text-xs rounded-lg hover:bg-red-700 transition">
+                Verify 4WHEELS
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

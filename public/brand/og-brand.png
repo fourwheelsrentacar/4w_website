@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <!-- Decorative background elements -->
+  <circle cx="1000" cy="100" r="300" fill="#e0121a" opacity="0.15" />
+  <circle cx="200" cy="500" r="250" fill="#2563eb" opacity="0.1" />
+
+  <g transform="translate(100, 180)">
+    <!-- Brand Mark -->
+    <g transform="translate(0, 0) scale(1.5)">
+      <circle cx="40" cy="40" r="36" fill="#e0121a" />
+      <circle cx="40" cy="40" r="24" fill="#0f172a" />
+      <circle cx="40" cy="40" r="12" fill="#e0121a" />
+      <path d="M 40 4 L 40 76 M 4 40 L 76 40 M 15 15 L 65 65 M 15 65 L 65 15" stroke="#ffffff" stroke-width="3" />
+    </g>
+
+    <text x="150" y="60" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="64" fill="#ffffff" letter-spacing="-1">4WHEELS</text>
+    <text x="152" y="100" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="28" fill="#e0121a" letter-spacing="4">RENT A CAR</text>
+
+    <text x="0" y="200" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="44" fill="#ffffff">Lahore Car Rental Knowledge Hub</text>
+    <text x="0" y="250" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="24" fill="#9ca3af">Self Drive & With Driver Rental Guides • Johar Town, Lahore</text>
+
+    <rect x="0" y="290" width="380" height="48" rx="24" fill="#e0121a" />
+    <text x="24" y="322" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="20" fill="#ffffff">Official Contact: 0321 6616644</text>
+  </g>
+</svg>

@@ -1,0 +1,98 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SEOHead from '../../components/SEOHead.astro';
+import { BUSINESS_INFO } from '../../data/business';
+
+const pageTitle = `Official Press & Media Brand Assets - ${BUSINESS_INFO.name}`;
+const pageDescription = `Download high-resolution vector logos, company descriptions, and official media guidelines for ${BUSINESS_INFO.name}.`;
+---
+
+<html lang="en">
+  <head>
+    <SEOHead title={pageTitle} description={pageDescription} canonicalUrl={`${BUSINESS_INFO.siteUrl}/press/brand-assets/`} />
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    <Header />
+
+    <main class="max-w-6xl mx-auto px-4 py-12">
+      <!-- Breadcrumb -->
+      <nav class="text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2">
+          <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+          <li><span>/</span></li>
+          <li><a href="/press/" class="hover:text-red-600 transition">Press Centre</a></li>
+          <li><span>/</span></li>
+          <li class="font-medium text-slate-800">Brand Assets</li>
+        </ol>
+      </nav>
+
+      <div class="border-b border-slate-200 pb-8 mb-12">
+        <span class="inline-block px-3 py-1 bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wider rounded-full mb-3">Media Kit</span>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Press & Media Brand Assets</h1>
+        <p class="mt-4 text-xl text-slate-600 max-w-3xl">
+          Approved digital assets, company boilerplate descriptions, and media contact details for press publications.
+        </p>
+      </div>
+
+      <!-- Approved Boilerplate Description -->
+      <section class="bg-white rounded-2xl p-8 shadow-sm border border-slate-200 mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Official Company Description</h2>
+        <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 text-slate-700 leading-relaxed font-medium mb-4">
+          "4WHEELS Rent a Car is a Lahore-based vehicle rental business providing self-drive and chauffeur-driven car rental services for individuals, families, and corporate clients across Lahore since 2008. Operating from Johar Town Phase 1, 4WHEELS maintains a diverse fleet of well-serviced hatchbacks, sedans, and SUVs."
+        </div>
+        <p class="text-xs text-slate-500">
+          Note: Do not exaggerate fleet statistics, customer numbers, or corporate revenue in media publications.
+        </p>
+      </section>
+
+      <!-- Downloadable Vector Logos -->
+      <section class="bg-white rounded-2xl p-8 shadow-sm border border-slate-200 mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">Logo Downloads for Publication</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 text-center">
+            <img src="/brand/logo-primary.svg" alt="4WHEELS Primary Logo" class="h-16 mx-auto mb-4" />
+            <h3 class="font-bold text-slate-800 text-sm mb-1">Primary Logo (Light)</h3>
+            <p class="text-xs text-slate-500 mb-4">Vector SVG format for print & digital.</p>
+            <a href="/brand/logo-primary.svg" download class="inline-block px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded hover:bg-slate-800 transition">Download SVG</a>
+          </div>
+
+          <div class="bg-slate-900 rounded-xl p-6 border border-slate-800 text-center text-white">
+            <img src="/brand/logo-dark.svg" alt="4WHEELS Dark Logo" class="h-16 mx-auto mb-4" />
+            <h3 class="font-bold text-white text-sm mb-1">Dark Background Logo</h3>
+            <p class="text-xs text-slate-400 mb-4">Vector SVG format for dark layouts.</p>
+            <a href="/brand/logo-dark.svg" download class="inline-block px-4 py-2 bg-red-600 text-white text-xs font-bold rounded hover:bg-red-700 transition">Download SVG</a>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 text-center">
+            <img src="/brand/logo-mark.svg" alt="4WHEELS Mark" class="h-16 mx-auto mb-4" />
+            <h3 class="font-bold text-slate-800 text-sm mb-1">Brand Mark / Emblem</h3>
+            <p class="text-xs text-slate-500 mb-4">Iconic emblem for square avatars.</p>
+            <a href="/brand/logo-mark.svg" download class="inline-block px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded hover:bg-slate-800 transition">Download SVG</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Info for Media -->
+      <section class="bg-slate-900 text-white rounded-2xl p-8 shadow-sm">
+        <h2 class="text-2xl font-bold mb-4">Official Verification & Press Contact</h2>
+        <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-300">
+          <div>
+            <p class="mb-2"><strong class="text-white">Business Name:</strong> {BUSINESS_INFO.name}</p>
+            <p class="mb-2"><strong class="text-white">Phone / WhatsApp:</strong> {BUSINESS_INFO.phoneDisplay}</p>
+            <p class="mb-2"><strong class="text-white">International WhatsApp:</strong> +{BUSINESS_INFO.whatsappRaw}</p>
+            <p class="mb-2"><strong class="text-white">Physical Address:</strong> {BUSINESS_INFO.address.fullAddress}</p>
+          </div>
+          <div>
+            <p class="mb-2"><strong class="text-white">Official Website:</strong> {BUSINESS_INFO.siteUrl}</p>
+            <p class="mb-2"><strong class="text-white">Facebook:</strong> {BUSINESS_INFO.socials.facebook}</p>
+            <p class="mb-2"><strong class="text-white">Google Business:</strong> {BUSINESS_INFO.socials.googleBusiness}</p>
+            <p class="mb-2"><strong class="text-white">Serving Lahore Since:</strong> {BUSINESS_INFO.establishedYear}</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>

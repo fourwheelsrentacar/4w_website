@@ -1,0 +1,219 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SEOHead from '../../components/SEOHead.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import RelatedArticles from '../../components/RelatedArticles.astro';
+import ReadingProgressBar from '../../components/ReadingProgressBar.astro';
+import BlogPostingSchema from '../../components/BlogPostingSchema.astro';
+import { getCollection, render } from 'astro:content';
+import { BUSINESS_INFO } from '../../data/business';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const published = posts.filter((p) => p.data.index && !p.data.draft);
+  return published.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+const pageTitle = `${post.data.title} - ${BUSINESS_INFO.name}`;
+const pageDescription = post.data.description;
+const canonicalUrl = `${BUSINESS_INFO.siteUrl}/blog/${post.data.slug}/`;
+---
+
+<html lang="en">
+  <head>
+    <SEOHead title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} ogImage={post.data.heroImage} />
+    <BlogPostingSchema article={{ ...post.data, heroImage: post.data.heroImage }} />
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    <ReadingProgressBar />
+    <Header />
+
+    <main class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+      <!-- Breadcrumbs -->
+      <nav class="text-xs text-slate-500 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 flex-wrap">
+          <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+          <li><span>/</span></li>
+          <li><a href="/blog/" class="hover:text-red-600 transition">Car Rental Guide</a></li>
+          <li><span>/</span></li>
+          <li>
+            <a
+              href={`/blog/category/${post.data.category.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-')}/`}
+              class="hover:text-red-600 transition"
+            >
+              {post.data.category}
+            </a>
+          </li>
+          <li><span>/</span></li>
+          <li class="font-medium text-slate-800 truncate max-w-[200px]">{post.data.title}</li>
+        </ol>
+      </nav>
+
+      <!-- Article Header -->
+      <header class="max-w-4xl mx-auto mb-10 text-center md:text-left">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 bg-red-100 text-red-800 text-xs font-bold rounded-full mb-4">
+          <span>{post.data.category}</span>
+        </div>
+
+        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          {post.data.title}
+        </h1>
+
+        <p class="mt-4 text-lg md:text-xl text-slate-600 leading-relaxed font-normal">
+          {post.data.description}
+        </p>
+
+        <!-- Meta Bar -->
+        <div class="mt-6 pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500 font-medium">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center text-[10px]">
+              4W
+            </div>
+            <div>
+              <a href="/authors/4wheels-editorial-team/" class="font-bold text-slate-800 hover:text-red-600 transition">
+                {post.data.author}
+              </a>
+              <div class="text-[11px] text-slate-400">Fact checked by {post.data.factCheckedBy}</div>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <span>Published: {post.data.datePublished}</span>
+            <span>•</span>
+            <span>Updated: {post.data.dateModified}</span>
+            <span>•</span>
+            <span class="text-red-600 font-bold">{post.data.readingTime}</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Grid Layout: Desktop Left TOC, Main Body Center (760-800px), Right Callout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Desktop Left Sticky TOC (3 cols) -->
+        <aside class="hidden lg:block lg:col-span-3">
+          <TableOfContents headings={headings} />
+        </aside>
+
+        <!-- Main Article Content (6 cols / approx 800px max) -->
+        <article class="lg:col-span-6 bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-slate-200 max-w-[800px] mx-auto w-full">
+          <!-- Mobile Collapsible TOC -->
+          <TableOfContents headings={headings} />
+
+          <!-- Quick Answer Box -->
+          {post.data.quickAnswer && (
+            <div class="bg-slate-900 text-white rounded-xl p-6 mb-8 border-l-4 border-red-600">
+              <h2 class="text-xs font-bold uppercase tracking-wider text-red-400 mb-2">Quick Answer</h2>
+              <p class="text-sm md:text-base leading-relaxed text-slate-200 font-medium">{post.data.quickAnswer}</p>
+            </div>
+          )}
+
+          <!-- Key Takeaways Box -->
+          {post.data.keyTakeaways && post.data.keyTakeaways.length > 0 && (
+            <div class="bg-red-50 border border-red-200 rounded-xl p-6 mb-8">
+              <h2 class="text-xs font-bold uppercase tracking-wider text-red-800 mb-3">Key Takeaways</h2>
+              <ul class="space-y-2 text-xs md:text-sm text-slate-800 font-medium">
+                {post.data.keyTakeaways.map((takeaway) => (
+                  <li class="flex items-start">
+                    <span class="text-red-600 font-bold mr-2">✓</span>
+                    <span>{takeaway}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Markdown Content Render -->
+          <div class="prose prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-red-600 prose-a:font-semibold hover:prose-a:underline prose-table:border prose-table:border-slate-200 prose-th:bg-slate-100 prose-th:p-3 prose-td:p-3 prose-td:border prose-td:border-slate-200 text-sm md:text-base leading-relaxed">
+            <Content />
+          </div>
+
+          <!-- Official Verification Callout -->
+          <div class="mt-12 bg-slate-900 text-white rounded-xl p-6 border-t-4 border-red-600">
+            <h3 class="text-lg font-bold mb-2">Verify Before You Pay</h3>
+            <p class="text-xs text-slate-300 mb-4">
+              Official 4WHEELS Rent a Car details in Johar Town, Lahore:
+            </p>
+            <div class="text-xs space-y-1 mb-4 text-slate-300 font-mono">
+              <p>• Phone: {BUSINESS_INFO.phoneDisplay}</p>
+              <p>• WhatsApp: {BUSINESS_INFO.whatsappDisplay}</p>
+              <p>• Location: {BUSINESS_INFO.address.locality}, {BUSINESS_INFO.address.city}</p>
+            </div>
+            <div class="flex flex-wrap gap-3 text-xs font-bold">
+              <a href="/verify-4wheels/" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition">Verify 4WHEELS</a>
+              <a href="/public-notices/" class="px-4 py-2 bg-slate-800 text-slate-200 rounded hover:bg-slate-700 transition">Public Notices</a>
+            </div>
+          </div>
+
+          <!-- Author Box -->
+          <div class="mt-8 pt-6 border-t border-slate-200 flex items-start space-x-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div class="w-12 h-12 rounded-full bg-red-600 text-white font-black text-sm flex items-center justify-center shrink-0">
+              4W
+            </div>
+            <div class="text-xs">
+              <h3 class="font-bold text-slate-900 text-sm">{post.data.author}</h3>
+              <p class="text-slate-600 mt-1 leading-relaxed">
+                Produces practical rental guidance based on 4WHEELS' real operational experience serving car rental customers in Lahore since 2008.
+              </p>
+              <a href="/editorial-policy/" class="text-red-600 hover:underline font-semibold mt-2 inline-block">Read Editorial Policy &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Last Reviewed Info -->
+          <div class="mt-4 text-[11px] text-slate-400 text-center">
+            Article last reviewed on <time>{post.data.reviewDate}</time>. Rental terms and requirements are subject to business confirmation.
+          </div>
+        </article>
+
+        <!-- Right Side Area: CTAs & Related Service (3 cols) -->
+        <aside class="lg:col-span-3 space-y-6">
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 sticky top-8">
+            <h3 class="text-lg font-extrabold text-slate-900 mb-2">Need a Car in Lahore?</h3>
+            <p class="text-xs text-slate-600 mb-6 leading-relaxed">
+              Talk directly with 4WHEELS Rent a Car to check availability for self-drive or with-driver rentals.
+            </p>
+
+            <div class="space-y-3">
+              <a
+                href={`tel:${BUSINESS_INFO.phoneRaw}`}
+                class="block w-full py-3 px-4 bg-red-600 text-white text-center font-bold text-xs rounded-xl hover:bg-red-700 transition shadow-sm"
+              >
+                Call {BUSINESS_INFO.phoneDisplay}
+              </a>
+              <a
+                href={BUSINESS_INFO.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full py-3 px-4 bg-emerald-600 text-white text-center font-bold text-xs rounded-xl hover:bg-emerald-700 transition shadow-sm"
+              >
+                WhatsApp 4WHEELS
+              </a>
+            </div>
+
+            {post.data.relatedServices && post.data.relatedServices.length > 0 && (
+              <div class="mt-6 pt-6 border-t border-slate-200 text-xs">
+                <span class="font-bold text-slate-800 uppercase tracking-wider text-[10px] block mb-2">Related Service</span>
+                {post.data.relatedServices.map((href) => (
+                  <a href={href} class="text-red-600 hover:underline font-semibold block py-1 capitalize">
+                    {href.replace(/\//g, '').replace(/-/g, ' ')} &rarr;
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </aside>
+      </div>
+
+      <!-- Related Articles Section -->
+      <RelatedArticles currentSlug={post.data.slug} category={post.data.category} relatedSlugs={post.data.relatedPosts} />
+    </main>
+
+    <Footer />
+  </body>
+</html>

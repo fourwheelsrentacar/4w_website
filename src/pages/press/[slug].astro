@@ -1,0 +1,82 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SEOHead from '../../components/SEOHead.astro';
+import { getCollection, render } from 'astro:content';
+import { BUSINESS_INFO } from '../../data/business';
+
+export async function getStaticPaths() {
+  const pressItems = await getCollection('press');
+  return pressItems.map((item) => ({
+    params: { slug: item.data.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+
+const pageTitle = `${item.data.title} - ${BUSINESS_INFO.name}`;
+const pageDescription = item.data.summary;
+---
+
+<html lang="en">
+  <head>
+    <SEOHead title={pageTitle} description={pageDescription} canonicalUrl={`${BUSINESS_INFO.siteUrl}/press/${item.data.slug}/`} />
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    <Header />
+
+    <main class="max-w-4xl mx-auto px-4 py-12">
+      <!-- Breadcrumbs -->
+      <nav class="text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2">
+          <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+          <li><span>/</span></li>
+          <li><a href="/press/" class="hover:text-red-600 transition">Press Centre</a></li>
+          <li><span>/</span></li>
+          <li class="font-medium text-slate-800">{item.data.title}</li>
+        </ol>
+      </nav>
+
+      <article class="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-slate-200">
+        <header class="border-b border-slate-200 pb-8 mb-8">
+          <div class="flex items-center space-x-3 mb-4">
+            <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-md">{item.data.type}</span>
+            <span class="text-xs text-slate-400">•</span>
+            <time class="text-xs text-slate-500">{item.data.datePublished}</time>
+            <span class="text-xs text-slate-400">•</span>
+            <span class="text-xs font-bold text-emerald-600">{item.data.status}</span>
+          </div>
+
+          <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            {item.data.title}
+          </h1>
+
+          <p class="mt-4 text-lg text-slate-600 leading-relaxed font-medium">
+            {item.data.summary}
+          </p>
+        </header>
+
+        <div class="prose prose-slate max-w-none prose-headings:font-bold prose-a:text-red-600">
+          <Content />
+        </div>
+
+        <!-- Verification Callout Box -->
+        <div class="mt-12 bg-slate-900 text-white rounded-xl p-6 border-l-4 border-red-600">
+          <h3 class="text-lg font-bold mb-2">Verify Before Booking</h3>
+          <p class="text-sm text-slate-300 mb-4">
+            Always confirm that you are communicating directly with the official 4WHEELS Rent a Car team in Johar Town, Lahore.
+          </p>
+          <div class="flex flex-wrap gap-4 text-xs font-bold">
+            <a href={`tel:${BUSINESS_INFO.phoneRaw}`} class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition">Call {BUSINESS_INFO.phoneDisplay}</a>
+            <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition">WhatsApp Direct</a>
+            <a href="/verify-4wheels/" class="px-4 py-2 bg-slate-800 text-slate-200 rounded hover:bg-slate-700 transition">Official Verification Guide</a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <Footer />
+  </body>
+</html>
