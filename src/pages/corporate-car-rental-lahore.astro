@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Corporate Car Rental Lahore | Business Travel Solutions | 4WHEELS";
+const description = "Corporate car rental services in Lahore by 4WHEELS. Tailored vehicle arrangements for business travel, executive visitors, project teams, and monthly corporate needs.";
+
+const faqs = [
+  {
+    question: "How do I set up a corporate rental with 4WHEELS?",
+    answer: "Contact 4WHEELS directly via phone or WhatsApp with your company's travel schedule, required vehicle types, and duration to discuss customized corporate arrangements."
+  },
+  {
+    question: "Are chauffeur-driven options available for visiting executives?",
+    answer: "Yes, we provide professional chauffeur-driven cars suited for corporate executives, international delegates, and business meetings in Lahore."
+  },
+  {
+    question: "Can 4WHEELS support short-term and long-term corporate projects?",
+    answer: "Yes, we accommodate daily event travel, multi-week project travel, and long-term monthly corporate rentals."
+  }
+];
+---
+
+<Layout title={title} description={description} canonicalPath="/corporate-car-rental-lahore/">
+  <!-- Header Banner -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-block bg-red-900/60 border border-red-700 text-red-300 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+          Business Mobility Solutions
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          Corporate Car Rental in Lahore
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          Dependable vehicle transportation solutions for corporate executives, visiting clients, project teams, and daily business operations across Lahore.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            📞 Call {BUSINESS_INFO.phoneDisplay}
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            💬 Corporate Inquiry
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Details Content -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-8 space-y-8 text-slate-700 leading-relaxed">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Professional Business Travel Support</h2>
+          <p class="mb-4">
+            Reliable mobility is essential for smooth corporate operations. 4WHEELS Rent a Car provides flexible, corporate-focused car rental services designed to meet the high standards of business executives, project managers, and visiting delegates in Lahore.
+          </p>
+          <p>
+            From airport pickups for visiting clients to daily commuting for project teams, we deliver punctual, professional vehicle services.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Corporate Rental Use Cases</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-5 bg-white border border-slate-200 rounded-xl">
+              <h3 class="font-bold text-slate-900 mb-1">💼 Executive Transportation</h3>
+              <p class="text-slate-600 text-sm">Chauffeur-driven vehicles for executive travel, meeting schedules, and corporate events.</p>
+            </div>
+            <div class="p-5 bg-white border border-slate-200 rounded-xl">
+              <h3 class="font-bold text-slate-900 mb-1">🛫 Guest & Airport Transfers</h3>
+              <p class="text-slate-600 text-sm">Punctual arrival and departure transfers at Lahore Airport for corporate guests.</p>
+            </div>
+            <div class="p-5 bg-white border border-slate-200 rounded-xl">
+              <h3 class="font-bold text-slate-900 mb-1">🏗️ Project Mobility</h3>
+              <p class="text-slate-600 text-sm">Flexible weekly or monthly vehicle allocations for project teams based in Lahore.</p>
+            </div>
+            <div class="p-5 bg-white border border-slate-200 rounded-xl">
+              <h3 class="font-bold text-slate-900 mb-1">📅 Long-Term Corporate Rental</h3>
+              <p class="text-slate-600 text-sm">Monthly rental terms customized to your organization's business calendar.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Discuss Corporate Requirements</h2>
+          <p class="mb-4">
+            To discuss corporate rental terms, fleet availability, or customized long-term agreements, contact 4WHEELS directly.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800 space-y-4">
+          <h3 class="text-xl font-bold border-b border-slate-800 pb-3">Corporate Inquiry</h3>
+          <p class="text-sm text-slate-300">
+            Reach out to 4WHEELS to arrange vehicle transportation for your company.
+          </p>
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            📞 Call 0321 6616644
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            💬 WhatsApp Corporate Desk
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <FAQ items={faqs} />
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Need Corporate Transportation in Lahore?"
+      subheading="Contact 4WHEELS to discuss corporate car rental arrangements and availability."
+    />
+  </div>
+</Layout>

@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Monthly Car Rental Lahore | Long-Term Vehicle Rentals | 4WHEELS";
+const description = "Need a monthly car rental in Lahore? 4WHEELS offers long-term rental options for business, overseas visitors, and temporary stays. Contact us for custom quotations.";
+
+const faqs = [
+  {
+    question: "How do I get a monthly car rental quote in Lahore?",
+    answer: "Contact 4WHEELS directly via phone or WhatsApp with your required duration, preferred vehicle type, and whether you need a self-drive or chauffeur-driven vehicle for a custom quotation."
+  },
+  {
+    question: "Is monthly rental available for self-drive?",
+    answer: "Yes, monthly self-drive rental options are available subject to vehicle availability and requirement verification."
+  },
+  {
+    question: "Are monthly rentals available with a driver?",
+    answer: "Yes, dedicated driver options are available for monthly rentals for executives, businesses, and families."
+  }
+];
+---
+
+<Layout title={title} description={description} canonicalPath="/monthly-car-rental-lahore/">
+  <!-- Header Banner -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-block bg-red-900/60 border border-red-700 text-red-300 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+          Long-Term Rental Options
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          Monthly Car Rental in Lahore
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          Practical long-term car rental solutions for business assignments, overseas guests, temporary residence, or extended travel in Lahore.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            📞 Call {BUSINESS_INFO.phoneDisplay}
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            💬 Request Monthly Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Details Content -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-8 space-y-8 text-slate-700 leading-relaxed">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Convenient Long-Term Mobility in Lahore</h2>
+          <p class="mb-4">
+            If you require a vehicle for several weeks or months in Lahore, daily rentals can become inconvenient. A monthly car rental offers a practical solution without the long-term commitments, depreciation, or maintenance obligations of purchasing a car.
+          </p>
+          <p>
+            4WHEELS provides tailored monthly rental arrangements for individuals, business travelers, and families in Johar Town, DHA, Gulberg, and across Lahore.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl space-y-3">
+          <h3 class="text-lg font-bold text-slate-900">Who Benefits from Monthly Rentals?</h3>
+          <ul class="space-y-2 text-sm text-slate-700">
+            <li class="flex items-center gap-2">
+              <span class="text-red-600 font-bold">•</span>
+              <strong>Overseas Visitors & Families:</strong> Long-term stay convenience without hassle.
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-red-600 font-bold">•</span>
+              <strong>Corporate Executives:</strong> Project-based corporate assignment vehicles.
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-red-600 font-bold">•</span>
+              <strong>Temporary Residents:</strong> Reliable mobility while waiting for personal vehicle delivery.
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Pricing & Availability</h2>
+          <p class="mb-4">
+            Monthly rental terms vary depending on vehicle selection, rental duration, and whether you choose self-drive or driver options. Contact 4WHEELS directly to receive current vehicle availability and a customized monthly rental quotation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800 space-y-4">
+          <h3 class="text-xl font-bold border-b border-slate-800 pb-3">Monthly Quotation</h3>
+          <p class="text-sm text-slate-300">
+            Contact 4WHEELS to discuss your monthly vehicle needs.
+          </p>
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            📞 Call 0321 6616644
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            💬 WhatsApp Quotation
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <FAQ items={faqs} />
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Need a Monthly Car Rental in Lahore?"
+      subheading="Contact 4WHEELS for current vehicle availability and monthly rental quotation."
+    />
+  </div>
+</Layout>

@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Self Drive Car Rental Lahore | Flexible Rentals | 4WHEELS";
+const description = "Rent a self-drive car in Lahore with 4WHEELS. Independent vehicle rental options for daily, weekly, and monthly trips. Call or WhatsApp to check availability.";
+
+const faqs = [
+  {
+    question: "How do I rent a self-drive car in Lahore?",
+    answer: "Contact 4WHEELS directly via phone or WhatsApp with your travel dates and vehicle preferences. Our team will verify current availability and confirm rental details."
+  },
+  {
+    question: "What documents are required for self-drive car rental?",
+    answer: "Contact 4WHEELS to confirm current rental requirements, verification procedures, and vehicle availability."
+  },
+  {
+    question: "Are self-drive cars available for daily and monthly use?",
+    answer: "Yes, depending on current fleet availability, self-drive vehicles can be rented for daily trips, weekend getaways, or long-term monthly arrangements."
+  }
+];
+---
+
+<Layout title={title} description={description} canonicalPath="/self-drive-car-rental-lahore/">
+  <!-- Header Banner -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-block bg-red-900/60 border border-red-700 text-red-300 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+          Independent Vehicle Travel
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          Self Drive Car Rental in Lahore
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          Enjoy total freedom and privacy on Lahore roads with self-drive rental options from 4WHEELS. Contact us to verify current vehicle availability.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            📞 Call {BUSINESS_INFO.phoneDisplay}
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            💬 WhatsApp for Availability
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Details Content -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-8 space-y-8 text-slate-700 leading-relaxed">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Independent Driving in Lahore</h2>
+          <p class="mb-4">
+            For drivers who value privacy, flexibility, and personal control over their schedule, self-drive car rentals offer the ideal solution. Whether you are visiting Lahore for family occasions, business errands, or daily personal commute, driving your own rental vehicle gives you complete independence.
+          </p>
+          <p>
+            4WHEELS Rent a Car provides reliable self-drive vehicles out of Johar Town Phase 1, serving local residents and visitors across Lahore.
+          </p>
+        </div>
+
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl space-y-2">
+          <h3 class="font-bold text-amber-900 text-base">Rental Requirements & Policies</h3>
+          <p class="text-sm text-amber-800">
+            Contact 4WHEELS to confirm current rental requirements, documentation, deposit policies, and vehicle availability prior to booking.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Suitable Use Cases for Self Drive Rentals</h2>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="text-red-600 font-bold">✓</span>
+              <div>
+                <strong>Daily City Errands:</strong> Travel between Johar Town, Gulberg, Model Town, and DHA without waiting for taxis.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-red-600 font-bold">✓</span>
+              <div>
+                <strong>Family Visits & Outings:</strong> Comfortably transport your family around Lahore at your own pace.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-red-600 font-bold">✓</span>
+              <div>
+                <strong>Business Travel:</strong> Maintain absolute privacy and timeliness for multi-destination corporate visits.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-red-600 font-bold">✓</span>
+              <div>
+                <strong>Monthly & Extended Rentals:</strong> Secure long-term vehicle access for temporary stays in Lahore.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">How to Inquire and Book</h2>
+          <p class="mb-4">
+            To inquire about self-drive car rental availability in Lahore:
+          </p>
+          <ol class="list-decimal pl-5 space-y-2 font-medium">
+            <li>Call 0321 6616644 or click our WhatsApp link.</li>
+            <li>Specify your rental start date, expected duration, and intended travel scope.</li>
+            <li>Confirm available vehicle models and rental terms directly with our team.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800 space-y-4">
+          <h3 class="text-xl font-bold border-b border-slate-800 pb-3">Inquire Self Drive</h3>
+          <p class="text-sm text-slate-300">
+            Contact 4WHEELS to check current vehicle availability and rental terms.
+          </p>
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            📞 Call 0321 6616644
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            💬 WhatsApp Message
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <FAQ items={faqs} />
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Looking for a Self-Drive Car in Lahore?"
+      subheading="Contact 4WHEELS to confirm current rental requirements and vehicle availability."
+    />
+  </div>
+</Layout>

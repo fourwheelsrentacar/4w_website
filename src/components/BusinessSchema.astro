@@ -1,0 +1,32 @@
+---
+import { BUSINESS_INFO } from '../data/business';
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": ["AutoRental", "LocalBusiness"],
+  "name": BUSINESS_INFO.name,
+  "legalName": BUSINESS_INFO.legalName,
+  "url": BUSINESS_INFO.siteUrl,
+  "telephone": BUSINESS_INFO.phoneRaw,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": BUSINESS_INFO.address.street,
+    "addressLocality": BUSINESS_INFO.address.city,
+    "addressRegion": BUSINESS_INFO.address.region,
+    "postalCode": BUSINESS_INFO.address.postalCode,
+    "addressCountry": BUSINESS_INFO.address.country
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": BUSINESS_INFO.geo.latitude,
+    "longitude": BUSINESS_INFO.geo.longitude
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Lahore"
+  },
+  "priceRange": "$$"
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />

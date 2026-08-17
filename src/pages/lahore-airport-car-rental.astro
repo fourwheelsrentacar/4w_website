@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Lahore Airport Car Rental | Pickup & Drop-Off | 4WHEELS";
+const description = "Book reliable airport car rental in Lahore with 4WHEELS. Pickup and drop-off services for Allama Iqbal International Airport with self-drive and driver options.";
+
+const faqs = [
+  {
+    question: "Can I book a car rental for Lahore Airport pickup?",
+    answer: "Yes, 4WHEELS provides pickup services for incoming flights at Allama Iqbal International Airport Lahore. Advance booking is recommended."
+  },
+  {
+    question: "Are both self-drive and driver options available for airport transfers?",
+    answer: "Yes, subject to availability and vehicle requirements, both options can be arranged."
+  },
+  {
+    question: "How do I inform 4WHEELS about my flight schedule?",
+    answer: "When contacting us via phone or WhatsApp, share your flight number and arrival time so we can schedule timely pickup."
+  }
+];
+---
+
+<Layout title={title} description={description} canonicalPath="/lahore-airport-car-rental/">
+  <!-- Header Banner -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-block bg-red-900/60 border border-red-700 text-red-300 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+          Airport Transfers & Pickup
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          Lahore Airport Car Rental
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          Punctual pickup and drop-off services for Allama Iqbal International Airport Lahore (LHE). Self-drive and driver-driven options available with advance booking.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            📞 Call {BUSINESS_INFO.phoneDisplay}
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+          >
+            💬 WhatsApp Flight Booking
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Details Content -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-8 space-y-8 text-slate-700 leading-relaxed">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Punctual Transfers for Allama Iqbal International Airport</h2>
+          <p class="mb-4">
+            Arriving in Lahore or heading to catch a flight requires dependable transportation. 4WHEELS Rent a Car offers organized airport transfers between Allama Iqbal International Airport and all major sectors of Lahore including Johar Town, DHA, Gulberg, Cantt, and Model Town.
+          </p>
+          <p>
+            Whether you are returning home, traveling on business, or hosting overseas guests, we ensure timely coordination.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Airport Rental Services</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-5 bg-white border border-slate-200 rounded-xl">
+              <h3 class="font-bold text-slate-900 mb-1">✈️ Airport Pickup</h3>
+              <p class="text-slate-600 text-sm">Pre-arranged vehicle pickup upon your arrival at Lahore Airport terminal.</p>
+            </div>
+            <div class="p-5 bg-white border border-slate-200 rounded-xl">
+              <h3 class="font-bold text-slate-900 mb-1">🛫 Airport Drop-Off</h3>
+              <p class="text-slate-600 text-sm">Timely departure transport from your residence or hotel directly to the departure gate.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Advance Booking Recommendation</h2>
+          <p class="mb-4">
+            To ensure immediate vehicle availability upon landing, we advise booking your airport transfer at least 12–24 hours in advance. Simply share your arrival flight number, estimated time, and baggage requirements when contacting 4WHEELS.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800 space-y-4">
+          <h3 class="text-xl font-bold border-b border-slate-800 pb-3">Book Airport Transport</h3>
+          <p class="text-sm text-slate-300">
+            Contact 4WHEELS to arrange your Lahore Airport transfer.
+          </p>
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            📞 Call 0321 6616644
+          </a>
+          <a
+            href={BUSINESS_INFO.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
+          >
+            💬 WhatsApp Details
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <FAQ items={faqs} />
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Traveling To or From Lahore Airport?"
+      subheading="Contact 4WHEELS to arrange timely airport pickup or drop-off."
+    />
+  </div>
+</Layout>

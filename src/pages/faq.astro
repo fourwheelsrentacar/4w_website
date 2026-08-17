@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+
+const title = "Frequently Asked Questions | 4WHEELS Rent a Car Lahore";
+const description = "Find answers to frequently asked questions about car rental in Lahore with 4WHEELS. Learn about self-drive, driver options, monthly rentals, and airport transfers.";
+
+const allFaqs = [
+  {
+    question: "Can I rent a self-drive car in Lahore?",
+    answer: "Yes, 4WHEELS provides self-drive car rental options in Lahore. Contact us directly via phone or WhatsApp to verify current availability and requirement verification procedures."
+  },
+  {
+    question: "Can I rent a car with a driver?",
+    answer: "Yes, we offer professional cars with drivers for local city travel, business meetings, family outings, and airport transfers across Lahore."
+  },
+  {
+    question: "Do you offer daily rentals?",
+    answer: "Yes, short-term daily rentals are available depending on vehicle availability for your dates."
+  },
+  {
+    question: "Do you offer monthly rentals?",
+    answer: "Yes, extended long-term monthly rentals can be arranged for residents, corporate stays, or visiting guests."
+  },
+  {
+    question: "Can I book a car for Lahore Airport transfers?",
+    answer: "Yes, we provide direct pickup and drop-off services for Allama Iqbal International Airport Lahore."
+  },
+  {
+    question: "Do you provide corporate rentals?",
+    answer: "Yes, 4WHEELS offers tailored vehicle arrangements for corporate travel, executive visits, and business projects in Lahore."
+  },
+  {
+    question: "How do I check vehicle availability?",
+    answer: "Call 0321 6616644 or message us on WhatsApp with your required travel dates, duration, and rental preference."
+  },
+  {
+    question: "How do I book with 4WHEELS?",
+    answer: "Reach out via phone or WhatsApp to state your requirements, verify available options, and confirm your rental booking."
+  }
+];
+---
+
+<Layout title={title} description={description} canonicalPath="/faq/">
+  <!-- Header Banner -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          Frequently Asked Questions
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed">
+          Clear answers to common questions about car rental services with 4WHEELS in Lahore.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <FAQ items={allFaqs} title="4WHEELS Car Rental FAQs" />
+  </section>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Have More Questions?"
+      subheading="Contact 4WHEELS directly at 0321 6616644 or via WhatsApp to get immediate assistance."
+    />
+  </div>
+</Layout>
