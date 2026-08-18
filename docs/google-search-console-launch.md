@@ -1,50 +1,64 @@
-# Google Search Console Launch & Brand Protection Guide
+# Google Search Console Launch & Brand Protection Protocol
 
-## Overview
-This document outlines the protocol for setting up and managing Google Search Console (GSC) for **4WHEELS Rent a Car**, focusing on brand protection, canonical verification, and indexing monitoring on the official domain `https://4wheelsrentacar.pk`.
-
----
-
-## 1. Property Verification
-1. Verify the Domain property or URL-prefix property for `https://4wheelsrentacar.pk` in Google Search Console.
-2. Confirm HTTPS and trailing slash protocol consistency (`site: https://4wheelsrentacar.pk`).
-3. Ensure no unrelated domain (e.g. `4wheels.pk`) or staging URL is linked or verified as an official property.
+## Executive Summary
+This document provides the exact 15-step Search Console launch protocol for **4WHEELS Rent a Car** on the official production domain (`https://4wheelsrentacar.pk`).
 
 ---
 
-## 2. Sitemap Submission
-1. Submit the official sitemap URL:
-   `https://4wheelsrentacar.pk/sitemap-index.xml`
-2. Verify that GSC successfully fetches the sitemap with `Success` status.
-3. Confirm that all sitemap URLs match the `https://4wheelsrentacar.pk` domain with trailing slashes.
+## 15-Step Launch Protocol
 
----
+### Step 1: Confirm Official Production Domain
+- Confirm `https://4wheelsrentacar.pk` as the single authoritative production domain.
+- Verify that no staging URLs or lookalike domains are configured as production targets.
 
-## 3. Immediate URL Inspections
-Perform URL Inspection in GSC for key brand pages to verify Google-selected canonicals:
-1. `https://4wheelsrentacar.pk/` (Homepage)
-2. `https://4wheelsrentacar.pk/official/` (Official Verification)
-3. `https://4wheelsrentacar.pk/contact/` (Contact)
-4. `https://4wheelsrentacar.pk/about/` (About)
-5. `https://4wheelsrentacar.pk/locations/official/` (Official Locations)
-6. Primary commercial pages (`/self-drive-car-rental-lahore/`, `/car-with-driver-lahore/`, `/fleet/`).
+### Step 2: Verify Domain Property
+- Add `4wheelsrentacar.pk` as a Domain Property in Google Search Console via DNS TXT record verification.
+- Alternatively, verify URL-prefix property `https://4wheelsrentacar.pk/`.
 
----
+### Step 3: Submit Official Sitemap
+- Submit primary sitemap index: `https://4wheelsrentacar.pk/sitemap-index.xml` (or `sitemap-0.xml`).
+- Confirm GSC returns `Success` status with zero parsing errors.
 
-## 4. Canonical Inspection & Anomaly Monitoring
-- **Google-selected Canonical Check**: Use URL Inspection -> Coverage to verify that `Google-selected canonical` matches `User-declared canonical`.
-- **Lookalike Safeguard**: Ensure Google NEVER selects an unrelated lookalike site (such as `4wheels.pk`) as canonical for any official 4WHEELS page.
-- **Reporting**: Record any canonical or indexing anomalies immediately.
+### Step 4: Inspect Homepage
+- Perform URL Inspection on `https://4wheelsrentacar.pk/`.
+- Verify mobile usability, indexing status, and canonical alignment.
 
----
+### Step 5: Inspect `/official/` Page
+- Inspect `https://4wheelsrentacar.pk/official/`.
+- Confirm rich results for Organization and AutoRental structured data.
 
-## 5. Branded Query Performance Monitoring
-Set up Search Console Performance filter to monitor branded query impressions and clicks:
-- `4WHEELS Rent a Car`
-- `4WHEELS Lahore`
-- `4 Wheels Rent a Car Lahore`
-- `4wheelrentacar`
-- `4 Wheels Johar Town`
-- `4WHEELS 0321 6616644`
+### Step 6: Inspect `/fleet/` Page
+- Inspect `https://4wheelsrentacar.pk/fleet/` and key vehicle detail pages (`/fleet/toyota-corolla/`, `/fleet/honda-civic/`).
 
-Monitor search queries for unexpected branded landing pages or identity confusion.
+### Step 7: Inspect Trip Planner
+- Inspect `https://4wheelsrentacar.pk/trip-planner/` to verify interactive estimator tool crawlability.
+
+### Step 8: Inspect Major Service Pages
+- Inspect core commercial landing pages:
+  - `https://4wheelsrentacar.pk/self-drive-car-rental-lahore/`
+  - `https://4wheelsrentacar.pk/car-with-driver-lahore/`
+  - `https://4wheelsrentacar.pk/daily-car-rental-lahore/`
+  - `https://4wheelsrentacar.pk/monthly-car-rental-lahore/`
+  - `https://4wheelsrentacar.pk/lahore-airport-car-rental/`
+
+### Step 9: Inspect Press Releases
+- Inspect `/press/` and individual press releases (`/press/official-brand-verification-notice/`, `/press/official-digital-channels-and-website-identity/`).
+
+### Step 10: Inspect Important Guides
+- Inspect Knowledge Hub guides (`https://4wheelsrentacar.pk/guides/`).
+
+### Step 11: Check Google-Selected Canonical
+- Verify under URL Inspection that `Google-selected canonical` matches `User-declared canonical` (`https://4wheelsrentacar.pk/...`).
+- Ensure lookalike domains (e.g. `4wheels.pk`) are never selected as canonical.
+
+### Step 12: Check Indexing Coverage
+- Monitor Page Indexing report for any `404`, `noindex`, or canonical redirect errors.
+
+### Step 13: Monitor Structured Data Problems
+- Review Unparsable Structured Data & Enhancements report for Organization, AutoRental, LocalBusiness, BreadcrumbList, and NewsArticle schemas.
+
+### Step 14: Monitor Branded Queries
+- Track performance for: `4WHEELS Rent a Car`, `4 Wheels Rent a Car Lahore`, `4WHEELS Lahore`, `4wheelrentacar`, `4 Wheels Johar Town`, `4WHEELS official`, `4WHEELS phone`, `4WHEELS WhatsApp`.
+
+### Step 15: Monitor Organic Landing Pages
+- Track impressions, clicks, CTR, and positions across core landing pages to ensure search conversion flow.

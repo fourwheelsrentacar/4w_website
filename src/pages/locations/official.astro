@@ -5,7 +5,10 @@ import CTASection from '../../components/CTASection.astro';
 import { BUSINESS_INFO } from '../../data/business';
 
 const pageTitle = "Official 4WHEELS Rent a Car Locations | Johar Town Lahore";
-const pageDescription = "View confirmed official 4WHEELS Rent a Car physical office locations. Only locations listed on this page are confirmed official branches.";
+const pageDescription = "View confirmed official 4WHEELS Rent a Car physical office location in Johar Town Phase 1, Lahore. Only locations listed on this page are confirmed official branches.";
+
+const mapsSearchUrl = "https://www.google.com/maps/search/?api=1&query=4WHEELS+Rent+a+Car+Johar+Town+Phase+1+Lahore";
+const mapsDirectionsUrl = "https://www.google.com/maps/dir/?api=1&destination=5+F1+Block+F1+Johar+Town+Phase+1+Lahore";
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonicalPath="/locations/official/">
@@ -20,16 +23,16 @@ const pageDescription = "View confirmed official 4WHEELS Rent a Car physical off
   <section class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
     <div class="max-w-4xl mx-auto text-center">
       <div class="inline-block bg-red-600 text-white font-extrabold text-xs uppercase px-3 py-1 rounded tracking-wider mb-4">
-        Verified Branches
+        Verified Physical Branch
       </div>
       <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-4 text-white">
-        Official 4WHEELS Locations
+        Official 4WHEELS Office Location
       </h1>
       <p class="text-lg sm:text-xl text-red-400 font-semibold mb-6">
-        {BUSINESS_INFO.trustWording}
+        {BUSINESS_INFO.trustBadge} — {BUSINESS_INFO.trustWording}
       </p>
       <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-        Only locations listed on this page are confirmed official 4WHEELS Rent a Car locations.
+        Only physical offices listed on this official location page are confirmed 4WHEELS Rent a Car branches.
       </p>
     </div>
   </section>
@@ -49,45 +52,79 @@ const pageDescription = "View confirmed official 4WHEELS Rent a Car physical off
               Johar Town Phase 1, Lahore
             </h2>
           </div>
-          <span class="text-2xl">🏢</span>
+          <span class="text-3xl">🏢</span>
         </div>
 
-        <div class="space-y-4 text-sm sm:text-base">
+        <div class="space-y-4 text-sm sm:text-base mb-6">
           <div>
-            <strong class="text-slate-900">Address:</strong>
-            <p class="text-slate-700 mt-0.5">{BUSINESS_INFO.address.fullAddress}</p>
+            <strong class="text-slate-900">Full Postal Address:</strong>
+            <p class="text-slate-700 mt-0.5 font-medium">{BUSINESS_INFO.address.fullAddress}</p>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-100">
             <div>
-              <strong class="text-slate-900">Phone:</strong>
+              <strong class="text-slate-900">Official Phone:</strong>
               <p><a href={BUSINESS_INFO.telLink} class="text-red-600 font-bold hover:underline">{BUSINESS_INFO.phoneDisplay}</a></p>
             </div>
             <div>
-              <strong class="text-slate-900">WhatsApp:</strong>
+              <strong class="text-slate-900">Official WhatsApp:</strong>
               <p><a href={BUSINESS_INFO.whatsappLink} target="_blank" class="text-emerald-600 font-bold hover:underline">{BUSINESS_INFO.phoneInternational}</a></p>
             </div>
           </div>
 
           <div class="pt-2 border-t border-slate-100">
-            <strong class="text-slate-900">Services Available:</strong>
+            <strong class="text-slate-900">Services Available at Head Office:</strong>
             <p class="text-slate-700 text-sm mt-1">
               Self-Drive Car Rental, Chauffeur-Driven Cars, Airport Transfers, Wedding Fleet, Corporate Fleet & Outstation Group Transport.
             </p>
           </div>
         </div>
+
+        <!-- Google Maps Action Buttons -->
+        <div class="flex flex-wrap gap-3 pt-4 border-t border-slate-100">
+          <a
+            href={mapsSearchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors flex items-center gap-1.5"
+          >
+            🗺️ VIEW ON GOOGLE MAPS
+          </a>
+          <a
+            href={mapsDirectionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors flex items-center gap-1.5"
+          >
+            🧭 GET DIRECTIONS
+          </a>
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors flex items-center gap-1.5"
+          >
+            📞 CALL
+          </a>
+        </div>
       </div>
 
-      <!-- Verified Location Notice -->
-      <div class="bg-slate-900 text-slate-200 rounded-2xl p-6 sm:p-8 border border-slate-800">
+      <!-- Service Area vs Branch Clarification Notice -->
+      <div class="bg-slate-900 text-slate-200 rounded-2xl p-6 sm:p-8 border border-slate-800 mb-8">
         <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-          ℹ️ Intercity Travel & Dispatch Notice
+          ℹ️ Service Area vs. Physical Branch Clarification
         </h3>
         <p class="text-sm leading-relaxed text-slate-300 mb-4">
-          While 4WHEELS Rent a Car provides chauffeur-driven intercity transport and travel services to Islamabad, Rawalpindi, Multan, Faisalabad, and other Pakistan travel destinations, physical vehicle dispatches and head office operations are managed directly from our verified Johar Town Phase 1, Lahore headquarters.
+          While 4WHEELS Rent a Car delivers vehicle rentals across Lahore (DHA, Gulberg, Model Town, Cantt, Bahria Town, Allama Iqbal International Airport) and provides outstation trips to Islamabad, Rawalpindi, Multan, and Faisalabad, physical vehicle dispatches are managed strictly from our verified <strong>Johar Town Phase 1, Lahore headquarters</strong>.
         </p>
         <p class="text-sm font-semibold text-red-400">
-          Only locations listed on this page are confirmed official 4WHEELS Rent a Car locations.
+          We do not operate secondary physical branches in other cities. Please verify any claimed branch or franchise directly via 0321 6616644.
+        </p>
+      </div>
+
+      <!-- Verification Reminder -->
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl text-slate-800">
+        <h4 class="text-sm font-bold text-amber-900 mb-1">Verify Before Payment</h4>
+        <p class="text-xs sm:text-sm text-slate-700">
+          Please verify booking and payment instructions directly with official 4WHEELS customer care at <strong>0321 6616644</strong> before completing any transaction.
         </p>
       </div>
 
