@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Daily Car Rental Lahore - Rent a Car Per Day | 4WHEELS";
+const description = "Book daily car rental in Lahore with 4WHEELS. Choose self-drive or with-driver options for 1-day or multi-day city travel and outstation trips. Fast WhatsApp booking.";
+const canonicalPath = "/daily-car-rental-lahore/";
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
+        Flexible Per-Day Rentals
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+        Daily Car Rental in Lahore
+      </h1>
+      <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-6">
+        Need a vehicle for a single day, a weekend trip, or a multi-day journey? 4WHEELS provides clean, well-maintained sedans, hatchbacks, and SUVs on flexible per-day terms.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/build-your-rental/" class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+          Book Daily Rental Online
+        </a>
+        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md flex items-center gap-2">
+          💬 Check Daily Availability on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Why Choose Daily Car Rental with 4WHEELS?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+            <div class="text-2xl mb-2">⏱️</div>
+            <h3 class="font-bold text-slate-900 mb-1">24-Hour Rental Cycle</h3>
+            <p class="text-slate-600">Daily rental cycles follow agreed booking slots centered around standard company rules. Simple and transparent.</p>
+          </div>
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+            <div class="text-2xl mb-2">🚗</div>
+            <h3 class="font-bold text-slate-900 mb-1">Self Drive or With Driver</h3>
+            <p class="text-slate-600">Drive yourself or relax with an experienced local chauffeur familiar with Lahore routes and motorways.</p>
+          </div>
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+            <div class="text-2xl mb-2">🧼</div>
+            <h3 class="font-bold text-slate-900 mb-1">Inspected & Sanitized Fleet</h3>
+            <p class="text-slate-600">Every vehicle undergoes thorough interior cleaning and pre-trip air conditioning checks.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 text-white p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 class="text-xl font-bold mb-2">Need a Daily Quote Right Away?</h3>
+          <p class="text-slate-300 text-sm">Get real-time vehicle availability and per-day pricing for Toyota Corolla, Honda Civic, Fortuner, or Suzuki Alto.</p>
+        </div>
+        <a href={BUSINESS_INFO.whatsappPriceLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl whitespace-nowrap transition-colors">
+          Get Today's Price on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Trip Information & Preparation Guide - 4WHEELS Lahore";
+const description = "Essential trip preparation guidelines, luggage packing tips, motorway travel rules, and driver coordination for smooth rental journeys with 4WHEELS.";
+const canonicalPath = "/trip-information/";
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
+        Journey Readiness
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+        Trip Information & Preparation Guide
+      </h1>
+      <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-6">
+        Practical advice to ensure a smooth, comfortable, and safe travel experience across Lahore and intercity routes in Pakistan.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4 space-y-8 text-sm text-slate-700 leading-relaxed">
+
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-3">
+        <h2 class="text-lg font-bold text-slate-900">1. Pickup & Timing Coordination</h2>
+        <p>
+          For airport pickups or fixed-schedule events, inform customer care of your expected flight number or train arrival time. Our dispatch team will coordinate timing with your assigned driver.
+        </p>
+      </div>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-3">
+        <h2 class="text-lg font-bold text-slate-900">2. Luggage & Vehicle Capacity Planning</h2>
+        <p>
+          Ensure passenger count and heavy luggage fit the recommended vehicle seating capacity. For family outstation trips with high luggage volume, consider opting for a 7-seater SUV (Toyota Fortuner) or 13-seater van (HiAce Grand Cabin).
+        </p>
+      </div>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-3">
+        <h2 class="text-lg font-bold text-slate-900">3. Intercity & Motorway Travel</h2>
+        <p>
+          M2, M3, M4, and M5 motorway travel requires valid M-Tag registration or cash toll readiness. Our chauffeurs maintain M-Tag compliance for intercity journeys.
+        </p>
+      </div>
+
+      <div class="text-center pt-4">
+        <a href={BUSINESS_INFO.whatsappTripLink} target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-xs shadow-md">
+          💬 Inquire About Your Upcoming Trip on WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </section>
+</Layout>

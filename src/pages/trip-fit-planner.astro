@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FLEET_VEHICLES } from '../data/fleet';
+
+const title = "Which Vehicle Fits My Trip? - Trip Fit Planner | 4WHEELS Lahore";
+const description = "Find the right rental vehicle for your specific passenger count, luggage size, and destination in Lahore or outstation Pakistan. Get tailored fleet recommendations from 4WHEELS.";
+const canonicalPath = "/trip-fit-planner/";
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">
+        Trip Recommendation Tool
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">
+        Which Vehicle Fits My Trip?
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+        Enter your passenger count, luggage requirements, and destination type. Our Trip Fit Planner recommends the most suitable vehicles from our verified fleet.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+
+        <!-- Input Form -->
+        <div class="md:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+          <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">Your Trip Requirements</h2>
+
+          <div>
+            <label for="trip-passengers" class="block text-xs font-bold text-slate-700 mb-1">Passengers (Count)</label>
+            <input type="number" id="trip-passengers" min="1" max="40" value="4" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-900" />
+          </div>
+
+          <div>
+            <label for="trip-luggage" class="block text-xs font-bold text-slate-700 mb-1">Luggage Suitcases (Count)</label>
+            <input type="number" id="trip-luggage" min="0" max="30" value="3" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-900" />
+          </div>
+
+          <div>
+            <label for="trip-type" class="block text-xs font-bold text-slate-700 mb-1">Destination & Terrain</label>
+            <select id="trip-type" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
+              <option value="city">Lahore City / Local Commute</option>
+              <option value="airport">Airport Pick & Drop</option>
+              <option value="intercity">Intercity Motorway (Islamabad/Faisalabad)</option>
+              <option value="rugged">Northern Areas / Rugged Mountains (Murree/Hunza)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="trip-driver" class="block text-xs font-bold text-slate-700 mb-1">Driver Preference</label>
+            <select id="trip-driver" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
+              <option value="driver">With Professional Driver</option>
+              <option value="self">Self Drive</option>
+            </select>
+          </div>
+
+          <button id="planner-btn" type="button" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl transition-colors shadow-sm text-sm">
+            Find Matching Vehicles
+          </button>
+        </div>
+
+        <!-- Recommendations Display -->
+        <div class="md:col-span-7 space-y-4" id="recommendations-container">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center py-12">
+            <span class="text-4xl block mb-2">🚗</span>
+            <p class="text-sm font-bold text-slate-800">Select trip requirements and click "Find Matching Vehicles"</p>
+            <p class="text-xs text-slate-500 mt-1">We will analyze passenger capacity, luggage volume, and route terrain.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { FLEET_VEHICLES } from '../data/fleet';
+
+  const passInput = document.getElementById('trip-passengers') as HTMLInputElement;
+  const luggInput = document.getElementById('trip-luggage') as HTMLInputElement;
+  const typeSelect = document.getElementById('trip-type') as HTMLSelectElement;
+  const driverSelect = document.getElementById('trip-driver') as HTMLSelectElement;
+  const btn = document.getElementById('planner-btn');
+  const container = document.getElementById('recommendations-container');
+
+  const updateRecommendations = () => {
+    if (!passInput || !luggInput || !typeSelect || !driverSelect || !container) return;
+
+    const passengers = parseInt(passInput.value, 10) || 1;
+    const luggage = parseInt(luggInput.value, 10) || 0;
+    const terrain = typeSelect.value;
+    const driver = driverSelect.value;
+
+    const filtered = FLEET_VEHICLES.filter(v => {
+      // Check seat capacity
+      if (v.seats && v.seats < passengers) return false;
+
+      // Check luggage capacity roughly
+      if (v.luggage && v.luggage < luggage) return false;
+
+      // Check driver requirement
+      if (driver === 'self' && !v.selfDrive) return false;
+      if (driver === 'driver' && !v.withDriver) return false;
+
+      // Check rugged terrain filter
+      if (terrain === 'rugged' && v.category === 'hatchback') return false;
+
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="bg-white p-8 rounded-2xl border border-amber-200 bg-amber-50 text-center">
+          <span class="text-3xl block mb-2">⚠️</span>
+          <h3 class="font-bold text-amber-900 text-base mb-1">Custom Transport Recommended</h3>
+          <p class="text-xs text-amber-800 max-w-md mx-auto mb-4">
+            For ${passengers} passengers and ${luggage} luggage bags, our customer care team can arrange multiple vehicles or specialized group transport.
+          </p>
+          <a href="https://wa.me/923216616644?text=${encodeURIComponent(`Hello 4WHEELS, I need transport for ${passengers} passengers and ${luggage} luggage bags. Please recommend a custom fleet setup.`)}" target="_blank" class="inline-block bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-lg">
+            💬 WhatsApp for Recommended Setup
+          </a>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = filtered.map(v => `
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center gap-5 hover:border-slate-300 transition-colors">
+        <div class="w-full sm:w-1/3 h-32 bg-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative">
+          ${v.images.length > 0 ? `<img src="${v.images[0]}" alt="${v.model}" class="w-full h-full object-cover"/>` : `<div class="text-center text-slate-400 text-xs font-bold uppercase">Owner photo required.<br/>${v.manufacturer} ${v.model}</div>`}
+        </div>
+        <div class="flex-1 space-y-2 text-center sm:text-left">
+          <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+            <span class="bg-slate-900 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">${v.category}</span>
+            <span class="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded">Fits ${v.seats} Passengers</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">${v.manufacturer} ${v.model}</h3>
+          <p class="text-xs text-slate-600 line-clamp-2">${v.description}</p>
+          <div class="pt-2 flex flex-wrap gap-2 justify-center sm:justify-start">
+            <a href="/fleet/${v.slug}/" class="text-xs font-bold text-slate-800 hover:text-red-600 border border-slate-300 px-3 py-1.5 rounded-lg">
+              Details
+            </a>
+            <a href="https://wa.me/923216616644?text=${encodeURIComponent(`Hello 4WHEELS, I used the Trip Fit Planner for ${passengers} passengers & ${luggage} bags. I would like to book the ${v.manufacturer} ${v.model}.`)}" target="_blank" class="text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-lg flex items-center gap-1">
+              💬 Book on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  };
+
+  btn?.addEventListener('click', updateRecommendations);
+  updateRecommendations();
+</script>

@@ -1,0 +1,225 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { FLEET_VEHICLES, getVehicleBySlug } from '../../data/fleet';
+import { BUSINESS_INFO } from '../../data/business';
+
+export function getStaticPaths() {
+  return FLEET_VEHICLES.map(vehicle => ({
+    params: { vehicle: vehicle.slug },
+    props: { vehicle },
+  }));
+}
+
+const { vehicle } = Astro.props;
+
+if (!vehicle) {
+  return Astro.redirect('/404');
+}
+
+const title = `${vehicle.manufacturer} ${vehicle.model} ${vehicle.variant ? vehicle.variant : ''} Rent in Lahore - 4WHEELS`;
+const description = `Rent ${vehicle.manufacturer} ${vehicle.model} in Lahore with 4WHEELS. Available for ${vehicle.selfDrive ? 'Self Drive' : ''}${vehicle.selfDrive && vehicle.withDriver ? ' or ' : ''}${vehicle.withDriver ? 'With Professional Driver' : ''}. Seats: ${vehicle.seats || 'N/A'}, Luggage: ${vehicle.luggage || 'N/A'} bags. Contact via WhatsApp or phone.`;
+const canonicalPath = `/fleet/${vehicle.slug}/`;
+
+const allImages = [...vehicle.images, ...vehicle.interiorImages];
+const hasImages = allImages.length > 0;
+
+const whatsappMessage = encodeURIComponent(
+  `Hello 4WHEELS, I am interested in renting the ${vehicle.manufacturer} ${vehicle.model} (${vehicle.category.toUpperCase()}).\n` +
+  `Seats required: ${vehicle.seats || 'N/A'}\n` +
+  `Luggage bags: ${vehicle.luggage || 'N/A'}\n` +
+  `Mode: ${vehicle.withDriver ? 'With Driver' : 'Self Drive'}\n` +
+  `Please confirm current availability and price quotation.`
+);
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <!-- Breadcrumb -->
+  <nav class="bg-slate-100 border-b border-slate-200 py-3 text-xs font-semibold text-slate-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2">
+      <a href="/" class="hover:text-red-600">Home</a>
+      <span>/</span>
+      <a href="/fleet/" class="hover:text-red-600">Fleet</a>
+      <span>/</span>
+      <span class="text-slate-900">{vehicle.manufacturer} {vehicle.model}</span>
+    </div>
+  </nav>
+
+  <!-- Main Vehicle Detail Section -->
+  <section class="py-10 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- Left Column: Gallery & Overview -->
+        <div class="lg:col-span-7">
+          <!-- Main Gallery Display -->
+          <div class="bg-slate-100 rounded-xl overflow-hidden border border-slate-200 mb-4 h-72 sm:h-96 flex items-center justify-center relative">
+            {hasImages ? (
+              <img
+                id="main-gallery-image"
+                src={allImages[0]}
+                alt={vehicle.imageAlt}
+                class="w-full h-full object-cover transition-all"
+              />
+            ) : (
+              <div class="text-center p-8 text-slate-500">
+                <div class="text-6xl mb-3">🚘</div>
+                <p class="text-sm font-bold uppercase tracking-wider text-slate-700">Owner photo required.</p>
+                <p class="text-xs text-slate-500 mt-1">Official vehicle imagery requested from business owner.</p>
+              </div>
+            )}
+            <span class="absolute top-4 left-4 bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded">
+              {vehicle.category.toUpperCase()}
+            </span>
+          </div>
+
+          <!-- Gallery Thumbnails -->
+          {hasImages && allImages.length > 1 && (
+            <div class="flex gap-3 overflow-x-auto pb-2 mb-6">
+              {allImages.map((img, idx) => (
+                <button
+                  type="button"
+                  class={`gallery-thumb border-2 rounded-lg overflow-hidden w-20 h-16 flex-shrink-0 transition-all ${idx === 0 ? 'border-red-600 scale-105' : 'border-slate-200'}`}
+                  data-img-src={img}
+                >
+                  <img src={img} alt={`${vehicle.model} photo ${idx + 1}`} class="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          <!-- Description & Use Cases -->
+          <div class="mt-6 border-t border-slate-100 pt-6">
+            <h2 class="text-2xl font-bold text-slate-900 mb-3">Vehicle Overview</h2>
+            <p class="text-slate-700 leading-relaxed mb-6">
+              {vehicle.description}
+            </p>
+
+            <h3 class="text-lg font-bold text-slate-900 mb-3">Best Recommended For:</h3>
+            <div class="flex flex-wrap gap-2 mb-6">
+              {vehicle.suitableFor.map(use => (
+                <span class="bg-red-50 text-red-700 border border-red-100 font-medium text-xs px-3 py-1.5 rounded-lg">
+                  🎯 {use}
+                </span>
+              ))}
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-600">
+              <span class="font-bold text-slate-800">Verification Source:</span> {vehicle.source} ({vehicle.sourceDate}). {vehicle.verificationNotes}
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Specs & Direct Booking CTA -->
+        <div class="lg:col-span-5">
+          <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 sticky top-24 shadow-sm">
+
+            <div class="mb-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-red-600">Verified Fleet Vehicle</span>
+              <h1 class="text-3xl font-extrabold text-slate-900 mt-1">
+                {vehicle.manufacturer} {vehicle.model}
+              </h1>
+              {vehicle.variant && (
+                <p class="text-sm font-semibold text-slate-600">{vehicle.variant}</p>
+              )}
+            </div>
+
+            <!-- Specifications Table -->
+            <div class="space-y-3 border-y border-slate-200 py-4 my-4 text-sm">
+              <div class="flex justify-between items-center py-1">
+                <span class="text-slate-500 font-medium">Passenger Capacity</span>
+                <span class="font-bold text-slate-900 flex items-center gap-1">
+                  👤 {vehicle.seats ? `${vehicle.seats} Passengers` : 'Confirmed on inquiry'}
+                </span>
+              </div>
+              <div class="flex justify-between items-center py-1">
+                <span class="text-slate-500 font-medium">Luggage Capacity</span>
+                <span class="font-bold text-slate-900 flex items-center gap-1">
+                  🧳 {vehicle.luggage ? `${vehicle.luggage} Standard Bags` : 'Confirm with trip details'}
+                </span>
+              </div>
+              <div class="flex justify-between items-center py-1">
+                <span class="text-slate-500 font-medium">Transmission</span>
+                <span class="font-semibold text-slate-900">{vehicle.transmission || 'Automatic'}</span>
+              </div>
+              <div class="flex justify-between items-center py-1">
+                <span class="text-slate-500 font-medium">Engine / Powertrain</span>
+                <span class="font-semibold text-slate-900">{vehicle.engine || 'Verified Petrol/Diesel'}</span>
+              </div>
+              <div class="flex justify-between items-center py-1">
+                <span class="text-slate-500 font-medium">Available Colors</span>
+                <span class="font-semibold text-slate-900 text-right text-xs max-w-[200px]">
+                  {vehicle.colors.join(', ')}
+                </span>
+              </div>
+            </div>
+
+            <!-- Rental Options Matrix -->
+            <div class="mb-6">
+              <p class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Rental Modes Supported:</p>
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <div class={`p-2.5 rounded-lg border font-semibold flex items-center justify-between ${vehicle.selfDrive ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-slate-100 border-slate-200 text-slate-400 line-through'}`}>
+                  <span>Self Drive</span>
+                  <span>{vehicle.selfDrive ? '✓' : '✗'}</span>
+                </div>
+                <div class={`p-2.5 rounded-lg border font-semibold flex items-center justify-between ${vehicle.withDriver ? 'bg-blue-50 border-blue-200 text-blue-800' : 'bg-slate-100 border-slate-200 text-slate-400 line-through'}`}>
+                  <span>With Driver</span>
+                  <span>{vehicle.withDriver ? '✓' : '✗'}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action CTAs -->
+            <div class="space-y-3">
+              <a
+                href={`https://wa.me/923216616644?text=${whatsappMessage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl text-center block transition-colors shadow-sm flex items-center justify-center gap-2"
+              >
+                <span>💬 Check Availability on WhatsApp</span>
+              </a>
+
+              <a
+                href="/build-your-rental/"
+                class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 px-4 rounded-xl text-center block transition-colors shadow-sm"
+              >
+                Configure Detailed Rental
+              </a>
+
+              <a
+                href={BUSINESS_INFO.telLink}
+                class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-4 rounded-xl text-center block transition-colors text-sm"
+              >
+                📞 Call Customer Care: {BUSINESS_INFO.phoneDisplay}
+              </a>
+            </div>
+
+            <p class="text-[11px] text-slate-500 text-center mt-4">
+              Pricing varies by rental period, route, and availability. Final price confirmed on WhatsApp.
+            </p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const mainImage = document.getElementById('main-gallery-image') as HTMLImageElement;
+  const thumbs = document.querySelectorAll('.gallery-thumb');
+
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const src = thumb.getAttribute('data-img-src');
+      if (src && mainImage) {
+        mainImage.src = src;
+        thumbs.forEach(t => t.classList.remove('border-red-600', 'scale-105'));
+        thumbs.forEach(t => t.classList.add('border-slate-200'));
+        thumb.classList.remove('border-slate-200');
+        thumb.classList.add('border-red-600', 'scale-105');
+      }
+    });
+  });
+</script>

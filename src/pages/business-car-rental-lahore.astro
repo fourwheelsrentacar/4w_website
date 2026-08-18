@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Business Car Rental Lahore - Corporate Fleet Solutions | 4WHEELS";
+const description = "Flexible business and corporate car rental solutions in Lahore. Executive sedans, long-term project vehicles, visiting team mobility, and commercial fleet support.";
+const canonicalPath = "/business-car-rental-lahore/";
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
+        Corporate Mobility
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+        Business Car Rental in Lahore
+      </h1>
+      <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-6 leading-relaxed">
+        Get the vehicles your business needs without making a large upfront fleet capital investment. Flexible executive sedans, project SUVs, and commercial mobility contracts.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+          💬 WhatsApp Corporate Requirements
+        </a>
+        <a href={BUSINESS_INFO.mailtoLink} class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm border border-slate-700">
+          ✉️ Request Corporate Email Quote ({BUSINESS_INFO.email})
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4 space-y-10">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Corporate & Business Fleet Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-slate-900 text-base mb-2">👔 Executive & Visiting Team Transport</h3>
+            <p class="text-slate-600">Provide senior management, visiting international executives, and corporate guests with clean, chauffeur-driven sedans and luxury SUVs.</p>
+          </div>
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-slate-900 text-base mb-2">🏗️ Long-Term Project & Site Mobility</h3>
+            <p class="text-slate-600">Monthly and long-term rentals for engineering, construction, and field projects across Punjab with dedicated maintenance backup.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
