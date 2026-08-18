@@ -32,15 +32,15 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/fleet/buses-coasters/`;
           Buses, Coasters & Group Transport in Lahore
         </h1>
         <p class="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          From Toyota Coaster 22-29 seater mini buses and HiAce Grand Cabins to full-size luxury tour coaches and staff commuter buses. Experienced highway chauffeurs with high-capacity air conditioning.
+          From Toyota Coaster 22-seater saloon executive mini buses and HiAce Grand Cabins to full-size luxury tour coaches and staff commuter buses.
         </p>
 
         <div class="mt-8 flex flex-wrap justify-center gap-4">
-          <a href="#group-configurator" class="bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg shadow-md transition-colors">
-            🚌 Group Transport Configurator
+          <a href="/build-your-rental/?category=coaster" class="bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg shadow-md transition-colors">
+            Book Group Trip
           </a>
-          <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-lg shadow-md transition-colors">
-            💬 Instant WhatsApp Inquiry
+          <a href="tel:+923216616644" class="bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3 rounded-lg border border-white/20 transition-colors">
+            📞 Call: 0321 6616644
           </a>
         </div>
       </div>
@@ -50,7 +50,7 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/fleet/buses-coasters/`;
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 text-center">Group Vehicle Options</h2>
       <p class="text-gray-600 text-sm text-center mb-8 max-w-2xl mx-auto">
-        Review seating capacity, air conditioning, luggage storage, and suitability before submitting your group request.
+        Review seating capacity, air conditioning, luggage storage, and suitability before booking your group trip.
       </p>
 
       <div class="grid md:grid-cols-2 gap-6">
@@ -92,15 +92,19 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/fleet/buses-coasters/`;
               </div>
             </div>
 
-            <div class="pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
-              <span class="text-[11px] text-gray-500 italic">Source: {item.source}</span>
+            <!-- STRICT CTA RULE COMPLIANCE: Every fleet card contains ONLY Book Your Trip + Call -->
+            <div class="pt-4 border-t border-gray-100 space-y-2">
               <a
-                href={`https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20would%20like%20to%20inquire%20about%20group%20transport%20availability%20for%20${encodeURIComponent(item.title)}.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition-colors shrink-0"
+                href={`/build-your-rental/?vehicle=${encodeURIComponent(item.id)}&category=${encodeURIComponent(item.category)}`}
+                class="w-full text-center bg-brand-red hover:bg-red-700 text-white font-extrabold py-3 rounded-xl text-sm block transition-colors shadow-sm"
               >
-                Request Availability
+                Book Your Trip
+              </a>
+              <a
+                href="tel:+923216616644"
+                class="w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2.5 rounded-xl text-xs block transition-colors border border-gray-200"
+              >
+                Call: 0321 6616644
               </a>
             </div>
           </div>
@@ -108,196 +112,9 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/fleet/buses-coasters/`;
       </div>
     </section>
 
-    <!-- Interactive Group Transport Configurator -->
-    <section id="group-configurator" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-        <div class="bg-slate-900 text-white p-6 sm:p-8">
-          <span class="text-xs font-bold text-brand-red uppercase tracking-wider bg-brand-red/20 px-3 py-1 rounded-full border border-brand-red/30">
-            Smart Group Quotation
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Request Group Transport Quote</h2>
-          <p class="text-xs sm:text-sm text-gray-300 mt-1">
-            Configure your group trip details below to generate a formatted WhatsApp request for 4WHEELS customer care.
-          </p>
-        </div>
-
-        <form id="busConfiguratorForm" class="p-6 sm:p-8 space-y-6">
-          <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Group Passenger Count</label>
-              <input type="number" id="groupSize" min="5" max="500" value="25" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Preferred Vehicle Category</label>
-              <select id="vehiclePref" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required>
-                <option value="Toyota Coaster (22-29 Seats)">Toyota Coaster (22-29 Seats)</option>
-                <option value="Toyota HiAce Grand Cabin (12-14 Seats)">Toyota HiAce Grand Cabin (12-14 Seats)</option>
-                <option value="Luxury Tour Coach (35-50 Seats)">Luxury Tour Coach (35-50 Seats)</option>
-                <option value="Corporate Staff Bus (30-60 Seats)">Corporate Staff Bus (30-60 Seats)</option>
-                <option value="Multiple Vehicle Convoy">Multiple Vehicle Convoy</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-3 gap-4">
-            <div>
-              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Start Date</label>
-              <input type="date" id="startDate" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">End Date</label>
-              <input type="date" id="endDate" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Total Rental Duration</label>
-              <div id="durationDisplay" class="bg-gray-100 border border-gray-200 rounded-lg p-3 text-sm font-bold text-center text-gray-800">
-                1 Day
-              </div>
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Pickup Location</label>
-              <input type="text" id="pickupLocation" placeholder="e.g. Johar Town, Lahore / Airport" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Destination / Route</label>
-              <input type="text" id="destination" placeholder="e.g. Bhurban / Islamabad / Local Wedding Venue" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Trip Purpose</label>
-              <select id="tripPurpose" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none">
-                <option value="Wedding / Event Guest Transport">Wedding / Event Guest Transport</option>
-                <option value="Corporate Event / Conference">Corporate Event / Conference</option>
-                <option value="Tour Operator Outstation Excursion">Tour Operator Outstation Excursion</option>
-                <option value="Corporate Staff Commute Contract">Corporate Staff Commute Contract</option>
-                <option value="Airport Group Delegation Transfer">Airport Group Delegation Transfer</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Your Name / Organization</label>
-              <input type="text" id="clientName" placeholder="e.g. Hassan / ABC Tech Corp" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
-            </div>
-          </div>
-
-          <!-- Live Summary Review Box -->
-          <div id="reviewBox" class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs space-y-2 text-amber-900">
-            <div class="font-bold text-sm text-amber-950 border-b border-amber-200 pb-1">
-              📋 Trip Summary Review
-            </div>
-            <div id="summaryText">Fill in your dates and destination to view WhatsApp quote preview.</div>
-          </div>
-
-          <button
-            type="submit"
-            class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl shadow-lg transition-colors text-center flex items-center justify-center gap-2 text-base"
-          >
-            💬 Request Group Transport Quote on WhatsApp
-          </button>
-        </form>
-      </div>
-    </section>
-
     <CTASection />
   </main>
 
   <Footer />
-
-  <script>
-    const startDateInput = document.getElementById('startDate') as HTMLInputElement;
-    const endDateInput = document.getElementById('endDate') as HTMLInputElement;
-    const durationDisplay = document.getElementById('durationDisplay');
-    const summaryText = document.getElementById('summaryText');
-    const form = document.getElementById('busConfiguratorForm') as HTMLFormElement;
-
-    const today = new Date().toISOString().split('T')[0];
-    if (startDateInput && endDateInput) {
-      startDateInput.min = today;
-      endDateInput.min = today;
-      startDateInput.value = today;
-      endDateInput.value = today;
-    }
-
-    function updateDurationAndSummary() {
-      if (!startDateInput || !endDateInput || !durationDisplay || !summaryText) return;
-
-      const start = new Date(startDateInput.value);
-      const end = new Date(endDateInput.value);
-
-      if (end < start) {
-        endDateInput.value = startDateInput.value;
-      }
-
-      const diffTime = Math.abs(new Date(endDateInput.value).getTime() - new Date(startDateInput.value).getTime());
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-
-      durationDisplay.textContent = `${diffDays} ${diffDays === 1 ? 'Day' : 'Days'}`;
-
-      const groupSize = (document.getElementById('groupSize') as HTMLInputElement)?.value || '25';
-      const vehiclePref = (document.getElementById('vehiclePref') as HTMLSelectElement)?.value || 'Toyota Coaster';
-      const pickup = (document.getElementById('pickupLocation') as HTMLInputElement)?.value || 'Lahore';
-      const destination = (document.getElementById('destination') as HTMLInputElement)?.value || 'Outstation';
-
-      summaryText.innerHTML = `
-        <strong>Vehicle:</strong> ${vehiclePref} | <strong>Group Size:</strong> ${groupSize} Passengers<br />
-        <strong>Dates:</strong> ${startDateInput.value} to ${endDateInput.value} (${diffDays} Days)<br />
-        <strong>Route:</strong> ${pickup} ➔ ${destination}
-      `;
-    }
-
-    startDateInput?.addEventListener('change', updateDurationAndSummary);
-    endDateInput?.addEventListener('change', updateDurationAndSummary);
-    document.getElementById('groupSize')?.addEventListener('input', updateDurationAndSummary);
-    document.getElementById('vehiclePref')?.addEventListener('change', updateDurationAndSummary);
-    document.getElementById('pickupLocation')?.addEventListener('input', updateDurationAndSummary);
-    document.getElementById('destination')?.addEventListener('input', updateDurationAndSummary);
-
-    updateDurationAndSummary();
-
-    form?.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const groupSize = (document.getElementById('groupSize') as HTMLInputElement).value;
-      const vehiclePref = (document.getElementById('vehiclePref') as HTMLSelectElement).value;
-      const startDate = startDateInput.value;
-      const endDate = endDateInput.value;
-      const duration = durationDisplay?.textContent || '1 Day';
-      const pickup = (document.getElementById('pickupLocation') as HTMLInputElement).value;
-      const destination = (document.getElementById('destination') as HTMLInputElement).value;
-      const purpose = (document.getElementById('tripPurpose') as HTMLSelectElement).value;
-      const clientName = (document.getElementById('clientName') as HTMLInputElement).value;
-
-      const msg = `Hello 4WHEELS, I would like to request a Group Transport quotation.
-
-Group Request Details:
-Client / Org: ${clientName}
-Group Passengers: ${groupSize}
-Preferred Vehicle: ${vehiclePref}
-
-Dates:
-Start: ${startDate}
-End: ${endDate}
-Duration: ${duration}
-
-Route & Purpose:
-Pickup Point: ${pickup}
-Destination: ${destination}
-Trip Purpose: ${purpose}
-
-Please confirm availability, chauffeur arrangement, fuel/toll policy, and overall group quote. Thank you!`;
-
-      const whatsappUrl = `https://wa.me/923216616644?text=${encodeURIComponent(msg)}`;
-      window.open(whatsappUrl, '_blank');
-    });
-  </script>
 </body>
 </html>

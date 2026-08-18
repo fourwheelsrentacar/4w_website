@@ -1,0 +1,530 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FLEET_VEHICLES } from '../data/fleet';
+import { CURRENT_PETROLEUM_RATES, COMMON_TOLL_ROUTES, HOTEL_PLANNING_BANDS, ESTIMATE_DISCLAIMER_TEXT, FUEL_DISCLAIMER_TEXT } from '../data/rates';
+
+const title = "Plan Your Trip & Estimate Budget - 4WHEELS Rent a Car Lahore";
+const description = "Comprehensive Pakistan trip planner and cost estimator. Estimate fuel expenses, motorway tolls, hotel stays, food, driver allowance, and find recommended fleet vehicles.";
+const canonicalPath = "/trip-planner/";
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <!-- Hero Section -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <span class="inline-block bg-amber-500 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-widest mb-3 shadow-md">
+        Interactive Trip Planning & Expense Calculator
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-3">
+        Plan Your Trip
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Specify your origin, destination, travel dates, hotel preferences, and meal choices. Our budget engine calculates approximate fuel, tolls, stay, and rental expenses.
+      </p>
+    </div>
+  </section>
+
+  <!-- Trip Planner Form & Estimator Grid -->
+  <section class="py-10 bg-slate-950 text-white min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- Form Column -->
+        <div class="lg:col-span-7 bg-slate-900 rounded-2xl border border-slate-800 p-6 space-y-6 shadow-xl">
+          <div class="border-b border-slate-800 pb-3">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <span>🧭 1. Enter Trip Requirements</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Configure your route and travel options to generate planning budget estimates.</p>
+          </div>
+
+          <form id="trip-planner-form" class="space-y-5 text-xs">
+            <!-- Origin & Destination -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="plan-origin" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  Starting City / Location <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="plan-origin" required value="Lahore" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+              </div>
+
+              <div>
+                <label for="plan-destination" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  Destination City / Tour Route <span class="text-red-500">*</span>
+                </label>
+                <select id="plan-destination" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none">
+                  <option value="Islamabad / Rawalpindi" data-dist="375" data-toll="1100">Islamabad / Rawalpindi (via M-2)</option>
+                  <option value="Murree / Galiyat" data-dist="435" data-toll="1350">Murree / Galiyat (via M-2)</option>
+                  <option value="Multan" data-dist="315" data-toll="950">Multan (via M-3)</option>
+                  <option value="Sialkot" data-dist="103" data-toll="400">Sialkot (via M-11)</option>
+                  <option value="Peshawar" data-dist="490" data-toll="1550">Peshawar (via M-2/M-1)</option>
+                  <option value="Lahore City Local" data-dist="60" data-toll="120">Lahore City Local / Airport Transfer</option>
+                  <option value="Custom Outstation Route" data-dist="350" data-toll="1000">Custom Outstation Route</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Route Type & Distance Override -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-bold uppercase tracking-wider text-slate-300 mb-1">Trip Type</label>
+                <div class="grid grid-cols-2 gap-2">
+                  <button type="button" id="btn-return-trip" class="trip-type-btn bg-amber-500 text-slate-950 font-black p-2.5 rounded-xl text-center border border-amber-500 transition-all" data-val="return">Return Trip</button>
+                  <button type="button" id="btn-oneway-trip" class="trip-type-btn bg-slate-800 text-slate-300 font-bold p-2.5 rounded-xl text-center border border-slate-700 hover:bg-slate-750 transition-all" data-val="oneway">One-Way</button>
+                </div>
+                <input type="hidden" id="plan-triptype" value="return" />
+              </div>
+
+              <div>
+                <label for="plan-distance" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  Estimated Total Distance (km)
+                </label>
+                <input type="number" id="plan-distance" min="10" max="5000" value="750" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-bold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+                <p class="text-[10px] text-slate-500 mt-1">Calculated for return distance based on selected route.</p>
+              </div>
+            </div>
+
+            <!-- Dates & Duration -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="plan-start-date" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  Start Date <span class="text-red-500">*</span>
+                </label>
+                <input type="date" id="plan-start-date" required class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+              </div>
+
+              <div>
+                <label for="plan-end-date" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  End Date <span class="text-red-500">*</span>
+                </label>
+                <input type="date" id="plan-end-date" required class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+              </div>
+            </div>
+
+            <!-- Travelers & Luggage -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="plan-travelers" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  Number of Travelers
+                </label>
+                <input type="number" id="plan-travelers" min="1" max="60" value="5" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-bold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+              </div>
+
+              <div>
+                <label for="plan-luggage" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  Large Bags
+                </label>
+                <input type="number" id="plan-luggage" min="0" max="30" value="4" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-bold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+              </div>
+            </div>
+
+            <!-- Vehicle Selection & Rental Mode -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="plan-vehicle" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  Preferred Fleet Vehicle
+                </label>
+                <select id="plan-vehicle" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none">
+                  {FLEET_VEHICLES.map(v => (
+                    <option value={v.slug} data-fuel={v.fuelType} data-kml="11" data-seats={v.seats} data-luggage={v.luggage}>
+                      {v.manufacturer} {v.model} ({v.category.toUpperCase()})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label for="plan-mode" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  Rental Mode
+                </label>
+                <select id="plan-mode" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none">
+                  <option value="With Driver">With Driver (Chauffeur Service)</option>
+                  <option value="Self Drive">Self Drive</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Trip Style & Hotel Planning -->
+            <div class="border-t border-slate-800 pt-4 space-y-4">
+              <h3 class="font-bold text-slate-200 uppercase tracking-wider text-[11px]">Hotel & Food Expenses Planning</h3>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label for="plan-hotel-category" class="block font-semibold text-slate-400 mb-1">Hotel Band</label>
+                  <select id="plan-hotel-category" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold">
+                    <option value="Mid-range">Mid-range (PKR 16,000/night)</option>
+                    <option value="Economy">Economy (PKR 7,500/night)</option>
+                    <option value="Premium">Premium (PKR 32,000/night)</option>
+                    <option value="Luxury">Luxury (PKR 60,000/night)</option>
+                    <option value="None">No Hotel Needed</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="plan-rooms" class="block font-semibold text-slate-400 mb-1">Rooms Needed</label>
+                  <input type="number" id="plan-rooms" min="0" max="20" value="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-bold" />
+                </div>
+
+                <div>
+                  <label for="plan-nights" class="block font-semibold text-slate-400 mb-1">Hotel Nights</label>
+                  <input type="number" id="plan-nights" min="0" max="30" value="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-bold" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label for="plan-meals" class="block font-semibold text-slate-400 mb-1">Meals Per Person / Day</label>
+                  <select id="plan-meals" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold">
+                    <option value="1500">2 Standard Meals (~PKR 1,500/person/day)</option>
+                    <option value="2500">3 Full Meals (~PKR 2,500/person/day)</option>
+                    <option value="4000">3 Premium Meals (~PKR 4,000/person/day)</option>
+                    <option value="0">Skip Food Estimation</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="plan-buffer" class="block font-semibold text-slate-400 mb-1">Contingency Cushion</label>
+                  <select id="plan-buffer" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold">
+                    <option value="0.05">5% Cushion Buffer</option>
+                    <option value="0.10">10% Cushion Buffer</option>
+                    <option value="0">No Cushion Buffer</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Customer Details for WhatsApp -->
+            <div class="border-t border-slate-800 pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="plan-name" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  Your Name <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="plan-name" required placeholder="e.g. Ahmed" value="Ahmed" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold" />
+              </div>
+
+              <div>
+                <label for="plan-phone" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  Phone / WhatsApp <span class="text-red-500">*</span>
+                </label>
+                <input type="tel" id="plan-phone" required placeholder="03XXXXXXXXX" value="03001234567" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold" />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Estimator Results Column -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sticky top-24 space-y-6 shadow-xl">
+            <div class="border-b border-slate-800 pb-3 flex items-center justify-between">
+              <div>
+                <h2 class="text-lg font-black text-white">Estimate Your Trip Budget</h2>
+                <p class="text-[11px] text-slate-400">Approximate Trip Budget Calculation</p>
+              </div>
+              <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Planning Only</span>
+            </div>
+
+            <!-- Vehicle Recommendation Engine Banner -->
+            <div id="vehicle-recommendation-box" class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-xs space-y-1">
+              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest block">💡 Vehicle Trip Fit Recommendation:</span>
+              <div id="recommendation-text" class="font-extrabold text-white text-sm">Toyota Fortuner SUV Recommended</div>
+              <p id="recommendation-reason" class="text-slate-400 text-[11px]">Recommended for 5 passengers + 4 large bags on outstation highway route.</p>
+            </div>
+
+            <!-- Breakdown Expense Cards -->
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
+                <span class="text-slate-300 font-medium">🚘 Estimated Vehicle Rental:</span>
+                <span id="cost-rental" class="font-bold text-white">PKR 45,000</span>
+              </div>
+
+              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
+                <span class="text-slate-300 font-medium">⛽ Estimated Fuel Expense:</span>
+                <span id="cost-fuel" class="font-bold text-emerald-400">PKR 18,790</span>
+              </div>
+
+              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
+                <span class="text-slate-300 font-medium">🛣️ Estimated Tolls / M-Tag:</span>
+                <span id="cost-tolls" class="font-bold text-sky-400">PKR 2,700</span>
+              </div>
+
+              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
+                <span class="text-slate-300 font-medium">🏨 Estimated Hotel Expense:</span>
+                <span id="cost-hotel" class="font-bold text-amber-400">PKR 64,000</span>
+              </div>
+
+              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
+                <span class="text-slate-300 font-medium">🍽️ Estimated Food Expense:</span>
+                <span id="cost-food" class="font-bold text-slate-200">PKR 37,500</span>
+              </div>
+
+              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
+                <span class="text-slate-300 font-medium">🛡️ Contingency Cushion Buffer:</span>
+                <span id="cost-buffer" class="font-bold text-slate-400">PKR 8,399</span>
+              </div>
+
+              <!-- Total Sum Card -->
+              <div class="bg-red-950/40 border border-red-800/80 p-4 rounded-xl text-center space-y-1">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-red-400">Estimated Total Trip Budget</span>
+                <div id="cost-total" class="text-2xl font-black text-white">PKR 176,389</div>
+                <p class="text-[10px] text-slate-400 italic">This is a planning estimate, not a final 4WHEELS quotation.</p>
+              </div>
+            </div>
+
+            <!-- Dynamic Fuel Rate Dated Badge -->
+            <div class="text-[10px] text-slate-500 bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-0.5">
+              <div>OGRA Petroleum Price Effective: <strong>16 August 2026</strong> (Petrol: PKR 275.60/L, Diesel: PKR 284.20/L)</div>
+              <div>NHA Motorway Toll Tariff Revision: <strong>July 2026</strong></div>
+            </div>
+
+            <!-- Primary Actions -->
+            <div class="space-y-2 pt-2">
+              <button
+                type="button"
+                id="btn-send-plan-whatsapp"
+                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+              >
+                <span>💬 Send Trip Plan to 4WHEELS</span>
+              </button>
+
+              <a
+                href="tel:+923216616644"
+                id="btn-call-trip-planner"
+                class="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-2.5 rounded-xl block text-center border border-slate-700 transition-colors"
+              >
+                📞 Call Trip Planner: 0321 6616644
+              </a>
+            </div>
+
+            <!-- Mandatory Disclaimers -->
+            <div class="text-[10px] text-slate-500 leading-relaxed text-center space-y-1">
+              <p>{ESTIMATE_DISCLAIMER_TEXT}</p>
+              <p>{FUEL_DISCLAIMER_TEXT}</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { trackEvent } from '../utils/analytics';
+
+  trackEvent('trip_planner_start', { page: '/trip-planner/' });
+
+  // Elements
+  const routeSelect = document.getElementById('plan-destination') as HTMLSelectElement;
+  const distanceInput = document.getElementById('plan-distance') as HTMLInputElement;
+  const tripTypeInput = document.getElementById('plan-triptype') as HTMLInputElement;
+  const startDateInput = document.getElementById('plan-start-date') as HTMLInputElement;
+  const endDateInput = document.getElementById('plan-end-date') as HTMLInputElement;
+  const travelersInput = document.getElementById('plan-travelers') as HTMLInputElement;
+  const luggageInput = document.getElementById('plan-luggage') as HTMLInputElement;
+  const vehicleSelect = document.getElementById('plan-vehicle') as HTMLSelectElement;
+  const modeSelect = document.getElementById('plan-mode') as HTMLSelectElement;
+  const hotelSelect = document.getElementById('plan-hotel-category') as HTMLSelectElement;
+  const roomsInput = document.getElementById('plan-rooms') as HTMLInputElement;
+  const nightsInput = document.getElementById('plan-nights') as HTMLInputElement;
+  const mealsSelect = document.getElementById('plan-meals') as HTMLSelectElement;
+  const bufferSelect = document.getElementById('plan-buffer') as HTMLSelectElement;
+
+  const btnReturn = document.getElementById('btn-return-trip');
+  const btnOneway = document.getElementById('btn-oneway-trip');
+
+  // Result display elements
+  const costRentalDisplay = document.getElementById('cost-rental');
+  const costFuelDisplay = document.getElementById('cost-fuel');
+  const costTollsDisplay = document.getElementById('cost-tolls');
+  const costHotelDisplay = document.getElementById('cost-hotel');
+  const costFoodDisplay = document.getElementById('cost-food');
+  const costBufferDisplay = document.getElementById('cost-buffer');
+  const costTotalDisplay = document.getElementById('cost-total');
+  const recTitle = document.getElementById('recommendation-text');
+  const recReason = document.getElementById('recommendation-reason');
+
+  // Rates lookup
+  const fuelRates: Record<string, number> = {
+    Petrol: 275.60,
+    Diesel: 284.20,
+    Hybrid: 275.60,
+    Electric: 0
+  };
+
+  const hotelRates: Record<string, number> = {
+    'Mid-range': 16000,
+    Economy: 7500,
+    Premium: 32000,
+    Luxury: 60000,
+    None: 0
+  };
+
+  // Setup Initial Dates
+  const today = new Date();
+  const threeDaysLater = new Date(today);
+  threeDaysLater.setDate(threeDaysLater.getDate() + 3);
+
+  if (startDateInput && endDateInput) {
+    startDateInput.value = today.toISOString().split('T')[0];
+    endDateInput.value = threeDaysLater.toISOString().split('T')[0];
+  }
+
+  // Trip Type Switcher
+  btnReturn?.addEventListener('click', () => {
+    if (tripTypeInput) tripTypeInput.value = 'return';
+    btnReturn.className = 'trip-type-btn bg-amber-500 text-slate-950 font-black p-2.5 rounded-xl text-center border border-amber-500 transition-all';
+    btnOneway!.className = 'trip-type-btn bg-slate-800 text-slate-300 font-bold p-2.5 rounded-xl text-center border border-slate-700 hover:bg-slate-750 transition-all';
+    updateRouteDistance();
+    calculateBudget();
+  });
+
+  btnOneway?.addEventListener('click', () => {
+    if (tripTypeInput) tripTypeInput.value = 'oneway';
+    btnOneway.className = 'trip-type-btn bg-amber-500 text-slate-950 font-black p-2.5 rounded-xl text-center border border-amber-500 transition-all';
+    btnReturn!.className = 'trip-type-btn bg-slate-800 text-slate-300 font-bold p-2.5 rounded-xl text-center border border-slate-700 hover:bg-slate-750 transition-all';
+    updateRouteDistance();
+    calculateBudget();
+  });
+
+  const updateRouteDistance = () => {
+    const opt = routeSelect?.selectedOptions[0];
+    if (opt && distanceInput) {
+      const baseDist = parseInt(opt.getAttribute('data-dist') || '350', 10);
+      const isReturn = tripTypeInput?.value === 'return';
+      distanceInput.value = (baseDist * (isReturn ? 2 : 1)).toString();
+    }
+  };
+
+  routeSelect?.addEventListener('change', () => {
+    updateRouteDistance();
+    calculateBudget();
+  });
+
+  // Calculate Budget Breakdown
+  const calculateBudget = () => {
+    const dist = parseFloat(distanceInput?.value || '750');
+    const travelers = parseInt(travelersInput?.value || '5', 10);
+    const luggage = parseInt(luggageInput?.value || '4', 10);
+    const rooms = parseInt(roomsInput?.value || '2', 10);
+    const nights = parseInt(nightsInput?.value || '2', 10);
+
+    // Calculate days
+    const start = new Date(startDateInput?.value || today.toISOString());
+    const end = new Date(endDateInput?.value || threeDaysLater.toISOString());
+    const diffTime = Math.abs(end.getTime() - start.getTime());
+    const days = Math.max(Math.ceil(diffTime / (1000 * 60 * 60 * 24)), 1);
+
+    // Vehicle specs
+    const vOpt = vehicleSelect?.selectedOptions[0];
+    const vFuelType = vOpt?.getAttribute('data-fuel') || 'Petrol';
+    const fuelPrice = fuelRates[vFuelType] || 275.60;
+    const kml = 11; // average real world km/L
+
+    // 1. Rental Estimate (approx 15,000/day for SUV, 8,000 for sedan)
+    const baseDailyRate = vOpt?.value.includes('fortuner') || vOpt?.value.includes('revo') ? 15000 : vOpt?.value.includes('coaster') ? 22000 : 8000;
+    const rentalCost = baseDailyRate * days;
+
+    // 2. Fuel Estimate
+    const litersNeeded = dist / kml;
+    const fuelCost = Math.round(litersNeeded * fuelPrice);
+
+    // 3. Tolls
+    const rOpt = routeSelect?.selectedOptions[0];
+    const baseToll = parseInt(rOpt?.getAttribute('data-toll') || '1000', 10);
+    const isReturn = tripTypeInput?.value === 'return';
+    const tollsCost = baseToll * (isReturn ? 2 : 1);
+
+    // 4. Hotel Estimate
+    const hotelCat = hotelSelect?.value || 'Mid-range';
+    const nightlyRate = hotelRates[hotelCat] || 0;
+    const hotelCost = hotelCat === 'None' ? 0 : rooms * nights * nightlyRate;
+
+    // 5. Food Estimate
+    const mealRate = parseInt(mealsSelect?.value || '2500', 10);
+    const foodCost = travelers * days * mealRate;
+
+    // Subtotal & Cushion
+    const subtotal = rentalCost + fuelCost + tollsCost + hotelCost + foodCost;
+    const bufferPct = parseFloat(bufferSelect?.value || '0.05');
+    const bufferCost = Math.round(subtotal * bufferPct);
+    const totalCost = subtotal + bufferCost;
+
+    // Display
+    if (costRentalDisplay) costRentalDisplay.textContent = `PKR ${rentalCost.toLocaleString()}`;
+    if (costFuelDisplay) costFuelDisplay.textContent = `PKR ${fuelCost.toLocaleString()}`;
+    if (costTollsDisplay) costTollsDisplay.textContent = `PKR ${tollsCost.toLocaleString()}`;
+    if (costHotelDisplay) costHotelDisplay.textContent = `PKR ${hotelCost.toLocaleString()}`;
+    if (costFoodDisplay) costFoodDisplay.textContent = `PKR ${foodCost.toLocaleString()}`;
+    if (costBufferDisplay) costBufferDisplay.textContent = `PKR ${bufferCost.toLocaleString()}`;
+    if (costTotalDisplay) costTotalDisplay.textContent = `PKR ${totalCost.toLocaleString()}`;
+
+    // Vehicle recommendation logic
+    if (recTitle && recReason) {
+      if (travelers > 12) {
+        recTitle.textContent = 'Toyota Coaster Executive (22-Seat) Recommended';
+        recReason.textContent = `Recommended for group size of ${travelers} travelers and large luggage count.`;
+      } else if (travelers > 5 || luggage >= 4) {
+        recTitle.textContent = 'Toyota Fortuner 4x4 / HiAce Recommended';
+        recReason.textContent = `Recommended for ${travelers} travelers + ${luggage} bags on outstation route.`;
+      } else {
+        recTitle.textContent = 'Toyota Corolla / Civic Executive Sedan Recommended';
+        recReason.textContent = `Ideal choice for ${travelers} passengers for city or outstation travel.`;
+      }
+    }
+
+    trackEvent('trip_estimate_generated', { totalEstimate: totalCost, route: routeSelect?.value });
+  };
+
+  // Event Listeners
+  [
+    distanceInput, travelersInput, luggageInput, roomsInput, nightsInput,
+    startDateInput, endDateInput, vehicleSelect, modeSelect, hotelSelect,
+    mealsSelect, bufferSelect
+  ].forEach(el => el?.addEventListener('input', calculateBudget));
+
+  [vehicleSelect, modeSelect, hotelSelect, mealsSelect, bufferSelect].forEach(el => el?.addEventListener('change', calculateBudget));
+
+  calculateBudget();
+
+  // Call click tracking
+  document.getElementById('btn-call-trip-planner')?.addEventListener('click', () => {
+    trackEvent('call_click', { source: 'trip_planner' });
+  });
+
+  // WhatsApp Inquiry Generator
+  const btnSendWhatsApp = document.getElementById('btn-send-plan-whatsapp');
+  btnSendWhatsApp?.addEventListener('click', () => {
+    const origin = (document.getElementById('plan-origin') as HTMLInputElement)?.value || 'Lahore';
+    const dest = routeSelect?.value || 'Outstation';
+    const isReturn = tripTypeInput?.value === 'return';
+    const startDate = startDateInput?.value || '';
+    const endDate = endDateInput?.value || '';
+    const travelers = travelersInput?.value || '5';
+    const luggage = luggageInput?.value || '4';
+    const vehicleOpt = vehicleSelect?.selectedOptions[0]?.text || 'Toyota Fortuner';
+    const mode = modeSelect?.value || 'With Driver';
+    const totalEst = costTotalDisplay?.textContent || '';
+    const name = (document.getElementById('plan-name') as HTMLInputElement)?.value || 'Ahmed';
+    const phone = (document.getElementById('plan-phone') as HTMLInputElement)?.value || '';
+
+    trackEvent('trip_plan_whatsapp_click', { vehicle: vehicleOpt, estimate: totalEst });
+
+    const message =
+      `Hello 4WHEELS, I used the Trip Planner and would like a quotation.\n\n` +
+      `Trip\n` +
+      `${origin} → ${dest}\n` +
+      `${isReturn ? 'Return Trip' : 'One-Way Trip'}\n\n` +
+      `Dates: ${startDate} to ${endDate}\n` +
+      `Travelers: ${travelers} people (${luggage} bags)\n\n` +
+      `Vehicle Preferred: ${vehicleOpt}\n` +
+      `Rental Mode: ${mode}\n\n` +
+      `My Estimated Planning Budget: ${totalEst}\n\n` +
+      `Please confirm actual vehicle availability, rental quotation, and applicable trip charges.\n\n` +
+      `Name: ${name}\n` +
+      `Phone: ${phone}`;
+
+    const waUrl = `https://wa.me/923216616644?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank');
+  });
+</script>
