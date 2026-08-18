@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SEOHead from '../../components/SEOHead.astro';
+import CTASection from '../../components/CTASection.astro';
+import { BUSINESS_INFO } from '../../data/business';
+import { PRESS_RELEASES } from '../../data/press';
+
+const pageTitle = "Press Centre & Official Announcements | 4WHEELS Rent a Car";
+const pageDescription = "Official press releases, brand verification advisories, company announcements, and digital media disclosures from 4WHEELS Rent a Car Lahore.";
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalPath="/press/">
+  <SEOHead
+    slot="seo"
+    title={pageTitle}
+    description={pageDescription}
+    canonicalPath="/press/"
+  />
+
+  <!-- Hero Section -->
+  <section class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-block bg-red-600 text-white font-extrabold text-xs uppercase px-3 py-1 rounded tracking-wider mb-4">
+        Media & Press Centre
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-4 text-white">
+        Official Press Releases & Brand Statements
+      </h1>
+      <p class="text-lg sm:text-xl text-red-400 font-semibold mb-6">
+        {BUSINESS_INFO.trustWording}
+      </p>
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        Access official company announcements, brand verification notices, digital channel disclosures, and media contacts for 4WHEELS Rent a Car.
+      </p>
+    </div>
+  </section>
+
+  <!-- Categories Filter / Overview -->
+  <section class="py-12 bg-slate-50 text-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Quick Verification Banner -->
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl text-slate-800 mb-10 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-base font-bold text-amber-900">Looking to Verify an Official Booking or Representative?</h2>
+          <p class="text-xs sm:text-sm text-slate-700 mt-1">Visit our centralized Official Brand Verification Hub for verified phone numbers, office location, and payment instructions.</p>
+        </div>
+        <a href="/official/" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-lg shrink-0 transition-colors">
+          Verify Official Details
+        </a>
+      </div>
+
+      <!-- Press Releases List -->
+      <div class="space-y-6">
+        {PRESS_RELEASES.map(release => (
+          <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 hover:border-slate-300 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap items-center gap-3 mb-3 text-xs">
+                <span class="bg-slate-100 text-slate-800 font-bold px-2.5 py-1 rounded border border-slate-200">
+                  {release.category}
+                </span>
+                <span class="text-slate-500">
+                  Published: <time datetime={release.datePublished}>{release.datePublished}</time>
+                </span>
+                <span class="text-slate-400">•</span>
+                <span class="text-slate-500">{release.publisher}</span>
+              </div>
+
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mb-2 hover:text-red-600 transition-colors">
+                <a href={`/press/${release.slug}/`}>{release.title}</a>
+              </h2>
+
+              <p class="text-sm font-semibold text-red-600 mb-3">
+                {release.subtitle}
+              </p>
+
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                {release.summary}
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-500 font-medium">Author: {release.author}</span>
+              <a href={`/press/${release.slug}/`} class="text-red-600 font-bold hover:underline flex items-center gap-1">
+                Read Full Release <span>→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Media Enquiries Block -->
+      <div class="mt-12 bg-slate-900 text-slate-200 rounded-2xl p-6 sm:p-8 border border-slate-800">
+        <h3 class="text-xl font-bold text-white mb-2">Media & Press Enquiries</h3>
+        <p class="text-xs sm:text-sm text-slate-300 mb-4 leading-relaxed">
+          For press interviews, brand verification statements, corporate mobility inquiries, or official statements, please contact our official media desk.
+        </p>
+        <div class="flex flex-wrap gap-4 text-xs font-semibold">
+          <a href={BUSINESS_INFO.mailtoLink} class="text-red-400 hover:underline flex items-center gap-1">
+            ✉️ {BUSINESS_INFO.email}
+          </a>
+          <a href={BUSINESS_INFO.telLink} class="text-slate-300 hover:underline flex items-center gap-1">
+            📞 {BUSINESS_INFO.phoneDisplay}
+          </a>
+          <a href={BUSINESS_INFO.facebookUrl} target="_blank" class="text-blue-400 hover:underline flex items-center gap-1">
+            🌐 Official Facebook
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <CTASection
+    title="Need Official Vehicle Reservation or Support?"
+    description="Connect directly with verified 4WHEELS customer care in Johar Town, Lahore."
+    primaryButtonText="💬 Contact Official WhatsApp"
+    primaryButtonHref={BUSINESS_INFO.whatsappLink}
+  />
+</Layout>

@@ -1,0 +1,144 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SEOHead from '../../components/SEOHead.astro';
+import CTASection from '../../components/CTASection.astro';
+import { BUSINESS_INFO } from '../../data/business';
+import { PRESS_RELEASES, type PressRelease } from '../../data/press';
+
+export function getStaticPaths() {
+  return PRESS_RELEASES.map(release => ({
+    params: { slug: release.slug },
+    props: { release },
+  }));
+}
+
+interface Props {
+  release: PressRelease;
+}
+
+const { release } = Astro.props;
+
+const canonicalUrl = `${BUSINESS_INFO.siteUrl}/press/${release.slug}/`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": release.title,
+  "description": release.summary,
+  "datePublished": release.datePublished,
+  "dateModified": release.dateModified,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  },
+  "author": {
+    "@type": "Organization",
+    "name": release.author,
+    "url": BUSINESS_INFO.siteUrl
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": `${BUSINESS_INFO.siteUrl}/#organization`,
+    "name": BUSINESS_INFO.name,
+    "url": BUSINESS_INFO.siteUrl,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${BUSINESS_INFO.siteUrl}/favicon.svg`
+    }
+  }
+};
+---
+
+<Layout title={`${release.title} | 4WHEELS Press`} description={release.summary} canonicalPath={`/press/${release.slug}/`}>
+  <SEOHead
+    slot="seo"
+    title={`${release.title} | 4WHEELS Press`}
+    description={release.summary}
+    canonicalPath={`/press/${release.slug}/`}
+  />
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Article Header -->
+  <header class="bg-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto">
+      <nav class="flex items-center gap-2 text-xs text-slate-400 mb-6">
+        <a href="/" class="hover:text-white">Home</a>
+        <span>/</span>
+        <a href="/press/" class="hover:text-white">Press Centre</a>
+        <span>/</span>
+        <span class="text-slate-200 truncate">{release.title}</span>
+      </nav>
+
+      <div class="inline-block bg-red-600 text-white font-extrabold text-xs uppercase px-3 py-1 rounded tracking-wider mb-4">
+        {release.category}
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white mb-4 leading-tight">
+        {release.title}
+      </h1>
+
+      <p class="text-base sm:text-xl text-red-400 font-semibold mb-6">
+        {release.subtitle}
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 text-xs text-slate-400 pt-4 border-t border-slate-800">
+        <div>Publisher: <strong class="text-slate-200">{release.publisher}</strong></div>
+        <div>•</div>
+        <div>Published: <time datetime={release.datePublished} class="text-slate-200">{release.datePublished}</time></div>
+        <div>•</div>
+        <div>Author: <strong class="text-slate-200">{release.author}</strong></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article Body Section -->
+  <main class="py-12 bg-white text-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Content -->
+      <div class="prose prose-slate max-w-none text-sm sm:text-base leading-relaxed space-y-6" set:html={release.contentHtml} />
+
+      <!-- Verified Contact Block -->
+      <div class="mt-12 bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8">
+        <h3 class="text-lg font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200 flex items-center gap-2">
+          <span>🛡️</span> Official 4WHEELS Contact & Verification Block
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+          <div>
+            <strong class="text-slate-900">Head Office Address:</strong>
+            <p class="text-slate-700 mt-0.5">{BUSINESS_INFO.address.fullAddress}</p>
+          </div>
+          <div>
+            <strong class="text-slate-900">Official Customer Care Phone:</strong>
+            <p><a href={BUSINESS_INFO.telLink} class="text-red-600 font-bold hover:underline">{BUSINESS_INFO.phoneDisplay}</a></p>
+          </div>
+          <div>
+            <strong class="text-slate-900">Official WhatsApp:</strong>
+            <p><a href={BUSINESS_INFO.whatsappLink} target="_blank" class="text-emerald-600 font-bold hover:underline">{BUSINESS_INFO.phoneInternational}</a></p>
+          </div>
+          <div>
+            <strong class="text-slate-900">Official Email:</strong>
+            <p><a href={BUSINESS_INFO.mailtoLink} class="text-slate-900 font-bold hover:underline">{BUSINESS_INFO.email}</a></p>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-200 flex flex-wrap gap-4 text-xs font-semibold">
+          <a href="/official/" class="text-red-600 hover:underline">
+            View Official Verification Hub →
+          </a>
+          <a href="/locations/official/" class="text-slate-700 hover:underline">
+            View Official Location Details →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <CTASection
+    title="Questions Regarding Your Rental Booking?"
+    description="Contact official 4WHEELS customer care for immediate assistance."
+    primaryButtonText="💬 Contact Official WhatsApp"
+    primaryButtonHref={BUSINESS_INFO.whatsappLink}
+  />
+</Layout>

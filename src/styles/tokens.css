@@ -1,0 +1,23 @@
+:root {
+  /* Brand Identity Tokens - Derived from 4WHEELS Facebook Asset & Official Logo */
+  --brand-primary: #e0121a;       /* Primary Red */
+  --brand-primary-hover: #b80c13; /* Primary Red Hover */
+  --brand-secondary: #0f172a;     /* Deep Slate / Dark Navy Backgrounds */
+  --brand-accent: #f59e0b;        /* Amber Accent / Gold Badging */
+
+  --brand-bg: #ffffff;            /* Light Surface Background */
+  --brand-surface: #f8fafc;       /* Muted Surface / Light Card Fill */
+  --brand-surface-dark: #1e293b;  /* Dark Surface Card Fill */
+
+  --brand-text: #0f172a;          /* Dark Text */
+  --brand-text-muted: #64748b;    /* Secondary / Muted Text */
+  --brand-text-light: #f8fafc;    /* White / On-Dark Text */
+
+  --brand-border: #e2e8f0;        /* Subtle Light Border */
+  --brand-border-dark: #334155;   /* Subtle Dark Border */
+
+  /* Status Colors */
+  --brand-success: #10b981;       /* Emerald / Verified Badges */
+  --brand-warning: #f59e0b;       /* Amber / Attention Notices */
+  --brand-danger: #ef4444;        /* Red / Prohibited Blocks */
+}

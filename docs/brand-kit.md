@@ -1,55 +1,92 @@
-# 4WHEELS Rent a Car - Internal Brand Kit
+# 4WHEELS Rent a Car — Official Brand Kit & Style Guide
 
-## 1. Brand Identity Overview
-4WHEELS Rent a Car is an established Pakistani vehicle-rental brand serving Lahore since 2008. The visual and user interface design reflects a world-class, fast, professional, and authentic Pakistani rental experience.
+---
 
-## 2. Color Palette
-- **Primary Brand Red**: `#e0121a` (Tailwind `red-600` / `#dc2626` hover `#b91c1c`)
-- **Dark Neutral (Header/Footer)**: `#0f172a` (Slate 900) & `#020617` (Slate 950)
-- **Backgrounds**: `#f8fafc` (Slate 50) for pages, `#ffffff` for elevated cards
-- **Primary Text**: `#1e293b` (Slate 800)
-- **Muted Text**: `#64748b` (Slate 500)
-- **WhatsApp Emerald**: `#059669` (Emerald 600) / `#047857` (Emerald 700)
-
-## 3. Typography
-- **Primary Font Family**: System Sans-Serif (`ui-sans-serif, system-ui, sans-serif`)
-- **Heading Styles**: Bold / ExtraBold tracking-tight, uppercase badges for category titles
-- **Body Copy**: Standard 16px / line-height 1.625 for optimal readability
-
-## 4. UI Component Guidelines
-- **Buttons**:
-  - Primary Conversion (WhatsApp): Solid Emerald green, rounded-lg, flex with WhatsApp icon (`px-5 py-3 font-bold`).
-  - Secondary Action (Call / Book): Solid Brand Red, rounded-lg (`px-5 py-3 font-bold`).
-  - Tertiary Action (Learn More / Filters): Border slate-300, background white, text-slate-700 hover:bg-slate-100.
-- **Card Styles**:
-  - Border: 1px solid `#e2e8f0` (Slate 200).
-  - Shadow: Soft `shadow-sm` on default, `hover:shadow-md hover:-translate-y-0.5` transition (200ms ease-in-out).
-  - Border Radius: `rounded-xl` (12px) for vehicle/service cards.
-- **Image Treatment**:
-  - Ratio: 16:9 for vehicle exteriors, 4:3 for gallery thumbs.
-  - Neutral Fallbacks: When owner photo is unavailable, render styled placeholder with text: *"Owner photo required."*
-- **Icons**:
-  - Passengers: 👤 icon or count badge.
-  - Luggage: 🧳 suitcase icon or bag count.
-  - Fuel / Transmission / Self Drive tags: Clear pills (`bg-slate-100 text-slate-700 text-xs font-semibold px-2.5 py-1 rounded-full`).
-
-## 5. Official Brand Specifications & Naming
-- **Official Name**: `4WHEELS Rent a Car`
-- **Official Spelling**: Always write as `4WHEELS Rent a Car`. Do not alternate randomly with `4 Wheels`, `Four Wheels`, `4Wheel`, or `4Wheels.pk`.
-- **Approved Trust Wording**: "Serving Lahore Since 2008" or "An established Pakistani vehicle-rental brand serving Lahore since 2008."
-- **Official Phone**: `0321 6616644` / `+92 321 6616644`
-- **Official Email**: `4wheels44@gmail.com`
-- **Official Address**: `5, F1, Block F1, Johar Town Phase 1, Lahore, Pakistan`
+## 1. Official Brand Identity
+- **Official Brand Name**: 4WHEELS Rent a Car
+- **Short Name / Badge Title**: 4WHEELS
+- **Established Year**: 2008
+- **Primary Slogan**: Self Drive & With Driver Car Rental in Lahore
+- **Trust Wording**: "Serving Lahore Since 2008" / "An established Pakistani vehicle-rental brand serving Lahore since 2008."
+- **Official Head Office**: 5, F1, Block F1, Johar Town Phase 1, Lahore, Pakistan
+- **Official Phone**: 0321 6616644 / +92 321 6616644
+- **Official WhatsApp**: +92 321 6616644
+- **Official Email**: 4wheels44@gmail.com
 - **Official Facebook**: `https://www.facebook.com/4wheelrentacar/`
-- **Official Production Domain**: `https://4wheelsrentacar.pk`
+- **Official Website**: `https://4wheelsrentacar.pk`
 
-## 6. Never Use as Official (INTERNAL ONLY)
-Do **NEVER** use the following unrelated/lookalike domains, profiles, or listings as official identity, canonical, or contact sources:
-- `4wheels.pk` (Unrelated used-car portal / lookalike domain)
-- Unrelated 4Wheels car showrooms in Lahore or Bahawalpur
-- Unaffiliated DHA Lahore 4Wheel / 4Wheels rental listings
+---
 
-## 7. Contact & Conversion Hierarchy
-1. **WhatsApp**: Primary conversion action across all forms, vehicle listings, and floating CTAs.
-2. **Phone Call**: Direct voice calls for instant booking inquiries.
-3. **Email**: Reserved for corporate quotations, tour operator fleet requirements, and enterprise inquiries (`4wheels44@gmail.com`).
+## 2. Brand Color Palette (HEX Values & Source Asset)
+Derived directly from the owner-supplied official Facebook page assets and verified brand logo (`/public/favicon.svg`):
+
+| Variable Token | Color Name | HEX Code | Primary Application |
+| :--- | :--- | :--- | :--- |
+| `--brand-primary` | 4WHEELS Red | `#E0121A` | Primary brand logos, primary CTA buttons, active navigation states, badges |
+| `--brand-primary-hover` | Deep Crimson | `#B80C13` | Hover states for red CTA buttons |
+| `--brand-secondary` | Slate Navy | `#0F172A` | Header/Footer background, dark section blocks, high-contrast typography |
+| `--brand-accent` | Amber Gold | `#F59E0B` | Plan My Trip CTAs, highlighted notices, rating stars |
+| `--brand-bg` | Pure White | `#FFFFFF` | Default page background |
+| `--brand-surface` | Slate Light | `#F8FAFC` | Card fill, section backgrounds, table headers |
+| `--brand-text` | Slate Dark | `#0F172A` | Body text, headings, contrast copy |
+| `--brand-text-muted` | Muted Gray | `#64748B` | Captions, metadata, secondary text |
+| `--brand-border` | Border Gray | `#E2E8F0` | Card borders, dividers, table borders |
+| `--brand-success` | Emerald Green | `#10B981` | Verification badges, WhatsApp CTAs, confirmed statuses |
+| `--brand-warning` | Amber Alert | `#F59E0B` | Payment advisories, customer safety reminders |
+| `--brand-danger` | Alert Red | `#EF4444` | Prohibited notices, cancellation warnings |
+
+**Source Asset**: Extracted from official Facebook cover/logo assets and CSS design tokens in `src/styles/tokens.css`.
+
+---
+
+## 3. Logo Usage & Specifications
+- **Primary Logo Block**: Red background box (`#E0121A`) with bold, white, extra-bold sans-serif uppercase text `4WHEELS`, accompanied by text `Rent a Car Lahore`.
+- **Minimum Display Size**:
+  - Web Header: Height 32px (Desktop), 28px (Mobile)
+  - Favicon / Touch Icon: 32x32px SVG (`/public/favicon.svg`)
+- **Clear Space Rule**: Maintain minimum 8px padding around logo block in all navigation and media graphics.
+- **Prohibited Alterations**:
+  - Do NOT stretch or warp logo aspect ratio.
+  - Do NOT change logo background to unapproved colors (e.g. green or cyan).
+  - Do NOT alter text font to decorative script.
+
+---
+
+## 4. Typography System
+System-first, high-performance font stack for optimal speed and readability:
+`system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif`
+
+| Role | Weight | Size (Desktop/Mobile) | Tracking | Line Height |
+| :--- | :--- | :--- | :--- | :--- |
+| Display H1 | Black (`900`) | `3xl` - `5xl` (30px-48px) | Tight (`-0.025em`) | `1.1` |
+| Section H2 | Bold (`700`) | `2xl` - `3xl` (24px-30px) | Normal | `1.2` |
+| Card H3 | Bold (`700`) | `lg` - `xl` (18px-20px) | Normal | `1.3` |
+| Body Text | Regular (`400`) / Medium (`500`) | `sm` - `base` (14px-16px) | Normal | `1.6` |
+| Small / Label | Medium (`500`) / Bold (`700`) | `xs` (12px) | Wide (`0.05em`) | `1.4` |
+
+---
+
+## 5. UI Elements: Buttons, Cards, & Forms
+- **Primary Commercial CTA**: Red background (`#E0121A`), rounded-lg, font-bold, white text. Text: "Check Availability" or "Book Your Trip".
+- **Trip Planner CTA**: Amber Gold (`#F59E0B`), font-black, slate-950 text. Text: "Plan My Trip".
+- **WhatsApp CTA**: Emerald Green (`#10B981`) or Slate-800 with emerald text. Text: "💬 Contact Official WhatsApp".
+- **Vehicle Cards**: White card fill (`#FFFFFF`), subtle border (`#E2E8F0`), hover elevation (`translateY(-4px)`), clear technical specs (Engine CC, transmission, fuel economy, capacity).
+
+---
+
+## 6. Press & Social Media Visual Rules
+- **Press Graphics**: Clean slate background (`#0F172A`), official red logo badge, clear headline text, publication date, and official web domain (`4wheelsrentacar.pk`).
+- **Media Representation**: No graphics imitating third-party news outlets or falsely asserting media endorsements.
+
+---
+
+## 7. Tone of Voice & Messaging Standards
+- **Tone**: Professional, transparent, informative, authoritative, and helpful.
+- **Mandatory Phrase**: "Serving Lahore Since 2008".
+- **Prohibited Phrases**:
+  - "Pakistan's #1 Rent a Car"
+  - "Pakistan's oldest Rent a Car"
+  - "Lahore's oldest Rent a Car"
+  - "Pakistan's most trusted rental company"
+  - "Largest rental company in Pakistan"
+  - "Cheapest rental company"
