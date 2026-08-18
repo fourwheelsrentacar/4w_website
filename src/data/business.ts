@@ -13,11 +13,10 @@ export const BUSINESS_INFO = {
   phoneRaw: '03216616644',
   telLink: 'tel:+923216616644',
   whatsappRaw: '923216616644',
-  whatsappLink: 'https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20would%20like%20to%20check%20car%20rental%20availability%20in%20Lahore.',
-  whatsappPriceLink: 'https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20would%20like%20to%20get%20the%20latest%20rental%20price%20quote%20for%20Lahore.',
-  whatsappTripLink: 'https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20would%20like%20to%20inquire%20about%20trip%20information%20and%20car%20rental%20options.',
+  whatsappLink: 'https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20need%20some%20assistance.',
+  whatsappGeneralLink: 'https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20need%20some%20assistance.',
   contactHierarchy: [
-    { channel: 'WhatsApp', detail: '0321 6616644', note: 'Primary for fastest response', link: 'https://wa.me/923216616644' },
+    { channel: 'WhatsApp', detail: '0321 6616644', note: 'Primary for fastest response', link: 'https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20need%20some%20assistance.' },
     { channel: 'Phone', detail: '0321 6616644', note: 'Direct voice calls', link: 'tel:+923216616644' },
     { channel: 'Email', detail: '4wheels44@gmail.com', note: 'Corporate, enterprise quotations, formal procurement', link: 'mailto:4wheels44@gmail.com' }
   ],

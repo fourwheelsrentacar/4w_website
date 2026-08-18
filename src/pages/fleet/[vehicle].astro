@@ -171,24 +171,15 @@ const whatsappMessage = encodeURIComponent(
             <!-- Action CTAs -->
             <div class="space-y-3">
               <a
-                href={`https://wa.me/923216616644?text=${whatsappMessage}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl text-center block transition-colors shadow-sm flex items-center justify-center gap-2"
+                href={`/build-your-rental/?vehicle=${vehicle.slug}&brand=${encodeURIComponent(vehicle.manufacturer)}&model=${encodeURIComponent(vehicle.model)}&category=${vehicle.category}`}
+                class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 px-4 rounded-xl text-center block transition-colors shadow-sm text-base"
               >
-                <span>💬 Check Availability on WhatsApp</span>
-              </a>
-
-              <a
-                href="/build-your-rental/"
-                class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 px-4 rounded-xl text-center block transition-colors shadow-sm"
-              >
-                Configure Detailed Rental
+                Configure & Check Availability
               </a>
 
               <a
                 href={BUSINESS_INFO.telLink}
-                class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-4 rounded-xl text-center block transition-colors text-sm"
+                class="w-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold py-3 px-4 rounded-xl text-center block transition-colors text-xs"
               >
                 📞 Call Customer Care: {BUSINESS_INFO.phoneDisplay}
               </a>

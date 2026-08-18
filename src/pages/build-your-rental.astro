@@ -1,257 +1,503 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { FLEET_VEHICLES as FLEET } from '../data/fleet';
+import { PAKISTAN_VEHICLES } from '../data/pakistanVehicles';
 import { BUSINESS_INFO } from '../data/business';
 
 const title = "Build Your Rental - 4WHEELS Rent a Car Lahore";
-const description = "Configure your rental car booking online in 15 simple steps. Select vehicle type, brand, model, dates, total days, passenger & luggage count, then send a structured enquiry on WhatsApp.";
+const description = "Configure your rental car booking online in 5 simple steps. Select vehicle, transmission, dates, trip details, review your inquiry, then connect with 4WHEELS customer care on WhatsApp.";
 const canonicalPath = "/build-your-rental/";
 ---
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
   <!-- Header Banner -->
-  <section class="bg-slate-900 text-white py-10 border-b border-slate-800">
+  <section class="bg-slate-900 text-white py-8 sm:py-10 border-b border-slate-800">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">
-        Instant Enquiry Builder
+        Official Rental Configurator
       </span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2">
-        Build Your Rental
+      <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-2">
+        Configure & Request Availability
       </h1>
-      <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
-        Customize your exact rental needs. Generates a prefilled WhatsApp enquiry sent directly to 4WHEELS customer care.
+      <p class="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+        Customize your exact rental requirements in 5 quick steps. Generates a complete, structured inquiry sent directly to 4WHEELS customer care.
       </p>
     </div>
   </section>
 
-  <section class="py-10 bg-slate-50 min-h-[70vh]">
+  <section class="py-8 sm:py-12 bg-slate-50 min-h-[85vh]">
     <div class="max-w-3xl mx-auto px-4">
-      <form id="configurator-form" class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-8">
 
-        <!-- Step 1: Vehicle Category -->
-        <div>
-          <label class="block text-sm font-bold text-slate-900 mb-2">
-            Step 1: Vehicle Category <span class="text-red-500">*</span>
-          </label>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="category-selector">
-            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-red-600 text-white border-red-600" data-val="sedan">Sedan</button>
-            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50" data-val="suv">SUV / 4x4</button>
-            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50" data-val="hatchback">Hatchback</button>
-            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50" data-val="van">Van (HiAce)</button>
-            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50" data-val="coaster">Coaster Bus</button>
-            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50" data-val="luxury">Luxury Car</button>
+      <!-- Stepper Header Navigation -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 mb-6">
+        <div class="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-500">
+          <div id="step-tab-1" class="step-tab active-step flex items-center gap-1.5 text-red-600">
+            <span class="w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center text-xs">1</span>
+            <span class="hidden sm:inline">Vehicle</span>
           </div>
-          <input type="hidden" name="vehicleCategory" id="input-category" value="sedan" />
-        </div>
-
-        <!-- Step 2 & 3: Brand & Model Selection -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="input-brand" class="block text-sm font-bold text-slate-900 mb-2">
-              Step 2: Preferred Brand
-            </label>
-            <select name="brand" id="input-brand" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
-              <option value="Toyota">Toyota</option>
-              <option value="Honda">Honda</option>
-              <option value="Suzuki">Suzuki</option>
-              <option value="Audi">Audi</option>
-              <option value="Any Brand">Any Brand</option>
-            </select>
+          <div class="h-0.5 flex-1 bg-slate-200 mx-2"></div>
+          <div id="step-tab-2" class="step-tab flex items-center gap-1.5">
+            <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-xs">2</span>
+            <span class="hidden sm:inline">Dates</span>
           </div>
-          <div>
-            <label for="input-model" class="block text-sm font-bold text-slate-900 mb-2">
-              Step 3: Vehicle Model
-            </label>
-            <select name="model" id="input-model" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
-              <option value="Corolla">Corolla (Grandi/Altis)</option>
-              <option value="Civic">Civic (Oriel/RS)</option>
-              <option value="Yaris">Yaris</option>
-              <option value="Fortuner">Fortuner</option>
-              <option value="Hilux Revo">Hilux Revo 4x4</option>
-              <option value="HiAce Grand Cabin">HiAce Grand Cabin</option>
-              <option value="Coaster Saloon">Coaster Saloon</option>
-              <option value="Alto">Alto</option>
-              <option value="Audi A6">Audi A6</option>
-              <option value="Recommended Vehicle">Recommend Best Vehicle</option>
-            </select>
+          <div class="h-0.5 flex-1 bg-slate-200 mx-2"></div>
+          <div id="step-tab-3" class="step-tab flex items-center gap-1.5">
+            <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-xs">3</span>
+            <span class="hidden sm:inline">Trip</span>
+          </div>
+          <div class="h-0.5 flex-1 bg-slate-200 mx-2"></div>
+          <div id="step-tab-4" class="step-tab flex items-center gap-1.5">
+            <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-xs">4</span>
+            <span class="hidden sm:inline">Details</span>
+          </div>
+          <div class="h-0.5 flex-1 bg-slate-200 mx-2"></div>
+          <div id="step-tab-5" class="step-tab flex items-center gap-1.5">
+            <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-xs">5</span>
+            <span class="hidden sm:inline">Review</span>
           </div>
         </div>
+      </div>
 
-        <!-- Step 4: Color & Step 5: Rental Mode -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- Configurator Main Box -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
+
+        <!-- STEP 1: VEHICLE SELECTION -->
+        <div id="step-panel-1" class="step-panel space-y-6">
+          <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center justify-between">
+            <span>Step 1: Select Your Vehicle</span>
+            <span class="text-xs font-normal text-slate-500">1 of 5</span>
+          </h2>
+
+          <!-- Category Selector -->
           <div>
-            <label for="input-color" class="block text-sm font-bold text-slate-900 mb-2">
-              Step 4: Preferred Color
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+              Vehicle Category <span class="text-red-500">*</span>
             </label>
-            <select name="color" id="input-color" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
-              <option value="Any Available Color">Any Available Color</option>
-              <option value="White / Super White">White / Super White</option>
-              <option value="Black / Attitude Black">Black / Attitude Black</option>
-              <option value="Silver / Graphite">Silver / Metallic</option>
-            </select>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="category-buttons">
+              <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-red-600 text-white border-red-600 shadow-sm transition-all" data-val="sedan">Sedan</button>
+              <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50 transition-all" data-val="suv">SUV / 4x4</button>
+              <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50 transition-all" data-val="hatchback">Hatchback</button>
+              <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50 transition-all" data-val="van">Van / HiAce</button>
+              <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50 transition-all" data-val="coaster">Coaster Bus</button>
+              <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50 transition-all" data-val="luxury">Luxury / Executive</button>
+            </div>
+            <input type="hidden" id="field-category" value="sedan" />
           </div>
+
+          <!-- Brand & Model -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="field-brand" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Preferred Brand
+              </label>
+              <select id="field-brand" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                <option value="Toyota">Toyota</option>
+                <option value="Honda">Honda</option>
+                <option value="Suzuki">Suzuki</option>
+                <option value="Audi">Audi</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="BYD">BYD</option>
+                <option value="Changan">Changan</option>
+                <option value="MG">MG</option>
+                <option value="Haval">Haval</option>
+                <option value="Any Brand">Any Available Brand</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="field-model" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Vehicle Model
+              </label>
+              <select id="field-model" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                <option value="Toyota Corolla">Toyota Corolla (Grandi / Altis)</option>
+                <option value="Toyota Yaris">Toyota Yaris</option>
+                <option value="Toyota Fortuner">Toyota Fortuner SUV</option>
+                <option value="Toyota Hilux Revo">Toyota Hilux Revo 4x4</option>
+                <option value="Toyota HiAce">Toyota HiAce Grand Cabin</option>
+                <option value="Toyota Coaster">Toyota Coaster Saloon</option>
+                <option value="Honda Civic">Honda Civic (Oriel / RS)</option>
+                <option value="Honda City">Honda City</option>
+                <option value="Suzuki Alto">Suzuki Alto</option>
+                <option value="Suzuki Swift">Suzuki Swift</option>
+                <option value="Audi A6">Audi A6 Executive</option>
+                <option value="Recommend Best Vehicle">Recommend Best Vehicle</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Transmission & Color Preference -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Transmission <span class="text-red-500">*</span>
+              </label>
+              <div class="grid grid-cols-2 gap-2" id="transmission-buttons">
+                <button type="button" class="trans-btn border rounded-lg p-2 text-center text-xs font-semibold bg-red-600 text-white border-red-600 transition-all" data-val="Automatic">
+                  Automatic
+                </button>
+                <button type="button" class="trans-btn border rounded-lg p-2 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50 transition-all" data-val="Manual">
+                  Manual
+                </button>
+              </div>
+              <input type="hidden" id="field-transmission" value="Automatic" />
+            </div>
+
+            <div>
+              <label for="field-color" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Preferred Color
+              </label>
+              <select id="field-color" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                <option value="Any Available Color">Any Available Color</option>
+                <option value="White / Super White">White / Super White</option>
+                <option value="Black / Attitude Black">Black / Attitude Black</option>
+                <option value="Silver / Metallic Gray">Silver / Metallic Gray</option>
+              </select>
+              <p class="text-[11px] text-slate-500 mt-1">Color preference is subject to current vehicle availability.</p>
+            </div>
+          </div>
+
+          <!-- Rental Mode: Self Drive / With Driver -->
           <div>
-            <label for="input-rental-mode" class="block text-sm font-bold text-slate-900 mb-2">
-              Step 5: Rental Type <span class="text-red-500">*</span>
+            <label for="field-mode" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+              Rental Mode <span class="text-red-500">*</span>
             </label>
-            <select name="rentalMode" id="input-rental-mode" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
+            <select id="field-mode" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
               <option value="With Driver">With Driver (Chauffeur Service)</option>
               <option value="Self Drive">Self Drive (Subject to document verification)</option>
             </select>
           </div>
-        </div>
 
-        <!-- Step 6, 7, 8, 9: Dates & Duration -->
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
-              <label for="input-duration-type" class="block text-xs font-bold text-slate-700 mb-1">
-                Step 6: Duration
-              </label>
-              <select name="durationType" id="input-duration-type" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-semibold text-slate-800">
-                <option value="Multiple Days">Multiple Days</option>
-                <option value="One Day">One Day</option>
-                <option value="Weekly">Weekly (7+ Days)</option>
-                <option value="Monthly">Monthly Contract</option>
-              </select>
-            </div>
-            <div>
-              <label for="input-start-date" class="block text-xs font-bold text-slate-700 mb-1">
-                Step 7: Start Date <span class="text-red-500">*</span>
-              </label>
-              <input type="date" id="input-start-date" required class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-semibold text-slate-800" />
-            </div>
-            <div>
-              <label for="input-end-date" class="block text-xs font-bold text-slate-700 mb-1">
-                Step 8: End Date <span class="text-red-500">*</span>
-              </label>
-              <input type="date" id="input-end-date" required class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-semibold text-slate-800" />
-            </div>
-          </div>
-
-          <!-- Step 9: Rental Day Calculation Display -->
-          <div class="bg-red-50 border border-red-100 rounded-lg p-3 text-center flex items-center justify-between">
-            <span class="text-xs font-bold text-red-900">Step 9: Total Rental Calculation</span>
-            <span id="rental-days-display" class="text-sm font-extrabold text-red-600 bg-white px-3 py-1 rounded shadow-sm border border-red-200">
-              1 Day
-            </span>
+          <div class="pt-4 border-t border-slate-100 flex justify-end">
+            <button type="button" class="btn-next bg-red-600 hover:bg-red-700 text-white font-bold text-sm px-6 py-2.5 rounded-xl shadow-sm transition-all flex items-center gap-2">
+              <span>Next: Dates</span>
+              <span>→</span>
+            </button>
           </div>
         </div>
 
-        <!-- Step 10 & 11: Capacity -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="input-passengers" class="block text-sm font-bold text-slate-900 mb-2">
-              Step 10: Passengers 👤
-            </label>
-            <input type="number" id="input-passengers" min="1" max="50" value="4" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-800" />
+        <!-- STEP 2: DATES & DURATION -->
+        <div id="step-panel-2" class="step-panel space-y-6 hidden">
+          <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center justify-between">
+            <span>Step 2: Rental Dates & Duration</span>
+            <span class="text-xs font-normal text-slate-500">2 of 5</span>
+          </h2>
+
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="field-start-date" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                  Start Date <span class="text-red-500">*</span>
+                </label>
+                <input type="date" id="field-start-date" required class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none" />
+              </div>
+
+              <div>
+                <label for="field-end-date" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                  End Date <span class="text-red-500">*</span>
+                </label>
+                <input type="date" id="field-end-date" required class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none" />
+              </div>
+            </div>
+
+            <!-- Duration Summary Box -->
+            <div class="bg-red-50 border border-red-200 rounded-lg p-3 flex items-center justify-between">
+              <span class="text-xs font-bold text-red-900">Calculated Rental Duration:</span>
+              <span id="display-duration" class="text-sm font-extrabold text-red-600 bg-white px-3 py-1 rounded shadow-sm border border-red-200">
+                1 Rental Day
+              </span>
+            </div>
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              Standard daily rental cycle applies. Final billing and trip terms are confirmed during availability verification.
+            </p>
           </div>
-          <div>
-            <label for="input-luggage" class="block text-sm font-bold text-slate-900 mb-2">
-              Step 11: Luggage Bags 🧳
-            </label>
-            <input type="number" id="input-luggage" min="0" max="30" value="2" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-800" />
+
+          <div class="pt-4 border-t border-slate-100 flex justify-between">
+            <button type="button" class="btn-prev bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-sm px-6 py-2.5 rounded-xl transition-all">
+              ← Back
+            </button>
+            <button type="button" class="btn-next bg-red-600 hover:bg-red-700 text-white font-bold text-sm px-6 py-2.5 rounded-xl shadow-sm transition-all flex items-center gap-2">
+              <span>Next: Trip Details</span>
+              <span>→</span>
+            </button>
           </div>
         </div>
 
-        <!-- Step 12, 13, 14: Route & Purpose -->
-        <div class="space-y-4">
+        <!-- STEP 3: TRIP & CAPACITY -->
+        <div id="step-panel-3" class="step-panel space-y-6 hidden">
+          <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center justify-between">
+            <span>Step 3: Trip Details & Capacity</span>
+            <span class="text-xs font-normal text-slate-500">3 of 5</span>
+          </h2>
+
+          <!-- Capacity Selectors & Icon Visualization -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="input-pickup" class="block text-sm font-bold text-slate-900 mb-2">
-                Step 12: Pickup Location <span class="text-red-500">*</span>
+              <label for="field-passengers" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Passengers
               </label>
-              <input type="text" id="input-pickup" required placeholder="e.g. Johar Town, Lahore Airport, Gulberg" value="Johar Town, Lahore" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-medium text-slate-800" />
+              <input type="number" id="field-passengers" min="1" max="50" value="4" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none" />
+              <div class="mt-2 text-xs text-slate-600 flex items-center gap-1" id="visual-passengers">
+                <span class="font-semibold text-slate-500">Capacity:</span>
+                <span id="icon-passengers-list" class="flex gap-0.5 text-base">👤 👤 👤 👤</span>
+              </div>
             </div>
+
             <div>
-              <label for="input-destination" class="block text-sm font-bold text-slate-900 mb-2">
-                Step 13: Destination (Local / Outstation)
+              <label for="field-luggage" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Luggage Bags
               </label>
-              <input type="text" id="input-destination" placeholder="e.g. Lahore Local / Murree / Islamabad" value="Lahore Local" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-medium text-slate-800" />
+              <input type="number" id="field-luggage" min="0" max="30" value="2" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none" />
+              <div class="mt-2 text-xs text-slate-600 flex items-center gap-1" id="visual-luggage">
+                <span class="font-semibold text-slate-500">Luggage:</span>
+                <span id="icon-luggage-list" class="flex gap-0.5 text-base">🧳 🧳</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Locations & Purpose -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="field-pickup" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Pickup Location <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="field-pickup" required placeholder="e.g. Johar Town, Lahore / Lahore Airport" value="Johar Town, Lahore" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none" />
+            </div>
+
+            <div>
+              <label for="field-destination" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Destination (Local / Outstation)
+              </label>
+              <input type="text" id="field-destination" placeholder="e.g. Lahore City / Islamabad / Murree" value="Lahore City" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none" />
             </div>
           </div>
 
           <div>
-            <label for="input-purpose" class="block text-sm font-bold text-slate-900 mb-2">
-              Step 14: Trip Purpose
+            <label for="field-purpose" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+              Trip Purpose
             </label>
-            <select name="purpose" id="input-purpose" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
+            <select id="field-purpose" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
               <option value="Personal Travel">Personal / City Travel</option>
               <option value="Airport Pickup or Drop">Airport Transfer</option>
               <option value="Family Outstation Tour">Family Outstation Tour</option>
               <option value="Wedding Event">Wedding Transport</option>
-              <option value="Corporate / Business">Corporate / Executive Travel</option>
+              <option value="Corporate / Business Travel">Corporate / Business Travel</option>
               <option value="Staff Pick & Drop">Staff Pick & Drop</option>
               <option value="Other">Other</option>
             </select>
           </div>
+
+          <div class="pt-4 border-t border-slate-100 flex justify-between">
+            <button type="button" class="btn-prev bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-sm px-6 py-2.5 rounded-xl transition-all">
+              ← Back
+            </button>
+            <button type="button" class="btn-next bg-red-600 hover:bg-red-700 text-white font-bold text-sm px-6 py-2.5 rounded-xl shadow-sm transition-all flex items-center gap-2">
+              <span>Next: Contact Details</span>
+              <span>→</span>
+            </button>
+          </div>
         </div>
 
-        <!-- Step 15: Customer Information -->
-        <div class="border-t border-slate-200 pt-6 space-y-4">
-          <h2 class="text-base font-extrabold text-slate-900 uppercase tracking-wide">
-            Step 15: Contact Details
+        <!-- STEP 4: CUSTOMER DETAILS -->
+        <div id="step-panel-4" class="step-panel space-y-6 hidden">
+          <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center justify-between">
+            <span>Step 4: Contact Information</span>
+            <span class="text-xs font-normal text-slate-500">4 of 5</span>
           </h2>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="input-name" class="block text-xs font-bold text-slate-700 mb-1">Your Full Name <span class="text-red-500">*</span></label>
-              <input type="text" id="input-name" required placeholder="e.g. Ahmed Ali" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800" />
+              <label for="field-name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Full Name <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="field-name" required placeholder="e.g. Ahmed Ali" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none" />
             </div>
+
             <div>
-              <label for="input-phone" class="block text-xs font-bold text-slate-700 mb-1">Phone / WhatsApp Number <span class="text-red-500">*</span></label>
-              <input type="tel" id="input-phone" required placeholder="03XXXXXXXXX" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800" />
+              <label for="field-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Phone / WhatsApp Number <span class="text-red-500">*</span>
+              </label>
+              <input type="tel" id="field-phone" required placeholder="03XXXXXXXXX" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none" />
             </div>
           </div>
+
           <div>
-            <label for="input-message" class="block text-xs font-bold text-slate-700 mb-1">Additional Notes / Special Requirements</label>
-            <textarea id="input-message" rows="2" placeholder="e.g. Need child seat, driver fluent in English, extra luggage trunk space" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800"></textarea>
+            <label for="field-company" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+              Company Name <span class="text-slate-400 font-normal">(Optional)</span>
+            </label>
+            <input type="text" id="field-company" placeholder="e.g. ABC Enterprises" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none" />
+          </div>
+
+          <div>
+            <label for="field-notes" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+              Special Notes or Requirements
+            </label>
+            <textarea id="field-notes" rows="2" placeholder="e.g. Child seat required, flight number if airport pickup, specific model variant" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+          </div>
+
+          <!-- Rental Terms Acknowledgement -->
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-slate-700 space-y-2">
+            <div class="font-bold text-amber-900 flex items-center gap-1">
+              <span>ℹ️ Rental Policies & Terms:</span>
+            </div>
+            <ul class="list-disc list-inside space-y-1 text-slate-600">
+              <li>Fuel and motorway tolls are standard extra unless explicitly quoted.</li>
+              <li>Self-drive rentals require valid original CNIC, driving license, and security deposit verification.</li>
+            </ul>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex justify-between">
+            <button type="button" class="btn-prev bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-sm px-6 py-2.5 rounded-xl transition-all">
+              ← Back
+            </button>
+            <button type="button" class="btn-next bg-red-600 hover:bg-red-700 text-white font-bold text-sm px-6 py-2.5 rounded-xl shadow-sm transition-all flex items-center gap-2" id="btn-to-review">
+              <span>Review Inquiry</span>
+              <span>→</span>
+            </button>
           </div>
         </div>
 
-        <!-- Rental Terms Agreement Checkbox (Section 29 requirement) -->
-        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-slate-700 space-y-2">
-          <div class="font-bold text-amber-900 flex items-center gap-1">
-            <span>ℹ️ Rental Terms Summary:</span>
+        <!-- STEP 5: MANDATORY REVIEW SCREEN -->
+        <div id="step-panel-5" class="step-panel space-y-6 hidden">
+          <div class="bg-slate-900 text-white p-4 rounded-xl flex items-center justify-between">
+            <div>
+              <h2 class="text-base font-extrabold">Review Your Rental Inquiry</h2>
+              <p class="text-xs text-slate-300">Please confirm your selections before opening WhatsApp.</p>
+            </div>
+            <span class="text-xs bg-red-600 text-white font-bold px-2.5 py-1 rounded">5 of 5</span>
           </div>
-          <ul class="list-disc list-inside space-y-1 text-slate-600">
-            <li><strong>Rental Cycle:</strong> Based on 12:00 AM midnight daily cycle where applicable.</li>
-            <li><strong>Fuel & Tolls:</strong> Fuel and motorway tolls/M-Tag are standard extra unless specifically included in your agreed written quotation.</li>
-            <li><strong>Traffic Violations (Challans):</strong> Responsibility of renter/driver during period.</li>
-          </ul>
-          <label class="flex items-start gap-2 pt-2 cursor-pointer font-semibold text-slate-800">
-            <input type="checkbox" id="terms-agree" required class="mt-0.5 rounded border-slate-300 text-red-600 focus:ring-red-500" />
-            <span>I understand that final pricing, vehicle availability, and exact rental terms will be confirmed by 4WHEELS customer care.</span>
-          </label>
+
+          <!-- Structured Summary Card -->
+          <div class="bg-slate-50 rounded-xl border border-slate-200 p-5 space-y-4 text-xs text-slate-800">
+            <!-- Vehicle Summary -->
+            <div class="border-b border-slate-200 pb-3">
+              <span class="font-bold text-slate-500 uppercase tracking-wider block mb-1">Vehicle Details</span>
+              <div class="font-extrabold text-slate-900 text-sm" id="review-vehicle-title">Toyota Corolla</div>
+              <div class="text-slate-600 flex flex-wrap gap-2 mt-1">
+                <span id="review-transmission" class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded font-medium">Automatic</span>
+                <span id="review-color" class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded font-medium">Any Available Color</span>
+                <span id="review-category" class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded font-medium uppercase">Sedan</span>
+              </div>
+            </div>
+
+            <!-- Rental & Dates Summary -->
+            <div class="border-b border-slate-200 pb-3">
+              <span class="font-bold text-slate-500 uppercase tracking-wider block mb-1">Rental Mode & Dates</span>
+              <div class="grid grid-cols-2 gap-2">
+                <div><strong class="text-slate-600">Mode:</strong> <span id="review-mode">With Driver</span></div>
+                <div><strong class="text-slate-600">Total Duration:</strong> <span id="review-duration" class="font-bold text-red-600">1 Day</span></div>
+                <div><strong class="text-slate-600">Start Date:</strong> <span id="review-start-date">2026-08-20</span></div>
+                <div><strong class="text-slate-600">End Date:</strong> <span id="review-end-date">2026-08-21</span></div>
+              </div>
+            </div>
+
+            <!-- Trip Summary -->
+            <div class="border-b border-slate-200 pb-3">
+              <span class="font-bold text-slate-500 uppercase tracking-wider block mb-1">Trip Details</span>
+              <div class="grid grid-cols-2 gap-2">
+                <div><strong class="text-slate-600">Passengers:</strong> <span id="review-passengers">4</span></div>
+                <div><strong class="text-slate-600">Luggage:</strong> <span id="review-luggage">2 Bags</span></div>
+                <div><strong class="text-slate-600">Pickup:</strong> <span id="review-pickup">Johar Town, Lahore</span></div>
+                <div><strong class="text-slate-600">Destination:</strong> <span id="review-destination">Lahore City</span></div>
+                <div class="col-span-2"><strong class="text-slate-600">Purpose:</strong> <span id="review-purpose">Personal Travel</span></div>
+              </div>
+            </div>
+
+            <!-- Customer Summary -->
+            <div>
+              <span class="font-bold text-slate-500 uppercase tracking-wider block mb-1">Customer Details</span>
+              <div class="grid grid-cols-2 gap-2">
+                <div><strong class="text-slate-600">Name:</strong> <span id="review-name">Ahmed Ali</span></div>
+                <div><strong class="text-slate-600">Phone:</strong> <span id="review-phone">03XXXXXXXXX</span></div>
+                <div id="review-company-row" class="col-span-2 hidden"><strong class="text-slate-600">Company:</strong> <span id="review-company"></span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Primary CTA Buttons -->
+          <div class="space-y-3 pt-2">
+            <button
+              type="button"
+              id="btn-send-whatsapp"
+              class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+            >
+              <span>💬 Send Inquiry on WhatsApp</span>
+            </button>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <button
+                type="button"
+                id="btn-copy-inquiry"
+                class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 px-4 rounded-lg text-xs transition-colors border border-slate-700 flex items-center justify-center gap-1.5"
+              >
+                <span>📋 Copy Inquiry</span>
+              </button>
+
+              <button
+                type="button"
+                class="btn-prev w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-4 rounded-lg text-xs transition-colors"
+              >
+                ✏️ Edit Booking
+              </button>
+            </div>
+          </div>
+
+          <!-- Toast Alert for Copying -->
+          <div id="copy-toast" class="hidden bg-emerald-900 text-emerald-100 text-xs font-semibold px-4 py-2.5 rounded-lg text-center shadow-lg transition-all border border-emerald-700">
+            ✓ Inquiry copied to clipboard!
+          </div>
+
+          <!-- WhatsApp Failure Fallback Notice -->
+          <div class="bg-slate-100 border border-slate-200 rounded-xl p-3 text-[11px] text-slate-600 text-center space-y-1">
+            <p class="font-semibold text-slate-800">Could not open WhatsApp?</p>
+            <p>Copy your inquiry above and message us directly at <strong>0321 6616644</strong> or call <a href="tel:+923216616644" class="text-red-600 font-bold underline">0321 6616644</a>.</p>
+          </div>
+
         </div>
 
-        <!-- Submit Button -->
-        <button
-          type="submit"
-          class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
-        >
-          <span>💬 Send Enquiry on WhatsApp</span>
-        </button>
-
-      </form>
+      </div>
     </div>
   </section>
 </Layout>
 
 <script>
-  // Setup dates default
-  const startDateInput = document.getElementById('input-start-date') as HTMLInputElement;
-  const endDateInput = document.getElementById('input-end-date') as HTMLInputElement;
-  const daysDisplay = document.getElementById('rental-days-display');
+  let currentStep = 1;
 
+  // Elements
+  const catButtons = document.querySelectorAll('.cat-btn');
+  const catInput = document.getElementById('field-category') as HTMLInputElement;
+  const transButtons = document.querySelectorAll('.trans-btn');
+  const transInput = document.getElementById('field-transmission') as HTMLInputElement;
+
+  const startDateInput = document.getElementById('field-start-date') as HTMLInputElement;
+  const endDateInput = document.getElementById('field-end-date') as HTMLInputElement;
+  const durationDisplay = document.getElementById('display-duration');
+
+  const passengersInput = document.getElementById('field-passengers') as HTMLInputElement;
+  const luggageInput = document.getElementById('field-luggage') as HTMLInputElement;
+  const iconPassengersList = document.getElementById('icon-passengers-list');
+  const iconLuggageList = document.getElementById('icon-luggage-list');
+
+  // URL Query Parameters Parsing & Pre-filling
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramVehicle = urlParams.get('vehicle');
+  const paramBrand = urlParams.get('brand');
+  const paramModel = urlParams.get('model');
+  const paramTransmission = urlParams.get('transmission');
+  const paramCategory = urlParams.get('category');
+  const paramMode = urlParams.get('mode');
+
+  // Parse Initial Dates
   const today = new Date();
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
 
   if (startDateInput && endDateInput) {
+    startDateInput.min = today.toISOString().split('T')[0];
     startDateInput.value = today.toISOString().split('T')[0];
+    endDateInput.min = startDateInput.value;
     endDateInput.value = tomorrow.toISOString().split('T')[0];
 
-    const calculateDays = () => {
+    const calculateDuration = () => {
       const start = new Date(startDateInput.value);
       const end = new Date(endDateInput.value);
       if (end < start) {
@@ -259,20 +505,93 @@ const canonicalPath = "/build-your-rental/";
       }
       const diffTime = Math.abs(new Date(endDateInput.value).getTime() - new Date(startDateInput.value).getTime());
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1;
-      if (daysDisplay) {
-        daysDisplay.textContent = `${diffDays} Day${diffDays > 1 ? 's' : ''}`;
+      if (durationDisplay) {
+        durationDisplay.textContent = `${diffDays} Rental Day${diffDays > 1 ? 's' : ''}`;
       }
     };
 
-    startDateInput.addEventListener('change', calculateDays);
-    endDateInput.addEventListener('change', calculateDays);
-    calculateDays();
+    startDateInput.addEventListener('change', () => {
+      endDateInput.min = startDateInput.value;
+      calculateDuration();
+    });
+    endDateInput.addEventListener('change', calculateDuration);
+    calculateDuration();
   }
 
-  // Category Selector UI
-  const catButtons = document.querySelectorAll('.cat-btn');
-  const catInput = document.getElementById('input-category') as HTMLInputElement;
+  // Pre-fill URL Params
+  if (paramCategory && catInput) {
+    catInput.value = paramCategory.toLowerCase();
+    catButtons.forEach(b => {
+      if (b.getAttribute('data-val') === paramCategory.toLowerCase()) {
+        b.classList.remove('bg-white', 'text-slate-700', 'border-slate-300');
+        b.classList.add('bg-red-600', 'text-white', 'border-red-600');
+      } else {
+        b.classList.remove('bg-red-600', 'text-white', 'border-red-600');
+        b.classList.add('bg-white', 'text-slate-700', 'border-slate-300');
+      }
+    });
+  }
 
+  if (paramBrand) {
+    const brandSelect = document.getElementById('field-brand') as HTMLSelectElement;
+    if (brandSelect) {
+      for (let i = 0; i < brandSelect.options.length; i++) {
+        if (brandSelect.options[i].value.toLowerCase().includes(paramBrand.toLowerCase())) {
+          brandSelect.selectedIndex = i;
+          break;
+        }
+      }
+    }
+  }
+
+  if (paramModel || paramVehicle) {
+    const modelTarget = paramModel || paramVehicle || '';
+    const modelSelect = document.getElementById('field-model') as HTMLSelectElement;
+    if (modelSelect) {
+      let matched = false;
+      for (let i = 0; i < modelSelect.options.length; i++) {
+        if (modelSelect.options[i].value.toLowerCase().includes(modelTarget.toLowerCase().replace(/-/g, ' '))) {
+          modelSelect.selectedIndex = i;
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        const customOpt = document.createElement('option');
+        customOpt.value = modelTarget.replace(/-/g, ' ').toUpperCase();
+        customOpt.textContent = modelTarget.replace(/-/g, ' ').toUpperCase();
+        modelSelect.appendChild(customOpt);
+        modelSelect.value = customOpt.value;
+      }
+    }
+  }
+
+  if (paramTransmission && transInput) {
+    const transVal = paramTransmission.toLowerCase().includes('manual') ? 'Manual' : 'Automatic';
+    transInput.value = transVal;
+    transButtons.forEach(b => {
+      if (b.getAttribute('data-val') === transVal) {
+        b.classList.remove('bg-white', 'text-slate-700', 'border-slate-300');
+        b.classList.add('bg-red-600', 'text-white', 'border-red-600');
+      } else {
+        b.classList.remove('bg-red-600', 'text-white', 'border-red-600');
+        b.classList.add('bg-white', 'text-slate-700', 'border-slate-300');
+      }
+    });
+  }
+
+  if (paramMode) {
+    const modeSelect = document.getElementById('field-mode') as HTMLSelectElement;
+    if (modeSelect) {
+      if (paramMode.toLowerCase().includes('self')) {
+        modeSelect.value = 'Self Drive';
+      } else {
+        modeSelect.value = 'With Driver';
+      }
+    }
+  }
+
+  // Category Selector Switch
   catButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const val = btn.getAttribute('data-val');
@@ -288,53 +607,251 @@ const canonicalPath = "/build-your-rental/";
     });
   });
 
-  // Form Submit Handler -> Redirects to prefilled WhatsApp URL
-  const form = document.getElementById('configurator-form') as HTMLFormElement;
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const category = (document.getElementById('input-category') as HTMLInputElement)?.value;
-      const brand = (document.getElementById('input-brand') as HTMLSelectElement)?.value;
-      const model = (document.getElementById('input-model') as HTMLSelectElement)?.value;
-      const color = (document.getElementById('input-color') as HTMLSelectElement)?.value;
-      const mode = (document.getElementById('input-rental-mode') as HTMLSelectElement)?.value;
-      const durationType = (document.getElementById('input-duration-type') as HTMLSelectElement)?.value;
-      const startDate = startDateInput?.value;
-      const endDate = endDateInput?.value;
-      const totalDays = daysDisplay?.textContent || '1 Day';
-      const passengers = (document.getElementById('input-passengers') as HTMLInputElement)?.value;
-      const luggage = (document.getElementById('input-luggage') as HTMLInputElement)?.value;
-      const pickup = (document.getElementById('input-pickup') as HTMLInputElement)?.value;
-      const destination = (document.getElementById('input-destination') as HTMLInputElement)?.value;
-      const purpose = (document.getElementById('input-purpose') as HTMLSelectElement)?.value;
-      const name = (document.getElementById('input-name') as HTMLInputElement)?.value;
-      const phone = (document.getElementById('input-phone') as HTMLInputElement)?.value;
-      const message = (document.getElementById('input-message') as HTMLTextAreaElement)?.value;
-
-      const whatsappText =
-        `Hello 4WHEELS, I would like to check availability and get the latest rental quotation.\n\n` +
-        `Vehicle Type: ${category.toUpperCase()}\n` +
-        `Brand: ${brand}\n` +
-        `Model: ${model}\n` +
-        `Preferred Color: ${color}\n` +
-        `Rental Type: ${mode}\n` +
-        `Duration: ${durationType}\n\n` +
-        `Start Date: ${startDate}\n` +
-        `End Date: ${endDate}\n` +
-        `Total Rental Days: ${totalDays}\n\n` +
-        `Passengers: ${passengers}\n` +
-        `Luggage: ${luggage} Bags\n\n` +
-        `Pickup: ${pickup}\n` +
-        `Destination: ${destination}\n` +
-        `Purpose: ${purpose}\n\n` +
-        `Name: ${name}\n` +
-        `Phone: ${phone}\n` +
-        (message ? `Note: ${message}\n\n` : `\n`) +
-        `Please confirm current availability, latest price and relevant trip information.`;
-
-      const waUrl = `https://wa.me/923216616644?text=${encodeURIComponent(whatsappText)}`;
-      window.open(waUrl, '_blank');
+  // Transmission Switch
+  transButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = btn.getAttribute('data-val');
+      if (val && transInput) {
+        transInput.value = val;
+        transButtons.forEach(b => {
+          b.classList.remove('bg-red-600', 'text-white', 'border-red-600');
+          b.classList.add('bg-white', 'text-slate-700', 'border-slate-300');
+        });
+        btn.classList.remove('bg-white', 'text-slate-700', 'border-slate-300');
+        btn.classList.add('bg-red-600', 'text-white', 'border-red-600');
+      }
     });
-  }
+  });
+
+  // Capacity Visual Updates
+  const updateVisuals = () => {
+    const pCount = Math.min(Math.max(parseInt(passengersInput?.value || '1'), 1), 15);
+    const lCount = Math.min(Math.max(parseInt(luggageInput?.value || '0'), 0), 15);
+
+    if (iconPassengersList) {
+      iconPassengersList.textContent = '👤 '.repeat(pCount);
+    }
+    if (iconLuggageList) {
+      iconLuggageList.textContent = lCount > 0 ? '🧳 '.repeat(lCount) : 'None';
+    }
+  };
+
+  passengersInput?.addEventListener('input', updateVisuals);
+  luggageInput?.addEventListener('input', updateVisuals);
+  updateVisuals();
+
+  // Navigation between steps
+  const showStep = (stepNumber: number) => {
+    document.querySelectorAll('.step-panel').forEach(panel => panel.classList.add('hidden'));
+    const targetPanel = document.getElementById(`step-panel-${stepNumber}`);
+    if (targetPanel) targetPanel.classList.remove('hidden');
+
+    document.querySelectorAll('.step-tab').forEach((tab, idx) => {
+      const stepIdx = idx + 1;
+      const circle = tab.querySelector('span:first-child');
+      if (stepIdx === stepNumber) {
+        tab.classList.add('text-red-600');
+        if (circle) {
+          circle.className = 'w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center text-xs';
+        }
+      } else if (stepIdx < stepNumber) {
+        tab.classList.remove('text-red-600');
+        if (circle) {
+          circle.className = 'w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs';
+        }
+      } else {
+        tab.classList.remove('text-red-600');
+        if (circle) {
+          circle.className = 'w-6 h-6 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-xs';
+        }
+      }
+    });
+
+    currentStep = stepNumber;
+    window.scrollTo({ top: 200, behavior: 'smooth' });
+  };
+
+  document.querySelectorAll('.btn-next').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (currentStep === 1) {
+        showStep(2);
+      } else if (currentStep === 2) {
+        showStep(3);
+      } else if (currentStep === 3) {
+        showStep(4);
+      } else if (currentStep === 4) {
+        // Validate Step 4
+        const name = (document.getElementById('field-name') as HTMLInputElement)?.value;
+        const phone = (document.getElementById('field-phone') as HTMLInputElement)?.value;
+        if (!name || !phone) {
+          alert('Please enter your Name and Phone/WhatsApp number to proceed.');
+          return;
+        }
+        populateReviewScreen();
+        showStep(5);
+      }
+    });
+  });
+
+  document.querySelectorAll('.btn-prev').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (currentStep > 1) {
+        showStep(currentStep - 1);
+      }
+    });
+  });
+
+  // Populate Review Screen
+  const populateReviewScreen = () => {
+    const brand = (document.getElementById('field-brand') as HTMLSelectElement)?.value;
+    const model = (document.getElementById('field-model') as HTMLSelectElement)?.value;
+    const transmission = (document.getElementById('field-transmission') as HTMLInputElement)?.value;
+    const color = (document.getElementById('field-color') as HTMLSelectElement)?.value;
+    const category = (document.getElementById('field-category') as HTMLInputElement)?.value;
+    const mode = (document.getElementById('field-mode') as HTMLSelectElement)?.value;
+    const startDate = (document.getElementById('field-start-date') as HTMLInputElement)?.value;
+    const endDate = (document.getElementById('field-end-date') as HTMLInputElement)?.value;
+    const duration = durationDisplay?.textContent || '1 Day';
+    const passengers = (document.getElementById('field-passengers') as HTMLInputElement)?.value;
+    const luggage = (document.getElementById('field-luggage') as HTMLInputElement)?.value;
+    const pickup = (document.getElementById('field-pickup') as HTMLInputElement)?.value;
+    const destination = (document.getElementById('field-destination') as HTMLInputElement)?.value;
+    const purpose = (document.getElementById('field-purpose') as HTMLSelectElement)?.value;
+    const name = (document.getElementById('field-name') as HTMLInputElement)?.value;
+    const phone = (document.getElementById('field-phone') as HTMLInputElement)?.value;
+    const company = (document.getElementById('field-company') as HTMLInputElement)?.value;
+
+    const reviewVehicleTitle = document.getElementById('review-vehicle-title');
+    if (reviewVehicleTitle) reviewVehicleTitle.textContent = `${brand} ${model}`;
+
+    const reviewTransmission = document.getElementById('review-transmission');
+    if (reviewTransmission) reviewTransmission.textContent = transmission;
+
+    const reviewColor = document.getElementById('review-color');
+    if (reviewColor) reviewColor.textContent = color;
+
+    const reviewCategory = document.getElementById('review-category');
+    if (reviewCategory) reviewCategory.textContent = category;
+
+    const reviewMode = document.getElementById('review-mode');
+    if (reviewMode) reviewMode.textContent = mode;
+
+    const reviewDuration = document.getElementById('review-duration');
+    if (reviewDuration) reviewDuration.textContent = duration;
+
+    const reviewStartDate = document.getElementById('review-start-date');
+    if (reviewStartDate) reviewStartDate.textContent = startDate;
+
+    const reviewEndDate = document.getElementById('review-end-date');
+    if (reviewEndDate) reviewEndDate.textContent = endDate;
+
+    const reviewPassengers = document.getElementById('review-passengers');
+    if (reviewPassengers) reviewPassengers.textContent = passengers;
+
+    const reviewLuggage = document.getElementById('review-luggage');
+    if (reviewLuggage) reviewLuggage.textContent = `${luggage} Bags`;
+
+    const reviewPickup = document.getElementById('review-pickup');
+    if (reviewPickup) reviewPickup.textContent = pickup;
+
+    const reviewDestination = document.getElementById('review-destination');
+    if (reviewDestination) reviewDestination.textContent = destination;
+
+    const reviewPurpose = document.getElementById('review-purpose');
+    if (reviewPurpose) reviewPurpose.textContent = purpose;
+
+    const reviewName = document.getElementById('review-name');
+    if (reviewName) reviewName.textContent = name;
+
+    const reviewPhone = document.getElementById('review-phone');
+    if (reviewPhone) reviewPhone.textContent = phone;
+
+    const reviewCompanyRow = document.getElementById('review-company-row');
+    const reviewCompany = document.getElementById('review-company');
+    if (company && reviewCompanyRow && reviewCompany) {
+      reviewCompany.textContent = company;
+      reviewCompanyRow.classList.remove('hidden');
+    }
+  };
+
+  // Generate Structured WhatsApp Message Text
+  const buildWhatsAppMessage = () => {
+    const brand = (document.getElementById('field-brand') as HTMLSelectElement)?.value;
+    const model = (document.getElementById('field-model') as HTMLSelectElement)?.value;
+    const transmission = (document.getElementById('field-transmission') as HTMLInputElement)?.value;
+    const color = (document.getElementById('field-color') as HTMLSelectElement)?.value;
+    const mode = (document.getElementById('field-mode') as HTMLSelectElement)?.value;
+    const startDate = (document.getElementById('field-start-date') as HTMLInputElement)?.value;
+    const endDate = (document.getElementById('field-end-date') as HTMLInputElement)?.value;
+    const duration = durationDisplay?.textContent || '1 Day';
+    const passengers = (document.getElementById('field-passengers') as HTMLInputElement)?.value;
+    const luggage = (document.getElementById('field-luggage') as HTMLInputElement)?.value;
+    const pickup = (document.getElementById('field-pickup') as HTMLInputElement)?.value;
+    const destination = (document.getElementById('field-destination') as HTMLInputElement)?.value;
+    const purpose = (document.getElementById('field-purpose') as HTMLSelectElement)?.value;
+    const name = (document.getElementById('field-name') as HTMLInputElement)?.value;
+    const phone = (document.getElementById('field-phone') as HTMLInputElement)?.value;
+    const company = (document.getElementById('field-company') as HTMLInputElement)?.value;
+    const notes = (document.getElementById('field-notes') as HTMLTextAreaElement)?.value;
+
+    return (
+      `Hello 4WHEELS, I would like to send a rental inquiry.\n\n` +
+      `Vehicle\n` +
+      `Brand: ${brand}\n` +
+      `Model: ${model}\n` +
+      `Transmission: ${transmission}\n` +
+      `Preferred Color: ${color}\n\n` +
+      `Rental\n` +
+      `Type: ${mode}\n\n` +
+      `Dates\n` +
+      `Start: ${startDate}\n` +
+      `End: ${endDate}\n` +
+      `Total Rental Days: ${duration}\n\n` +
+      `Trip\n` +
+      `Passengers: ${passengers}\n` +
+      `Luggage: ${luggage} Bags\n` +
+      `Pickup: ${pickup}\n` +
+      `Destination: ${destination}\n` +
+      `Purpose: ${purpose}\n\n` +
+      `Customer\n` +
+      `Name: ${name}\n` +
+      `Phone: ${phone}\n` +
+      (company ? `Company: ${company}\n` : '') +
+      (notes ? `Notes: ${notes}\n` : '') +
+      `\nPlease confirm vehicle availability, current rental quotation, fuel arrangement, driver charges if applicable, and rental document requirements.\n\nThank you.`
+    );
+  };
+
+  // WhatsApp Button Click
+  const btnSendWhatsApp = document.getElementById('btn-send-whatsapp');
+  btnSendWhatsApp?.addEventListener('click', () => {
+    const message = buildWhatsAppMessage();
+    const waUrl = `https://wa.me/923216616644?text=${encodeURIComponent(message)}`;
+
+    // Analytics event simulation
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'booking_whatsapp_click', {
+        event_category: 'booking',
+        event_label: (document.getElementById('field-model') as HTMLSelectElement)?.value
+      });
+    }
+
+    window.open(waUrl, '_blank');
+  });
+
+  // Copy Inquiry Button Click
+  const btnCopyInquiry = document.getElementById('btn-copy-inquiry');
+  const copyToast = document.getElementById('copy-toast');
+
+  btnCopyInquiry?.addEventListener('click', () => {
+    const message = buildWhatsAppMessage();
+    navigator.clipboard.writeText(message).then(() => {
+      if (copyToast) {
+        copyToast.classList.remove('hidden');
+        setTimeout(() => {
+          copyToast.classList.add('hidden');
+        }, 3000);
+      }
+    });
+  });
 </script>

@@ -153,10 +153,10 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/compare-vehicles/`;
       });
 
       // Actions row
-      html += '<tr class="bg-gray-100"><td class="p-3 border border-gray-200 font-bold text-gray-700">Request Action</td>';
+      html += '<tr class="bg-gray-100"><td class="p-3 border border-gray-200 font-bold text-gray-700">Configure Action</td>';
       selected.forEach(v => {
-        const waMsg = encodeURIComponent('Hi 4WHEELS, I compared ' + v.brand + ' ' + v.model + ' on your website and would like to check rental availability and prices.');
-        html += '<td class="p-3 border border-gray-200 text-center"><a href="https://wa.me/923216616644?text=' + waMsg + '" target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold px-3 py-1.5 rounded text-xs transition-colors">Inquire WhatsApp</a></td>';
+        const configUrl = '/build-your-rental/?brand=' + encodeURIComponent(v.brand) + '&model=' + encodeURIComponent(v.model) + '&transmission=' + encodeURIComponent(v.transmission) + '&category=' + encodeURIComponent(v.bodyType.toLowerCase());
+        html += '<td class="p-3 border border-gray-200 text-center"><a href="' + configUrl + '" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold px-3.5 py-2 rounded text-xs transition-colors shadow-sm">Choose & Configure</a></td>';
       });
       html += '</tr></tbody></table>';
 
