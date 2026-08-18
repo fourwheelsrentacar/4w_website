@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Outstation Car Rental Lahore - Intercity & Northern Trips | 4WHEELS";
+const description = "Rent a car for outstation travel from Lahore to Islamabad, Murree, Faisalabad, Multan, or Northern Areas. Chauffeur driven SUVs, sedans, HiAce vans, and Toyota Coasters.";
+const canonicalPath = "/outstation-car-rental-lahore/";
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
+        Intercity & Long-Distance Travel
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+        Outstation Car Rental from Lahore
+      </h1>
+      <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-6">
+        Comfortable, long-distance intercity travel from Lahore to Islamabad, Rawalpindi, Faisalabad, Multan, Peshawar, Murree, and Northern Pakistan.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+          💬 Get Latest Trip Quote on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4 space-y-8">
+      <h2 class="text-2xl font-bold text-slate-900">Popular Outstation Routes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <h3 class="font-bold text-slate-900 text-base mb-1">Lahore ⇄ Islamabad / Rawalpindi</h3>
+          <p class="text-slate-600">Smooth M2 Motorway journeys in executive sedans or Hilux Revo 4x4s.</p>
+        </div>
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <h3 class="font-bold text-slate-900 text-base mb-1">Lahore ⇄ Murree & Northern Hills</h3>
+          <p class="text-slate-600">Mountain-proven Fortuner 4x4s and Toyota HiAce vans for family holiday trips.</p>
+        </div>
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <h3 class="font-bold text-slate-900 text-base mb-1">Lahore ⇄ Faisalabad / Multan</h3>
+          <p class="text-slate-600">Fast business travel along M3 / M4 motorway corridors with experienced drivers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

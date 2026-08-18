@@ -1,0 +1,340 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FLEET_VEHICLES as FLEET } from '../data/fleet';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Build Your Rental - 4WHEELS Rent a Car Lahore";
+const description = "Configure your rental car booking online in 15 simple steps. Select vehicle type, brand, model, dates, total days, passenger & luggage count, then send a structured enquiry on WhatsApp.";
+const canonicalPath = "/build-your-rental/";
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <!-- Header Banner -->
+  <section class="bg-slate-900 text-white py-10 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">
+        Instant Enquiry Builder
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2">
+        Build Your Rental
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
+        Customize your exact rental needs. Generates a prefilled WhatsApp enquiry sent directly to 4WHEELS customer care.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-10 bg-slate-50 min-h-[70vh]">
+    <div class="max-w-3xl mx-auto px-4">
+      <form id="configurator-form" class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-8">
+
+        <!-- Step 1: Vehicle Category -->
+        <div>
+          <label class="block text-sm font-bold text-slate-900 mb-2">
+            Step 1: Vehicle Category <span class="text-red-500">*</span>
+          </label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="category-selector">
+            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-red-600 text-white border-red-600" data-val="sedan">Sedan</button>
+            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50" data-val="suv">SUV / 4x4</button>
+            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50" data-val="hatchback">Hatchback</button>
+            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50" data-val="van">Van (HiAce)</button>
+            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50" data-val="coaster">Coaster Bus</button>
+            <button type="button" class="cat-btn border rounded-xl p-3 text-center text-xs font-semibold bg-white text-slate-700 border-slate-300 hover:bg-slate-50" data-val="luxury">Luxury Car</button>
+          </div>
+          <input type="hidden" name="vehicleCategory" id="input-category" value="sedan" />
+        </div>
+
+        <!-- Step 2 & 3: Brand & Model Selection -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="input-brand" class="block text-sm font-bold text-slate-900 mb-2">
+              Step 2: Preferred Brand
+            </label>
+            <select name="brand" id="input-brand" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
+              <option value="Toyota">Toyota</option>
+              <option value="Honda">Honda</option>
+              <option value="Suzuki">Suzuki</option>
+              <option value="Audi">Audi</option>
+              <option value="Any Brand">Any Brand</option>
+            </select>
+          </div>
+          <div>
+            <label for="input-model" class="block text-sm font-bold text-slate-900 mb-2">
+              Step 3: Vehicle Model
+            </label>
+            <select name="model" id="input-model" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
+              <option value="Corolla">Corolla (Grandi/Altis)</option>
+              <option value="Civic">Civic (Oriel/RS)</option>
+              <option value="Yaris">Yaris</option>
+              <option value="Fortuner">Fortuner</option>
+              <option value="Hilux Revo">Hilux Revo 4x4</option>
+              <option value="HiAce Grand Cabin">HiAce Grand Cabin</option>
+              <option value="Coaster Saloon">Coaster Saloon</option>
+              <option value="Alto">Alto</option>
+              <option value="Audi A6">Audi A6</option>
+              <option value="Recommended Vehicle">Recommend Best Vehicle</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Step 4: Color & Step 5: Rental Mode -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="input-color" class="block text-sm font-bold text-slate-900 mb-2">
+              Step 4: Preferred Color
+            </label>
+            <select name="color" id="input-color" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
+              <option value="Any Available Color">Any Available Color</option>
+              <option value="White / Super White">White / Super White</option>
+              <option value="Black / Attitude Black">Black / Attitude Black</option>
+              <option value="Silver / Graphite">Silver / Metallic</option>
+            </select>
+          </div>
+          <div>
+            <label for="input-rental-mode" class="block text-sm font-bold text-slate-900 mb-2">
+              Step 5: Rental Type <span class="text-red-500">*</span>
+            </label>
+            <select name="rentalMode" id="input-rental-mode" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
+              <option value="With Driver">With Driver (Chauffeur Service)</option>
+              <option value="Self Drive">Self Drive (Subject to document verification)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Step 6, 7, 8, 9: Dates & Duration -->
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label for="input-duration-type" class="block text-xs font-bold text-slate-700 mb-1">
+                Step 6: Duration
+              </label>
+              <select name="durationType" id="input-duration-type" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-semibold text-slate-800">
+                <option value="Multiple Days">Multiple Days</option>
+                <option value="One Day">One Day</option>
+                <option value="Weekly">Weekly (7+ Days)</option>
+                <option value="Monthly">Monthly Contract</option>
+              </select>
+            </div>
+            <div>
+              <label for="input-start-date" class="block text-xs font-bold text-slate-700 mb-1">
+                Step 7: Start Date <span class="text-red-500">*</span>
+              </label>
+              <input type="date" id="input-start-date" required class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-semibold text-slate-800" />
+            </div>
+            <div>
+              <label for="input-end-date" class="block text-xs font-bold text-slate-700 mb-1">
+                Step 8: End Date <span class="text-red-500">*</span>
+              </label>
+              <input type="date" id="input-end-date" required class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-semibold text-slate-800" />
+            </div>
+          </div>
+
+          <!-- Step 9: Rental Day Calculation Display -->
+          <div class="bg-red-50 border border-red-100 rounded-lg p-3 text-center flex items-center justify-between">
+            <span class="text-xs font-bold text-red-900">Step 9: Total Rental Calculation</span>
+            <span id="rental-days-display" class="text-sm font-extrabold text-red-600 bg-white px-3 py-1 rounded shadow-sm border border-red-200">
+              1 Day
+            </span>
+          </div>
+        </div>
+
+        <!-- Step 10 & 11: Capacity -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="input-passengers" class="block text-sm font-bold text-slate-900 mb-2">
+              Step 10: Passengers 👤
+            </label>
+            <input type="number" id="input-passengers" min="1" max="50" value="4" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-800" />
+          </div>
+          <div>
+            <label for="input-luggage" class="block text-sm font-bold text-slate-900 mb-2">
+              Step 11: Luggage Bags 🧳
+            </label>
+            <input type="number" id="input-luggage" min="0" max="30" value="2" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-800" />
+          </div>
+        </div>
+
+        <!-- Step 12, 13, 14: Route & Purpose -->
+        <div class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="input-pickup" class="block text-sm font-bold text-slate-900 mb-2">
+                Step 12: Pickup Location <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="input-pickup" required placeholder="e.g. Johar Town, Lahore Airport, Gulberg" value="Johar Town, Lahore" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-medium text-slate-800" />
+            </div>
+            <div>
+              <label for="input-destination" class="block text-sm font-bold text-slate-900 mb-2">
+                Step 13: Destination (Local / Outstation)
+              </label>
+              <input type="text" id="input-destination" placeholder="e.g. Lahore Local / Murree / Islamabad" value="Lahore Local" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-medium text-slate-800" />
+            </div>
+          </div>
+
+          <div>
+            <label for="input-purpose" class="block text-sm font-bold text-slate-900 mb-2">
+              Step 14: Trip Purpose
+            </label>
+            <select name="purpose" id="input-purpose" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800">
+              <option value="Personal Travel">Personal / City Travel</option>
+              <option value="Airport Pickup or Drop">Airport Transfer</option>
+              <option value="Family Outstation Tour">Family Outstation Tour</option>
+              <option value="Wedding Event">Wedding Transport</option>
+              <option value="Corporate / Business">Corporate / Executive Travel</option>
+              <option value="Staff Pick & Drop">Staff Pick & Drop</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Step 15: Customer Information -->
+        <div class="border-t border-slate-200 pt-6 space-y-4">
+          <h2 class="text-base font-extrabold text-slate-900 uppercase tracking-wide">
+            Step 15: Contact Details
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="input-name" class="block text-xs font-bold text-slate-700 mb-1">Your Full Name <span class="text-red-500">*</span></label>
+              <input type="text" id="input-name" required placeholder="e.g. Ahmed Ali" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800" />
+            </div>
+            <div>
+              <label for="input-phone" class="block text-xs font-bold text-slate-700 mb-1">Phone / WhatsApp Number <span class="text-red-500">*</span></label>
+              <input type="tel" id="input-phone" required placeholder="03XXXXXXXXX" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-800" />
+            </div>
+          </div>
+          <div>
+            <label for="input-message" class="block text-xs font-bold text-slate-700 mb-1">Additional Notes / Special Requirements</label>
+            <textarea id="input-message" rows="2" placeholder="e.g. Need child seat, driver fluent in English, extra luggage trunk space" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800"></textarea>
+          </div>
+        </div>
+
+        <!-- Rental Terms Agreement Checkbox (Section 29 requirement) -->
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-slate-700 space-y-2">
+          <div class="font-bold text-amber-900 flex items-center gap-1">
+            <span>ℹ️ Rental Terms Summary:</span>
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-slate-600">
+            <li><strong>Rental Cycle:</strong> Based on 12:00 AM midnight daily cycle where applicable.</li>
+            <li><strong>Fuel & Tolls:</strong> Fuel and motorway tolls/M-Tag are standard extra unless specifically included in your agreed written quotation.</li>
+            <li><strong>Traffic Violations (Challans):</strong> Responsibility of renter/driver during period.</li>
+          </ul>
+          <label class="flex items-start gap-2 pt-2 cursor-pointer font-semibold text-slate-800">
+            <input type="checkbox" id="terms-agree" required class="mt-0.5 rounded border-slate-300 text-red-600 focus:ring-red-500" />
+            <span>I understand that final pricing, vehicle availability, and exact rental terms will be confirmed by 4WHEELS customer care.</span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+        >
+          <span>💬 Send Enquiry on WhatsApp</span>
+        </button>
+
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Setup dates default
+  const startDateInput = document.getElementById('input-start-date') as HTMLInputElement;
+  const endDateInput = document.getElementById('input-end-date') as HTMLInputElement;
+  const daysDisplay = document.getElementById('rental-days-display');
+
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  if (startDateInput && endDateInput) {
+    startDateInput.value = today.toISOString().split('T')[0];
+    endDateInput.value = tomorrow.toISOString().split('T')[0];
+
+    const calculateDays = () => {
+      const start = new Date(startDateInput.value);
+      const end = new Date(endDateInput.value);
+      if (end < start) {
+        endDateInput.value = startDateInput.value;
+      }
+      const diffTime = Math.abs(new Date(endDateInput.value).getTime() - new Date(startDateInput.value).getTime());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1;
+      if (daysDisplay) {
+        daysDisplay.textContent = `${diffDays} Day${diffDays > 1 ? 's' : ''}`;
+      }
+    };
+
+    startDateInput.addEventListener('change', calculateDays);
+    endDateInput.addEventListener('change', calculateDays);
+    calculateDays();
+  }
+
+  // Category Selector UI
+  const catButtons = document.querySelectorAll('.cat-btn');
+  const catInput = document.getElementById('input-category') as HTMLInputElement;
+
+  catButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = btn.getAttribute('data-val');
+      if (val && catInput) {
+        catInput.value = val;
+        catButtons.forEach(b => {
+          b.classList.remove('bg-red-600', 'text-white', 'border-red-600');
+          b.classList.add('bg-white', 'text-slate-700', 'border-slate-300');
+        });
+        btn.classList.remove('bg-white', 'text-slate-700', 'border-slate-300');
+        btn.classList.add('bg-red-600', 'text-white', 'border-red-600');
+      }
+    });
+  });
+
+  // Form Submit Handler -> Redirects to prefilled WhatsApp URL
+  const form = document.getElementById('configurator-form') as HTMLFormElement;
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const category = (document.getElementById('input-category') as HTMLInputElement)?.value;
+      const brand = (document.getElementById('input-brand') as HTMLSelectElement)?.value;
+      const model = (document.getElementById('input-model') as HTMLSelectElement)?.value;
+      const color = (document.getElementById('input-color') as HTMLSelectElement)?.value;
+      const mode = (document.getElementById('input-rental-mode') as HTMLSelectElement)?.value;
+      const durationType = (document.getElementById('input-duration-type') as HTMLSelectElement)?.value;
+      const startDate = startDateInput?.value;
+      const endDate = endDateInput?.value;
+      const totalDays = daysDisplay?.textContent || '1 Day';
+      const passengers = (document.getElementById('input-passengers') as HTMLInputElement)?.value;
+      const luggage = (document.getElementById('input-luggage') as HTMLInputElement)?.value;
+      const pickup = (document.getElementById('input-pickup') as HTMLInputElement)?.value;
+      const destination = (document.getElementById('input-destination') as HTMLInputElement)?.value;
+      const purpose = (document.getElementById('input-purpose') as HTMLSelectElement)?.value;
+      const name = (document.getElementById('input-name') as HTMLInputElement)?.value;
+      const phone = (document.getElementById('input-phone') as HTMLInputElement)?.value;
+      const message = (document.getElementById('input-message') as HTMLTextAreaElement)?.value;
+
+      const whatsappText =
+        `Hello 4WHEELS, I would like to check availability and get the latest rental quotation.\n\n` +
+        `Vehicle Type: ${category.toUpperCase()}\n` +
+        `Brand: ${brand}\n` +
+        `Model: ${model}\n` +
+        `Preferred Color: ${color}\n` +
+        `Rental Type: ${mode}\n` +
+        `Duration: ${durationType}\n\n` +
+        `Start Date: ${startDate}\n` +
+        `End Date: ${endDate}\n` +
+        `Total Rental Days: ${totalDays}\n\n` +
+        `Passengers: ${passengers}\n` +
+        `Luggage: ${luggage} Bags\n\n` +
+        `Pickup: ${pickup}\n` +
+        `Destination: ${destination}\n` +
+        `Purpose: ${purpose}\n\n` +
+        `Name: ${name}\n` +
+        `Phone: ${phone}\n` +
+        (message ? `Note: ${message}\n\n` : `\n`) +
+        `Please confirm current availability, latest price and relevant trip information.`;
+
+      const waUrl = `https://wa.me/923216616644?text=${encodeURIComponent(whatsappText)}`;
+      window.open(waUrl, '_blank');
+    });
+  }
+</script>

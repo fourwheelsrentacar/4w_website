@@ -7,7 +7,12 @@ const schemaData = {
   "name": BUSINESS_INFO.name,
   "legalName": BUSINESS_INFO.legalName,
   "url": BUSINESS_INFO.siteUrl,
-  "telephone": BUSINESS_INFO.phoneRaw,
+  "telephone": "+923216616644",
+  "email": BUSINESS_INFO.email,
+  "image": `${BUSINESS_INFO.siteUrl}/images/og-default.jpg`,
+  "sameAs": [
+    BUSINESS_INFO.facebookUrl
+  ],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": BUSINESS_INFO.address.street,
@@ -21,11 +26,16 @@ const schemaData = {
     "latitude": BUSINESS_INFO.geo.latitude,
     "longitude": BUSINESS_INFO.geo.longitude
   },
-  "areaServed": {
-    "@type": "City",
-    "name": "Lahore"
-  },
-  "priceRange": "$$"
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Lahore"
+    },
+    {
+      "@type": "City",
+      "name": "Islamabad"
+    }
+  ]
 };
 ---
 

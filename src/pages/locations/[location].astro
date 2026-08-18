@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPublishedLocations, getLocationBySlug } from '../../data/locations';
+import { BUSINESS_INFO } from '../../data/business';
+
+export function getStaticPaths() {
+  return getPublishedLocations().map(loc => ({
+    params: { location: loc.slug },
+    props: { loc },
+  }));
+}
+
+const { loc } = Astro.props;
+
+if (!loc) {
+  return Astro.redirect('/404');
+}
+
+const title = `Rent a Car in ${loc.city} - 4WHEELS Vehicle Rental`;
+const description = `Vehicle rental services for ${loc.city}, ${loc.province}. ${loc.serviceOverview} Book sedans, SUVs, and vans with 4WHEELS on WhatsApp.`;
+const canonicalPath = `/locations/${loc.slug}/`;
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">
+        {loc.province} Regional Service
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">
+        Rent a Car in {loc.city}
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+        {loc.serviceOverview}
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4 space-y-8">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+          <h2 class="font-bold text-slate-900 text-base mb-2">🛫 Nearest Airport Connection</h2>
+          <p class="text-slate-600">{loc.airport || 'Intercity connection to Lahore / Islamabad airports.'}</p>
+        </div>
+
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+          <h2 class="font-bold text-slate-900 text-base mb-2">🚘 Vehicles Supported</h2>
+          <p class="text-slate-600">{loc.vehicleTypesAvailable.join(', ')}</p>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-200 pt-6">
+        <h2 class="text-xl font-bold text-slate-900 mb-4">Intercity Routes & Connections</h2>
+        <ul class="list-disc list-inside space-y-2 text-sm text-slate-700">
+          {loc.commonRoutes.map(r => (
+            <li>{r}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-center space-y-3">
+        <h3 class="text-base font-bold text-emerald-950">Inquire About Transport to or from {loc.city}</h3>
+        <p class="text-xs text-emerald-800">Speak directly with 4WHEELS customer care for today's price quote and vehicle availability.</p>
+        <a href={`https://wa.me/923216616644?text=${encodeURIComponent(`Hello 4WHEELS, I am inquiring about vehicle rental service for ${loc.city}. Please confirm current availability.`)}`} target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-xs shadow-sm">
+          💬 Inquire for {loc.city} on WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </section>
+</Layout>

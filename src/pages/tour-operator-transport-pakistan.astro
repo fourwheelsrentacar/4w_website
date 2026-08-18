@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Tour Operator Transport Pakistan - Buses, Coasters & Fleet | 4WHEELS";
+const description = "Transport supplier for tour operators, travel agencies, and group organizers in Pakistan. Toyota Coasters, HiAce vans, SUVs, and luxury coaches with professional drivers.";
+const canonicalPath = "/tour-operator-transport-pakistan/";
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
+        Group Transport & Tour Fleet Partner
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+        Tour Operator Transport Services in Pakistan
+      </h1>
+      <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-6">
+        Dedicated fleet partner for travel agencies, tour operators, corporate group organizers, and educational institutions. Professional drivers, high-roof Coasters, 4x4 SUVs, and passenger vans.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+          💬 WhatsApp Tour Fleet Requirements
+        </a>
+        <a href={BUSINESS_INFO.mailtoLink} class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm border border-slate-700">
+          ✉️ Email Tour RFP ({BUSINESS_INFO.email})
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4 space-y-8">
+      <h2 class="text-2xl font-bold text-slate-900">Tour & Group Transport Solutions</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+          <div class="text-3xl mb-2">🚌</div>
+          <h3 class="font-bold text-slate-900 mb-1">Toyota Coaster Saloons</h3>
+          <p class="text-slate-600">22-29 seater mini-buses with dual air-conditioning, high luggage capacity, and reclining seats for intercity tourism.</p>
+        </div>
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+          <div class="text-3xl mb-2">🚐</div>
+          <h3 class="font-bold text-slate-900 mb-1">HiAce Grand Cabins</h3>
+          <p class="text-slate-600">12-14 seater executive high-roof vans for medium-sized tour groups and family holiday delegations.</p>
+        </div>
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+          <div class="text-3xl mb-2">🏔️</div>
+          <h3 class="font-bold text-slate-900 mb-1">4x4 Mountain Fleets</h3>
+          <p class="text-slate-600">Toyota Fortuner & Hilux Revo 4x4 vehicles for extreme terrain journeys across Naran, Hunza, and Skardu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

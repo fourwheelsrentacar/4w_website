@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Customer Care & Rental Support - 4WHEELS Lahore";
+const description = "Need assistance with your booking, vehicle maintenance, trip extension, or required rental documents? Contact 4WHEELS Rent a Car customer care via WhatsApp or Call.";
+const canonicalPath = "/rental-support/";
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
+        24/7 Assistance
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+        4WHEELS Rental Support & Customer Care
+      </h1>
+      <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-6">
+        Questions about required rental documents, booking extensions, vehicle support, or toll policies? Speak directly with our dedicated Lahore customer care team.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+          💬 WhatsApp Customer Care
+        </a>
+        <a href={BUSINESS_INFO.telLink} class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+          📞 Call Support: {BUSINESS_INFO.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+      <!-- Support Categories Grid -->
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-6 text-center">How Can We Help You Today?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+            <h3 class="font-bold text-slate-900 text-base mb-1">📋 Rental Document Questions</h3>
+            <p class="text-slate-600 mb-3">Want to know which documents (CNIC / Driving Licence / Passport) are required for your specific booking mode?</p>
+            <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="text-xs font-bold text-emerald-700 hover:underline">
+              Ask Document Rules on WhatsApp →
+            </a>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+            <h3 class="font-bold text-slate-900 text-base mb-1">⏱️ Trip & Duration Extensions</h3>
+            <p class="text-slate-600 mb-3">Need to extend your current rental period or update pickup timing?</p>
+            <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="text-xs font-bold text-emerald-700 hover:underline">
+              Request Trip Extension →
+            </a>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+            <h3 class="font-bold text-slate-900 text-base mb-1">🛠️ Vehicle Maintenance or Assistance</h3>
+            <p class="text-slate-600 mb-3">Immediate assistance for vehicle maintenance, tire replacement, or road questions.</p>
+            <a href={BUSINESS_INFO.telLink} class="text-xs font-bold text-red-600 hover:underline">
+              Call Support Helpline Immediately →
+            </a>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+            <h3 class="font-bold text-slate-900 text-base mb-1">🧾 Billing, Tolls & Receipts</h3>
+            <p class="text-slate-600 mb-3">Need formal invoice copies, toll balance breakdowns, or corporate tax receipts?</p>
+            <a href={BUSINESS_INFO.mailtoLink} class="text-xs font-bold text-slate-800 hover:underline">
+              Email Billing Team ({BUSINESS_INFO.email}) →
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Human-Led Policy Note -->
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-slate-800 text-xs leading-relaxed">
+        <h3 class="font-bold text-amber-900 text-sm mb-1">Human-Led Verification Policy</h3>
+        <p>
+          4WHEELS does not store sensitive personal identity documents on public web servers. All document verifications and rental eligibility checks are handled directly and securely through our customer-care representatives via WhatsApp or at our Johar Town head office.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</Layout>

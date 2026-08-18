@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Corporate Staff Pick & Drop Transport Lahore - 4WHEELS";
+const description = "Reliable employee transportation and daily staff pick & drop services in Lahore. Cars, vans, Toyota Coasters, and buses for office routes and corporate shifts.";
+const canonicalPath = "/corporate-staff-pick-drop-lahore/";
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
+        Employee Mobility Solutions
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+        Corporate Staff Pick & Drop Services
+      </h1>
+      <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-6">
+        Dedicated employee commuting services across Lahore. From executive sedans and 13-seater HiAce vans to 22-29 seater Toyota Coasters and buses for shift-based corporate office routes.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+          💬 Request Staff Transport Plan on WhatsApp
+        </a>
+        <a href={BUSINESS_INFO.mailtoLink} class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm border border-slate-700">
+          ✉️ Email Requirements ({BUSINESS_INFO.email})
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4 space-y-8">
+      <h2 class="text-2xl font-bold text-slate-900">Tailored Employee Fleet Options</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+          <div class="text-2xl mb-2">🚘</div>
+          <h3 class="font-bold text-slate-900 mb-1">Executive Cars</h3>
+          <p class="text-slate-600">Door-to-door commuting for corporate managers and senior staff in comfortable air-conditioned sedans.</p>
+        </div>
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+          <div class="text-2xl mb-2">🚐</div>
+          <h3 class="font-bold text-slate-900 mb-1">HiAce Passenger Vans</h3>
+          <p class="text-slate-600">12-14 passenger seats for departmental routes, airport shifts, and small team transfers.</p>
+        </div>
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+          <div class="text-2xl mb-2">🚌</div>
+          <h3 class="font-bold text-slate-900 mb-1">Coasters & Mini-Buses</h3>
+          <p class="text-slate-600">22-29 passenger capacity for high-density office routes, factory shifts, and industrial park commuting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

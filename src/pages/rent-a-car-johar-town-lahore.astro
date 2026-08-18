@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "Rent a Car Johar Town Lahore - 4WHEELS Head Office";
+const description = "Rent a car in Johar Town Phase 1, Lahore. Located at 5, F1, Block F1. Self drive and chauffeur driven sedans, SUVs, and vans near Doctor Hospital, Emporium Mall, and Johar Town.";
+const canonicalPath = "/rent-a-car-johar-town-lahore/";
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
+        Local Johar Town Branch
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+        Rent a Car in Johar Town, Lahore
+      </h1>
+      <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-6">
+        Conveniently located at <strong>5, F1, Block F1, Johar Town Phase 1, Lahore</strong>. Minutes away from Emporium Mall, Doctor Hospital, Canal Bank Road, and Khayaban-e-Firdousi.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={BUSINESS_INFO.telLink} class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+          📞 Call Johar Town: {BUSINESS_INFO.phoneDisplay}
+        </a>
+        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+          💬 WhatsApp Johar Town Branch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4 space-y-8">
+      <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">Branch Address & Directions</h2>
+        <p class="text-sm text-slate-700 leading-relaxed mb-4">
+          📍 {BUSINESS_INFO.address.fullAddress}
+        </p>
+        <p class="text-xs text-slate-500">
+          Serving Johar Town Phase 1, Phase 2, Wapda Town, PIA Society, Faisal Town, Model Town, and Garden Town with fast vehicle dispatch.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

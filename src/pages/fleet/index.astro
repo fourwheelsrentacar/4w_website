@@ -1,0 +1,239 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { FLEET_VEHICLES } from '../../data/fleet';
+import { BUSINESS_INFO } from '../../data/business';
+
+const title = "4WHEELS Vehicle Fleet - Cars, SUVs, Vans & Coasters in Lahore";
+const description = "Explore 4WHEELS Rent a Car vehicle fleet in Lahore. Compare sedans, SUVs, luxury cars, 13-seater HiAce vans, and 22-29 seater Toyota Coaster buses available with driver or self-drive.";
+const canonicalPath = "/fleet/";
+
+const categories = [
+  { key: 'all', label: 'All Fleet' },
+  { key: 'sedan', label: 'Sedans' },
+  { key: 'suv', label: 'SUVs & 4x4' },
+  { key: 'hatchback', label: 'Hatchbacks' },
+  { key: 'van', label: 'Vans (13-Seater)' },
+  { key: 'coaster', label: 'Coasters & Buses' },
+  { key: 'luxury', label: 'Luxury Cars' }
+];
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <!-- Hero Section -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-block bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
+        Verified Fleet Portfolio
+      </div>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+        Our Vehicle Fleet in Lahore
+      </h1>
+      <p class="text-lg text-slate-300 max-w-3xl mx-auto mb-6 leading-relaxed">
+        From fuel-efficient city hatchbacks and executive sedans to 7-seater SUVs, HiAce Grand Cabins, and Toyota Coaster mini-buses. Available for daily, monthly, self-drive, or chauffeur-driven bookings.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4 text-sm font-semibold text-slate-300">
+        <span class="flex items-center gap-1">✅ Self Drive Available</span>
+        <span class="flex items-center gap-1">✅ Professional Chauffeurs</span>
+        <span class="flex items-center gap-1">✅ Air-Conditioned Clean Fleet</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fleet Filter & Grid -->
+  <section class="py-12 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+        {categories.map(cat => (
+          <button
+            type="button"
+            class={`filter-btn px-4 py-2 rounded-lg text-sm font-semibold transition-colors border ${
+              cat.key === 'all'
+                ? 'bg-red-600 text-white border-red-600 shadow-sm'
+                : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100'
+            }`}
+            data-category={cat.key}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Vehicle Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="fleet-grid">
+        {FLEET_VEHICLES.map(vehicle => {
+          const hasImage = vehicle.images.length > 0;
+          return (
+            <div
+              class="vehicle-card bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-shadow"
+              data-category={vehicle.category}
+            >
+              <!-- Vehicle Image or Fallback -->
+              <div class="relative h-52 bg-slate-200 flex items-center justify-center overflow-hidden">
+                {hasImage ? (
+                  <img
+                    src={vehicle.images[0]}
+                    alt={vehicle.imageAlt}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="text-center p-6 text-slate-500">
+                    <div class="text-4xl mb-2">🚘</div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-600">Owner photo required.</p>
+                    <p class="text-xs text-slate-400 mt-1">{vehicle.manufacturer} {vehicle.model}</p>
+                  </div>
+                )}
+                <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-sm text-white text-xs font-bold px-2.5 py-1 rounded">
+                  {vehicle.category.toUpperCase()}
+                </div>
+                {vehicle.featured && (
+                  <div class="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded shadow-sm">
+                    POPULAR
+                  </div>
+                )}
+              </div>
+
+              <!-- Vehicle Card Body -->
+              <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-1">
+                    <h2 class="text-xl font-bold text-slate-900">
+                      {vehicle.manufacturer} {vehicle.model}
+                    </h2>
+                  </div>
+                  {vehicle.variant && (
+                    <p class="text-xs font-medium text-slate-500 mb-3">
+                      {vehicle.variant}
+                    </p>
+                  )}
+                  <p class="text-sm text-slate-600 line-clamp-2 mb-4">
+                    {vehicle.description}
+                  </p>
+
+                  <!-- Specs Badges -->
+                  <div class="grid grid-cols-2 gap-2 text-xs font-semibold text-slate-700 bg-slate-50 p-3 rounded-lg mb-4 border border-slate-100">
+                    <div class="flex items-center gap-1.5">
+                      <span>👤 Capacity:</span>
+                      <span class="text-slate-900 font-bold">{vehicle.seats ? `${vehicle.seats} Seats` : 'Contact us'}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span>🧳 Luggage:</span>
+                      <span class="text-slate-900 font-bold">{vehicle.luggage ? `${vehicle.luggage} Bags` : 'Flexible'}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span>⚙️ Gear:</span>
+                      <span class="text-slate-900">{vehicle.transmission || 'N/A'}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span>⛽ Fuel:</span>
+                      <span class="text-slate-900">{vehicle.fuelType || 'N/A'}</span>
+                    </div>
+                  </div>
+
+                  <!-- Available Booking Modes -->
+                  <div class="flex flex-wrap gap-1.5 mb-6 text-xs font-medium">
+                    {vehicle.selfDrive && (
+                      <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                        Self Drive
+                      </span>
+                    )}
+                    {vehicle.withDriver && (
+                      <span class="bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-0.5 rounded-full">
+                        With Driver
+                      </span>
+                    )}
+                    {vehicle.dailyRental && (
+                      <span class="bg-slate-100 text-slate-700 border border-slate-200 px-2.5 py-0.5 rounded-full">
+                        Daily
+                      </span>
+                    )}
+                    {vehicle.monthlyRental && (
+                      <span class="bg-slate-100 text-slate-700 border border-slate-200 px-2.5 py-0.5 rounded-full">
+                        Monthly
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <!-- CTA Actions -->
+                <div class="space-y-2 pt-2 border-t border-slate-100">
+                  <a
+                    href={`/fleet/${vehicle.slug}/`}
+                    class="w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-semibold py-2.5 rounded-lg text-sm block transition-colors"
+                  >
+                    View Vehicle Details & Specs
+                  </a>
+                  <a
+                    href={`https://wa.me/923216616644?text=${encodeURIComponent(`Hello 4WHEELS, I am inquiring about renting the ${vehicle.manufacturer} ${vehicle.model} (${vehicle.category}). Please confirm current availability and latest quote.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-lg text-sm block transition-colors flex items-center justify-center gap-1.5"
+                  >
+                    <span>💬 Check Availability on WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Configurator Prompt -->
+  <section class="py-12 bg-slate-900 text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-3">
+        Need a Specific Vehicle for Your Trip or Business?
+      </h2>
+      <p class="text-slate-300 max-w-2xl mx-auto mb-6 text-sm md:text-base">
+        Use our interactive rental configurator to specify exact dates, passenger capacity, preferred vehicle color, and route for instant quotation.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href="/build-your-rental/"
+          class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg transition-colors text-sm shadow-md"
+        >
+          Build Your Rental Online
+        </a>
+        <a
+          href="/compare-vehicles/"
+          class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors text-sm border border-slate-700"
+        >
+          Compare Fleet Vehicles
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const vehicleCards = document.querySelectorAll('.vehicle-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.getAttribute('data-category');
+
+      // Active state styling
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-red-600', 'text-white', 'border-red-600');
+        b.classList.add('bg-white', 'text-slate-700', 'border-slate-300');
+      });
+      btn.classList.remove('bg-white', 'text-slate-700', 'border-slate-300');
+      btn.classList.add('bg-red-600', 'text-white', 'border-red-600');
+
+      // Filter cards
+      vehicleCards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (category === 'all' || cardCat === category) {
+          (card as HTMLElement).style.display = 'flex';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

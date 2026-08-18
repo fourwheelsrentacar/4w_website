@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPublishedLocations } from '../../data/locations';
+
+const title = "Service Locations & Regional Travel - 4WHEELS Pakistan";
+const description = "Explore 4WHEELS Rent a Car service locations and intercity travel routes in Lahore, Johar Town, Islamabad, and key destinations across Pakistan.";
+const canonicalPath = "/locations/";
+
+const locations = getPublishedLocations();
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">
+        Regional Coverage
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">
+        Service Locations & Intercity Connections
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+        Primary headquarters in Johar Town, Lahore with chauffeur-driven intercity routes across major cities in Pakistan.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {locations.map(loc => (
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold bg-slate-100 text-slate-800 px-2.5 py-0.5 rounded">{loc.province}</span>
+                {loc.isMainHub && (
+                  <span class="text-[10px] font-bold bg-red-600 text-white px-2 py-0.5 rounded uppercase">HQ Hub</span>
+                )}
+              </div>
+              <h2 class="text-xl font-bold text-slate-900 mb-2">{loc.city}</h2>
+              <p class="text-xs text-slate-600 mb-4 leading-relaxed">{loc.serviceOverview}</p>
+
+              <div class="text-xs font-semibold text-slate-700 mb-4 space-y-1">
+                <div class="text-slate-500 font-bold text-[11px] uppercase">Common Connections:</div>
+                {loc.commonRoutes.slice(0, 2).map(r => (
+                  <div>• {r}</div>
+                ))}
+              </div>
+            </div>
+
+            <a
+              href={`/locations/${loc.slug}/`}
+              class="w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-lg text-xs block transition-colors"
+            >
+              View Location Details
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
