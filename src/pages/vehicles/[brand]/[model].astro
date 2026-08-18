@@ -1,0 +1,229 @@
+---
+import SEOHead from '../../../components/SEOHead.astro';
+import HeaderComp from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import CTASection from '../../../components/CTASection.astro';
+import { BUSINESS_INFO } from '../../../data/business';
+import { PAKISTAN_VEHICLE_CATALOG, getCatalogVehicleBySlug } from '../../../data/pakistanVehicles';
+
+export function getStaticPaths() {
+  return PAKISTAN_VEHICLE_CATALOG.map(v => ({
+    params: { brand: v.brandSlug, model: v.slug }
+  }));
+}
+
+const { brand, model } = Astro.params;
+const car = getCatalogVehicleBySlug(brand || '', model || '');
+
+if (!car) {
+  return Astro.redirect('/vehicles/');
+}
+
+const canonicalUrl = `${BUSINESS_INFO.siteUrl}/vehicles/${car.brandSlug}/${car.slug}/`;
+
+const whatsappPrefilledMessage = encodeURIComponent(
+`Hello 4WHEELS, I would like to check vehicle availability and get the latest quotation.
+
+Vehicle
+Brand: ${car.brand}
+Model: ${car.model} (${car.variant || ''})
+Status: ${car.isFleetConfirmed ? '4WHEELS Core Fleet' : 'Catalog Request'}
+
+Please confirm current availability, rental requirements, and daily/weekly price options for Lahore. Thank you!`
+);
+
+const whatsappLink = `https://wa.me/923216616644?text=${whatsappPrefilledMessage}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <SEOHead
+    title={`${car.brand} ${car.model} Specifications & Rental Inquiry Lahore | 4WHEELS`}
+    description={`Official specifications for ${car.brand} ${car.model} (${car.variant}). Check seats, fuel tank/battery capacity, luggage boot space, and request rental options in Lahore.`}
+    canonicalUrl={canonicalUrl}
+  />
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+  <HeaderComp />
+
+  <main>
+    <!-- Breadcrumbs -->
+    <nav class="bg-white border-b border-gray-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-gray-600">
+      <div class="max-w-7xl mx-auto flex items-center gap-2">
+        <a href="/" class="hover:text-brand-red">Home</a>
+        <span>/</span>
+        <a href="/vehicles/" class="hover:text-brand-red">Vehicles</a>
+        <span>/</span>
+        <a href={`/vehicles/${car.brandSlug}/`} class="hover:text-brand-red">{car.brand}</a>
+        <span>/</span>
+        <span class="font-bold text-gray-900">{car.model}</span>
+      </div>
+    </nav>
+
+    <!-- Main Detail Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 pb-6 mb-6">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class={`text-xs font-bold px-3 py-1 rounded-full ${
+                car.isFleetConfirmed
+                  ? 'bg-green-100 text-green-800 border border-green-300'
+                  : 'bg-blue-100 text-blue-800 border border-blue-300'
+              }`}>
+                {car.isFleetConfirmed ? '4WHEELS Fleet (Confirmed Inventory)' : 'Pakistan Vehicle Catalog'}
+              </span>
+              <span class="text-xs bg-gray-100 text-gray-700 px-2.5 py-1 rounded font-medium">
+                {car.bodyType}
+              </span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900">{car.brand} {car.model}</h1>
+            <p class="text-sm font-semibold text-gray-600 mt-1">{car.variant} ({car.modelYear || 'Current Lineup'})</p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl shadow-md transition-colors flex items-center justify-center gap-2 text-sm"
+            >
+              💬 Inquire Availability on WhatsApp
+            </a>
+            <a
+              href="/book/"
+              class="bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl shadow-md transition-colors flex items-center justify-center gap-2 text-sm"
+            >
+              📅 Build Full Rental Request
+            </a>
+          </div>
+        </div>
+
+        <p class="text-gray-700 text-base leading-relaxed mb-8">{car.description}</p>
+
+        <!-- Spec Cards Grid -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <!-- Fuel / Battery Spec Card -->
+          <div class="bg-slate-900 text-white rounded-xl p-5 shadow-sm border border-slate-800">
+            <div class="text-xs uppercase tracking-wider text-brand-red font-bold mb-2">
+              {car.fuelType === 'Electric' ? '⚡ Battery & Range' : '⛽ Fuel Specs'}
+            </div>
+
+            {car.fuelType === 'Electric' ? (
+              <div class="space-y-2">
+                <div class="text-2xl font-black text-emerald-400">🔋 {car.batteryCapacity}</div>
+                <div class="text-sm text-gray-300">⚡ <strong>Official Range:</strong> {car.electricRange}</div>
+              </div>
+            ) : car.fuelType === 'PHEV' ? (
+              <div class="space-y-2">
+                <div class="text-xl font-bold text-emerald-400">🔋 Battery: {car.batteryCapacity}</div>
+                <div class="text-sm text-gray-300">⛽ <strong>Fuel Tank:</strong> {car.fuelTankCapacity}</div>
+                <div class="text-xs text-gray-400">EV Mode: {car.electricRange}</div>
+              </div>
+            ) : (
+              <div class="space-y-2">
+                <div class="text-3xl font-black text-amber-400">⛽ {car.fuelTankCapacity}</div>
+                <div class="text-sm text-gray-300">Engine: {car.engine}</div>
+              </div>
+            )}
+          </div>
+
+          <!-- Seating Visualization Card -->
+          <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
+            <div class="text-xs uppercase tracking-wider text-gray-500 font-bold mb-2">
+              👤 Seating Visualization
+            </div>
+            <div class="text-2xl mb-2">
+              {'👤 '.repeat(car.seats)}
+            </div>
+            <div class="font-bold text-gray-900 text-base">Up to {car.maxPassengers} occupants + driver</div>
+            <p class="text-xs text-gray-500 mt-1">
+              Configured for passenger legroom and AC airflow comfort.
+            </p>
+          </div>
+
+          <!-- Luggage Visualization Card -->
+          <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
+            <div class="text-xs uppercase tracking-wider text-gray-500 font-bold mb-2">
+              🧳 Luggage Capacity
+            </div>
+            <div class="text-xl font-extrabold text-gray-900 mb-1">
+              Boot: {car.bootCapacity || 'Standard Luggage Trunk'}
+            </div>
+            <p class="text-xs text-gray-600">
+              Actual suitcase fit depends on bag dimensions and passenger layout. Tell us your bag count and 4WHEELS will verify suitability.
+            </p>
+          </div>
+        </div>
+
+        <!-- Full Specifications Table -->
+        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-8">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Official Specs Summary</h2>
+
+          <div class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+            <div class="flex justify-between py-1.5 border-b border-gray-200">
+              <span class="text-gray-600">Brand & Model:</span>
+              <span class="font-bold">{car.brand} {car.model}</span>
+            </div>
+            <div class="flex justify-between py-1.5 border-b border-gray-200">
+              <span class="text-gray-600">Variant:</span>
+              <span class="font-bold">{car.variant || 'Standard'}</span>
+            </div>
+            <div class="flex justify-between py-1.5 border-b border-gray-200">
+              <span class="text-gray-600">Transmission:</span>
+              <span class="font-bold">{car.transmission}</span>
+            </div>
+            <div class="flex justify-between py-1.5 border-b border-gray-200">
+              <span class="text-gray-600">Powertrain / Fuel:</span>
+              <span class="font-bold">{car.fuelType}</span>
+            </div>
+            <div class="flex justify-between py-1.5 border-b border-gray-200">
+              <span class="text-gray-600">Ground Clearance:</span>
+              <span class="font-bold">{car.groundClearance || 'N/A'}</span>
+            </div>
+            <div class="flex justify-between py-1.5 border-b border-gray-200">
+              <span class="text-gray-600">Official Colors:</span>
+              <span class="font-bold">{car.colors.join(', ')}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Suitable Use Cases -->
+        <div class="mb-8">
+          <h3 class="text-base font-bold text-gray-900 mb-3">Suitable Use Cases:</h3>
+          <div class="flex flex-wrap gap-2">
+            {car.suitableUse.map(use => (
+              <span class="bg-gray-100 text-gray-800 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-200">
+                ✓ {use}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Official Manufacturer Sources Link Section -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-blue-900">
+          <div>
+            <span class="font-bold block text-sm">Verified Manufacturer Source</span>
+            <p class="text-blue-700 mt-0.5">
+              Source verified on {car.verifiedDate} via official distributor website.
+            </p>
+          </div>
+          <a
+            href={car.manufacturerUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2.5 rounded-lg text-center transition-colors shrink-0"
+          >
+            View Official Manufacturer Page ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+
+  <Footer />
+</body>
+</html>
