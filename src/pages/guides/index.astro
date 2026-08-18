@@ -1,0 +1,161 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SEOHead from '../../components/SEOHead.astro';
+import CTASection from '../../components/CTASection.astro';
+import { BUSINESS_INFO } from '../../data/business';
+
+const pageTitle = "Knowledge Hub & Rental Guides | 4WHEELS Rent a Car";
+const pageDescription = "Explore practical guides, rental rules, passenger planning, corporate mobility tips, and travel advice from official 4WHEELS Rent a Car Lahore.";
+
+const categories = [
+  {
+    title: "Car Rental Essentials",
+    icon: "🚗",
+    description: "Fundamental guidelines for renting sedan, hatchback, and luxury vehicles in Lahore.",
+    articles: [
+      { title: "How to Contact Official 4WHEELS Rent a Car", date: "2026-08-18", summary: "Step-by-step guidance on verifying genuine contact channels and avoiding lookalike confusion." },
+      { title: "How to Verify Your 4WHEELS Booking", date: "2026-08-18", summary: "Verify official WhatsApp numbers, office location in Johar Town, and booking confirmations." }
+    ]
+  },
+  {
+    title: "Self Drive Guidelines",
+    icon: "🔑",
+    description: "Requirements, document checklists, and vehicle pickup procedures for self-drive rentals.",
+    articles: [
+      { title: "Self Drive Security & Documentation Overview", date: "2026-08-18", summary: "Learn what documents customer care requires for self-drive rentals without online uploads." }
+    ]
+  },
+  {
+    title: "Chauffeur & With Driver Services",
+    icon: "👨‍✈️",
+    description: "Professional chauffeur standards, intercity travel protocols, and fuel/toll policies.",
+    articles: [
+      { title: "Intercity Driver Travel from Lahore to Islamabad & Outstation", date: "2026-08-18", summary: "Comprehensive guide to long-distance rentals, driver duties, and highway travel safety." }
+    ]
+  },
+  {
+    title: "Corporate Mobility & Staff Pick & Drop",
+    icon: "🏢",
+    description: "Long-term fleet solutions, executive travel, and daily employee transport management.",
+    articles: [
+      { title: "Managing Enterprise Transport in Lahore", date: "2026-08-18", summary: "How 4WHEELS delivers streamlined fleet management and monthly corporate billing." }
+    ]
+  },
+  {
+    title: "Buses, Coasters & Event Transport",
+    icon: "🚌",
+    description: "Group passenger logistics for weddings, corporate events, and delegation tours.",
+    articles: [
+      { title: "Selecting Coasters & Vans for Large Group Events", date: "2026-08-18", summary: "Comparing Toyota HiAce vans and 29-seater Toyota Coasters for wedding and event trips." }
+    ]
+  },
+  {
+    title: "Pakistan Travel & Tours",
+    icon: "🏔️",
+    description: "Outstation routes, Northern Pakistan travel recommendations, and luggage fitting advice.",
+    articles: [
+      { title: "Preparing for Northern Pakistan Road Trips from Lahore", date: "2026-08-18", summary: "Choosing suitable 4x4 SUVs (Fortuner, Revo) for mountain highways and multi-day tours." }
+    ]
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalPath="/guides/">
+  <SEOHead
+    slot="seo"
+    title={pageTitle}
+    description={pageDescription}
+    canonicalPath="/guides/"
+  />
+
+  <!-- Hero Section -->
+  <section class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-block bg-red-600 text-white font-extrabold text-xs uppercase px-3 py-1 rounded tracking-wider mb-4">
+        Knowledge Hub & Guides
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-4 text-white">
+        4WHEELS Knowledge Hub
+      </h1>
+      <p class="text-lg sm:text-xl text-red-400 font-semibold mb-6">
+        {BUSINESS_INFO.trustWording}
+      </p>
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        Your comprehensive resource for car rental policies, booking verification, passenger planning, vehicle comparisons, and travel advice in Pakistan.
+      </p>
+    </div>
+  </section>
+
+  <!-- Categories Grid -->
+  <section class="py-12 bg-slate-50 text-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Brand Verification Spotlight Banner -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 mb-12">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div class="space-y-2">
+            <span class="inline-block bg-red-100 text-red-800 text-xs font-bold px-2.5 py-1 rounded">
+              Verified Business Protection
+            </span>
+            <h2 class="text-2xl font-bold text-slate-900">How to Contact Official 4WHEELS Rent a Car</h2>
+            <p class="text-sm text-slate-600 max-w-2xl">
+              Serving Lahore since 2008 from <strong>Johar Town Phase 1, Lahore</strong>. Always confirm that you are speaking with official customer care at <strong>0321 6616644</strong>.
+            </p>
+          </div>
+          <a
+            href="/official/"
+            class="shrink-0 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-sm transition-colors"
+          >
+            Verify Official Brand Details →
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {categories.map(cat => (
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="text-3xl mb-3">{cat.icon}</div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">{cat.title}</h3>
+              <p class="text-xs text-slate-600 mb-4 leading-relaxed">{cat.description}</p>
+              <div class="space-y-3 pt-3 border-t border-slate-100">
+                {cat.articles.map(art => (
+                  <div class="group">
+                    <h4 class="text-sm font-bold text-slate-800 group-hover:text-red-600 transition-colors flex items-center justify-between">
+                      <span>{art.title}</span>
+                    </h4>
+                    <p class="text-xs text-slate-500 mt-1 leading-normal">{art.summary}</p>
+                    <span class="text-[10px] text-slate-400 mt-1 block">Published: August 18, 2026</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Quick FAQ Summary Section -->
+      <div class="mt-12 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200">
+        <h3 class="text-xl font-bold text-slate-900 mb-4">Official Verification Quick Answers</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+          <div>
+            <strong class="text-slate-900 block mb-1">What is the official 4WHEELS phone number?</strong>
+            <p class="text-slate-600">The official voice call and WhatsApp number is <strong>0321 6616644</strong> (+92 321 6616644 internationally).</p>
+          </div>
+          <div>
+            <strong class="text-slate-900 block mb-1">Where is 4WHEELS Rent a Car located?</strong>
+            <p class="text-slate-600">Our physical office is located at <strong>5, F1, Block F1, Johar Town Phase 1, Lahore, Pakistan</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <CTASection
+    title="Have Questions About Rental Policy or Bookings?"
+    description="Contact our official customer care team directly on WhatsApp for immediate support."
+    primaryButtonText="💬 Contact Customer Care"
+    primaryButtonHref={BUSINESS_INFO.whatsappLink}
+  />
+</Layout>

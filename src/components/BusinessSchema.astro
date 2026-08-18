@@ -1,12 +1,37 @@
 ---
 import { BUSINESS_INFO } from '../data/business';
 
-const schemaData = {
+const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": ["AutoRental", "LocalBusiness"],
+  "@type": "Organization",
+  "@id": `${BUSINESS_INFO.siteUrl}/#organization`,
   "name": BUSINESS_INFO.name,
   "legalName": BUSINESS_INFO.legalName,
   "url": BUSINESS_INFO.siteUrl,
+  "logo": `${BUSINESS_INFO.siteUrl}/favicon.svg`,
+  "telephone": "+923216616644",
+  "email": BUSINESS_INFO.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": BUSINESS_INFO.address.street,
+    "addressLocality": BUSINESS_INFO.address.city,
+    "addressRegion": BUSINESS_INFO.address.region,
+    "postalCode": BUSINESS_INFO.address.postalCode,
+    "addressCountry": BUSINESS_INFO.address.country
+  },
+  "sameAs": [
+    BUSINESS_INFO.facebookUrl
+  ]
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": ["AutoRental", "LocalBusiness"],
+  "@id": `${BUSINESS_INFO.siteUrl}/#localbusiness`,
+  "name": BUSINESS_INFO.name,
+  "legalName": BUSINESS_INFO.legalName,
+  "url": BUSINESS_INFO.siteUrl,
+  "logo": `${BUSINESS_INFO.siteUrl}/favicon.svg`,
   "telephone": "+923216616644",
   "email": BUSINESS_INFO.email,
   "image": `${BUSINESS_INFO.siteUrl}/images/og-default.jpg`,
@@ -30,13 +55,12 @@ const schemaData = {
     {
       "@type": "City",
       "name": "Lahore"
-    },
-    {
-      "@type": "City",
-      "name": "Islamabad"
     }
-  ]
+  ],
+  "priceRange": "$$"
 };
+
+const schemaData = [organizationSchema, localBusinessSchema];
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
