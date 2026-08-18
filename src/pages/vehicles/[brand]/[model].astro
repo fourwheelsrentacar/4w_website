@@ -5,6 +5,8 @@ import Footer from '../../../components/Footer.astro';
 import CTASection from '../../../components/CTASection.astro';
 import { BUSINESS_INFO } from '../../../data/business';
 import { PAKISTAN_VEHICLE_CATALOG, getCatalogVehicleBySlug } from '../../../data/pakistanVehicles';
+import { FUEL_DISCLAIMER_TEXT } from '../../../data/rates';
+import { getVehicleVisualUrl } from '../../../utils/vehicleVisual';
 
 export function getStaticPaths() {
   return PAKISTAN_VEHICLE_CATALOG.map(v => ({
@@ -20,204 +22,172 @@ if (!car) {
 }
 
 const canonicalUrl = `${BUSINESS_INFO.siteUrl}/vehicles/${car.brandSlug}/${car.slug}/`;
-
-const whatsappPrefilledMessage = encodeURIComponent(
-`Hello 4WHEELS, I would like to check vehicle availability and get the latest quotation.
-
-Vehicle
-Brand: ${car.brand}
-Model: ${car.model} (${car.variant || ''})
-Status: ${car.isFleetConfirmed ? '4WHEELS Core Fleet' : 'Catalog Request'}
-
-Please confirm current availability, rental requirements, and daily/weekly price options for Lahore. Thank you!`
-);
-
-const whatsappLink = `https://wa.me/923216616644?text=${whatsappPrefilledMessage}`;
+const visual = getVehicleVisualUrl(car);
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <SEOHead
-    title={`${car.brand} ${car.model} Specifications & Rental Inquiry Lahore | 4WHEELS`}
-    description={`Official specifications for ${car.brand} ${car.model} (${car.variant}). Check seats, fuel tank/battery capacity, luggage boot space, and request rental options in Lahore.`}
+    title={`${car.brand} ${car.model} Specifications & Rental Booking Lahore | 4WHEELS`}
+    description={`Official specifications for ${car.brand} ${car.model} (${car.variant}). Check seats, fuel tank/battery capacity, luggage boot space, and book your rental in Lahore.`}
     canonicalUrl={canonicalUrl}
   />
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+<body class="bg-slate-950 text-white font-sans antialiased">
   <HeaderComp />
 
   <main>
     <!-- Breadcrumbs -->
-    <nav class="bg-white border-b border-gray-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-gray-600">
+    <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400">
       <div class="max-w-7xl mx-auto flex items-center gap-2">
-        <a href="/" class="hover:text-brand-red">Home</a>
+        <a href="/" class="hover:text-red-500">Home</a>
         <span>/</span>
-        <a href="/vehicles/" class="hover:text-brand-red">Vehicles</a>
+        <a href="/vehicles/" class="hover:text-red-500">Vehicles</a>
         <span>/</span>
-        <a href={`/vehicles/${car.brandSlug}/`} class="hover:text-brand-red">{car.brand}</a>
+        <a href={`/vehicles/${car.brandSlug}/`} class="hover:text-red-500">{car.brand}</a>
         <span>/</span>
-        <span class="font-bold text-gray-900">{car.model}</span>
+        <span class="font-bold text-white">{car.model}</span>
       </div>
     </nav>
 
     <!-- Main Detail Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 pb-6 mb-6">
-          <div>
-            <div class="flex items-center gap-2 mb-2">
-              <span class={`text-xs font-bold px-3 py-1 rounded-full ${
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- Left Column: Illustration Stage & Specifications -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="bg-slate-900 rounded-2xl border border-slate-800 h-80 sm:h-[400px] flex items-center justify-center p-6 relative group overflow-hidden">
+            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
+            <img
+              src={visual.url}
+              alt={`${car.brand} ${car.model}`}
+              class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+            />
+
+            <div class="absolute top-4 left-4 flex gap-2">
+              <span class={`text-xs font-bold px-3 py-1.5 rounded-lg border uppercase tracking-wider backdrop-blur-sm ${
                 car.isFleetConfirmed
-                  ? 'bg-green-100 text-green-800 border border-green-300'
-                  : 'bg-blue-100 text-blue-800 border border-blue-300'
+                  ? 'bg-emerald-950/90 text-emerald-400 border-emerald-800'
+                  : 'bg-slate-900/90 text-slate-200 border-slate-700'
               }`}>
-                {car.isFleetConfirmed ? '4WHEELS Fleet (Confirmed Inventory)' : 'Pakistan Vehicle Catalog'}
-              </span>
-              <span class="text-xs bg-gray-100 text-gray-700 px-2.5 py-1 rounded font-medium">
-                {car.bodyType}
+                {car.isFleetConfirmed ? '4WHEELS Active Fleet' : 'Catalog Request Model'}
               </span>
             </div>
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900">{car.brand} {car.model}</h1>
-            <p class="text-sm font-semibold text-gray-600 mt-1">{car.variant} ({car.modelYear || 'Current Lineup'})</p>
           </div>
 
-          <div class="flex flex-col sm:flex-row gap-3">
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl shadow-md transition-colors flex items-center justify-center gap-2 text-sm"
-            >
-              💬 Inquire Availability on WhatsApp
-            </a>
-            <a
-              href="/book/"
-              class="bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl shadow-md transition-colors flex items-center justify-center gap-2 text-sm"
-            >
-              📅 Build Full Rental Request
-            </a>
-          </div>
-        </div>
+          <!-- Description Box -->
+          <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 space-y-4">
+            <h2 class="text-xl font-bold text-white border-b border-slate-800 pb-3">Model Description</h2>
+            <p class="text-slate-300 text-sm leading-relaxed">{car.description}</p>
 
-        <p class="text-gray-700 text-base leading-relaxed mb-8">{car.description}</p>
-
-        <!-- Spec Cards Grid -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <!-- Fuel / Battery Spec Card -->
-          <div class="bg-slate-900 text-white rounded-xl p-5 shadow-sm border border-slate-800">
-            <div class="text-xs uppercase tracking-wider text-brand-red font-bold mb-2">
-              {car.fuelType === 'Electric' ? '⚡ Battery & Range' : '⛽ Fuel Specs'}
-            </div>
-
-            {car.fuelType === 'Electric' ? (
-              <div class="space-y-2">
-                <div class="text-2xl font-black text-emerald-400">🔋 {car.batteryCapacity}</div>
-                <div class="text-sm text-gray-300">⚡ <strong>Official Range:</strong> {car.electricRange}</div>
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Suitable Trip Purpose:</h3>
+              <div class="flex flex-wrap gap-2">
+                {car.suitableUse.map(use => (
+                  <span class="bg-slate-800 text-slate-200 border border-slate-700 text-xs font-semibold px-3 py-1 rounded-lg">
+                    ✓ {use}
+                  </span>
+                ))}
               </div>
-            ) : car.fuelType === 'PHEV' ? (
-              <div class="space-y-2">
-                <div class="text-xl font-bold text-emerald-400">🔋 Battery: {car.batteryCapacity}</div>
-                <div class="text-sm text-gray-300">⛽ <strong>Fuel Tank:</strong> {car.fuelTankCapacity}</div>
-                <div class="text-xs text-gray-400">EV Mode: {car.electricRange}</div>
+            </div>
+
+            <!-- Official Manufacturer Link -->
+            <div class="pt-2">
+              <a
+                href={car.manufacturerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-red-500 hover:text-red-400 underline"
+              >
+                <span>View Official Vehicle Details ({car.brand} Pakistan)</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Specs & CTAs -->
+        <div class="lg:col-span-5">
+          <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sticky top-24 space-y-6 shadow-xl">
+            <div>
+              <span class="text-[10px] font-black uppercase tracking-widest text-red-500">{car.brand}</span>
+              <h1 class="text-3xl font-black text-white tracking-tight mt-0.5">{car.model}</h1>
+              <p class="text-xs font-bold text-slate-400 mt-1">{car.variant} ({car.modelYear || 'Official Lineup'})</p>
+            </div>
+
+            <div class="space-y-3 bg-slate-950/80 p-4 rounded-xl border border-slate-800 text-xs">
+              <div class="flex justify-between items-center py-1 border-b border-slate-800/60">
+                <span class="text-slate-400 font-medium">Transmission</span>
+                <span class="font-extrabold text-white">{car.transmission}</span>
               </div>
-            ) : (
-              <div class="space-y-2">
-                <div class="text-3xl font-black text-amber-400">⛽ {car.fuelTankCapacity}</div>
-                <div class="text-sm text-gray-300">Engine: {car.engine}</div>
+              <div class="flex justify-between items-center py-1 border-b border-slate-800/60">
+                <span class="text-slate-400 font-medium">Powertrain</span>
+                <span class="font-extrabold text-white">{car.fuelType}</span>
               </div>
-            )}
-          </div>
+              <div class="flex justify-between items-center py-1 border-b border-slate-800/60">
+                <span class="text-slate-400 font-medium">Engine / Spec</span>
+                <span class="font-bold text-white">{car.engine || 'Verified Manufacturer Spec'}</span>
+              </div>
+              {car.fuelTankCapacity && (
+                <div class="flex justify-between items-center py-1 border-b border-slate-800/60">
+                  <span class="text-slate-400 font-medium">Fuel Tank</span>
+                  <span class="font-bold text-emerald-400">⛽ {car.fuelTankCapacity}</span>
+                </div>
+              )}
+              {car.batteryCapacity && (
+                <div class="flex justify-between items-center py-1 border-b border-slate-800/60">
+                  <span class="text-slate-400 font-medium">Battery Capacity</span>
+                  <span class="font-bold text-sky-400">🔋 {car.batteryCapacity}</span>
+                </div>
+              )}
 
-          <!-- Seating Visualization Card -->
-          <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
-            <div class="text-xs uppercase tracking-wider text-gray-500 font-bold mb-2">
-              👤 Seating Visualization
-            </div>
-            <div class="text-2xl mb-2">
-              {'👤 '.repeat(car.seats)}
-            </div>
-            <div class="font-bold text-gray-900 text-base">Up to {car.maxPassengers} occupants + driver</div>
-            <p class="text-xs text-gray-500 mt-1">
-              Configured for passenger legroom and AC airflow comfort.
-            </p>
-          </div>
+              <!-- Passenger Visualization -->
+              <div class="py-2 border-b border-slate-800/60">
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-slate-400 font-medium">Passenger Occupancy</span>
+                  <span class="font-extrabold text-white">Up to {car.maxPassengers} Occupants</span>
+                </div>
+                <div class="text-base tracking-wider text-right">
+                  {'👤 '.repeat(Math.min(car.seats, 10))}
+                </div>
+              </div>
 
-          <!-- Luggage Visualization Card -->
-          <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
-            <div class="text-xs uppercase tracking-wider text-gray-500 font-bold mb-2">
-              🧳 Luggage Capacity
+              <!-- Luggage Visualization -->
+              <div class="py-2">
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-slate-400 font-medium">Luggage Boot Capacity</span>
+                  <span class="font-extrabold text-white">{car.bootCapacity || 'Standard Luggage Trunk'}</span>
+                </div>
+                <p class="text-[10px] text-slate-500 mt-1 italic text-right">Approximate luggage fit. Actual capacity depends on bag dimensions.</p>
+              </div>
             </div>
-            <div class="text-xl font-extrabold text-gray-900 mb-1">
-              Boot: {car.bootCapacity || 'Standard Luggage Trunk'}
-            </div>
-            <p class="text-xs text-gray-600">
-              Actual suitcase fit depends on bag dimensions and passenger layout. Tell us your bag count and 4WHEELS will verify suitability.
-            </p>
-          </div>
-        </div>
 
-        <!-- Full Specifications Table -->
-        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-8">
-          <h2 class="text-xl font-bold text-gray-900 mb-4">Official Specs Summary</h2>
+            <!-- PRIMARY CTAs -->
+            <div class="space-y-3 pt-2">
+              <a
+                href={`/build-your-rental/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
+                class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-base py-4 rounded-xl text-center block shadow-lg transition-all"
+              >
+                Book Your Trip
+              </a>
 
-          <div class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
-            <div class="flex justify-between py-1.5 border-b border-gray-200">
-              <span class="text-gray-600">Brand & Model:</span>
-              <span class="font-bold">{car.brand} {car.model}</span>
+              <a
+                href="tel:+923216616644"
+                class="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-3 rounded-xl text-center block border border-slate-700 transition-colors"
+              >
+                📞 Call: 0321 6616644
+              </a>
             </div>
-            <div class="flex justify-between py-1.5 border-b border-gray-200">
-              <span class="text-gray-600">Variant:</span>
-              <span class="font-bold">{car.variant || 'Standard'}</span>
-            </div>
-            <div class="flex justify-between py-1.5 border-b border-gray-200">
-              <span class="text-gray-600">Transmission:</span>
-              <span class="font-bold">{car.transmission}</span>
-            </div>
-            <div class="flex justify-between py-1.5 border-b border-gray-200">
-              <span class="text-gray-600">Powertrain / Fuel:</span>
-              <span class="font-bold">{car.fuelType}</span>
-            </div>
-            <div class="flex justify-between py-1.5 border-b border-gray-200">
-              <span class="text-gray-600">Ground Clearance:</span>
-              <span class="font-bold">{car.groundClearance || 'N/A'}</span>
-            </div>
-            <div class="flex justify-between py-1.5 border-b border-gray-200">
-              <span class="text-gray-600">Official Colors:</span>
-              <span class="font-bold">{car.colors.join(', ')}</span>
-            </div>
-          </div>
-        </div>
 
-        <!-- Suitable Use Cases -->
-        <div class="mb-8">
-          <h3 class="text-base font-bold text-gray-900 mb-3">Suitable Use Cases:</h3>
-          <div class="flex flex-wrap gap-2">
-            {car.suitableUse.map(use => (
-              <span class="bg-gray-100 text-gray-800 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-200">
-                ✓ {use}
-              </span>
-            ))}
+            <div class="text-[11px] text-slate-500 leading-relaxed text-center space-y-1">
+              <p>{FUEL_DISCLAIMER_TEXT}</p>
+              <p class="text-[10px]">Illustrative vehicle visual shown. Actual rental vehicle color and trim may vary based on verified fleet inventory.</p>
+            </div>
           </div>
         </div>
 
-        <!-- Official Manufacturer Sources Link Section -->
-        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-blue-900">
-          <div>
-            <span class="font-bold block text-sm">Verified Manufacturer Source</span>
-            <p class="text-blue-700 mt-0.5">
-              Source verified on {car.verifiedDate} via official distributor website.
-            </p>
-          </div>
-          <a
-            href={car.manufacturerUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2.5 rounded-lg text-center transition-colors shrink-0"
-          >
-            View Official Manufacturer Page ↗
-          </a>
-        </div>
       </div>
     </section>
 

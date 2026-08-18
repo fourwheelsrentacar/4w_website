@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="suvBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Ground Shadow -->
+  <ellipse cx="400" cy="385" rx="360" ry="28" fill="url(#shadow)" />
+
+  <!-- High-Riding SUV Frame -->
+  <g id="suv-body">
+    <!-- Chassis -->
+    <path d="M 100,320 L 130,240 Q 180,170 300,160 L 520,155 Q 620,160 670,220 L 730,260 L 740,320 Q 740,340 710,340 L 120,340 Z" fill="url(#suvBody)" stroke="#64748b" stroke-width="2.5"/>
+
+    <!-- High Roof & Windows -->
+    <path d="M 280,165 L 360,105 Q 480,100 580,105 L 650,170 Z" fill="url(#glassGrad)" stroke="#1e293b" stroke-width="2"/>
+    <line x1="440" y1="103" x2="455" y2="165" stroke="#475569" stroke-width="5"/>
+    <line x1="550" y1="105" x2="565" y2="168" stroke="#475569" stroke-width="4"/>
+
+    <!-- Roof Rails -->
+    <path d="M 340,98 L 600,98" fill="none" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Front Aggressive Grille & Headlight -->
+    <polygon points="660,220 725,235 700,265 645,245" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <path d="M 700,265 L 735,285 L 690,310" fill="none" stroke="#1e293b" stroke-width="4"/>
+
+    <!-- Wheel Arches -->
+    <path d="M 170,340 A 55,55 0 0,1 280,340" fill="#1e293b"/>
+    <path d="M 520,340 A 55,55 0 0,1 630,340" fill="#1e293b"/>
+
+    <!-- SUV Wheels -->
+    <g transform="translate(225, 335)">
+      <circle cx="0" cy="0" r="46" fill="#0f172a"/>
+      <circle cx="0" cy="0" r="30" fill="#64748b" stroke="#f1f5f9" stroke-width="4"/>
+      <circle cx="0" cy="0" r="12" fill="#1e293b"/>
+    </g>
+    <g transform="translate(575, 335)">
+      <circle cx="0" cy="0" r="46" fill="#0f172a"/>
+      <circle cx="0" cy="0" r="30" fill="#64748b" stroke="#f1f5f9" stroke-width="4"/>
+      <circle cx="0" cy="0" r="12" fill="#1e293b"/>
+    </g>
+  </g>
+
+  <!-- Badge -->
+  <rect x="310" y="390" width="180" height="26" rx="13" fill="#dc2626"/>
+  <text x="400" y="407" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="extrabold" fill="#ffffff" text-anchor="middle" letter-spacing="1">TOYOTA FORTUNER 4X4</text>
+</svg>

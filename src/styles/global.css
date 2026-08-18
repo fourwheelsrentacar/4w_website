@@ -15,3 +15,30 @@
     outline-offset: 2px;
   }
 }
+
+/* Automotive Micro-interactions & Polish */
+.vehicle-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-4px);
+}
+
+.btn-next, .btn-prev, .filter-cat-btn {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-next:active, .btn-prev:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .vehicle-card, .btn-next, .btn-prev, .filter-cat-btn {
+    transition: none !important;
+    transform: none !important;
+  }
+}
