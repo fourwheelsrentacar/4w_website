@@ -21,7 +21,7 @@ export const BUSINESS_INFO = {
     { channel: 'Phone', detail: '0321 6616644', note: 'Direct voice calls', link: 'tel:+923216616644' },
     { channel: 'Email', detail: '4wheels44@gmail.com', note: 'Corporate, enterprise quotations, formal procurement', link: 'mailto:4wheels44@gmail.com' }
   ],
-  facebookUrl: 'https://www.facebook.com/4wheelsrentacar',
+  facebookUrl: 'https://www.facebook.com/4wheelrentacar/',
   address: {
     street: '5, F1, Block F1, Johar Town Phase 1',
     locality: 'Johar Town Phase 1',

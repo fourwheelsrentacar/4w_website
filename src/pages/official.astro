@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SEOHead from '../components/SEOHead.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+
+const pageTitle = "Official 4WHEELS Rent a Car | Serving Lahore Since 2008";
+const pageDescription = "Verify the genuine official 4WHEELS Rent a Car business identity, contact details, Johar Town office address, and official social channels.";
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalPath="/official/">
+  <SEOHead
+    slot="seo"
+    title={pageTitle}
+    description={pageDescription}
+    canonicalPath="/official/"
+  />
+
+  <!-- Hero Section -->
+  <section class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-block bg-red-600 text-white font-extrabold text-xs uppercase px-3 py-1 rounded tracking-wider mb-4">
+        Official Brand Identity
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-4 text-white">
+        Official 4WHEELS Rent a Car
+      </h1>
+      <p class="text-lg sm:text-xl text-red-400 font-semibold mb-6">
+        {BUSINESS_INFO.trustWording}
+      </p>
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        Help us ensure you are dealing with the genuine 4WHEELS Rent a Car business in Lahore. For all bookings, quotes, and customer inquiries, use only the verified channels listed on this official verification page.
+      </p>
+    </div>
+  </section>
+
+  <!-- Verified Details Grid -->
+  <section class="py-12 bg-slate-50 text-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 mb-10">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6 pb-3 border-b border-slate-200 flex items-center gap-2">
+          <span class="text-red-600">✓</span> Verified Official Business Identity
+        </h2>
+
+        <div class="space-y-6 text-sm sm:text-base">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
+            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official Business Name</span>
+            <span class="sm:col-span-2 font-bold text-slate-900">{BUSINESS_INFO.name}</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
+            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Brand Wording</span>
+            <span class="sm:col-span-2 font-semibold text-slate-800">{BUSINESS_INFO.trustBadge}</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
+            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official Phone</span>
+            <span class="sm:col-span-2">
+              <a href={BUSINESS_INFO.telLink} class="text-red-600 font-bold hover:underline">{BUSINESS_INFO.phoneDisplay}</a>
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
+            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official WhatsApp</span>
+            <span class="sm:col-span-2">
+              <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="text-emerald-600 font-bold hover:underline">{BUSINESS_INFO.phoneInternational}</a>
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
+            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official Email</span>
+            <span class="sm:col-span-2">
+              <a href={BUSINESS_INFO.mailtoLink} class="text-slate-900 font-bold hover:underline">{BUSINESS_INFO.email}</a>
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
+            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official Location</span>
+            <span class="sm:col-span-2 font-medium text-slate-800">{BUSINESS_INFO.address.fullAddress}</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3">
+            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official Facebook</span>
+            <span class="sm:col-span-2">
+              <a href={BUSINESS_INFO.facebookUrl} target="_blank" rel="noopener noreferrer" class="text-blue-600 font-bold hover:underline break-all">
+                facebook.com/4wheelrentacar/
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment & Booking Safety Notice -->
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-xl text-slate-800 mb-10">
+        <h3 class="text-lg font-bold text-amber-900 mb-2 flex items-center gap-2">
+          🛡️ Important Booking & Payment Verification Reminder
+        </h3>
+        <p class="text-sm leading-relaxed mb-3">
+          For the latest verified contact information and booking details, always use the official channels listed on this page.
+        </p>
+        <p class="text-sm font-semibold text-amber-950">
+          Please verify booking and payment instructions directly with official 4WHEELS customer care at <strong>0321 6616644</strong> before making any payment.
+        </p>
+      </div>
+
+      <!-- Verification Guidelines -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200">
+        <h3 class="text-xl font-bold text-slate-900 mb-4">How to Verify Your 4WHEELS Booking</h3>
+        <ul class="space-y-3 text-sm text-slate-700">
+          <li class="flex items-start gap-3">
+            <span class="bg-red-100 text-red-600 font-bold rounded-full w-6 h-6 flex items-center justify-center shrink-0 text-xs">1</span>
+            <span>Check that the WhatsApp number matches <strong>+92 321 6616644</strong> or direct call to <strong>0321 6616644</strong>.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="bg-red-100 text-red-600 font-bold rounded-full w-6 h-6 flex items-center justify-center shrink-0 text-xs">2</span>
+            <span>Confirm that email inquiries originate from <strong>4wheels44@gmail.com</strong>.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="bg-red-100 text-red-600 font-bold rounded-full w-6 h-6 flex items-center justify-center shrink-0 text-xs">3</span>
+            <span>Ensure physical pickup or vehicle coordination is managed through our Johar Town Phase 1, Lahore office.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Need Immediate Vehicle Assistance?"
+    description="Connect directly with official 4WHEELS customer care for rental quotes, availability, and instant confirmation."
+    primaryButtonText="💬 Contact Official WhatsApp"
+    primaryButtonHref={BUSINESS_INFO.whatsappLink}
+  />
+</Layout>
