@@ -11,6 +11,8 @@ export interface GuideArticle {
   sources: { title: string; url?: string }[];
   datePublished: string;
   dateModified: string;
+  lastReviewed: string;
+  contentStatus: 'Fresh' | 'Review Soon' | 'Needs Update' | 'Outdated' | 'Archive Candidate';
   author: string;
   relatedVehicleSlug?: string;
   relatedRouteSlug?: string;
@@ -82,6 +84,8 @@ export const GUIDE_ARTICLES: GuideArticle[] = [
     ],
     datePublished: '2025-01-10',
     dateModified: '2025-02-01',
+    lastReviewed: '2026-08-18',
+    contentStatus: 'Fresh',
     author: '4WHEELS Editorial Team'
   },
   {
@@ -117,6 +121,8 @@ export const GUIDE_ARTICLES: GuideArticle[] = [
     ],
     datePublished: '2025-01-12',
     dateModified: '2025-02-01',
+    lastReviewed: '2026-08-18',
+    contentStatus: 'Fresh',
     author: '4WHEELS Editorial Team'
   },
   {
@@ -151,6 +157,8 @@ export const GUIDE_ARTICLES: GuideArticle[] = [
     ],
     datePublished: '2025-01-15',
     dateModified: '2025-02-01',
+    lastReviewed: '2026-08-18',
+    contentStatus: 'Fresh',
     author: '4WHEELS Editorial Team'
   },
   {
@@ -186,6 +194,8 @@ export const GUIDE_ARTICLES: GuideArticle[] = [
     ],
     datePublished: '2025-01-18',
     dateModified: '2025-02-01',
+    lastReviewed: '2026-08-18',
+    contentStatus: 'Fresh',
     author: '4WHEELS Editorial Team',
     relatedVehicleSlug: 'toyota-fortuner'
   },
@@ -223,6 +233,8 @@ export const GUIDE_ARTICLES: GuideArticle[] = [
     ],
     datePublished: '2025-01-20',
     dateModified: '2025-02-01',
+    lastReviewed: '2026-08-18',
+    contentStatus: 'Fresh',
     author: '4WHEELS Editorial Team',
     relatedRouteSlug: 'lahore-to-islamabad'
   },
@@ -255,6 +267,8 @@ export const GUIDE_ARTICLES: GuideArticle[] = [
     ],
     datePublished: '2025-01-22',
     dateModified: '2025-02-01',
+    lastReviewed: '2026-08-18',
+    contentStatus: 'Fresh',
     author: '4WHEELS Editorial Team'
   }
 ];

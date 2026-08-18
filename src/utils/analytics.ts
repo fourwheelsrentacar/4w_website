@@ -23,8 +23,24 @@ export function trackBrandEvent(type: 'official_page_view' | 'verify_official_cl
   trackEvent(type, details);
 }
 
-// COMMERCIAL CONVERSION EVENTS
-export function trackCommercialEvent(type: 'book_trip_start' | 'booking_review' | 'booking_whatsapp_click' | 'trip_planner_start' | 'trip_estimate_generated' | 'trip_plan_whatsapp_click', details: Record<string, any> = {}) {
+// COMMERCIAL CONVERSION EVENTS (PHASE 6 EXTENDED)
+export type CommercialEventType =
+  | 'book_trip_start'
+  | 'vehicle_selected'
+  | 'booking_dates_selected'
+  | 'booking_trip_completed'
+  | 'booking_review'
+  | 'booking_whatsapp_click'
+  | 'trip_planner_start'
+  | 'trip_estimate_generated'
+  | 'trip_plan_whatsapp_click'
+  | 'call_click'
+  | 'corporate_inquiry'
+  | 'bus_inquiry'
+  | 'wedding_inquiry'
+  | 'general_whatsapp_click';
+
+export function trackCommercialEvent(type: CommercialEventType, details: Record<string, any> = {}) {
   trackEvent(type, details);
 }
 
