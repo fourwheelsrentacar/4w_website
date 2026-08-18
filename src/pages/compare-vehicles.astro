@@ -1,147 +1,170 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { FLEET_VEHICLES } from '../data/fleet';
+import SEOHead from '../components/SEOHead.astro';
+import HeaderComp from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+import { PAKISTAN_VEHICLE_CATALOG } from '../data/pakistanVehicles';
 
-const title = "Compare Vehicles - Compare Fleet Specifications | 4WHEELS Lahore";
-const description = "Compare seats, luggage capacity, rental modes, transmission, and recommended uses for 2-3 rental vehicles in Lahore. Make an informed choice with 4WHEELS.";
-const canonicalPath = "/compare-vehicles/";
+const canonicalUrl = `${BUSINESS_INFO.siteUrl}/compare-vehicles/`;
 ---
 
-<Layout title={title} description={description} canonicalPath={canonicalPath}>
-  <section class="bg-slate-900 text-white py-12 border-b border-slate-800">
-    <div class="max-w-5xl mx-auto px-4 text-center">
-      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">
-        Side-by-Side Comparison
-      </span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">
-        Compare Fleet Vehicles
-      </h1>
-      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
-        Select up to 3 vehicles from our verified fleet to compare seating capacity, luggage room, rental modes, and suitability.
-      </p>
-    </div>
-  </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <SEOHead
+    title="Compare Vehicles Side-by-Side | 4WHEELS Rent a Car Lahore"
+    description="Compare up to 3 vehicles side-by-side for seating capacity, luggage boot space, fuel tank / battery range, and rental features in Lahore."
+    canonicalUrl={canonicalUrl}
+  />
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+  <HeaderComp />
 
-  <section class="py-12 bg-slate-50">
-    <div class="max-w-6xl mx-auto px-4">
-
-      <!-- Vehicle Selectors -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-        <div>
-          <label for="select-v1" class="block text-xs font-bold text-slate-700 mb-1">Vehicle 1</label>
-          <select id="select-v1" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-900">
-            {FLEET_VEHICLES.map((v, idx) => (
-              <option value={v.slug} selected={idx === 0}>{v.manufacturer} {v.model}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label for="select-v2" class="block text-xs font-bold text-slate-700 mb-1">Vehicle 2</label>
-          <select id="select-v2" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-900">
-            {FLEET_VEHICLES.map((v, idx) => (
-              <option value={v.slug} selected={idx === 1}>{v.manufacturer} {v.model}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label for="select-v3" class="block text-xs font-bold text-slate-700 mb-1">Vehicle 3 (Optional)</label>
-          <select id="select-v3" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-900">
-            <option value="">-- None --</option>
-            {FLEET_VEHICLES.map((v, idx) => (
-              <option value={v.slug} selected={idx === 2}>{v.manufacturer} {v.model}</option>
-            ))}
-          </select>
-        </div>
+  <main>
+    <section class="bg-gradient-to-r from-slate-900 via-zinc-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-4xl mx-auto">
+        <span class="bg-brand-red/20 text-brand-red border border-brand-red/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider inline-block mb-3">
+          Vehicle Comparison Matrix
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Compare Rental Vehicles</h1>
+        <p class="text-gray-300 text-sm sm:text-base mt-2 max-w-2xl mx-auto">
+          Select 2 or 3 vehicles side-by-side to compare seating, luggage room, powertrain specs, and fuel tank capacity.
+        </p>
       </div>
+    </section>
 
-      <!-- Comparison Table -->
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
-        <table class="w-full text-left text-sm text-slate-800 border-collapse">
-          <thead>
-            <tr class="bg-slate-900 text-white border-b border-slate-800">
-              <th class="p-4 font-bold w-1/4">Specification</th>
-              <th class="p-4 font-bold text-center w-1/4" id="th-v1">Vehicle 1</th>
-              <th class="p-4 font-bold text-center w-1/4" id="th-v2">Vehicle 2</th>
-              <th class="p-4 font-bold text-center w-1/4" id="th-v3">Vehicle 3</th>
-            </tr>
-          </thead>
-          <tbody id="compare-tbody" class="divide-y divide-slate-200">
-            <!-- Dynamic JS injected -->
-          </tbody>
-        </table>
-      </div>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
 
-      <div class="mt-8 text-center bg-red-50 border border-red-100 rounded-xl p-6">
-        <h3 class="text-base font-bold text-red-900 mb-1">Have Questions About Choice or Availability?</h3>
-        <p class="text-xs text-red-700 mb-4">Our customer care team will help you select the ideal vehicle and confirm today's price quote.</p>
-        <a href="https://wa.me/923216616644?text=Hello%204WHEELS%2C%20I%20am%20comparing%20vehicles%20and%20would%20like%20guidance." target="_blank" class="inline-block bg-emerald-600 text-white text-xs font-bold px-6 py-3 rounded-lg shadow-sm">
-          💬 Ask 4WHEELS on WhatsApp
-        </a>
-      </div>
-
-    </div>
-  </section>
-</Layout>
-
-<script>
-  import { FLEET_VEHICLES } from '../data/fleet';
-
-  const sel1 = document.getElementById('select-v1') as HTMLSelectElement;
-  const sel2 = document.getElementById('select-v2') as HTMLSelectElement;
-  const sel3 = document.getElementById('select-v3') as HTMLSelectElement;
-  const tbody = document.getElementById('compare-tbody');
-
-  const updateTable = () => {
-    if (!tbody || !sel1 || !sel2 || !sel3) return;
-
-    const v1 = FLEET_VEHICLES.find(v => v.slug === sel1.value);
-    const v2 = FLEET_VEHICLES.find(v => v.slug === sel2.value);
-    const v3 = FLEET_VEHICLES.find(v => v.slug === sel3.value);
-
-    const cols = [v1, v2, v3];
-
-    // Headers
-    cols.forEach((v, idx) => {
-      const th = document.getElementById(`th-v${idx + 1}`);
-      if (th) th.textContent = v ? `${v.manufacturer} ${v.model}` : '-';
-    });
-
-    const rows = [
-      { label: 'Category', getVal: (v: any) => v ? v.category.toUpperCase() : '-' },
-      { label: 'Passenger Capacity', getVal: (v: any) => v ? `👤 ${v.seats || 'N/A'} Seats` : '-' },
-      { label: 'Luggage Bags', getVal: (v: any) => v ? `🧳 ${v.luggage || 'N/A'} Bags` : '-' },
-      { label: 'Self Drive', getVal: (v: any) => v ? (v.selfDrive ? '✅ Yes' : '❌ No') : '-' },
-      { label: 'With Driver', getVal: (v: any) => v ? (v.withDriver ? '✅ Yes' : '❌ No') : '-' },
-      { label: 'Transmission', getVal: (v: any) => v ? (v.transmission || 'Automatic') : '-' },
-      { label: 'Fuel Type', getVal: (v: any) => v ? (v.fuelType || 'Petrol') : '-' },
-      { label: 'Best For', getVal: (v: any) => v ? v.suitableFor.join(', ') : '-' },
-      {
-        label: 'Action',
-        getVal: (v: any) => v ? `
-          <div class="space-y-1">
-            <a href="/fleet/${v.slug}/" class="block bg-slate-900 text-white text-[11px] font-bold py-1.5 px-2 rounded hover:bg-slate-800">
-              View
-            </a>
-            <a href="https://wa.me/923216616644?text=${encodeURIComponent(`Hello 4WHEELS, I am inquiring about the ${v.manufacturer} ${v.model}.`)}" target="_blank" class="block bg-emerald-600 text-white text-[11px] font-bold py-1.5 px-2 rounded hover:bg-emerald-700">
-              WhatsApp
-            </a>
+        <!-- Selection Selectors -->
+        <div class="grid sm:grid-cols-3 gap-4 mb-8 bg-gray-50 p-4 rounded-xl border border-gray-200">
+          <div>
+            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Vehicle 1</label>
+            <select id="v1Select" class="w-full border border-gray-300 rounded-lg p-2.5 text-xs font-bold focus:ring-2 focus:ring-brand-red focus:outline-none">
+              {PAKISTAN_VEHICLE_CATALOG.map((v, i) => (
+                <option value={v.id} selected={i === 0}>
+                  {v.brand} {v.model} ({v.variant || ''})
+                </option>
+              ))}
+            </select>
           </div>
-        ` : '-'
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Vehicle 2</label>
+            <select id="v2Select" class="w-full border border-gray-300 rounded-lg p-2.5 text-xs font-bold focus:ring-2 focus:ring-brand-red focus:outline-none">
+              {PAKISTAN_VEHICLE_CATALOG.map((v, i) => (
+                <option value={v.id} selected={i === 1}>
+                  {v.brand} {v.model} ({v.variant || ''})
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Vehicle 3 (Optional)</label>
+            <select id="v3Select" class="w-full border border-gray-300 rounded-lg p-2.5 text-xs font-bold focus:ring-2 focus:ring-brand-red focus:outline-none">
+              <option value="none">-- None (Compare 2 Vehicles) --</option>
+              {PAKISTAN_VEHICLE_CATALOG.map((v, i) => (
+                <option value={v.id} selected={i === 2}>
+                  {v.brand} {v.model} ({v.variant || ''})
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <!-- Comparison Table Container -->
+        <div id="matrixContainer" class="overflow-x-auto">
+          <!-- Dynamically populated comparison matrix -->
+        </div>
+
+        <!-- Consultation CTA Box -->
+        <div class="mt-8 bg-amber-50 border border-amber-200 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 class="font-bold text-amber-950 text-sm">Still Unsure Which Vehicle Fits Your Trip Best?</h3>
+            <p class="text-xs text-amber-800 mt-0.5">Ask 4WHEELS customer care for a tailored recommendation based on route and luggage.</p>
+          </div>
+          <a
+            href="https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20am%20comparing%20vehicles%20and%20need%20expert%20guidance%20for%20my%20trip."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-amber-600 hover:bg-amber-700 text-white font-bold px-5 py-2.5 rounded-lg text-xs transition-colors shrink-0"
+          >
+            Ask 4WHEELS Which One Is Better
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+
+  <Footer />
+
+  <script is:inline set:html={`
+    const vehiclesData = ${JSON.stringify(PAKISTAN_VEHICLE_CATALOG)};
+
+    const v1Select = document.getElementById('v1Select');
+    const v2Select = document.getElementById('v2Select');
+    const v3Select = document.getElementById('v3Select');
+    const container = document.getElementById('matrixContainer');
+
+    function renderMatrix() {
+      if (!v1Select || !v2Select || !v3Select || !container) return;
+
+      const ids = [v1Select.value, v2Select.value, v3Select.value].filter(id => id !== 'none');
+      const selected = ids.map(id => vehiclesData.find(v => v.id === id)).filter(Boolean);
+
+      if (selected.length === 0) {
+        container.innerHTML = '<p class="text-center text-sm text-gray-500 py-4">Select vehicles to compare.</p>';
+        return;
       }
-    ];
 
-    tbody.innerHTML = rows.map(r => `
-      <tr>
-        <td class="p-4 font-bold text-slate-900 bg-slate-50">${r.label}</td>
-        <td class="p-4 text-center">${r.getVal(v1)}</td>
-        <td class="p-4 text-center">${r.getVal(v2)}</td>
-        <td class="p-4 text-center">${r.getVal(v3)}</td>
-      </tr>
-    `).join('');
-  };
+      let html = '<table class="w-full border-collapse text-left text-xs sm:text-sm">';
 
-  sel1?.addEventListener('change', updateTable);
-  sel2?.addEventListener('change', updateTable);
-  sel3?.addEventListener('change', updateTable);
-  updateTable();
-</script>
+      // Header
+      html += '<thead><tr class="bg-slate-900 text-white"><th class="p-3 border border-slate-800 font-bold w-1/4">Specification</th>';
+      selected.forEach(v => {
+        html += '<th class="p-3 border border-slate-800 font-extrabold text-center text-brand-red">' + v.brand + ' ' + v.model + '<br/><span class="text-[10px] text-gray-300 font-normal">' + (v.variant || '') + '</span></th>';
+      });
+      html += '</tr></thead><tbody>';
+
+      // Rows
+      const rows = [
+        { label: 'Inventory Distinction', key: 'isFleetConfirmed', fn: v => v.isFleetConfirmed ? '✅ 4WHEELS Core Fleet' : '📋 Request Catalog Model' },
+        { label: 'Body Category', key: 'bodyType', fn: v => v.bodyType },
+        { label: 'Seating Capacity', key: 'seats', fn: v => 'Up to ' + v.maxPassengers + ' occupants (' + '👤 '.repeat(v.seats) + ')' },
+        { label: 'Luggage Boot Space', key: 'bootCapacity', fn: v => v.bootCapacity || 'Standard Luggage Deck' },
+        { label: 'Powertrain & Fuel', key: 'fuelType', fn: v => v.fuelType + ' (' + (v.engine || 'Electric Motor') + ')' },
+        { label: 'Tank / Battery Spec', key: 'fuelTankCapacity', fn: v => v.fuelType === 'Electric' ? '🔋 ' + v.batteryCapacity + ' (' + v.electricRange + ')' : '⛽ ' + (v.fuelTankCapacity || 'N/A') },
+        { label: 'Transmission', key: 'transmission', fn: v => v.transmission },
+        { label: 'Ground Clearance', key: 'groundClearance', fn: v => v.groundClearance || 'N/A' },
+        { label: 'Official Colors', key: 'colors', fn: v => v.colors.join(', ') }
+      ];
+
+      rows.forEach((r, idx) => {
+        const bg = idx % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+        html += '<tr class="' + bg + '"><td class="p-3 border border-gray-200 font-bold text-gray-700">' + r.label + '</td>';
+        selected.forEach(v => {
+          html += '<td class="p-3 border border-gray-200 text-center font-medium text-gray-900">' + r.fn(v) + '</td>';
+        });
+        html += '</tr>';
+      });
+
+      // Actions row
+      html += '<tr class="bg-gray-100"><td class="p-3 border border-gray-200 font-bold text-gray-700">Request Action</td>';
+      selected.forEach(v => {
+        const waMsg = encodeURIComponent('Hi 4WHEELS, I compared ' + v.brand + ' ' + v.model + ' on your website and would like to check rental availability and prices.');
+        html += '<td class="p-3 border border-gray-200 text-center"><a href="https://wa.me/923216616644?text=' + waMsg + '" target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold px-3 py-1.5 rounded text-xs transition-colors">Inquire WhatsApp</a></td>';
+      });
+      html += '</tr></tbody></table>';
+
+      container.innerHTML = html;
+    }
+
+    [v1Select, v2Select, v3Select].forEach(s => s && s.addEventListener('change', renderMatrix));
+    renderMatrix();
+  `} />
+</body>
+</html>

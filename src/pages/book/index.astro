@@ -1,10 +1,351 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import SEOHead from '../../components/SEOHead.astro';
+import HeaderComp from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTASection from '../../components/CTASection.astro';
+import { BUSINESS_INFO } from '../../data/business';
+import { PAKISTAN_VEHICLE_CATALOG } from '../../data/pakistanVehicles';
+
+const canonicalUrl = `${BUSINESS_INFO.siteUrl}/book/`;
 ---
 
-<Layout title="Book Rent a Car in Lahore - 4WHEELS" description="Redirecting to 4WHEELS rental configurator for Lahore car rental bookings.">
-  <meta http-equiv="refresh" content="0;url=/build-your-rental/" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <SEOHead
+    title="Smart Rental Booking Configurator | 4WHEELS Rent a Car Lahore"
+    description="Configure your vehicle rental step-by-step: select model, color, rental mode, dates, luggage, and destination. Generates prefilled WhatsApp request to +92 321 6616644."
+    canonicalUrl={canonicalUrl}
+  />
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+  <HeaderComp />
+
+  <main>
+    <!-- Header Banner -->
+    <section class="bg-gradient-to-r from-slate-900 via-gray-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="bg-brand-red/20 text-brand-red border border-brand-red/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider inline-block mb-3">
+          Smart Booking Engine
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Configure Your Rental Request</h1>
+        <p class="text-sm sm:text-base text-gray-300 mt-2">
+          Step-by-step custom vehicle builder. Review your complete summary before sending directly to 4WHEELS WhatsApp customer care.
+        </p>
+
+        <!-- Stepper Indicator -->
+        <div class="mt-8 grid grid-cols-5 gap-2 max-w-2xl mx-auto text-xs font-bold">
+          <div class="bg-brand-red text-white py-2 rounded-lg text-center">1 Vehicle</div>
+          <div class="bg-slate-800 text-gray-300 py-2 rounded-lg text-center">2 Specs</div>
+          <div class="bg-slate-800 text-gray-300 py-2 rounded-lg text-center">3 Dates</div>
+          <div class="bg-slate-800 text-gray-300 py-2 rounded-lg text-center">4 Trip</div>
+          <div class="bg-slate-800 text-gray-300 py-2 rounded-lg text-center">5 Review</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Configurator Form -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+        <form id="smartBookingForm" class="p-6 sm:p-10 space-y-8">
+
+          <!-- Step 1 to Step 5: Vehicle Selection -->
+          <div>
+            <h2 class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-2 mb-4 flex items-center gap-2">
+              <span class="bg-brand-red text-white text-xs px-2 py-0.5 rounded-full">Step 1-5</span>
+              Vehicle Selection & Preferred Specs
+            </h2>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Vehicle Model</label>
+                <select id="selectedVehicle" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required>
+                  {PAKISTAN_VEHICLE_CATALOG.map(v => (
+                    <option value={`${v.brand} ${v.model} (${v.variant || ''})`}>
+                      {v.brand} {v.model} — {v.category.toUpperCase()} ({v.isFleetConfirmed ? '4WHEELS Fleet' : 'Catalog Request'})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Preferred Color</label>
+                <select id="preferredColor" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none">
+                  <option value="Any Available Color">Any Available Color (Fastest Confirmation)</option>
+                  <option value="Super White / Solid White">Super White / Solid White</option>
+                  <option value="Attitude Black / Metallic Black">Attitude Black / Metallic Black</option>
+                  <option value="Silver Metallic">Silver Metallic</option>
+                  <option value="Graphite / Meteoroid Gray">Graphite / Meteoroid Gray</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Rental Type</label>
+                <select id="rentalType" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none">
+                  <option value="With Driver (Chauffeur Driven)">With Driver (Chauffeur Driven - Recommended)</option>
+                  <option value="Self Drive (Local Verification Applies)">Self Drive (Local ID & Security Required)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Trip Purpose</label>
+                <select id="tripPurpose" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none">
+                  <option value="Personal / City Commute">Personal / City Commute</option>
+                  <option value="Airport Pickup / Drop">Airport Pickup / Drop</option>
+                  <option value="Wedding / Family Event">Wedding / Family Event</option>
+                  <option value="Corporate / Business Delegation">Corporate / Business Delegation</option>
+                  <option value="Northern Areas Outstation Tour">Northern Areas Outstation Tour</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 7 to Step 9: Booking Dates & Duration Calendar -->
+          <div>
+            <h2 class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-2 mb-4 flex items-center gap-2">
+              <span class="bg-brand-red text-white text-xs px-2 py-0.5 rounded-full">Step 7-9</span>
+              Rental Schedule & Duration Calculation
+            </h2>
+
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Start Date</label>
+                <input type="date" id="startDate" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">End Date</label>
+                <input type="date" id="endDate" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Calculated Rental Days</label>
+                <div id="totalRentalDays" class="bg-gray-100 border border-gray-200 rounded-lg p-3 text-sm font-extrabold text-center text-brand-red">
+                  1 Day
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 10 to Step 14: Passengers, Luggage & Route -->
+          <div>
+            <h2 class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-2 mb-4 flex items-center gap-2">
+              <span class="bg-brand-red text-white text-xs px-2 py-0.5 rounded-full">Step 10-14</span>
+              Passengers, Luggage & Route
+            </h2>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Passengers Count</label>
+                <input type="number" id="passengerCount" min="1" max="50" value="4" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Luggage Bags Count</label>
+                <input type="text" id="luggageCount" placeholder="e.g. 2 Large Suitcases, 2 Handbags" value="2 Large Bags" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Pickup Location</label>
+                <input type="text" id="pickupAddress" placeholder="e.g. Johar Town, Lahore / Allama Iqbal Airport" value="Lahore" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Destination / Route</label>
+                <input type="text" id="destinationAddress" placeholder="e.g. Murree / Islamabad / Lahore Local" value="Lahore City Local" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 15 to Step 17: Contact Details -->
+          <div>
+            <h2 class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-2 mb-4 flex items-center gap-2">
+              <span class="bg-brand-red text-white text-xs px-2 py-0.5 rounded-full">Step 15-17</span>
+              Customer Contact Information
+            </h2>
+
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Full Name</label>
+                <input type="text" id="customerName" placeholder="e.g. Ahmed Raza" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Contact Phone</label>
+                <input type="tel" id="customerPhone" placeholder="03XXXXXXXXX" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" required />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Company (Optional)</label>
+                <input type="text" id="customerCompany" placeholder="Optional" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 13 / 27: Summary Review Screen Before WhatsApp -->
+          <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-md border border-slate-800">
+            <h3 class="text-lg font-extrabold text-amber-400 border-b border-slate-700 pb-2 mb-4">
+              📋 Review Your Rental Request Summary
+            </h3>
+
+            <div id="reviewSummaryBox" class="text-xs sm:text-sm space-y-2 text-gray-200">
+              <!-- Live JS populated summary -->
+            </div>
+
+            <!-- Indicative Price Disclaimer -->
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-gray-400">
+              💡 <strong>Indicative Rental Estimate:</strong> Final quotation depends on exact model year, fuel arrangement, driver allowances, toll treatment, and seasonal demand. 4WHEELS customer care will provide your confirmed price quote directly on WhatsApp.
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-green-600 hover:bg-green-700 text-white font-black py-4 rounded-xl shadow-xl transition-all text-center flex items-center justify-center gap-2 text-base"
+          >
+            💬 Continue to WhatsApp & Send Request
+          </button>
+        </form>
+      </div>
+
+      <!-- Quick Customer Care Option -->
+      <div class="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-6 text-center">
+        <h3 class="font-bold text-blue-900 text-base mb-1">Need Help Choosing?</h3>
+        <p class="text-xs text-blue-800 mb-3">If you prefer quick guidance, ask 4WHEELS Customer Care directly.</p>
+        <a
+          href="https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20need%20help%20choosing%20the%20right%20rental%20vehicle.%20Please%20guide%20me."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-xs transition-colors"
+        >
+          Ask 4WHEELS Customer Care on WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+
+  <Footer />
+
   <script>
-    window.location.href = "/build-your-rental/";
+    const startDateInput = document.getElementById('startDate') as HTMLInputElement;
+    const endDateInput = document.getElementById('endDate') as HTMLInputElement;
+    const totalRentalDays = document.getElementById('totalRentalDays');
+    const reviewSummaryBox = document.getElementById('reviewSummaryBox');
+    const bookingForm = document.getElementById('smartBookingForm') as HTMLFormElement;
+
+    const today = new Date().toISOString().split('T')[0];
+    if (startDateInput && endDateInput) {
+      startDateInput.min = today;
+      endDateInput.min = today;
+      startDateInput.value = today;
+      endDateInput.value = today;
+    }
+
+    function updateSummary() {
+      if (!startDateInput || !endDateInput || !totalRentalDays || !reviewSummaryBox) return;
+
+      const start = new Date(startDateInput.value);
+      const end = new Date(endDateInput.value);
+
+      if (end < start) {
+        endDateInput.value = startDateInput.value;
+      }
+
+      const diffTime = Math.abs(new Date(endDateInput.value).getTime() - new Date(startDateInput.value).getTime());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+      totalRentalDays.textContent = `${diffDays} ${diffDays === 1 ? 'Day' : 'Days'}`;
+
+      const vehicle = (document.getElementById('selectedVehicle') as HTMLSelectElement)?.value || 'Corolla';
+      const color = (document.getElementById('preferredColor') as HTMLSelectElement)?.value || 'Any Available';
+      const rental = (document.getElementById('rentalType') as HTMLSelectElement)?.value || 'With Driver';
+      const passengers = (document.getElementById('passengerCount') as HTMLInputElement)?.value || '4';
+      const luggage = (document.getElementById('luggageCount') as HTMLInputElement)?.value || '2 Bags';
+      const pickup = (document.getElementById('pickupAddress') as HTMLInputElement)?.value || 'Lahore';
+      const destination = (document.getElementById('destinationAddress') as HTMLInputElement)?.value || 'Lahore City';
+      const purpose = (document.getElementById('tripPurpose') as HTMLSelectElement)?.value || 'Personal Travel';
+      const name = (document.getElementById('customerName') as HTMLInputElement)?.value || 'Customer';
+
+      reviewSummaryBox.innerHTML = `
+        <div class="grid sm:grid-cols-2 gap-2">
+          <div><strong>Vehicle:</strong> ${vehicle}</div>
+          <div><strong>Color:</strong> ${color}</div>
+          <div><strong>Rental Mode:</strong> ${rental}</div>
+          <div><strong>Duration:</strong> ${startDateInput.value} to ${endDateInput.value} (${diffDays} Days)</div>
+          <div><strong>Passengers:</strong> ${passengers}</div>
+          <div><strong>Luggage:</strong> ${luggage}</div>
+          <div><strong>Pickup:</strong> ${pickup}</div>
+          <div><strong>Destination:</strong> ${destination}</div>
+          <div><strong>Purpose:</strong> ${purpose}</div>
+          <div><strong>Customer Name:</strong> ${name}</div>
+        </div>
+      `;
+    }
+
+    ['selectedVehicle', 'preferredColor', 'rentalType', 'tripPurpose', 'startDate', 'endDate', 'passengerCount', 'luggageCount', 'pickupAddress', 'destinationAddress', 'customerName'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', updateSummary);
+      document.getElementById(id)?.addEventListener('change', updateSummary);
+    });
+
+    updateSummary();
+
+    bookingForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const vehicle = (document.getElementById('selectedVehicle') as HTMLSelectElement).value;
+      const color = (document.getElementById('preferredColor') as HTMLSelectElement).value;
+      const rental = (document.getElementById('rentalType') as HTMLSelectElement).value;
+      const startDate = startDateInput.value;
+      const endDate = endDateInput.value;
+      const duration = totalRentalDays?.textContent || '1 Day';
+      const passengers = (document.getElementById('passengerCount') as HTMLInputElement).value;
+      const luggage = (document.getElementById('luggageCount') as HTMLInputElement).value;
+      const pickup = (document.getElementById('pickupAddress') as HTMLInputElement).value;
+      const destination = (document.getElementById('destinationAddress') as HTMLInputElement).value;
+      const purpose = (document.getElementById('tripPurpose') as HTMLSelectElement).value;
+      const name = (document.getElementById('customerName') as HTMLInputElement).value;
+      const phone = (document.getElementById('customerPhone') as HTMLInputElement).value;
+      const company = (document.getElementById('customerCompany') as HTMLInputElement).value;
+
+      const formattedMsg =
+`Hello 4WHEELS, I would like to check vehicle availability and get the latest quotation.
+
+Vehicle
+Brand & Model: ${vehicle}
+Preferred Color: ${color}
+Rental Type: ${rental}
+
+Dates
+Start Date: ${startDate}
+End Date: ${endDate}
+Total Rental Days: ${duration}
+
+Trip
+Passengers: ${passengers}
+Luggage: ${luggage}
+Pickup: ${pickup}
+Destination: ${destination}
+Purpose: ${purpose}
+
+Customer
+Name: ${name}
+Phone: ${phone}${company ? `\nCompany: ${company}` : ''}
+
+Please confirm:
+• Current availability
+• Latest rental price
+• Fuel arrangement
+• Driver charges if applicable
+• Toll/M-Tag treatment
+• Other relevant trip charges
+• Rental requirements
+
+Thank you.`;
+
+      const whatsappUrl = `https://wa.me/923216616644?text=${encodeURIComponent(formattedMsg)}`;
+      window.open(whatsappUrl, '_blank');
+    });
   </script>
-</Layout>
+</body>
+</html>

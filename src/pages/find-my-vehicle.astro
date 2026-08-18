@@ -1,0 +1,185 @@
+---
+import SEOHead from '../components/SEOHead.astro';
+import HeaderComp from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+import { PAKISTAN_VEHICLE_CATALOG } from '../data/pakistanVehicles';
+
+const canonicalUrl = `${BUSINESS_INFO.siteUrl}/find-my-vehicle/`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <SEOHead
+    title="Trip Fit Planner - Find My Rental Vehicle | 4WHEELS Lahore"
+    description="Select your passenger count, luggage size, trip type, and category preference to discover the best suited vehicle for your travel in Lahore or outstation."
+    canonicalUrl={canonicalUrl}
+  />
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+  <HeaderComp />
+
+  <main>
+    <section class="bg-gradient-to-r from-slate-900 via-zinc-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-4xl mx-auto">
+        <span class="bg-brand-red/20 text-brand-red border border-brand-red/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider inline-block mb-3">
+          Smart Recommendation Engine
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Trip Fit Planner</h1>
+        <p class="text-gray-300 text-sm sm:text-base mt-2 max-w-2xl mx-auto">
+          Tell us your passenger numbers, baggage, and trip purpose. We will match you with optimal vehicle categories.
+        </p>
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
+        <form id="tripPlannerForm" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div>
+            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Passengers</label>
+            <select id="pPax" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none">
+              <option value="1-4">1 to 4 Passengers (Sedan / Hatchback)</option>
+              <option value="5-6">5 to 6 Passengers (SUV / Crossover)</option>
+              <option value="7-12">7 to 12 Passengers (7-Seater / HiAce)</option>
+              <option value="13+">13+ Group (Coaster / Mini Bus)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Luggage Bags</label>
+            <select id="pBags" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none">
+              <option value="small">Small Bags / City Travel</option>
+              <option value="medium">2-3 Suitcases</option>
+              <option value="large">4+ Large Suitcases / Heavy Luggage</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Trip Type</label>
+            <select id="pTrip" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none">
+              <option value="city">Lahore City Commute</option>
+              <option value="airport">Airport Transfer</option>
+              <option value="wedding">Wedding / Event</option>
+              <option value="tour">Outstation / Northern Tour</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Category Preference</label>
+            <select id="pCategory" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-red focus:outline-none">
+              <option value="all">All Suitable Categories</option>
+              <option value="sedan">Executive Sedan</option>
+              <option value="suv">SUV / 4x4</option>
+              <option value="ev">Electric Vehicle (EV)</option>
+              <option value="van">Passenger Van / Coaster</option>
+            </select>
+          </div>
+        </form>
+
+        <div class="border-t border-gray-200 pt-6">
+          <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center justify-between">
+            <span>Recommended Vehicles</span>
+            <span id="matchCount" class="text-xs bg-brand-red/10 text-brand-red font-bold px-2.5 py-1 rounded-full">Matches Found</span>
+          </h2>
+
+          <div id="recommendationsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PAKISTAN_VEHICLE_CATALOG.map(car => (
+              <div
+                class="vehicle-card bg-gray-50 rounded-xl p-5 border border-gray-200 flex flex-col justify-between"
+                data-category={car.category}
+                data-seats={car.seats}
+                data-fleet={car.isFleetConfirmed ? 'true' : 'false'}
+              >
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                      car.isFleetConfirmed ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
+                    }`}>
+                      {car.isFleetConfirmed ? '4WHEELS Fleet' : 'Catalog Request'}
+                    </span>
+                    <span class="text-xs text-gray-500 font-semibold">{car.bodyType}</span>
+                  </div>
+
+                  <h3 class="text-lg font-bold text-gray-900">{car.brand} {car.model}</h3>
+                  <p class="text-xs text-gray-600 mb-3">{car.variant}</p>
+
+                  <div class="text-xs space-y-1 text-gray-700 bg-white p-3 rounded-lg border border-gray-100 mb-4">
+                    <div>👤 <strong>Max Occupants:</strong> {car.maxPassengers}</div>
+                    <div>🧳 <strong>Boot Space:</strong> {car.bootCapacity || 'Standard Trunk'}</div>
+                    <div>⚙️ <strong>Powertrain:</strong> {car.fuelType}</div>
+                  </div>
+                </div>
+
+                <div class="flex gap-2">
+                  <a
+                    href={`/vehicles/${car.brandSlug}/${car.slug}/`}
+                    class="flex-1 text-center text-xs font-bold bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 rounded-lg transition-colors"
+                  >
+                    View Specs
+                  </a>
+                  <a
+                    href={`/book/`}
+                    class="flex-1 text-center text-xs font-bold bg-brand-red hover:bg-red-700 text-white py-2 rounded-lg transition-colors"
+                  >
+                    Select & Book
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+
+  <Footer />
+
+  <script>
+    const pPax = document.getElementById('pPax') as HTMLSelectElement;
+    const pBags = document.getElementById('pBags') as HTMLSelectElement;
+    const pTrip = document.getElementById('pTrip') as HTMLSelectElement;
+    const pCategory = document.getElementById('pCategory') as HTMLSelectElement;
+    const cards = document.querySelectorAll('.vehicle-card') as NodeListOf<HTMLElement>;
+    const matchCount = document.getElementById('matchCount');
+
+    function filterRecommendations() {
+      const paxVal = pPax?.value || '1-4';
+      const catVal = pCategory?.value || 'all';
+
+      let visible = 0;
+
+      cards.forEach(card => {
+        const seats = parseInt(card.dataset.seats || '5', 10);
+        const category = card.dataset.category || '';
+
+        let matchesPax = true;
+        if (paxVal === '1-4' && seats > 5) matchesPax = false;
+        if (paxVal === '5-6' && (seats < 5 || seats > 7)) matchesPax = false;
+        if (paxVal === '7-12' && (seats < 7 || seats > 14)) matchesPax = false;
+        if (paxVal === '13+' && seats < 13) matchesPax = false;
+
+        let matchesCat = true;
+        if (catVal !== 'all' && category !== catVal) matchesCat = false;
+
+        if (matchesPax && matchesCat) {
+          card.style.display = 'flex';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (matchCount) {
+        matchCount.textContent = `${visible} Matches Found`;
+      }
+    }
+
+    [pPax, pBags, pTrip, pCategory].forEach(el => el?.addEventListener('change', filterRecommendations));
+    filterRecommendations();
+  </script>
+</body>
+</html>
