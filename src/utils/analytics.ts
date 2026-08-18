@@ -27,3 +27,11 @@ export function trackBrandEvent(type: 'official_page_view' | 'verify_official_cl
 export function trackCommercialEvent(type: 'book_trip_start' | 'booking_review' | 'booking_whatsapp_click' | 'trip_planner_start' | 'trip_estimate_generated' | 'trip_plan_whatsapp_click', details: Record<string, any> = {}) {
   trackEvent(type, details);
 }
+
+// CONTENT & NAVIGATION EVENTS (PHASE 5)
+export function trackNavigationEvent(
+  type: 'nav_rent_vehicle' | 'nav_plan_trip' | 'nav_business_groups' | 'nav_explore' | 'nav_book_trip' | 'mobile_menu_open' | 'site_search' | 'site_search_open' | 'site_search_query' | 'guide_view' | 'route_view' | 'location_view' | 'plan_this_trip' | 'content_to_booking',
+  details: Record<string, any> = {}
+) {
+  trackEvent(type, details);
+}

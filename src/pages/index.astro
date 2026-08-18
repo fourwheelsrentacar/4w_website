@@ -6,16 +6,16 @@ import CTASection from '../components/CTASection.astro';
 import { BUSINESS_INFO } from '../data/business';
 
 const title = "4WHEELS Rent a Car Lahore | Self Drive & With Driver";
-const description = "Rent a car in Lahore with 4WHEELS. Serving Lahore Since 2008. Self-drive and with-driver options for daily, monthly, airport and corporate rental requirements. Call or WhatsApp for latest price.";
+const description = "Rent a car in Lahore with 4WHEELS. Serving Lahore Since 2008. Self-drive and with-driver options for daily, monthly, airport and corporate rental requirements. Book your trip directly.";
 
 const homepageFaqs = [
   {
     question: "How are rental prices determined?",
-    answer: "Rental rates depend on vehicle type, rental duration, route, fuel arrangements, tolls, and whether you choose self-drive or a driver. Contact 4WHEELS via phone or WhatsApp for a customized quote."
+    answer: "Rental rates depend on vehicle type, duration, route, fuel arrangements, tolls, and whether you choose self-drive or a driver. Contact 4WHEELS via phone or WhatsApp for a customized quote."
   },
   {
     question: "Can I rent a self-drive car in Lahore?",
-    answer: "Yes, 4WHEELS provides self-drive car rental options in Lahore. Contact us directly via phone or WhatsApp to verify availability and current documentation requirements."
+    answer: "Yes, 4WHEELS provides self-drive car rental options in Lahore. Submit a booking inquiry directly via our online configurator or WhatsApp."
   },
   {
     question: "Can I rent a car with a driver?",
@@ -28,10 +28,6 @@ const homepageFaqs = [
   {
     question: "Can I book a car for Lahore Airport transfers?",
     answer: "Yes, we provide direct pickup and drop-off services for Allama Iqbal International Airport Lahore."
-  },
-  {
-    question: "How do I check vehicle availability and get the latest price?",
-    answer: "Contact 4WHEELS directly at 0321 6616644 or message us on WhatsApp with your travel dates and requirements."
   }
 ];
 ---
@@ -55,51 +51,108 @@ const homepageFaqs = [
           </p>
           <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
             <a
-              href={BUSINESS_INFO.telLink}
-              class="bg-red-600 hover:bg-red-700 text-white font-bold text-base px-6 py-3.5 rounded-xl transition-all text-center shadow-lg shadow-red-600/20"
+              href="/build-your-rental/"
+              class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-base px-7 py-3.5 rounded-xl transition-all text-center shadow-lg shadow-red-600/20 uppercase tracking-wider"
             >
-              📞 Call {BUSINESS_INFO.phoneDisplay}
+              🚗 BOOK YOUR TRIP
             </a>
             <a
-              href={BUSINESS_INFO.whatsappPriceLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base px-6 py-3.5 rounded-xl transition-all text-center shadow-lg shadow-emerald-600/20"
+              href="/trip-planner/"
+              class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-base px-6 py-3.5 rounded-xl transition-all text-center shadow-lg uppercase tracking-wider"
             >
-              💬 WhatsApp for Latest Price
+              🧭 PLAN MY TRIP
             </a>
           </div>
         </div>
         <div class="lg:col-span-5 bg-slate-800/80 border border-slate-700 rounded-2xl p-6 sm:p-8 space-y-4">
           <div class="text-xs text-red-400 font-bold uppercase tracking-wider">{BUSINESS_INFO.trustBadge}</div>
-          <h2 class="text-xl font-bold text-white border-b border-slate-700 pb-3">Quick Availability Check</h2>
+          <h2 class="text-xl font-bold text-white border-b border-slate-700 pb-3">Quick Trip Planner & Inquiry</h2>
           <p class="text-sm text-slate-300">
-            Need a rental car in Lahore? Contact our team directly to verify vehicle availability and get an accurate rate for your dates.
+            Configure your rental vehicle, rental dates, and intercity route with our interactive planning tools.
           </p>
           <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
-            <li class="flex items-center gap-2">✓ Self-drive rental options</li>
-            <li class="flex items-center gap-2">✓ Professional drivers available</li>
+            <li class="flex items-center gap-2">✓ Self-drive & Chauffeur options</li>
+            <li class="flex items-center gap-2">✓ Intercity fuel & toll estimates</li>
             <li class="flex items-center gap-2">✓ Lahore Airport transfers</li>
-            <li class="flex items-center gap-2">✓ Flexible daily & monthly duration</li>
+            <li class="flex items-center gap-2">✓ Flexible daily & monthly options</li>
           </ul>
           <div class="pt-2 flex flex-col gap-2">
             <a
-              href={BUSINESS_INFO.whatsappTripLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block w-full text-center bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-2.5 rounded-lg text-sm transition-colors"
+              href="/build-your-rental/"
+              class="block w-full text-center bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 rounded-lg text-sm transition-colors uppercase"
             >
-              💬 WhatsApp for Trip Information
+              Configure Rental
             </a>
             <a
-              href="/contact/"
-              class="block w-full text-center bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2 rounded-lg text-xs transition-colors border border-slate-600"
+              href="/official/"
+              class="block w-full text-center bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold py-2 rounded-lg text-xs transition-colors border border-slate-600"
             >
-              View Contact & Location Info
+              Verify Official 4WHEELS Branch
             </a>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Compact Discovery Sections -->
+  <section class="py-12 bg-slate-950 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+      <!-- Discovery 1: Popular Routes -->
+      <div>
+        <div class="flex justify-between items-end mb-6">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-white">Popular Pakistan Routes</h2>
+            <p class="text-xs sm:text-sm text-slate-400">Intercity motorway guides with fuel & toll estimates</p>
+          </div>
+          <a href="/routes/" class="text-xs font-bold text-red-400 hover:underline">View All Routes →</a>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+          <a href="/routes/lahore-to-islamabad/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
+            <p class="font-bold text-white text-sm">Lahore to Islamabad</p>
+            <p class="text-slate-400">M-2 Motorway • 375 km</p>
+          </a>
+          <a href="/routes/lahore-to-murree/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
+            <p class="font-bold text-white text-sm">Lahore to Murree</p>
+            <p class="text-slate-400">Hill Station • 435 km</p>
+          </a>
+          <a href="/routes/lahore-to-faisalabad/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
+            <p class="font-bold text-white text-sm">Lahore to Faisalabad</p>
+            <p class="text-slate-400">M-3 Motorway • 180 km</p>
+          </a>
+          <a href="/routes/lahore-to-multan/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
+            <p class="font-bold text-white text-sm">Lahore to Multan</p>
+            <p class="text-slate-400">M-4 Motorway • 345 km</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Discovery 2: Knowledge Hub Guides -->
+      <div>
+        <div class="flex justify-between items-end mb-6">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-white">Travel & Rental Guides</h2>
+            <p class="text-xs sm:text-sm text-slate-400">First-party advice on renting vehicles in Lahore</p>
+          </div>
+          <a href="/guides/" class="text-xs font-bold text-red-400 hover:underline">View Knowledge Hub →</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <a href="/guides/how-to-rent-a-car-in-lahore/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
+            <span class="text-[10px] font-bold uppercase text-red-400">Rental Basics</span>
+            <p class="font-bold text-white text-sm">How to Rent a Car in Lahore</p>
+          </a>
+          <a href="/guides/self-drive-vs-car-with-driver-lahore/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
+            <span class="text-[10px] font-bold uppercase text-amber-400">Self Drive</span>
+            <p class="font-bold text-white text-sm">Self Drive vs Car With Driver</p>
+          </a>
+          <a href="/guides/sedan-vs-suv-for-lahore-road-trips/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
+            <span class="text-[10px] font-bold uppercase text-blue-400">Vehicle Choice</span>
+            <p class="font-bold text-white text-sm">Sedan vs SUV for Road Trips</p>
+          </a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -128,7 +181,7 @@ const homepageFaqs = [
       <ServiceCard
         title="Daily Rentals"
         description="Short-term rental arrangements suited for daily travel, weekend trips, and quick errands."
-        href="/rent-a-car-lahore/"
+        href="/daily-car-rental-lahore/"
         icon="📅"
       />
       <ServiceCard
@@ -152,42 +205,6 @@ const homepageFaqs = [
     </div>
   </section>
 
-  <!-- How Booking Works -->
-  <section class="py-12 bg-white border-y border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4">How Booking Works</h2>
-        <p class="text-slate-600">Simple three-step rental process with 4WHEELS Rent a Car.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center p-6 rounded-xl bg-slate-50 border border-slate-100">
-          <div class="w-12 h-12 bg-red-600 text-white font-bold text-xl rounded-full flex items-center justify-center mx-auto mb-4">1</div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Contact 4WHEELS</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Tell us your preferred dates, rental type (self-drive or with driver), and destination details.
-          </p>
-        </div>
-
-        <div class="text-center p-6 rounded-xl bg-slate-50 border border-slate-100">
-          <div class="w-12 h-12 bg-red-600 text-white font-bold text-xl rounded-full flex items-center justify-center mx-auto mb-4">2</div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Check Price & Availability</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            We confirm current vehicle availability and provide a clear quotation based on your trip requirements.
-          </p>
-        </div>
-
-        <div class="text-center p-6 rounded-xl bg-slate-50 border border-slate-100">
-          <div class="w-12 h-12 bg-red-600 text-white font-bold text-xl rounded-full flex items-center justify-center mx-auto mb-4">3</div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Confirm Your Booking</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Finalize the appropriate vehicle and rental arrangement for pickup or delivery in Lahore.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Official 4WHEELS Trust Section -->
   <section class="py-12 bg-slate-900 text-white border-y border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -202,22 +219,14 @@ const homepageFaqs = [
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm font-bold">
         <a
-          href={BUSINESS_INFO.telLink}
-          class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl transition-colors"
+          href="/build-your-rental/"
+          class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-8 py-3.5 rounded-xl transition-colors uppercase tracking-wider"
         >
-          📞 Call: {BUSINESS_INFO.phoneDisplay}
-        </a>
-        <a
-          href={BUSINESS_INFO.whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl transition-colors"
-        >
-          💬 WhatsApp Customer Care
+          🚗 BOOK YOUR TRIP
         </a>
         <a
           href="/official/"
-          class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-6 py-3 rounded-xl transition-colors"
+          class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-6 py-3.5 rounded-xl transition-colors"
         >
           Verify Official Details →
         </a>
@@ -225,101 +234,18 @@ const homepageFaqs = [
     </div>
   </section>
 
-  <!-- Why Choose 4WHEELS -->
-  <section class="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mx-auto text-center mb-10">
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">Why Choose 4WHEELS</h2>
-      <div class="text-red-600 font-bold text-sm mb-4">{BUSINESS_INFO.trustBadge}</div>
-      <p class="text-slate-600">Focused on clear communication and practical car rental in Lahore.</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="p-5 rounded-xl border border-slate-200 bg-white">
-        <h3 class="font-bold text-slate-900 mb-1">✓ Serving Lahore Since 2008</h3>
-        <p class="text-slate-600 text-sm">Over 15 years of local experience serving Johar Town, Gulberg, DHA, and Lahore Airport.</p>
-      </div>
-      <div class="p-5 rounded-xl border border-slate-200 bg-white">
-        <h3 class="font-bold text-slate-900 mb-1">✓ Both Rental Options</h3>
-        <p class="text-slate-600 text-sm">Choose between self-drive freedom or relaxed travel with a professional driver.</p>
-      </div>
-      <div class="p-5 rounded-xl border border-slate-200 bg-white">
-        <h3 class="font-bold text-slate-900 mb-1">✓ Flexible Rental Durations</h3>
-        <p class="text-slate-600 text-sm">Rent for a single day, airport trip, or extended monthly rental periods.</p>
-      </div>
-      <div class="p-5 rounded-xl border border-slate-200 bg-white">
-        <h3 class="font-bold text-slate-900 mb-1">✓ Direct Communication</h3>
-        <p class="text-slate-600 text-sm">Speak directly with our team via phone or WhatsApp for quick confirmation.</p>
-      </div>
-      <div class="p-5 rounded-xl border border-slate-200 bg-white">
-        <h3 class="font-bold text-slate-900 mb-1">✓ Airport Coverage</h3>
-        <p class="text-slate-600 text-sm">Convenient transfers to and from Allama Iqbal International Airport Lahore.</p>
-      </div>
-      <div class="p-5 rounded-xl border border-slate-200 bg-white">
-        <h3 class="font-bold text-slate-900 mb-1">✓ Corporate Solutions</h3>
-        <p class="text-slate-600 text-sm">Custom vehicle arrangements for corporate travel and long-term business needs.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Location Section -->
-  <section class="py-12 bg-slate-100 border-y border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4">Visit or Contact 4WHEELS in Lahore</h2>
-          <p class="text-slate-600 mb-6 leading-relaxed">
-            Our office is located in Johar Town Phase 1, Lahore ({BUSINESS_INFO.trustBadge}). You can call or WhatsApp us anytime to inquire about current car rental availability.
-          </p>
-          <div class="space-y-3 text-sm">
-            <div class="flex items-start gap-2">
-              <span class="font-bold text-slate-900">Address:</span>
-              <span class="text-slate-700">{BUSINESS_INFO.address.fullAddress}</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="font-bold text-slate-900">Phone:</span>
-              <a href={BUSINESS_INFO.telLink} class="text-red-600 font-bold hover:underline">{BUSINESS_INFO.phoneDisplay}</a>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="font-bold text-slate-900">WhatsApp:</span>
-              <a href={BUSINESS_INFO.whatsappPriceLink} target="_blank" rel="noopener noreferrer" class="text-emerald-600 font-bold hover:underline">0321 6616644</a>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Location Map & Office</h3>
-          <p class="text-slate-600 text-sm mb-4">
-            Johar Town Phase 1 is easily accessible from major Lahore routes including Canal Bank Road and MM Alam Road.
-          </p>
-          <a
-            href="https://maps.google.com/?q=Johar+Town+Phase+1+Lahore"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-block bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-5 rounded-lg text-sm transition-colors"
-          >
-            📍 Open Location in Google Maps
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Preview -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-12">
     <FAQ items={homepageFaqs} />
-    <div class="text-center -mt-4 mb-12">
-      <a href="/faq/" class="text-red-600 font-bold hover:underline text-sm inline-flex items-center gap-1">
-        <span>View All Frequently Asked Questions</span>
-        <span>→</span>
-      </a>
-    </div>
   </div>
 
-  <!-- Final CTA: Need the Latest Rental Price? -->
+  <!-- Final CTA -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
     <CTASection
-      heading="Need the Latest Rental Price?"
-      subheading="Quotations vary based on vehicle selection, duration, fuel costs, route, driver requirement, and tolls. Contact 4WHEELS directly for an accurate current quote."
-      ctaType="price"
+      title="Ready to Plan & Book Your Trip?"
+      description="Use our booking configurator to select dates and vehicles, and receive direct WhatsApp verification from 4WHEELS Customer Care."
+      primaryBtnText="Book Your Trip"
+      primaryBtnHref="/build-your-rental/"
     />
   </div>
 </Layout>
