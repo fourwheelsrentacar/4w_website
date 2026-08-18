@@ -1,0 +1,147 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SEOHead from '../../components/SEOHead.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import { PAKISTAN_ROUTES, getRouteBySlug } from '../../data/routes';
+
+export function getStaticPaths() {
+  return PAKISTAN_ROUTES.map(route => ({
+    params: { slug: route.slug },
+    props: { route }
+  }));
+}
+
+const { route } = Astro.props;
+
+if (!route) {
+  return Astro.redirect('/404');
+}
+
+const pageTitle = `${route.title} | 4WHEELS Pakistan Routes`;
+const pageDescription = `Detailed route breakdown from ${route.origin} to ${route.destination}: ${route.distanceKm} km, driving duration ${route.drivingTimeHours}, fuel estimate, tolls, and recommended rental cars.`;
+const canonicalUrl = `https://4wheelsrentacar.pk/routes/${route.slug}/`;
+
+const tripPlannerUrl = `/trip-planner/?origin=${encodeURIComponent(route.origin)}&destination=${encodeURIComponent(route.destination)}`;
+---
+
+<Layout title={pageTitle}>
+  <SEOHead
+    title={pageTitle}
+    description={pageDescription}
+    canonicalUrl={canonicalUrl}
+  />
+
+  <main class="bg-slate-950 text-slate-100 min-h-screen pb-16">
+    <!-- Breadcrumbs -->
+    <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+      <div class="max-w-5xl mx-auto flex items-center space-x-2">
+        <a href="/" class="hover:text-white">Home</a>
+        <span>›</span>
+        <a href="/routes/" class="hover:text-white">Routes</a>
+        <span>›</span>
+        <span class="text-slate-200 font-semibold truncate">{route.origin} to {route.destination}</span>
+      </div>
+    </nav>
+
+    <!-- Header Hero -->
+    <section class="bg-slate-900 border-b border-slate-800 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center space-y-4">
+        <span class="inline-block bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+          🛣️ {route.motorway}
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          {route.title}
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          {route.overview}
+        </p>
+
+        <!-- Pre-filled Trip Planner Action CTA -->
+        <div class="pt-4 flex flex-wrap justify-center gap-3">
+          <a
+            href={tripPlannerUrl}
+            class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black px-6 py-3 rounded-xl transition-all shadow-md text-xs sm:text-sm uppercase tracking-wide flex items-center gap-2"
+          >
+            <span>🧭 PLAN THIS TRIP</span>
+          </a>
+          <a
+            href="/build-your-rental/"
+            class="bg-red-600 hover:bg-red-700 text-white font-extrabold px-6 py-3 rounded-xl transition-all shadow-md text-xs sm:text-sm uppercase tracking-wide flex items-center gap-2"
+          >
+            <span>🚗 BOOK YOUR TRIP</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specs Matrix -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 space-y-10">
+
+      <!-- Key Route Specs Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs sm:text-sm">
+        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
+          <p class="text-slate-400 font-medium mb-1">📏 Distance</p>
+          <p class="text-white font-extrabold text-base sm:text-lg">{route.distanceKm} km</p>
+        </div>
+        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
+          <p class="text-slate-400 font-medium mb-1">⏱️ Approx Duration</p>
+          <p class="text-white font-extrabold text-base sm:text-lg">{route.drivingTimeHours}</p>
+        </div>
+        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
+          <p class="text-slate-400 font-medium mb-1">⛽ Estimated Fuel</p>
+          <p class="text-amber-400 font-extrabold text-base sm:text-lg">~{route.estimatedFuelLiters} L</p>
+        </div>
+        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
+          <p class="text-slate-400 font-medium mb-1">💳 Toll Estimate</p>
+          <p class="text-emerald-400 font-extrabold text-base sm:text-lg">PKR {route.estimatedTollPkr}</p>
+        </div>
+      </div>
+
+      <!-- Route Highlights -->
+      {route.highlights && route.highlights.length > 0 && (
+        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
+          <h2 class="text-base font-bold text-white uppercase tracking-wider text-slate-300">
+            🌟 Key Route Stops & Highlights
+          </h2>
+          <ul class="space-y-2 text-xs sm:text-sm text-slate-300 list-disc list-inside">
+            {route.highlights.map(h => (
+              <li>{h}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <!-- Recommended Vehicles -->
+      <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <h2 class="text-base font-bold text-white uppercase tracking-wider text-slate-300">
+          🚗 Recommended 4WHEELS Vehicles for This Route
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          {route.recommendedVehicles.map(v => (
+            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center font-bold text-slate-200">
+              {v}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Route FAQs -->
+      {route.faqs && route.faqs.length > 0 && (
+        <FAQ
+          title={`Route FAQ: ${route.origin} to ${route.destination}`}
+          items={route.faqs}
+        />
+      )}
+
+      <!-- CTA -->
+      <CTASection
+        title={`Ready to Travel ${route.origin} to ${route.destination}?`}
+        description="Launch our interactive trip planner or submit a direct WhatsApp inquiry with 4WHEELS Customer Care."
+        primaryBtnText="Book Your Trip"
+        primaryBtnHref="/build-your-rental/"
+      />
+
+    </div>
+  </main>
+</Layout>

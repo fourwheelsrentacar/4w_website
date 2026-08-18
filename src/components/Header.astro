@@ -1,163 +1,659 @@
 ---
 import { BUSINESS_INFO } from '../data/business';
-
-const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Fleet', href: '/fleet/' },
-  { name: 'Plan My Trip', href: '/trip-planner/' },
-  { name: 'Services', href: '/rent-a-car-lahore/' },
-  { name: 'For Business', href: '/business-car-rental-lahore/' },
-  { name: 'Tours & Groups', href: '/tour-operator-transport-pakistan/' },
-  { name: 'Guides', href: '/guides/' },
-  { name: 'Locations', href: '/locations/' },
-  { name: 'Official', href: '/official/' },
-  { name: 'About', href: '/about/' },
-  { name: 'Contact', href: '/contact/' },
-];
+import SiteSearch from './SiteSearch.astro';
 
 const currentPath = Astro.url.pathname;
+
+// Mega Menu items structure
+const rentMegaMenu = {
+  title: 'Rent a Vehicle',
+  href: '/fleet/',
+  sections: [
+    {
+      heading: 'FIND A VEHICLE',
+      links: [
+        { name: 'All Fleet', href: '/fleet/' },
+        { name: 'Cars & Sedans', href: '/fleet/' },
+        { name: 'SUVs & 4x4', href: '/fleet/' },
+        { name: 'Luxury Cars', href: '/fleet/' },
+        { name: 'Vans & Hiace', href: '/fleet/' },
+        { name: 'Coasters & Buses', href: '/fleet/buses-coasters/' },
+      ]
+    },
+    {
+      heading: 'RENTAL TYPE',
+      links: [
+        { name: 'Self Drive Rental', href: '/self-drive-car-rental-lahore/' },
+        { name: 'Car With Driver', href: '/car-with-driver-lahore/' },
+        { name: 'Daily Rental', href: '/daily-car-rental-lahore/' },
+        { name: 'Monthly Rental', href: '/monthly-car-rental-lahore/' },
+      ]
+    },
+    {
+      heading: 'BY TRANSMISSION & FUEL',
+      links: [
+        { name: 'Automatic Cars', href: '/fleet/' },
+        { name: 'Manual Cars', href: '/fleet/' },
+        { name: 'Petrol / Hybrid', href: '/fleet/' },
+        { name: 'Diesel / EV', href: '/fleet/' },
+      ]
+    },
+    {
+      heading: 'POPULAR NEEDS',
+      links: [
+        { name: 'Airport Rental', href: '/lahore-airport-car-rental/' },
+        { name: 'Outstation Travel', href: '/outstation-car-rental-lahore/' },
+        { name: 'Corporate Travel', href: '/corporate-car-rental-lahore/' },
+        { name: 'Wedding Transport', href: '/wedding-car-rental-lahore/' },
+      ]
+    }
+  ],
+  cta: { name: 'VIEW COMPLETE FLEET', href: '/fleet/' }
+};
+
+const planMegaMenu = {
+  title: 'Plan a Trip',
+  href: '/trip-planner/',
+  sections: [
+    {
+      heading: 'PLAN',
+      links: [
+        { name: 'Trip Planner', href: '/trip-planner/' },
+        { name: 'Trip Cost Estimator', href: '/trip-planner/' },
+        { name: 'Find My Vehicle', href: '/find-my-vehicle/' },
+        { name: 'Vehicle Comparison', href: '/compare-vehicles/' },
+      ]
+    },
+    {
+      heading: 'TRAVEL & ROUTES',
+      links: [
+        { name: 'Airport Transfers', href: '/lahore-airport-car-rental/' },
+        { name: 'Outstation Travel', href: '/outstation-car-rental-lahore/' },
+        { name: 'Pakistan Tours', href: '/tour-operator-transport-pakistan/' },
+        { name: 'Popular Routes', href: '/routes/' },
+        { name: 'Destination Guides', href: '/guides/' },
+      ]
+    },
+    {
+      heading: 'EVENTS',
+      links: [
+        { name: 'Wedding Transport', href: '/wedding-car-rental-lahore/' },
+        { name: 'Event Transport', href: '/event-transport-lahore/' },
+        { name: 'Group Travel', href: '/fleet/buses-coasters/' },
+      ]
+    },
+    {
+      heading: 'TOOLS',
+      links: [
+        { name: 'Fuel Estimate', href: '/trip-planner/' },
+        { name: 'Toll Estimate', href: '/trip-planner/' },
+        { name: 'Passenger/Luggage Fit', href: '/find-my-vehicle/' },
+      ]
+    }
+  ],
+  cta: { name: 'PLAN MY TRIP', href: '/trip-planner/' }
+};
+
+const businessMegaMenu = {
+  title: 'Business & Groups',
+  href: '/business-car-rental-lahore/',
+  sections: [
+    {
+      heading: 'BUSINESS',
+      links: [
+        { name: 'Corporate Car Rental', href: '/corporate-car-rental-lahore/' },
+        { name: 'Monthly Business Rental', href: '/monthly-car-rental-lahore/' },
+        { name: 'Executive Transport', href: '/business-car-rental-lahore/' },
+      ]
+    },
+    {
+      heading: 'STAFF',
+      links: [
+        { name: 'Staff Pick & Drop', href: '/corporate-staff-pick-drop-lahore/' },
+        { name: 'Employee Transportation', href: '/corporate-staff-pick-drop-lahore/' },
+      ]
+    },
+    {
+      heading: 'GROUPS',
+      links: [
+        { name: 'Coaster Rental', href: '/fleet/buses-coasters/' },
+        { name: 'Bus Rental', href: '/fleet/buses-coasters/' },
+        { name: 'Tour Operator Transport', href: '/tour-operator-transport-pakistan/' },
+        { name: 'Event Transport', href: '/event-transport-lahore/' },
+      ]
+    }
+  ],
+  cta: { name: 'REQUEST BUSINESS TRANSPORT', href: '/corporate-car-rental-lahore/' }
+};
+
+const exploreMegaMenu = {
+  title: 'Explore',
+  href: '/guides/',
+  sections: [
+    {
+      heading: 'LEARN',
+      links: [
+        { name: 'Knowledge Hub', href: '/guides/' },
+        { name: 'Rental Guides', href: '/guides/' },
+        { name: 'Rental Rules & FAQ', href: '/faq/' },
+        { name: 'Rental Terms', href: '/rental-terms/' },
+      ]
+    },
+    {
+      heading: 'DISCOVER',
+      links: [
+        { name: 'Locations', href: '/locations/' },
+        { name: 'Popular Routes', href: '/routes/' },
+      ]
+    },
+    {
+      heading: 'COMPANY',
+      links: [
+        { name: 'About 4WHEELS', href: '/about/' },
+        { name: 'Official 4WHEELS', href: '/official/' },
+        { name: 'Official Locations', href: '/locations/official/' },
+        { name: 'Press Centre', href: '/press/' },
+        { name: 'Contact Us', href: '/contact/' },
+      ]
+    }
+  ],
+  cta: { name: 'VERIFY 4WHEELS', href: '/official/' }
+};
 ---
 
-<header class="sticky top-0 z-40 bg-slate-900 text-white shadow-md border-b border-slate-800">
-  <!-- Top bar with contact info -->
-  <div class="bg-slate-950 py-1.5 px-4 text-xs font-medium border-b border-slate-800">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-      <div class="flex items-center space-x-4">
-        <span>📍 {BUSINESS_INFO.address.locality}, {BUSINESS_INFO.address.city}</span>
-        <span class="hidden sm:inline">|</span>
-        <span class="hidden sm:inline">Serving Lahore Since 2008</span>
+<!-- Site Search Modal -->
+<SiteSearch />
+
+<header id="main-site-header" class="sticky top-0 z-40 bg-slate-900 text-white shadow-md border-b border-slate-800 transition-all duration-200">
+  <!-- Top Utility Bar (Thin 28-34px) -->
+  <div id="utility-bar" class="bg-slate-950 py-1 px-4 text-[11px] sm:text-xs font-medium border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto flex justify-between items-center gap-2">
+      <div class="flex items-center space-x-2 sm:space-x-3 text-slate-300">
+        <span class="truncate">📍 {BUSINESS_INFO.address.locality}, {BUSINESS_INFO.address.city}</span>
+        <span class="hidden sm:inline text-slate-600">|</span>
+        <span class="hidden sm:inline text-slate-400 font-normal">Serving Lahore Since 2008</span>
       </div>
-      <div class="flex items-center space-x-4">
-        <a href={BUSINESS_INFO.telLink} class="hover:text-red-400 transition-colors flex items-center gap-1 font-semibold">
-          📞 Call: {BUSINESS_INFO.phoneDisplay}
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <a href={BUSINESS_INFO.telLink} class="text-slate-200 hover:text-red-400 transition-colors flex items-center gap-1 font-semibold">
+          📞 <span class="hidden xs:inline">Call</span> {BUSINESS_INFO.phoneDisplay}
         </a>
-        <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors flex items-center gap-1 font-semibold">
-          💬 WhatsApp
+        <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 font-semibold">
+          💬 <span class="hidden xs:inline">WhatsApp</span>
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Main navigation header -->
+  <!-- Primary Header Container -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 sm:h-20">
-      <!-- Logo -->
-      <a href="/" class="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-red-500 rounded-md">
-        <div class="bg-red-600 text-white font-extrabold text-xl px-3 py-1 rounded tracking-wider">
+    <div class="flex items-center justify-between h-16 transition-all duration-200" id="header-nav-bar">
+      <!-- Logo -> Home -->
+      <a href="/" class="flex items-center space-x-2.5 focus:outline-none focus:ring-2 focus:ring-red-500 rounded-md py-1" aria-label="4WHEELS Rent a Car Home">
+        <div class="bg-red-600 text-white font-extrabold text-lg sm:text-xl px-2.5 py-0.5 rounded tracking-wider shadow-sm">
           4WHEELS
         </div>
         <div class="hidden sm:flex flex-col">
-          <span class="text-sm font-bold tracking-tight text-slate-100 uppercase leading-none">Rent a Car</span>
-          <span class="text-xs text-slate-400 leading-tight">Lahore</span>
+          <span class="text-xs font-bold tracking-tight text-slate-100 uppercase leading-none">Rent a Car</span>
+          <span class="text-[10px] text-slate-400 leading-tight">Lahore</span>
         </div>
       </a>
 
-      <!-- Desktop Nav Links -->
-      <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium">
-        {navLinks.map(link => {
-          const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
-          return (
-            <a
-              href={link.href}
-              class={`px-3 py-2 rounded-md transition-colors ${
-                isActive
-                  ? 'bg-red-600 text-white font-semibold'
-                  : 'text-slate-200 hover:bg-slate-800 hover:text-white'
-              }`}
-            >
-              {link.name}
-            </a>
-          );
-        })}
+      <!-- Desktop Primary Navigation -->
+      <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium" aria-label="Primary navigation">
+
+        <!-- Dropdown 1: Rent a Vehicle -->
+        <div class="relative group">
+          <button
+            type="button"
+            class={`px-3 py-2 rounded-md transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 ${
+              currentPath.startsWith('/fleet') || currentPath.includes('rental') ? 'bg-red-600 text-white font-semibold' : 'text-slate-200 hover:bg-slate-800 hover:text-white'
+            }`}
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            <span>Rent a Vehicle</span>
+            <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Desktop Mega Dropdown Menu -->
+          <div class="absolute left-0 top-full pt-2 w-[680px] hidden group-hover:block group-focus-within:block z-50">
+            <div class="bg-slate-900 border border-slate-700/80 rounded-xl shadow-2xl p-6 grid grid-cols-4 gap-6 text-xs">
+              {rentMegaMenu.sections.map(sec => (
+                <div>
+                  <p class="font-bold text-red-500 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
+                  <ul class="space-y-2">
+                    {sec.links.map(link => (
+                      <li>
+                        <a href={link.href} class="text-slate-300 hover:text-white hover:underline transition-colors block py-0.5">
+                          {link.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              <div class="col-span-4 pt-3 border-t border-slate-800 flex justify-between items-center">
+                <span class="text-slate-400 text-xs">Serving all areas of Lahore & intercity travel.</span>
+                <a href={rentMegaMenu.cta.href} class="inline-flex items-center gap-1 font-bold text-red-400 hover:text-red-300 text-xs">
+                  {rentMegaMenu.cta.name} →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dropdown 2: Plan a Trip -->
+        <div class="relative group">
+          <button
+            type="button"
+            class={`px-3 py-2 rounded-md transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 ${
+              currentPath.startsWith('/trip-planner') || currentPath.startsWith('/routes') ? 'bg-red-600 text-white font-semibold' : 'text-slate-200 hover:bg-slate-800 hover:text-white'
+            }`}
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            <span>Plan a Trip</span>
+            <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <div class="absolute left-0 top-full pt-2 w-[640px] hidden group-hover:block group-focus-within:block z-50">
+            <div class="bg-slate-900 border border-slate-700/80 rounded-xl shadow-2xl p-6 grid grid-cols-4 gap-6 text-xs">
+              {planMegaMenu.sections.map(sec => (
+                <div>
+                  <p class="font-bold text-amber-400 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
+                  <ul class="space-y-2">
+                    {sec.links.map(link => (
+                      <li>
+                        <a href={link.href} class="text-slate-300 hover:text-white hover:underline transition-colors block py-0.5">
+                          {link.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              <div class="col-span-4 pt-3 border-t border-slate-800 flex justify-between items-center">
+                <span class="text-slate-400 text-xs">Calculate fuel, tolls, and rental budget.</span>
+                <a href={planMegaMenu.cta.href} class="inline-flex items-center gap-1 font-bold text-amber-400 hover:text-amber-300 text-xs">
+                  {planMegaMenu.cta.name} →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dropdown 3: Business & Groups -->
+        <div class="relative group">
+          <button
+            type="button"
+            class={`px-3 py-2 rounded-md transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 ${
+              currentPath.includes('business') || currentPath.includes('corporate') ? 'bg-red-600 text-white font-semibold' : 'text-slate-200 hover:bg-slate-800 hover:text-white'
+            }`}
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            <span>Business & Groups</span>
+            <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <div class="absolute left-0 top-full pt-2 w-[540px] hidden group-hover:block group-focus-within:block z-50">
+            <div class="bg-slate-900 border border-slate-700/80 rounded-xl shadow-2xl p-6 grid grid-cols-3 gap-6 text-xs">
+              {businessMegaMenu.sections.map(sec => (
+                <div>
+                  <p class="font-bold text-blue-400 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
+                  <ul class="space-y-2">
+                    {sec.links.map(link => (
+                      <li>
+                        <a href={link.href} class="text-slate-300 hover:text-white hover:underline transition-colors block py-0.5">
+                          {link.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              <div class="col-span-3 pt-3 border-t border-slate-800 flex justify-between items-center">
+                <span class="text-slate-400 text-xs">Monthly, corporate fleet & group coasters.</span>
+                <a href={businessMegaMenu.cta.href} class="inline-flex items-center gap-1 font-bold text-blue-400 hover:text-blue-300 text-xs">
+                  {businessMegaMenu.cta.name} →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dropdown 4: Explore -->
+        <div class="relative group">
+          <button
+            type="button"
+            class={`px-3 py-2 rounded-md transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 ${
+              currentPath.startsWith('/guides') || currentPath.startsWith('/official') || currentPath.startsWith('/locations') ? 'bg-red-600 text-white font-semibold' : 'text-slate-200 hover:bg-slate-800 hover:text-white'
+            }`}
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            <span>Explore</span>
+            <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <div class="absolute right-0 top-full pt-2 w-[540px] hidden group-hover:block group-focus-within:block z-50">
+            <div class="bg-slate-900 border border-slate-700/80 rounded-xl shadow-2xl p-6 grid grid-cols-3 gap-6 text-xs">
+              {exploreMegaMenu.sections.map(sec => (
+                <div>
+                  <p class="font-bold text-emerald-400 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
+                  <ul class="space-y-2">
+                    {sec.links.map(link => (
+                      <li>
+                        <a href={link.href} class="text-slate-300 hover:text-white hover:underline transition-colors block py-0.5">
+                          {link.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              <div class="col-span-3 pt-3 border-t border-slate-800 flex justify-between items-center">
+                <span class="text-slate-400 text-xs">Guides, official branch verification & news.</span>
+                <a href={exploreMegaMenu.cta.href} class="inline-flex items-center gap-1 font-bold text-emerald-400 hover:text-emerald-300 text-xs">
+                  {exploreMegaMenu.cta.name} →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </nav>
 
-      <!-- Desktop Header CTAs -->
-      <div class="hidden sm:flex items-center space-x-2">
-        <a
-          href="/trip-planner/"
-          class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-3.5 py-2 rounded-lg transition-colors shadow-sm"
+      <!-- Desktop Header CTAs & Search -->
+      <div class="hidden lg:flex items-center space-x-3">
+        <!-- Site Search Icon Button -->
+        <button
+          type="button"
+          data-open-search
+          class="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+          aria-label="Open Site Search"
         >
-          Plan My Trip
-        </a>
+          🔍
+        </button>
+
+        <!-- Dominant Commercial CTA -->
         <a
           href="/build-your-rental/"
-          class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-colors shadow-sm"
+          class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-extrabold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-red-600/20 active:scale-95 uppercase tracking-wide"
         >
-          Check Availability
+          BOOK YOUR TRIP
         </a>
       </div>
 
-      <!-- Mobile Hamburger Button -->
-      <div class="flex lg:hidden items-center">
+      <!-- Mobile Right Utility Controls -->
+      <div class="flex items-center lg:hidden space-x-2">
         <button
           type="button"
-          id="mobile-menu-button"
-          class="inline-flex items-center justify-center p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-          aria-label="Toggle Navigation Menu"
+          data-open-search
+          class="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+          aria-label="Search site"
         >
-          <svg id="menu-icon-open" class="h-6 w-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          🔍
+        </button>
+        <a
+          href={BUSINESS_INFO.telLink}
+          class="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+          aria-label="Call 4WHEELS"
+        >
+          ☎
+        </a>
+        <button
+          type="button"
+          id="mobile-drawer-toggle"
+          class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-red-500"
+          aria-controls="mobile-drawer"
+          aria-expanded="false"
+          aria-label="Toggle Navigation Drawer"
+        >
+          <svg id="drawer-icon-hamburger" class="h-6 w-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg id="menu-icon-close" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Mobile Navigation Menu -->
-  <div class="lg:hidden hidden border-t border-slate-800 bg-slate-900" id="mobile-menu">
-    <div class="px-4 pt-2 pb-6 space-y-1 sm:px-3">
-      {navLinks.map(link => {
-        const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
-        return (
-          <a
-            href={link.href}
-            class={`block px-3 py-2.5 rounded-md text-base font-medium ${
-              isActive
-                ? 'bg-red-600 text-white font-semibold'
-                : 'text-slate-200 hover:bg-slate-800 hover:text-white'
-            }`}
-          >
-            {link.name}
-          </a>
-        );
-      })}
+  <!-- Mobile Drawer Backdrop & Side Panel (85–92vw) -->
+  <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden transition-opacity">
+    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-[88vw] max-w-md bg-slate-900 border-l border-slate-800 shadow-2xl flex flex-col justify-between overflow-y-auto">
 
-      <div class="pt-4 border-t border-slate-800 space-y-2">
-        <a
-          href="/trip-planner/"
-          class="w-full text-center bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-3 rounded-lg block transition-colors shadow-sm"
-        >
-          🧭 Plan My Trip
-        </a>
-        <a
-          href="/build-your-rental/"
-          class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg block transition-colors shadow-sm"
-        >
-          Check Availability
-        </a>
+      <!-- Drawer Top Bar -->
+      <div>
+        <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
+          <div class="flex items-center space-x-2">
+            <div class="bg-red-600 text-white font-black text-base px-2 py-0.5 rounded">4WHEELS</div>
+            <span class="text-xs font-bold text-slate-200">Rent a Car</span>
+          </div>
+          <button
+            type="button"
+            id="close-mobile-drawer"
+            class="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm font-bold"
+            aria-label="Close Navigation Menu"
+          >
+            ✕
+          </button>
+        </div>
+
+        <!-- Primary Drawer CTA -->
+        <div class="p-4 border-b border-slate-800 bg-slate-900/50">
+          <a
+            href="/build-your-rental/"
+            class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-black py-3 px-4 rounded-xl block transition-all shadow-md text-sm uppercase tracking-wide"
+          >
+            🚗 BOOK YOUR TRIP
+          </a>
+        </div>
+
+        <!-- Mobile Accordion Menu -->
+        <div class="p-4 space-y-3 text-sm">
+
+          <!-- Accordion 1: Rent a Vehicle -->
+          <div class="border-b border-slate-800 pb-2">
+            <button
+              type="button"
+              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-100 focus:outline-none"
+              data-accordion="acc-rent"
+              aria-expanded="false"
+            >
+              <span>Rent a Vehicle</span>
+              <span class="chevron text-slate-400 text-xs transition-transform">▼</span>
+            </button>
+            <div id="acc-rent" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-300">
+              <a href="/fleet/" class="block py-1 hover:text-white font-semibold text-red-400">All Fleet</a>
+              <a href="/self-drive-car-rental-lahore/" class="block py-1 hover:text-white">Self Drive Rental</a>
+              <a href="/car-with-driver-lahore/" class="block py-1 hover:text-white">Car With Driver</a>
+              <a href="/daily-car-rental-lahore/" class="block py-1 hover:text-white">Daily Rental</a>
+              <a href="/monthly-car-rental-lahore/" class="block py-1 hover:text-white">Monthly Rental</a>
+              <a href="/lahore-airport-car-rental/" class="block py-1 hover:text-white">Airport Rental</a>
+              <a href="/fleet/buses-coasters/" class="block py-1 hover:text-white">Coasters & Buses</a>
+            </div>
+          </div>
+
+          <!-- Accordion 2: Plan a Trip -->
+          <div class="border-b border-slate-800 pb-2">
+            <button
+              type="button"
+              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-100 focus:outline-none"
+              data-accordion="acc-plan"
+              aria-expanded="false"
+            >
+              <span>Plan a Trip</span>
+              <span class="chevron text-slate-400 text-xs transition-transform">▼</span>
+            </button>
+            <div id="acc-plan" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-300">
+              <a href="/trip-planner/" class="block py-1 hover:text-white font-semibold text-amber-400">Trip Planner & Cost Estimator</a>
+              <a href="/find-my-vehicle/" class="block py-1 hover:text-white">Find My Vehicle Fit</a>
+              <a href="/compare-vehicles/" class="block py-1 hover:text-white">Vehicle Comparison</a>
+              <a href="/routes/" class="block py-1 hover:text-white">Popular Pakistan Routes</a>
+              <a href="/guides/" class="block py-1 hover:text-white">Destination Guides</a>
+              <a href="/wedding-car-rental-lahore/" class="block py-1 hover:text-white">Wedding Transport</a>
+            </div>
+          </div>
+
+          <!-- Accordion 3: Business & Groups -->
+          <div class="border-b border-slate-800 pb-2">
+            <button
+              type="button"
+              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-100 focus:outline-none"
+              data-accordion="acc-business"
+              aria-expanded="false"
+            >
+              <span>Business & Groups</span>
+              <span class="chevron text-slate-400 text-xs transition-transform">▼</span>
+            </button>
+            <div id="acc-business" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-300">
+              <a href="/corporate-car-rental-lahore/" class="block py-1 hover:text-white font-semibold text-blue-400">Corporate Car Rental</a>
+              <a href="/monthly-car-rental-lahore/" class="block py-1 hover:text-white">Monthly Business Fleet</a>
+              <a href="/corporate-staff-pick-drop-lahore/" class="block py-1 hover:text-white">Staff Pick & Drop</a>
+              <a href="/fleet/buses-coasters/" class="block py-1 hover:text-white">Coaster & Bus Rental</a>
+              <a href="/tour-operator-transport-pakistan/" class="block py-1 hover:text-white">Tour Operators Transport</a>
+            </div>
+          </div>
+
+          <!-- Accordion 4: Explore -->
+          <div class="border-b border-slate-800 pb-2">
+            <button
+              type="button"
+              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-100 focus:outline-none"
+              data-accordion="acc-explore"
+              aria-expanded="false"
+            >
+              <span>Explore</span>
+              <span class="chevron text-slate-400 text-xs transition-transform">▼</span>
+            </button>
+            <div id="acc-explore" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-300">
+              <a href="/guides/" class="block py-1 hover:text-white font-semibold text-emerald-400">Knowledge Hub & Guides</a>
+              <a href="/locations/" class="block py-1 hover:text-white">Locations Directory</a>
+              <a href="/routes/" class="block py-1 hover:text-white">Pakistan Routes</a>
+              <a href="/faq/" class="block py-1 hover:text-white">Rental FAQ</a>
+              <a href="/official/" class="block py-1 hover:text-white">Official 4WHEELS Verification</a>
+              <a href="/about/" class="block py-1 hover:text-white">About 4WHEELS</a>
+              <a href="/contact/" class="block py-1 hover:text-white">Contact Us</a>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      <!-- Mobile Customer Care Area (Bottom of Drawer) -->
+      <div class="p-4 bg-slate-950 border-t border-slate-800 text-xs space-y-3">
+        <p class="font-bold text-slate-200 uppercase tracking-wider text-[11px]">Customer Care</p>
+        <div class="space-y-1.5 text-slate-300">
+          <a href={BUSINESS_INFO.telLink} class="block hover:text-red-400 transition-colors font-semibold">
+            📞 Call: {BUSINESS_INFO.phoneDisplay}
+          </a>
+          <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="block text-emerald-400 hover:text-emerald-300 transition-colors font-semibold">
+            💬 WhatsApp: Chat with Customer Care
+          </a>
+          <p class="text-slate-400 text-[11px]">📍 Location: Johar Town Phase 1, Lahore</p>
+        </div>
+        <div class="pt-2 border-t border-slate-800/80">
+          <a href="/official/" class="inline-block text-[11px] font-bold text-slate-400 hover:text-white underline">
+            Official Verification: Verify 4WHEELS →
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </header>
 
-<script>
-  const menuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const iconOpen = document.getElementById('menu-icon-open');
-  const iconClose = document.getElementById('menu-icon-close');
+<!-- Compact Mobile Sticky Bottom Action Bar (CALL | BOOK YOUR TRIP) -->
+<div class="fixed bottom-0 inset-x-0 z-30 lg:hidden bg-slate-900/95 backdrop-blur-md border-t border-slate-800 p-2 shadow-2xl">
+  <div class="max-w-md mx-auto grid grid-cols-2 gap-2 text-center text-xs font-extrabold">
+    <a
+      href={BUSINESS_INFO.telLink}
+      class="bg-slate-800 hover:bg-slate-700 text-slate-100 py-2.5 px-3 rounded-lg border border-slate-700 flex items-center justify-center gap-1.5 transition-colors"
+    >
+      📞 Call Us
+    </a>
+    <a
+      href="/build-your-rental/"
+      class="bg-red-600 hover:bg-red-700 text-white py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors shadow-md"
+    >
+      🚗 Book Your Trip
+    </a>
+  </div>
+</div>
 
-  if (menuButton && mobileMenu && iconOpen && iconClose) {
-    menuButton.addEventListener('click', () => {
-      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-      menuButton.setAttribute('aria-expanded', (!isExpanded).toString());
-      mobileMenu.classList.toggle('hidden');
-      iconOpen.classList.toggle('hidden');
-      iconClose.classList.toggle('hidden');
+<script>
+  import { trackEvent } from '../utils/analytics';
+
+  // Mobile Drawer Toggle
+  const drawerToggle = document.getElementById('mobile-drawer-toggle');
+  const closeDrawer = document.getElementById('close-mobile-drawer');
+  const drawerBackdrop = document.getElementById('mobile-drawer-backdrop');
+
+  function openMobileDrawer() {
+    if (drawerBackdrop) {
+      drawerBackdrop.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      if (drawerToggle) drawerToggle.setAttribute('aria-expanded', 'true');
+      trackEvent('mobile_menu_open');
+    }
+  }
+
+  function closeMobileDrawer() {
+    if (drawerBackdrop) {
+      drawerBackdrop.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (drawerToggle) drawerToggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  if (drawerToggle) drawerToggle.addEventListener('click', openMobileDrawer);
+  if (closeDrawer) closeDrawer.addEventListener('click', closeMobileDrawer);
+  if (drawerBackdrop) {
+    drawerBackdrop.addEventListener('click', (e) => {
+      if (e.target === drawerBackdrop) closeMobileDrawer();
     });
   }
+
+  // Mobile Accordion Logic
+  document.querySelectorAll('[data-accordion]').forEach(button => {
+    button.addEventListener('click', () => {
+      const targetId = button.getAttribute('data-accordion');
+      if (!targetId) return;
+      const content = document.getElementById(targetId);
+      const chevron = button.querySelector('.chevron');
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+      if (content && chevron) {
+        if (isExpanded) {
+          content.classList.add('hidden');
+          chevron.classList.remove('rotate-180');
+          button.setAttribute('aria-expanded', 'false');
+        } else {
+          content.classList.remove('hidden');
+          chevron.classList.add('rotate-180');
+          button.setAttribute('aria-expanded', 'true');
+        }
+      }
+    });
+  });
+
+  // Sticky header adjustment on scroll
+  const headerElement = document.getElementById('main-site-header');
+  const utilityBar = document.getElementById('utility-bar');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      if (headerElement) headerElement.classList.add('shadow-xl', 'bg-slate-900/95', 'backdrop-blur-md');
+    } else {
+      if (headerElement) headerElement.classList.remove('shadow-xl', 'bg-slate-900/95', 'backdrop-blur-md');
+    }
+  });
 </script>

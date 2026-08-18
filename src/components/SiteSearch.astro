@@ -1,0 +1,217 @@
+---
+// SiteSearch.astro - Client-side search modal for 4WHEELS
+---
+
+<div id="search-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm p-4 sm:p-6 md:p-20 overflow-y-auto" role="dialog" aria-modal="true" aria-label="Search 4WHEELS">
+  <div class="max-w-2xl mx-auto bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden">
+    <!-- Search Header -->
+    <div class="p-4 border-b border-slate-800 flex items-center gap-3">
+      <span class="text-slate-400 text-lg">🔍</span>
+      <input
+        type="text"
+        id="site-search-input"
+        placeholder="Search vehicles, routes, guides, locations, services..."
+        class="flex-1 bg-transparent text-white placeholder-slate-400 focus:outline-none text-base sm:text-lg font-medium"
+        autocomplete="off"
+      />
+      <button
+        type="button"
+        id="close-search-modal"
+        class="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors text-sm font-bold"
+        aria-label="Close Search"
+      >
+        ✕ Esc
+      </button>
+    </div>
+
+    <!-- Quick suggestions / Results -->
+    <div id="search-results-container" class="p-4 max-h-[60vh] overflow-y-auto space-y-6">
+      <!-- Default Quick Links -->
+      <div id="search-quick-links">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Popular Searches</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
+          <a href="/fleet/toyota-fortuner/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+            🚗 Toyota Fortuner
+          </a>
+          <a href="/routes/lahore-to-islamabad/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+            🛣️ Lahore to Islamabad
+          </a>
+          <a href="/trip-planner/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+            🧭 Trip Planner
+          </a>
+          <a href="/self-drive-car-rental-lahore/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+            🔑 Self Drive Lahore
+          </a>
+          <a href="/fleet/buses-coasters/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+            🚌 Coaster Rental
+          </a>
+          <a href="/locations/lahore/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+            📍 Lahore Hub
+          </a>
+        </div>
+      </div>
+
+      <!-- Dynamic Results Container -->
+      <div id="search-dynamic-results" class="hidden space-y-4"></div>
+    </div>
+
+    <!-- Search Footer -->
+    <div class="px-4 py-2.5 bg-slate-950 border-t border-slate-800 text-xs text-slate-400 flex justify-between items-center">
+      <span>Search 4WHEELS Fleet & Travel Guides</span>
+      <span class="hidden sm:inline">Press <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300">ESC</kbd> to exit</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { trackEvent } from '../utils/analytics';
+
+  const searchableIndex = [
+    // Vehicles
+    { title: 'Toyota Fortuner', type: 'Vehicles', url: '/fleet/toyota-fortuner/', tags: 'suv 4x4 fortuner luxury automatic petrol diesel' },
+    { title: 'Toyota Corolla', type: 'Vehicles', url: '/fleet/toyota-corolla/', tags: 'sedan corolla automatic petrol' },
+    { title: 'Honda Civic', type: 'Vehicles', url: '/fleet/honda-civic/', tags: 'sedan civic automatic petrol executive' },
+    { title: 'Toyota Revo Hilux', type: 'Vehicles', url: '/fleet/toyota-revo/', tags: 'pickup 4x4 revo truck diesel' },
+    { title: 'Toyota Coaster', type: 'Vehicles', url: '/fleet/toyota-coaster/', tags: 'bus coaster group transport 20-seater' },
+    { title: 'Suzuki Alto', type: 'Vehicles', url: '/fleet/suzuki-alto/', tags: 'hatchback alto budget daily' },
+    { title: 'Toyota Yaris', type: 'Vehicles', url: '/fleet/toyota-yaris/', tags: 'sedan yaris budget automatic' },
+    { title: 'Toyota Hiace', type: 'Vehicles', url: '/fleet/toyota-hiace/', tags: 'van hiace group grand cabin' },
+    { title: 'Audi A6', type: 'Vehicles', url: '/fleet/audi-a6/', tags: 'luxury sedan audi wedding executive' },
+    // Services
+    { title: 'Self Drive Car Rental Lahore', type: 'Services', url: '/self-drive-car-rental-lahore/', tags: 'self drive without driver rental' },
+    { title: 'Car With Driver Lahore', type: 'Services', url: '/car-with-driver-lahore/', tags: 'chauffeur with driver rental' },
+    { title: 'Lahore Airport Car Rental', type: 'Services', url: '/lahore-airport-car-rental/', tags: 'airport transfer pick drop lhe' },
+    { title: 'Monthly Car Rental', type: 'Services', url: '/monthly-car-rental-lahore/', tags: 'monthly long term subscription' },
+    { title: 'Corporate Car Rental', type: 'Services', url: '/corporate-car-rental-lahore/', tags: 'business corporate executive fleet' },
+    { title: 'Wedding Car Rental', type: 'Services', url: '/wedding-car-rental-lahore/', tags: 'wedding bride groom event transport' },
+    // Tools
+    { title: 'Trip Planner & Budget Estimator', type: 'Tools', url: '/trip-planner/', tags: 'calculator estimate budget fuel toll cost' },
+    { title: 'Build Your Rental Inquiry', type: 'Tools', url: '/build-your-rental/', tags: 'book quote availability price reservation' },
+    { title: 'Find My Vehicle Fit', type: 'Tools', url: '/find-my-vehicle/', tags: 'vehicle fit luggage passenger matching' },
+    { title: 'Compare Vehicles', type: 'Tools', url: '/compare-vehicles/', tags: 'compare specs fuel engine seats' },
+    // Routes
+    { title: 'Lahore to Islamabad Route', type: 'Routes', url: '/routes/lahore-to-islamabad/', tags: 'm2 motorway distance travel budget' },
+    { title: 'Lahore to Murree Route', type: 'Routes', url: '/routes/lahore-to-murree/', tags: 'murree northern travel hill station' },
+    { title: 'Lahore to Faisalabad Route', type: 'Routes', url: '/routes/lahore-to-faisalabad/', tags: 'm3 motorway travel' },
+    { title: 'Lahore to Multan Route', type: 'Routes', url: '/routes/lahore-to-multan/', tags: 'm4 motorway South Punjab' },
+    { title: 'Lahore to Sialkot Route', type: 'Routes', url: '/routes/lahore-to-sialkot/', tags: 'm11 motorway travel' },
+    // Knowledge Hub & Guides
+    { title: '4WHEELS Knowledge Hub', type: 'Guides', url: '/guides/', tags: 'articles guides rules tips information' },
+    { title: 'How to Rent a Car in Lahore Guide', type: 'Guides', url: '/guides/', tags: 'rental basics guide requirements process' },
+    { title: 'Self Drive vs With Driver Comparison', type: 'Guides', url: '/guides/', tags: 'self drive chauffeur pros cons' },
+    { title: 'Official 4WHEELS Verification', type: 'Company', url: '/official/', tags: 'verify authentic official branch scam alert' }
+  ];
+
+  const searchModal = document.getElementById('search-modal');
+  const searchInput = document.getElementById('site-search-input') as HTMLInputElement;
+  const closeBtn = document.getElementById('close-search-modal');
+  const quickLinks = document.getElementById('search-quick-links');
+  const dynamicResults = document.getElementById('search-dynamic-results');
+
+  function openModal() {
+    if (searchModal) {
+      searchModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      if (searchInput) {
+        searchInput.focus();
+        searchInput.value = '';
+      }
+      if (quickLinks) quickLinks.classList.remove('hidden');
+      if (dynamicResults) {
+        dynamicResults.classList.add('hidden');
+        dynamicResults.innerHTML = '';
+      }
+      trackEvent('site_search_open');
+    }
+  }
+
+  function closeModal() {
+    if (searchModal) {
+      searchModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Bind trigger buttons across header/mobile menu
+  document.querySelectorAll('[data-open-search]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  if (searchModal) {
+    searchModal.addEventListener('click', (e) => {
+      if (e.target === searchModal) closeModal();
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && searchModal && !searchModal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) {
+        if (quickLinks) quickLinks.classList.remove('hidden');
+        if (dynamicResults) {
+          dynamicResults.classList.add('hidden');
+          dynamicResults.innerHTML = '';
+        }
+        return;
+      }
+
+      if (quickLinks) quickLinks.classList.add('hidden');
+      if (dynamicResults) {
+        dynamicResults.classList.remove('hidden');
+
+        const matches = searchableIndex.filter(item =>
+          item.title.toLowerCase().includes(query) ||
+          item.tags.toLowerCase().includes(query) ||
+          item.type.toLowerCase().includes(query)
+        );
+
+        if (matches.length === 0) {
+          dynamicResults.innerHTML = `
+            <div class="text-center py-8 text-slate-400">
+              <p class="text-base font-semibold">No results found for "${query}"</p>
+              <p class="text-xs text-slate-500 mt-1">Try searching for Fortuner, Islamabad, Self Drive, or Trip Planner.</p>
+            </div>
+          `;
+          return;
+        }
+
+        // Group by type
+        const grouped: Record<string, typeof matches> = {};
+        matches.forEach(item => {
+          if (!grouped[item.type]) grouped[item.type] = [];
+          grouped[item.type].push(item);
+        });
+
+        let html = '';
+        for (const [type, items] of Object.entries(grouped)) {
+          html += `
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-red-400 mb-2">${type}</p>
+              <div class="space-y-1.5">
+                ${items.map(i => `
+                  <a href="${i.url}" class="block p-3 rounded-lg bg-slate-800/80 hover:bg-slate-800 border border-slate-700/60 text-slate-100 hover:text-red-400 font-medium text-sm transition-colors flex justify-between items-center">
+                    <span>${i.title}</span>
+                    <span class="text-xs text-slate-400 font-mono">→</span>
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+        dynamicResults.innerHTML = html;
+        trackEvent('site_search_query', { query });
+      }
+    });
+  }
+</script>
