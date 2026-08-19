@@ -90,20 +90,47 @@ const isCoaster = vehicle.slug === 'toyota-coaster';
                 ))}
               </div>
             </div>
+          </div>
+
+          <!-- Official Manufacturer Reference Box -->
+          <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 class="text-sm font-extrabold text-white uppercase tracking-wider flex items-center gap-2">
+                <span>⚙️ Official Manufacturer Technical Reference</span>
+              </h3>
+              <span class="text-[10px] font-bold bg-slate-800 text-slate-300 px-2.5 py-1 rounded border border-slate-700">
+                Verified: {vehicle.lastVerifiedDate}
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-1">
+              <div>
+                <span class="text-slate-400 font-medium block">Technical Reference Source:</span>
+                <span class="font-bold text-white">{vehicle.officialSpecSource || `${vehicle.manufacturer} Pakistan`}</span>
+              </div>
+              <div>
+                <span class="text-slate-400 font-medium block">Official Manufacturer Domain:</span>
+                <span class="font-bold text-slate-200">{vehicle.manufacturer} Official Pakistan Distributor</span>
+              </div>
+            </div>
 
             {vehicle.officialManufacturerUrl && (
-              <div class="pt-2">
+              <div class="pt-3">
                 <a
                   href={vehicle.officialManufacturerUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 text-xs font-bold text-red-500 hover:text-red-400 underline"
+                  class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-red-400 font-bold text-xs px-4 py-2.5 rounded-xl border border-slate-700 transition-colors"
                 >
-                  <span>View Official Vehicle Details ({vehicle.manufacturer} Pakistan)</span>
+                  <span>VIEW OFFICIAL {vehicle.manufacturer.toUpperCase()} MODEL DETAILS</span>
                   <span>↗</span>
                 </a>
               </div>
             )}
+
+            <p class="text-[11px] text-slate-500 pt-1 leading-relaxed italic border-t border-slate-800/80">
+              "Manufacturer links are provided for technical reference. Vehicle availability through 4WHEELS is confirmed separately."
+            </p>
           </div>
         </div>
 

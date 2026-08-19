@@ -4,6 +4,7 @@ import SEOHead from '../../components/SEOHead.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTASection from '../../components/CTASection.astro';
 import { PAKISTAN_ROUTES, getRouteBySlug } from '../../data/routes';
+import { getContextualWhatsAppUrl } from '../../utils/whatsappContext';
 
 export function getStaticPaths() {
   return PAKISTAN_ROUTES.map(route => ({
@@ -23,6 +24,11 @@ const pageDescription = `Detailed route breakdown from ${route.origin} to ${rout
 const canonicalUrl = `https://4wheelsrentacar.pk/routes/${route.slug}/`;
 
 const tripPlannerUrl = `/trip-planner/?origin=${encodeURIComponent(route.origin)}&destination=${encodeURIComponent(route.destination)}`;
+const waContextUrl = getContextualWhatsAppUrl({
+  pageType: 'route',
+  destinationRoute: `${route.origin} → ${route.destination}`,
+  canonicalUrl
+});
 ---
 
 <Layout title={pageTitle}>
@@ -70,6 +76,14 @@ const tripPlannerUrl = `/trip-planner/?origin=${encodeURIComponent(route.origin)
             class="bg-red-600 hover:bg-red-700 text-white font-extrabold px-6 py-3 rounded-xl transition-all shadow-md text-xs sm:text-sm uppercase tracking-wide flex items-center gap-2"
           >
             <span>🚗 BOOK YOUR TRIP</span>
+          </a>
+          <a
+            href={waContextUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-6 py-3 rounded-xl transition-all shadow-md text-xs sm:text-sm uppercase tracking-wide flex items-center gap-2"
+          >
+            <span>💬 WHATSAPP ROUTE SUPPORT</span>
           </a>
         </div>
       </div>
