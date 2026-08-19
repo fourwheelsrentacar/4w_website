@@ -1,5 +1,9 @@
 
- astro  v5.18.2 ready in 27 ms
+> 4wheels-rent-a-car@1.0.0 preview
+> astro preview
 
-┃ Local    http://localhost:3000/
+
+ astro  v5.18.2 ready in 25 ms
+
+┃ Local    http://localhost:4321/
 ┃ Network  use --host to expose
