@@ -84,7 +84,7 @@ const description = "Contact 4WHEELS Rent a Car in Lahore. Call 0321 6616644 or 
           <div class="rounded-xl overflow-hidden border border-slate-200 shadow-inner mt-4 h-64">
             <iframe
               title="4WHEELS Rent a Car Lahore Map"
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d550.6483839367595!2d74.27866402308484!3d31.45789864705068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1787147699768!5m2!1sen!2s"
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d850.8537528749591!2d74.2784422695392!3d31.45776799839019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzHCsDI3JzI4LjAiTiA3NMKwMTYnNDQuNyJF!5e0!3m2!1sen!2s!4v1787156324175!5m2!1sen!2s"
               width="100%"
               height="100%"
               style="border:0;"
@@ -96,7 +96,7 @@ const description = "Contact 4WHEELS Rent a Car in Lahore. Call 0321 6616644 or 
 
           <div class="pt-2 flex flex-wrap gap-3">
             <a
-              href="https://maps.google.com/?q=5,+F1,+Block+F1,+Johar+Town+Phase+1,+Lahore"
+              href="https://maps.google.com/?q=Plot+number+5,+Block+F1,+Johar+Town+Phase+1,+Lahore"
               target="_blank"
               rel="noopener noreferrer"
               class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold py-2.5 px-4 rounded-lg transition-colors flex items-center gap-1.5"
@@ -104,7 +104,7 @@ const description = "Contact 4WHEELS Rent a Car in Lahore. Call 0321 6616644 or 
               📍 Open in Google Maps & Get Directions
             </a>
             <a
-              href="https://maps.google.com/?q=5,+F1,+Block+F1,+Johar+Town+Phase+1,+Lahore"
+              href="https://maps.google.com/?q=Plot+number+5,+Block+F1,+Johar+Town+Phase+1,+Lahore"
               target="_blank"
               rel="noopener noreferrer"
               class="bg-amber-500 hover:bg-amber-600 text-slate-900 text-xs font-bold py-2.5 px-4 rounded-lg transition-colors flex items-center gap-1.5"
@@ -120,7 +120,7 @@ const description = "Contact 4WHEELS Rent a Car in Lahore. Call 0321 6616644 or 
         <h2 class="text-2xl font-bold text-slate-900 mb-2">Send a Rental Enquiry</h2>
         <p class="text-slate-600 text-sm mb-6">Fill out your rental details below and our team will contact you to confirm vehicle availability.</p>
 
-        <form action="#" method="POST" class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you! Your enquiry has been received. Please call or WhatsApp 0321 6616644 for instant availability confirmation.');">
+        <form id="contactForm" class="space-y-4">
           <div>
             <label for="name" class="block text-sm font-semibold text-slate-700 mb-1">Your Name *</label>
             <input
@@ -186,11 +186,30 @@ const description = "Contact 4WHEELS Rent a Car in Lahore. Call 0321 6616644 or 
 
           <button
             type="submit"
-            class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-base shadow-md"
+            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-base shadow-md flex items-center justify-center gap-2"
           >
-            Submit Enquiry
+            💬 Send WhatsApp Enquiry
           </button>
         </form>
+
+        <script>
+          const contactForm = document.getElementById('contactForm');
+          if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+              e.preventDefault();
+              const name = (document.getElementById('name') as HTMLInputElement)?.value.trim() || '';
+              const phone = (document.getElementById('phone') as HTMLInputElement)?.value.trim() || '';
+              const rentalType = (document.getElementById('rental_type') as HTMLSelectElement)?.value || '';
+              const preferredDate = (document.getElementById('preferred_date') as HTMLInputElement)?.value.trim() || 'Not specified';
+              const message = (document.getElementById('message') as HTMLTextAreaElement)?.value.trim() || 'None';
+
+              const text = `Hi 4WHEELS Rent a Car,\n\nI would like to make an inquiry via your website contact form:\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n🚘 *Service Requested:* ${rentalType}\n📅 *Preferred Date/Duration:* ${preferredDate}\n📝 *Additional Notes:* ${message}\n\nPlease check vehicle availability and confirm details. Thank you!`;
+
+              const whatsappUrl = `https://wa.me/923216616644?text=${encodeURIComponent(text)}`;
+              window.open(whatsappUrl, '_blank');
+            });
+          }
+        </script>
       </div>
     </div>
   </section>

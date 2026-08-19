@@ -36,7 +36,7 @@ export const PAKISTAN_LOCATIONS: LocationRecord[] = [
     faqs: [
       {
         question: 'Where is the official 4WHEELS office in Lahore?',
-        answer: 'Our official physical office is located at 5, F1, Block F1, Johar Town Phase 1, Lahore, Pakistan.'
+        answer: 'Our official physical office is located at Plot number 5, Block F1, Johar Town Phase 1, Lahore, Pakistan.'
       },
       {
         question: 'Is self-drive rental available in Lahore?',

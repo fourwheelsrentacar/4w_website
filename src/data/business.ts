@@ -22,17 +22,17 @@ export const BUSINESS_INFO = {
   ],
   facebookUrl: 'https://www.facebook.com/4wheelrentacar/',
   address: {
-    street: '5, F1, Block F1, Johar Town Phase 1',
+    street: 'Plot number 5, Block F1, Johar Town Phase 1',
     locality: 'Johar Town Phase 1',
     city: 'Lahore',
     region: 'Punjab',
     postalCode: '54770',
     country: 'Pakistan',
-    fullAddress: '5, F1, Block F1, Johar Town Phase 1, Lahore, Pakistan'
+    fullAddress: 'Plot number 5, Block F1, Johar Town Phase 1, Lahore, Pakistan'
   },
   geo: {
-    latitude: 31.4578986,
-    longitude: 74.278664
+    latitude: 31.4577778,
+    longitude: 74.2790833
   },
   siteUrl: 'https://4wheelsrentacar.pk',
   openingHours: 'Contact via Phone/WhatsApp for bookings',

@@ -47,7 +47,7 @@ export const GUIDE_ARTICLES: GuideArticle[] = [
       { label: 'Required Documents (Self-Drive)', value: 'Original CNIC / Passport + Valid Driving License' },
       { label: 'Chauffeur Option Available', value: 'Yes, trained professional drivers across Pakistan' },
       { label: 'Fuel Policy', value: 'Full-to-Full or Outstation Petrol Allowance' },
-      { label: 'Head Office', value: '5, F1, Block F1, Johar Town Phase 1, Lahore' }
+      { label: 'Head Office', value: 'Plot number 5, Block F1, Johar Town Phase 1, Lahore' }
     ],
     contentSections: [
       {

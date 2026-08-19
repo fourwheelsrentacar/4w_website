@@ -9,7 +9,7 @@ This document details the verified official brand sources for 4WHEELS Rent a Car
 | Primary Phone | 0321 6616644 / +92 321 6616644 | August 2026 | Direct phone contact link: `tel:+923216616644` |
 | Primary WhatsApp | https://wa.me/923216616644 | August 2026 | Primary customer response & booking conversion channel |
 | Business Email | 4wheels44@gmail.com | August 2026 | Reserved for corporate queries, enterprise procurement & tour operators |
-| Physical Address | 5, F1, Block F1, Johar Town Phase 1, Lahore, Pakistan | August 2026 | Verified physical headquarters |
+| Physical Address | Plot number 5, Block F1, Johar Town Phase 1, Lahore, Pakistan | August 2026 | Verified physical headquarters |
 | Official Facebook Page | https://www.facebook.com/4wheelrentacar/ | August 2026 | Primary social presence for logo, presentation, and fleet media |
 | Fleet Photography Source | Official 4WHEELS media / Owner photos | August 2026 | Unverified photos are flagged with "Owner photo required." |
 | Logo Source | Official 4WHEELS Facebook & Brand Assets | August 2026 | Crimson Red (#e0121a) & Slate Dark Brand Identity |
@@ -20,7 +20,7 @@ This document details the verified official brand sources for 4WHEELS Rent a Car
 - **Official Facebook Page:** `https://www.facebook.com/4wheelrentacar/`
 - **Owner-Confirmed Phone:** `0321 6616644` / `+92 321 6616644`
 - **Owner-Confirmed Email:** `4wheels44@gmail.com`
-- **Owner-Confirmed Address:** `5, F1, Block F1, Johar Town Phase 1, Lahore, Pakistan`
+- **Owner-Confirmed Address:** `Plot number 5, Block F1, Johar Town Phase 1, Lahore, Pakistan`
 - **Approved Brand Logo:** Crimson Red (`#e0121a`) & Slate Dark Brand Assets
 - **Approved Fleet Sources:** Official 4WHEELS media / owner-verified photos
 

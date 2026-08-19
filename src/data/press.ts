@@ -37,7 +37,7 @@ export const PRESS_RELEASES: PressRelease[] = [
       <ul class="list-disc pl-6 space-y-2 mb-6 text-slate-700">
         <li><strong>Official Name:</strong> 4WHEELS Rent a Car</li>
         <li><strong>Established:</strong> 2008 ("Serving Lahore Since 2008")</li>
-        <li><strong>Official Head Office Address:</strong> 5, F1, Block F1, Johar Town Phase 1, Lahore, Pakistan</li>
+        <li><strong>Official Head Office Address:</strong> Plot number 5, Block F1, Johar Town Phase 1, Lahore, Pakistan</li>
         <li><strong>Official Phone / Voice Support:</strong> 0321 6616644 / +92 321 6616644</li>
         <li><strong>Official WhatsApp Support:</strong> +92 321 6616644</li>
         <li><strong>Official Email:</strong> 4wheels44@gmail.com</li>
@@ -142,7 +142,7 @@ export const PRESS_RELEASES: PressRelease[] = [
 
       <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">4. Confirm Head Office Location</h2>
       <p class="mb-6 text-slate-700">
-        4WHEELS Rent a Car operates its official head office exclusively at <strong>5, F1, Block F1, Johar Town Phase 1, Lahore</strong>. Any claimed branch or franchise in other cities or areas should be verified via our <a href="/official/" class="text-red-600 font-bold hover:underline">Official Verification Hub</a>.
+        4WHEELS Rent a Car operates its official head office exclusively at <strong>Plot number 5, Block F1, Johar Town Phase 1, Lahore</strong>. Any claimed branch or franchise in other cities or areas should be verified via our <a href="/official/" class="text-red-600 font-bold hover:underline">Official Verification Hub</a>.
       </p>
     `
   }
