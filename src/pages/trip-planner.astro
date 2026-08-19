@@ -43,25 +43,48 @@ const canonicalPath = "/trip-planner/";
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label for="plan-origin" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
-                  Starting City / Location <span class="text-red-500">*</span>
+                  Pick-up Location / City <span class="text-red-500">*</span>
                 </label>
-                <input type="text" id="plan-origin" required value="Lahore" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+                <input
+                  type="text"
+                  id="plan-origin"
+                  required
+                  placeholder="e.g. Johar Town, Lahore or Allama Iqbal Airport"
+                  value="Lahore"
+                  class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none"
+                />
               </div>
 
               <div>
-                <label for="plan-destination" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
-                  Destination City / Tour Route <span class="text-red-500">*</span>
+                <label for="plan-destination-custom" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  Drop-off Location / City <span class="text-red-500">*</span>
                 </label>
-                <select id="plan-destination" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none">
-                  <option value="Islamabad / Rawalpindi" data-dist="375" data-toll="1100">Islamabad / Rawalpindi (via M-2)</option>
-                  <option value="Murree / Galiyat" data-dist="435" data-toll="1350">Murree / Galiyat (via M-2)</option>
-                  <option value="Multan" data-dist="315" data-toll="950">Multan (via M-3)</option>
-                  <option value="Sialkot" data-dist="103" data-toll="400">Sialkot (via M-11)</option>
-                  <option value="Peshawar" data-dist="490" data-toll="1550">Peshawar (via M-2/M-1)</option>
-                  <option value="Lahore City Local" data-dist="60" data-toll="120">Lahore City Local / Airport Transfer</option>
-                  <option value="Custom Outstation Route" data-dist="350" data-toll="1000">Custom Outstation Route</option>
-                </select>
+                <input
+                  type="text"
+                  id="plan-destination-custom"
+                  required
+                  placeholder="e.g. F-7, Islamabad or Mall Road, Murree"
+                  value="Islamabad"
+                  class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none"
+                />
               </div>
+            </div>
+
+            <!-- Preset Quick Select -->
+            <div>
+              <label for="plan-destination-preset" class="block font-semibold text-slate-400 mb-1 text-[11px]">
+                Quick Select Popular Route (Optional Preset)
+              </label>
+              <select id="plan-destination-preset" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none">
+                <option value="custom">Custom Location Pair (Enter above)</option>
+                <option value="Islamabad / Rawalpindi" data-dist="375" data-toll="1100" data-dest="Islamabad">Lahore → Islamabad / Rawalpindi (375 km)</option>
+                <option value="Murree / Galiyat" data-dist="435" data-toll="1350" data-dest="Murree">Lahore → Murree / Galiyat (435 km)</option>
+                <option value="Multan" data-dist="315" data-toll="950" data-dest="Multan">Lahore → Multan (315 km)</option>
+                <option value="Sialkot" data-dist="103" data-toll="400" data-dest="Sialkot">Lahore → Sialkot (103 km)</option>
+                <option value="Peshawar" data-dist="490" data-toll="1550" data-dest="Peshawar">Lahore → Peshawar (490 km)</option>
+                <option value="Faisalabad" data-dist="180" data-toll="600" data-dest="Faisalabad">Lahore → Faisalabad (180 km)</option>
+                <option value="Lahore Local" data-dist="60" data-toll="120" data-dest="Lahore Airport">Lahore City Local / Airport Transfer (60 km)</option>
+              </select>
             </div>
 
             <!-- Route Type & Distance Override -->
@@ -278,6 +301,16 @@ const canonicalPath = "/trip-planner/";
 
             <!-- Primary Actions -->
             <div class="space-y-2 pt-2">
+              <a
+                href="https://www.google.com/maps/dir/?api=1&origin=Lahore&destination=Islamabad"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="btn-open-gmaps"
+                class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs py-3 rounded-xl block text-center transition-all flex items-center justify-center gap-2"
+              >
+                <span>🗺️ View Route & Distance on Google Maps</span>
+              </a>
+
               <button
                 type="button"
                 id="btn-send-plan-whatsapp"
@@ -315,7 +348,9 @@ const canonicalPath = "/trip-planner/";
   trackEvent('trip_planner_start', { page: '/trip-planner/' });
 
   // Elements
-  const routeSelect = document.getElementById('plan-destination') as HTMLSelectElement;
+  const originInput = document.getElementById('plan-origin') as HTMLInputElement;
+  const destCustomInput = document.getElementById('plan-destination-custom') as HTMLInputElement;
+  const presetSelect = document.getElementById('plan-destination-preset') as HTMLSelectElement;
   const distanceInput = document.getElementById('plan-distance') as HTMLInputElement;
   const tripTypeInput = document.getElementById('plan-triptype') as HTMLInputElement;
   const startDateInput = document.getElementById('plan-start-date') as HTMLInputElement;
@@ -329,6 +364,7 @@ const canonicalPath = "/trip-planner/";
   const nightsInput = document.getElementById('plan-nights') as HTMLInputElement;
   const mealsSelect = document.getElementById('plan-meals') as HTMLSelectElement;
   const bufferSelect = document.getElementById('plan-buffer') as HTMLSelectElement;
+  const gmapsBtn = document.getElementById('btn-open-gmaps') as HTMLAnchorElement;
 
   const btnReturn = document.getElementById('btn-return-trip');
   const btnOneway = document.getElementById('btn-oneway-trip');
@@ -388,16 +424,39 @@ const canonicalPath = "/trip-planner/";
   });
 
   const updateRouteDistance = () => {
-    const opt = routeSelect?.selectedOptions[0];
-    if (opt && distanceInput) {
+    const opt = presetSelect?.selectedOptions[0];
+    if (opt && opt.value !== 'custom' && distanceInput) {
       const baseDist = parseInt(opt.getAttribute('data-dist') || '350', 10);
       const isReturn = tripTypeInput?.value === 'return';
       distanceInput.value = (baseDist * (isReturn ? 2 : 1)).toString();
+      if (destCustomInput && opt.getAttribute('data-dest')) {
+        destCustomInput.value = opt.getAttribute('data-dest') || '';
+      }
     }
   };
 
-  routeSelect?.addEventListener('change', () => {
+  presetSelect?.addEventListener('change', () => {
     updateRouteDistance();
+    updateGmapsLink();
+    calculateBudget();
+  });
+
+  const updateGmapsLink = () => {
+    const origin = originInput?.value || 'Lahore';
+    const dest = destCustomInput?.value || 'Islamabad';
+    if (gmapsBtn) {
+      gmapsBtn.href = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(dest)}`;
+    }
+  };
+
+  originInput?.addEventListener('input', () => {
+    updateGmapsLink();
+    calculateBudget();
+  });
+
+  destCustomInput?.addEventListener('input', () => {
+    if (presetSelect) presetSelect.value = 'custom';
+    updateGmapsLink();
     calculateBudget();
   });
 
@@ -430,8 +489,8 @@ const canonicalPath = "/trip-planner/";
     const fuelCost = Math.round(litersNeeded * fuelPrice);
 
     // 3. Tolls
-    const rOpt = routeSelect?.selectedOptions[0];
-    const baseToll = parseInt(rOpt?.getAttribute('data-toll') || '1000', 10);
+    const pOpt = presetSelect?.selectedOptions[0];
+    const baseToll = pOpt && pOpt.value !== 'custom' ? parseInt(pOpt.getAttribute('data-toll') || '1000', 10) : Math.round((dist / 350) * 1000);
     const isReturn = tripTypeInput?.value === 'return';
     const tollsCost = baseToll * (isReturn ? 2 : 1);
 
@@ -473,7 +532,8 @@ const canonicalPath = "/trip-planner/";
       }
     }
 
-    trackEvent('trip_estimate_generated', { totalEstimate: totalCost, route: routeSelect?.value });
+    const customRouteLabel = `${originInput?.value || 'Origin'} to ${destCustomInput?.value || 'Destination'}`;
+    trackEvent('trip_estimate_generated', { totalEstimate: totalCost, route: customRouteLabel });
   };
 
   // Event Listeners
@@ -495,8 +555,8 @@ const canonicalPath = "/trip-planner/";
   // WhatsApp Inquiry Generator
   const btnSendWhatsApp = document.getElementById('btn-send-plan-whatsapp');
   btnSendWhatsApp?.addEventListener('click', () => {
-    const origin = (document.getElementById('plan-origin') as HTMLInputElement)?.value || 'Lahore';
-    const dest = routeSelect?.value || 'Outstation';
+    const origin = originInput?.value || 'Lahore';
+    const dest = destCustomInput?.value || 'Outstation';
     const isReturn = tripTypeInput?.value === 'return';
     const startDate = startDateInput?.value || '';
     const endDate = endDateInput?.value || '';
@@ -512,15 +572,16 @@ const canonicalPath = "/trip-planner/";
 
     const message =
       `Hello 4WHEELS, I used the Trip Planner and would like a quotation.\n\n` +
-      `Trip\n` +
-      `${origin} → ${dest}\n` +
-      `${isReturn ? 'Return Trip' : 'One-Way Trip'}\n\n` +
-      `Dates: ${startDate} to ${endDate}\n` +
-      `Travelers: ${travelers} people (${luggage} bags)\n\n` +
-      `Vehicle Preferred: ${vehicleOpt}\n` +
-      `Rental Mode: ${mode}\n\n` +
-      `My Estimated Planning Budget: ${totalEst}\n\n` +
-      `Please confirm actual vehicle availability, rental quotation, and applicable trip charges.\n\n` +
+      `Trip Details:\n` +
+      `• Pick-up Location: ${origin}\n` +
+      `• Drop-off Location: ${dest}\n` +
+      `• Type: ${isReturn ? 'Return Trip' : 'One-Way Trip'} (${distanceInput?.value || 750} km)\n\n` +
+      `• Travel Dates: ${startDate} to ${endDate}\n` +
+      `• Passengers: ${travelers} people (${luggage} large bags)\n` +
+      `• Vehicle Requested: ${vehicleOpt}\n` +
+      `• Rental Mode: ${mode}\n\n` +
+      `• Calculated Estimate: ${totalEst}\n\n` +
+      `Please confirm vehicle availability, exact quotation, and booking details.\n\n` +
       `Name: ${name}\n` +
       `Phone: ${phone}`;
 
