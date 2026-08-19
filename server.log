@@ -1,67 +1,6 @@
 
-> 4wheels-rent-a-car@1.0.0 start
-> astro dev
-
-11:34:56 [types] Generated 1ms
-11:34:56 [content] Syncing content
-11:34:56 [content] Synced content
-11:34:56 [vite] Re-optimizing dependencies because vite config has changed
-
- astro  v5.18.2 ready in 663 ms
+ astro  v5.18.2 ready in 20 ms
 
 ┃ Local    http://localhost:4321/
 ┃ Network  use --host to expose
 
-11:34:56 watching for file changes...
-
- update  ▶ New version of Astro available: 7.2.3
-  Run npx @astrojs/upgrade to update
-
-11:35:17 Configuration file updated. Restarting...
-11:35:17 [vite] Re-optimizing dependencies because vite config has changed
-11:35:17 [content] Syncing content
-11:35:17 [content] Synced content
-11:35:17 [types] Generated 220ms
-11:35:17 [vite] Re-optimizing dependencies because lockfile has changed
-11:35:56 [200] / 1032ms
-11:35:58 [200] /fleet/ 11ms
-11:36:00 [200] /fleet/toyota-fortuner/ 8ms
-11:36:01 [200] /build-your-rental/ 8ms
-11:36:02 [200] /trip-planner/ 8ms
-11:36:03 [200] /find-my-vehicle/ 7ms
-11:36:04 [200] /routes/lahore-to-islamabad/ 7ms
-11:36:05 [200] / 9ms
-11:36:06 [200] /fleet/ 7ms
-11:36:07 [200] /fleet/toyota-fortuner/ 6ms
-11:36:08 [200] /build-your-rental/ 5ms
-11:36:09 [200] /trip-planner/ 5ms
-11:36:10 [200] /find-my-vehicle/ 5ms
-11:36:11 [200] /routes/lahore-to-islamabad/ 5ms
-11:40:21 [watch] src/utils/vehicleVisual.ts
-11:40:21 [watch] src/utils/vehicleVisual.ts
-11:41:18 [watch] src/pages/fleet/[vehicle].astro
-11:41:18 [watch] src/pages/fleet/[vehicle].astro
-11:41:33 [watch] src/pages/vehicles/[brand]/[model].astro
-11:41:33 [watch] src/pages/vehicles/[brand]/[model].astro
-11:43:07 [watch] src/pages/fleet/index.astro
-11:43:07 [watch] src/pages/fleet/index.astro
-11:44:31 [watch] src/pages/build-your-rental.astro
-11:44:31 [watch] src/pages/build-your-rental.astro
-11:46:58 [watch] src/pages/routes/[slug].astro
-11:46:58 [watch] src/pages/routes/[slug].astro
-11:47:41 [200] / 332ms
-11:47:43 [200] /fleet/ 10ms
-11:47:45 [200] /fleet/toyota-fortuner/ 7ms
-11:47:46 [200] /build-your-rental/ 7ms
-11:47:47 [200] /trip-planner/ 7ms
-11:47:48 [200] /find-my-vehicle/ 11ms
-11:47:49 [200] /routes/lahore-to-islamabad/ 7ms
-11:47:50 [200] / 6ms
-11:47:51 [200] /fleet/ 6ms
-11:47:52 [200] /fleet/toyota-fortuner/ 5ms
-11:47:53 [200] /build-your-rental/ 5ms
-11:47:54 [200] /trip-planner/ 5ms
-11:47:55 [200] /find-my-vehicle/ 5ms
-11:47:56 [200] /routes/lahore-to-islamabad/ 5ms
-11:53:54 [watch] src/pages/build-your-rental.astro
-11:53:54 [watch] src/pages/build-your-rental.astro

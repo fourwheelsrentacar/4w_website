@@ -31,8 +31,8 @@ export const BUSINESS_INFO = {
     fullAddress: '5, F1, Block F1, Johar Town Phase 1, Lahore, Pakistan'
   },
   geo: {
-    latitude: 31.4697,
-    longitude: 74.2728
+    latitude: 31.4578986,
+    longitude: 74.278664
   },
   siteUrl: 'https://4wheelsrentacar.pk',
   openingHours: 'Contact via Phone/WhatsApp for bookings',
