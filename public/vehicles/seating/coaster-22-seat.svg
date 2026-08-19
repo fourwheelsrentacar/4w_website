@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 760" width="100%" height="100%" role="img" aria-label="Toyota Coaster Saloon Executive 22-Seat Seating Diagram">
+  <title>Toyota Coaster Saloon Executive 22-Seat Seating Diagram</title>
+
+  <!-- Coaster Bus Body Outline -->
+  <rect x="35" y="25" width="270" height="710" rx="28" fill="#0f172a" stroke="#dc2626" stroke-width="4"/>
+
+  <!-- Front Road Header -->
+  <text x="170" y="55" fill="#ef4444" font-size="12" font-weight="900" text-anchor="middle" letter-spacing="2">▲ FRONT / ROAD ▲</text>
+
+  <!-- Front Cockpit: Driver Right (RHD) + Guide Left -->
+  <g transform="translate(185, 75)">
+    <rect x="0" y="0" width="70" height="60" rx="8" fill="#7f1d1d" stroke="#ef4444" stroke-width="2" class="coaster-seat" data-seat="01" data-type="Driver"/>
+    <text x="35" y="35" fill="#fca5a5" font-size="9" font-weight="900" text-anchor="middle">DRIVER</text>
+  </g>
+  <g transform="translate(85, 75)">
+    <rect x="0" y="0" width="60" height="60" rx="8" fill="#312e81" stroke="#6366f1" stroke-width="2" class="coaster-seat" data-seat="G" data-type="Guide Seat"/>
+    <text x="30" y="35" fill="#c7d2fe" font-size="9" font-weight="bold" text-anchor="middle">GUIDE</text>
+  </g>
+
+  <!-- Center Aisle Marker Line -->
+  <line x1="150" y1="150" x2="150" y2="590" stroke="#334155" stroke-width="2" stroke-dasharray="6 4"/>
+
+  <!-- Executive Rows (1 + 2 Configuration) -->
+  <!-- Row 1 -->
+  <g transform="translate(50, 150)">
+    <rect x="0" y="0" width="55" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="02" data-type="Single Executive Recliner"/>
+    <text x="27.5" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 02</text>
+
+    <rect x="135" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="03" data-type="Double Executive Seat"/>
+    <text x="161" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 03</text>
+
+    <rect x="190" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="04" data-type="Window Executive Seat"/>
+    <text x="216" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 04</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g transform="translate(50, 220)">
+    <rect x="0" y="0" width="55" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="05" data-type="Single Executive Recliner"/>
+    <text x="27.5" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 05</text>
+
+    <rect x="135" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="06" data-type="Double Executive Seat"/>
+    <text x="161" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 06</text>
+
+    <rect x="190" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="07" data-type="Window Executive Seat"/>
+    <text x="216" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 07</text>
+  </g>
+
+  <!-- Row 3 -->
+  <g transform="translate(50, 290)">
+    <rect x="0" y="0" width="55" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="08" data-type="Single Executive Recliner"/>
+    <text x="27.5" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 08</text>
+
+    <rect x="135" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="09" data-type="Double Executive Seat"/>
+    <text x="161" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 09</text>
+
+    <rect x="190" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="10" data-type="Window Executive Seat"/>
+    <text x="216" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 10</text>
+  </g>
+
+  <!-- Row 4 -->
+  <g transform="translate(50, 360)">
+    <rect x="0" y="0" width="55" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="11" data-type="Single Executive Recliner"/>
+    <text x="27.5" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 11</text>
+
+    <rect x="135" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="12" data-type="Double Executive Seat"/>
+    <text x="161" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 12</text>
+
+    <rect x="190" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="13" data-type="Window Executive Seat"/>
+    <text x="216" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 13</text>
+  </g>
+
+  <!-- Row 5 -->
+  <g transform="translate(50, 430)">
+    <rect x="0" y="0" width="55" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="14" data-type="Single Executive Recliner"/>
+    <text x="27.5" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 14</text>
+
+    <rect x="135" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="15" data-type="Double Executive Seat"/>
+    <text x="161" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 15</text>
+
+    <rect x="190" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="16" data-type="Window Executive Seat"/>
+    <text x="216" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 16</text>
+  </g>
+
+  <!-- Row 6 -->
+  <g transform="translate(50, 500)">
+    <rect x="0" y="0" width="55" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="17" data-type="Single Executive Recliner"/>
+    <text x="27.5" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 17</text>
+
+    <rect x="135" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="18" data-type="Double Executive Seat"/>
+    <text x="161" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 18</text>
+
+    <rect x="190" y="0" width="52" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="19" data-type="Window Executive Seat"/>
+    <text x="216" y="33" fill="#93c5fd" font-size="9" font-weight="extrabold" text-anchor="middle">SEAT 19</text>
+  </g>
+
+  <!-- Rear Lounge Row (5 Seats) -->
+  <g transform="translate(50, 575)">
+    <rect x="0" y="0" width="45" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="20" data-type="Rear Lounge Seat"/>
+    <text x="22.5" y="33" fill="#93c5fd" font-size="8" font-weight="bold" text-anchor="middle">ST 20</text>
+
+    <rect x="49" y="0" width="45" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="21" data-type="Rear Lounge Seat"/>
+    <text x="71.5" y="33" fill="#93c5fd" font-size="8" font-weight="bold" text-anchor="middle">ST 21</text>
+
+    <rect x="98" y="0" width="45" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="22" data-type="Rear Lounge Seat"/>
+    <text x="120.5" y="33" fill="#93c5fd" font-size="8" font-weight="bold" text-anchor="middle">ST 22</text>
+
+    <rect x="147" y="0" width="45" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="23" data-type="Rear Lounge Seat"/>
+    <text x="169.5" y="33" fill="#93c5fd" font-size="8" font-weight="bold" text-anchor="middle">ST 23</text>
+
+    <rect x="196" y="0" width="44" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="coaster-seat hover:fill-blue-900 cursor-pointer" data-seat="24" data-type="Rear Lounge Seat"/>
+    <text x="218" y="33" fill="#93c5fd" font-size="8" font-weight="bold" text-anchor="middle">ST 24</text>
+  </g>
+
+  <!-- Dedicated Rear Trunk Cargo Deck -->
+  <g transform="translate(50, 645)">
+    <rect x="0" y="0" width="240" height="75" rx="10" fill="#022c22" stroke="#10b981" stroke-dasharray="4 2" stroke-width="2"/>
+    <text x="120" y="22" fill="#34d399" font-size="11" font-weight="900" text-anchor="middle" letter-spacing="1">HEAVY REAR LUGGAGE DECK</text>
+    <text x="120" y="45" fill="#a7f3d0" font-size="10" font-weight="bold" text-anchor="middle">Approx. 12 - 15 Large Suitcases + Roof Rack Support</text>
+  </g>
+</svg>

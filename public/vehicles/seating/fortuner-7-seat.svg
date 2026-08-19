@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 500" width="100%" height="100%" role="img" aria-label="Toyota Fortuner 7-Seat Top-Down SUV Seating Diagram">
+  <title>Toyota Fortuner 7-Seat SUV Seating & Boot Diagram</title>
+
+  <!-- SUV Exterior Body Outline -->
+  <path d="M 50 70 C 50 20, 270 20, 270 70 L 275 420 C 275 465, 45 465, 45 420 Z" fill="#0f172a" stroke="#334155" stroke-width="4"/>
+
+  <!-- Front Header -->
+  <text x="160" y="45" fill="#ef4444" font-size="12" font-weight="900" text-anchor="middle" letter-spacing="2">▲ FRONT / ROAD ▲</text>
+
+  <!-- Row 1: Front Cockpit -->
+  <g transform="translate(170, 75)">
+    <!-- Driver Seat (RHD) -->
+    <rect x="0" y="0" width="65" height="65" rx="10" fill="#7f1d1d" stroke="#ef4444" stroke-width="2"/>
+    <circle cx="32.5" cy="32.5" r="13" stroke="#f87171" stroke-width="2" fill="none"/>
+    <text x="32.5" y="55" fill="#fca5a5" font-size="8" font-weight="bold" text-anchor="middle">DRIVER</text>
+  </g>
+  <g transform="translate(85, 75)">
+    <!-- Passenger 1 -->
+    <rect x="0" y="0" width="65" height="65" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="32.5" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 01</text>
+  </g>
+
+  <!-- Row 2: Middle Bench (3 Seats) -->
+  <g transform="translate(70, 160)">
+    <rect x="0" y="0" width="55" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="27.5" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 02</text>
+
+    <rect x="62" y="0" width="55" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="89.5" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 03</text>
+
+    <rect x="124" y="0" width="55" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="151.5" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 04</text>
+  </g>
+
+  <!-- Row 3: Foldable Third Row (2 Seats) -->
+  <g transform="translate(85, 245)">
+    <rect x="0" y="0" width="65" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="32.5" y="35" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 05</text>
+
+    <rect x="85" y="0" width="65" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="117.5" y="35" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 06</text>
+  </g>
+
+  <!-- Divider to Luggage -->
+  <line x1="55" y1="320" x2="265" y2="320" stroke="#475569" stroke-width="3" stroke-dasharray="6 4"/>
+
+  <!-- Rear Luggage Zone -->
+  <g transform="translate(65, 330)">
+    <rect x="0" y="0" width="190" height="110" rx="10" fill="#022c22" stroke="#10b981" stroke-dasharray="4 2" stroke-width="2"/>
+    <text x="95" y="20" fill="#34d399" font-size="10" font-weight="900" text-anchor="middle" letter-spacing="1">BOOT / LUGGAGE ZONE</text>
+    <text x="95" y="36" fill="#a7f3d0" font-size="8" text-anchor="middle" font-style="italic">Expandable when 3rd Row is Folded</text>
+
+    <!-- Visual Bags -->
+    <rect x="25" y="45" width="45" height="40" rx="4" fill="#065f46" stroke="#10b981" stroke-width="1.5"/>
+    <text x="47.5" y="70" fill="#a7f3d0" font-size="9" font-weight="bold" text-anchor="middle">BAG 1</text>
+
+    <rect x="78" y="45" width="45" height="40" rx="4" fill="#065f46" stroke="#10b981" stroke-width="1.5"/>
+    <text x="100.5" y="70" fill="#a7f3d0" font-size="9" font-weight="bold" text-anchor="middle">BAG 2</text>
+
+    <rect x="130" y="45" width="35" height="40" rx="4" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="147.5" y="70" fill="#bae6fd" font-size="8" font-weight="bold" text-anchor="middle">CABIN</text>
+  </g>
+</svg>

@@ -302,13 +302,43 @@ const canonicalPath = "/build-your-rental/";
               </div>
             </div>
 
-            <!-- Dynamic Trip Fit Indicator Box -->
-            <div id="trip-fit-box" class="bg-emerald-950/60 border border-emerald-800/80 p-4 rounded-xl flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span id="trip-fit-icon" class="text-lg">✅</span>
-                <div>
-                  <span id="trip-fit-title" class="text-xs font-black text-emerald-400 block">Vehicle Appears Suitable</span>
-                  <span id="trip-fit-desc" class="text-[11px] text-slate-300">4 passengers and 2 bags fit comfortably in selected vehicle.</span>
+            <!-- Dynamic Trip Fit Indicator Box with Capacity Visual Diagram -->
+            <div id="trip-fit-box" class="bg-emerald-950/60 border border-emerald-800/80 p-4 rounded-xl space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span id="trip-fit-icon" class="text-lg">✓</span>
+                  <div>
+                    <span id="trip-fit-title" class="text-xs font-black text-emerald-400 block uppercase tracking-wider">✓ GOOD FIT</span>
+                    <span id="trip-fit-desc" class="text-[11px] text-slate-300">4 passengers and 2 bags fit comfortably in selected vehicle.</span>
+                  </div>
+                </div>
+                <span id="trip-fit-badge" class="text-[10px] font-bold bg-emerald-900 text-emerald-200 px-2.5 py-1 rounded">
+                  VERIFIED CAPACITY
+                </span>
+              </div>
+
+              <!-- Top-Down Seating Visual Preview in Configurator -->
+              <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-4">
+                <img id="configurator-seating-img" src="/vehicles/seating/corolla-5-seat.svg" alt="Seating Layout" class="w-24 h-24 object-contain" />
+                <div class="text-xs space-y-1">
+                  <div class="font-bold text-slate-200">2D Seating & Cargo Arrangement</div>
+                  <div class="text-[11px] text-slate-400" id="configurator-seating-text">Top-down cabin diagram with driver & passenger positions.</div>
+                  <div class="text-[10px] text-emerald-400 font-semibold" id="configurator-boot-note">Boot space verified for suitcases.</div>
+                </div>
+              </div>
+
+              <!-- Alternative Vehicle Recommendation (if capacity tight) -->
+              <div id="alt-vehicle-recommendation" class="hidden bg-slate-900 p-3 rounded-lg border border-slate-700 space-y-2">
+                <div class="text-xs font-bold text-amber-300">💡 Recommended Alternative Vehicles with Higher Capacity:</div>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                  <a href="/vehicles/toyota/fortuner/" class="bg-slate-950 p-2 rounded border border-slate-800 hover:border-red-500 block">
+                    <span class="font-black text-white block">Toyota Fortuner</span>
+                    <span class="text-[10px] text-slate-400">7 Seats • 4 Large Bags</span>
+                  </a>
+                  <a href="/vehicles/toyota/hiace/" class="bg-slate-950 p-2 rounded border border-slate-800 hover:border-red-500 block">
+                    <span class="font-black text-white block">Toyota HiAce</span>
+                    <span class="text-[10px] text-slate-400">13 Seats • 8 Large Bags</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -779,6 +809,23 @@ const canonicalPath = "/build-your-rental/";
   const pInput = document.getElementById('field-passengers') as HTMLInputElement;
   const lInput = document.getElementById('field-luggage') as HTMLInputElement;
 
+  const seatingDiagramMap: Record<string, string> = {
+    'corolla': '/vehicles/seating/corolla-5-seat.svg',
+    'civic': '/vehicles/seating/corolla-5-seat.svg',
+    'fortuner': '/vehicles/seating/fortuner-7-seat.svg',
+    'hiace': '/vehicles/seating/hiace-13-seat.svg',
+    'coaster': '/vehicles/seating/coaster-22-seat.svg',
+    'alto': '/vehicles/seating/alto-4-seat.svg'
+  };
+
+  const getSeatingDiagramForModel = (modelName: string): string => {
+    const k = modelName.toLowerCase();
+    for (const key in seatingDiagramMap) {
+      if (k.includes(key)) return seatingDiagramMap[key];
+    }
+    return '/vehicles/seating/corolla-5-seat.svg';
+  };
+
   const checkTripFit = () => {
     const pCount = parseInt(pInput?.value || '4', 10);
     const lCount = parseInt(lInput?.value || '2', 10);
@@ -787,19 +834,46 @@ const canonicalPath = "/build-your-rental/";
     const fitTitle = document.getElementById('trip-fit-title');
     const fitDesc = document.getElementById('trip-fit-desc');
     const fitIcon = document.getElementById('trip-fit-icon');
+    const seatingImg = document.getElementById('configurator-seating-img') as HTMLImageElement;
+    const seatingText = document.getElementById('configurator-seating-text');
+    const bootNote = document.getElementById('configurator-boot-note');
+    const altBox = document.getElementById('alt-vehicle-recommendation');
+    const tripBox = document.getElementById('trip-fit-box');
+
+    if (seatingImg) {
+      seatingImg.src = getSeatingDiagramForModel(model);
+    }
 
     if (pCount > 12) {
-      if (fitTitle) fitTitle.textContent = 'Group Bus Required';
-      if (fitDesc) fitDesc.textContent = `${pCount} passengers require Toyota Coaster 22-seat mini bus.`;
+      if (fitTitle) fitTitle.textContent = 'CONSIDER A LARGER VEHICLE (COASTER BUS)';
+      if (fitDesc) fitDesc.textContent = `${pCount} passengers require a 22-seater Toyota Coaster or bus.`;
       if (fitIcon) fitIcon.textContent = '🚌';
+      if (seatingText) seatingText.textContent = 'Toyota Coaster Executive 22-seat layout required.';
+      if (bootNote) bootNote.textContent = 'Heavy luggage capacity with rear cargo deck.';
+      if (altBox) altBox.classList.remove('hidden');
+      if (tripBox) {
+        tripBox.className = 'bg-amber-950/80 border border-amber-800 p-4 rounded-xl space-y-3';
+      }
     } else if (pCount > 5 || lCount >= 4) {
-      if (fitTitle) fitTitle.textContent = 'Consider SUV or HiAce Van';
-      if (fitDesc) fitDesc.textContent = `${pCount} passengers and ${lCount} bags fit best in Fortuner or HiAce Grand Cabin.`;
-      if (fitIcon) fitIcon.textContent = '🚐';
+      if (fitTitle) fitTitle.textContent = '⚠ LUGGAGE MAY BE TIGHT (CONSIDER SUV / VAN)';
+      if (fitDesc) fitDesc.textContent = `${pCount} passengers and ${lCount} large bags fit best in 7-seat Fortuner or HiAce Van.`;
+      if (fitIcon) fitIcon.textContent = '⚠️';
+      if (seatingText) seatingText.textContent = 'Standard sedan luggage space may be tight for this cargo volume.';
+      if (bootNote) bootNote.textContent = 'Consider 3rd row SUV or Grand Cabin Van.';
+      if (altBox) altBox.classList.remove('hidden');
+      if (tripBox) {
+        tripBox.className = 'bg-amber-950/80 border border-amber-800 p-4 rounded-xl space-y-3';
+      }
     } else {
-      if (fitTitle) fitTitle.textContent = 'Vehicle Appears Suitable';
+      if (fitTitle) fitTitle.textContent = '✓ GOOD FIT';
       if (fitDesc) fitDesc.textContent = `${pCount} passengers and ${lCount} bags fit comfortably in ${model}.`;
-      if (fitIcon) fitIcon.textContent = '✅';
+      if (fitIcon) fitIcon.textContent = '✓';
+      if (seatingText) seatingText.textContent = 'Top-down cabin layout with verified seating positions.';
+      if (bootNote) bootNote.textContent = 'Boot space verified for standard baggage.';
+      if (altBox) altBox.classList.add('hidden');
+      if (tripBox) {
+        tripBox.className = 'bg-emerald-950/60 border border-emerald-800/80 p-4 rounded-xl space-y-3';
+      }
     }
   };
 

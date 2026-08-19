@@ -106,8 +106,9 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/find-my-vehicle/`;
                   <p class="text-xs text-gray-600 mb-3">{car.variant}</p>
 
                   <div class="text-xs space-y-1 text-gray-700 bg-white p-3 rounded-lg border border-gray-100 mb-4">
-                    <div>👤 <strong>Max Occupants:</strong> {car.maxPassengers}</div>
+                    <div>👤 <strong>Max Occupants:</strong> Up to {car.maxPassengers} Passengers</div>
                     <div>🧳 <strong>Boot Space:</strong> {car.bootCapacity || 'Standard Trunk'}</div>
+                    <div>🗺️ <strong>2D Seating Layout:</strong> Top-Down Cabin Diagram Available</div>
                     <div>⚙️ <strong>Powertrain:</strong> {car.fuelType}</div>
                   </div>
                 </div>
