@@ -7,6 +7,7 @@ import { BUSINESS_INFO } from '../../../data/business';
 import { PAKISTAN_VEHICLE_CATALOG, getCatalogVehicleBySlug } from '../../../data/pakistanVehicles';
 import { FUEL_DISCLAIMER_TEXT } from '../../../data/rates';
 import { getVehicleVisualUrl } from '../../../utils/vehicleVisual';
+import VehicleSeatingDiagram from '../../../components/VehicleSeatingDiagram.astro';
 
 export function getStaticPaths() {
   return PAKISTAN_VEHICLE_CATALOG.map(v => ({
@@ -76,6 +77,9 @@ const visual = getVehicleVisualUrl(car);
               </span>
             </div>
           </div>
+
+          <!-- PASSENGERS & LUGGAGE DIAGRAM (Part B Visual System) -->
+          <VehicleSeatingDiagram vehicleSlug={car.slug} vehicleName={`${car.brand} ${car.model}`} />
 
           <!-- Description Box -->
           <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 space-y-4">

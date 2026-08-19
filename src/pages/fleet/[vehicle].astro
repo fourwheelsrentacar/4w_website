@@ -4,6 +4,8 @@ import { FLEET_VEHICLES, getVehicleBySlug } from '../../data/fleet';
 import { BUSINESS_INFO } from '../../data/business';
 import { FUEL_DISCLAIMER_TEXT } from '../../data/rates';
 import { getVehicleVisualUrl } from '../../utils/vehicleVisual';
+import VehicleSeatingDiagram from '../../components/VehicleSeatingDiagram.astro';
+import InteractiveCoasterMap from '../../components/InteractiveCoasterMap.astro';
 
 export function getStaticPaths() {
   return FLEET_VEHICLES.map(vehicle => ({
@@ -72,6 +74,13 @@ const isCoaster = vehicle.slug === 'toyota-coaster';
               </div>
             )}
           </div>
+
+          <!-- PASSENGERS & LUGGAGE DIAGRAM (Part B Visual System) -->
+          {isCoaster ? (
+            <InteractiveCoasterMap />
+          ) : (
+            <VehicleSeatingDiagram vehicleSlug={vehicle.slug} vehicleName={`${vehicle.manufacturer} ${vehicle.model}`} />
+          )}
 
           <!-- Vehicle Overview & Description -->
           <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 space-y-4">

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" width="100%" height="100%" role="img" aria-label="Toyota Corolla 5-Seat Top-Down Cabin Diagram">
+  <title>Toyota Corolla 5-Seat Cabin & Luggage Diagram</title>
+
+  <!-- Vehicle Exterior Body Outline -->
+  <path d="M 60 80 C 60 20, 260 20, 260 80 L 270 380 C 270 440, 50 440, 50 380 Z" fill="#0f172a" stroke="#334155" stroke-width="4"/>
+
+  <!-- Windscreen Front -->
+  <path d="M 75 100 Q 160 80 245 100 L 235 140 Q 160 130 85 140 Z" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+
+  <!-- Front Indicator -->
+  <text x="160" y="55" fill="#ef4444" font-size="12" font-weight="900" text-anchor="middle" letter-spacing="2">▲ FRONT / ROAD ▲</text>
+
+  <!-- Row 1: Front Row (Driver Right in PK / Left drive indicator) -->
+  <!-- Driver Seat (Right Hand Drive - RHD for Pakistan) -->
+  <g transform="translate(170, 150)">
+    <rect x="0" y="0" width="65" height="70" rx="10" fill="#7f1d1d" stroke="#ef4444" stroke-width="2"/>
+    <rect x="8" y="-10" width="49" height="15" rx="5" fill="#991b1b" stroke="#f87171" stroke-width="1.5"/>
+    <circle cx="32.5" cy="35" r="14" stroke="#f87171" stroke-width="2.5" fill="none"/>
+    <circle cx="32.5" cy="35" r="4" fill="#f87171"/>
+    <text x="32.5" y="60" fill="#fca5a5" font-size="9" font-weight="bold" text-anchor="middle">DRIVER</text>
+  </g>
+
+  <!-- Front Passenger Seat (Left) -->
+  <g transform="translate(85, 150)">
+    <rect x="0" y="0" width="65" height="70" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <rect x="8" y="-10" width="49" height="15" rx="5" fill="#334155" stroke="#60a5fa" stroke-width="1.5"/>
+    <text x="32.5" y="40" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 01</text>
+  </g>
+
+  <!-- Row 2: Rear Row (3 Passenger Positions) -->
+  <g transform="translate(75, 250)">
+    <!-- Seat Left -->
+    <rect x="0" y="0" width="52" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="26" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 02</text>
+
+    <!-- Seat Center -->
+    <rect x="58" y="0" width="52" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="84" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 03</text>
+
+    <!-- Seat Right -->
+    <rect x="116" y="0" width="52" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="142" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 04</text>
+  </g>
+
+  <!-- Divider to Boot -->
+  <line x1="60" y1="335" x2="260" y2="335" stroke="#475569" stroke-width="3" stroke-dasharray="6 4"/>
+
+  <!-- Boot / Cargo Trunk Zone -->
+  <g transform="translate(70, 345)">
+    <rect x="0" y="0" width="180" height="75" rx="10" fill="#022c22" stroke="#10b981" stroke-dasharray="4 2" stroke-width="2"/>
+    <text x="90" y="20" fill="#34d399" font-size="11" font-weight="900" text-anchor="middle" letter-spacing="1">BOOT / CARGO TRUNK</text>
+
+    <!-- Visual Large Bags -->
+    <rect x="20" y="30" width="40" height="35" rx="4" fill="#065f46" stroke="#10b981" stroke-width="1.5"/>
+    <text x="40" y="52" fill="#a7f3d0" font-size="9" font-weight="bold" text-anchor="middle">BAG 1</text>
+
+    <rect x="70" y="30" width="40" height="35" rx="4" fill="#065f46" stroke="#10b981" stroke-width="1.5"/>
+    <text x="90" y="52" fill="#a7f3d0" font-size="9" font-weight="bold" text-anchor="middle">BAG 2</text>
+
+    <!-- Visual Cabin Bags -->
+    <rect x="120" y="30" width="35" height="35" rx="4" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="137.5" y="52" fill="#bae6fd" font-size="8" font-weight="bold" text-anchor="middle">CABIN</text>
+  </g>
+</svg>

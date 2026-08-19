@@ -1,0 +1,335 @@
+---
+import { getSeatLayoutBySlug } from '../data/seatLayouts';
+
+interface Props {
+  vehicleSlug: string;
+  vehicleName?: string;
+  showTitle?: boolean;
+}
+
+const { vehicleSlug, vehicleName, showTitle = true } = Astro.props;
+const layout = getSeatLayoutBySlug(vehicleSlug);
+
+const titleText = vehicleName || layout.vehicleName;
+---
+
+<div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-6 shadow-xl">
+  {showTitle && (
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-4 gap-2">
+      <div>
+        <span class="text-[10px] font-black uppercase tracking-widest text-red-500">2D CABIN & LUGGAGE DIAGRAM</span>
+        <h3 class="text-xl font-black text-white">{titleText} Capacity Visual</h3>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs bg-slate-800 text-slate-300 border border-slate-700 font-bold px-3 py-1 rounded-lg">
+          {layout.configurationSource}
+        </span>
+      </div>
+    </div>
+  )}
+
+  <!-- Legend & Color Guidance -->
+  <div class="flex flex-wrap items-center gap-3 text-xs bg-slate-950/80 p-3.5 rounded-xl border border-slate-800/80">
+    <div class="flex items-center gap-1.5">
+      <span class="w-3.5 h-3.5 rounded bg-red-900 border border-red-500 inline-block"></span>
+      <span class="text-slate-300 font-medium">Driver Position</span>
+    </div>
+    <div class="flex items-center gap-1.5">
+      <span class="w-3.5 h-3.5 rounded bg-slate-800 border border-blue-500 inline-block"></span>
+      <span class="text-slate-300 font-medium">Passenger Position</span>
+    </div>
+    <div class="flex items-center gap-1.5">
+      <span class="w-3.5 h-3.5 rounded bg-emerald-950 border border-emerald-500 inline-block"></span>
+      <span class="text-slate-300 font-medium">Luggage Zone</span>
+    </div>
+  </div>
+
+  <!-- SVG Diagram Stage -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+
+    <!-- Inline Top-Down Cabin SVG Display -->
+    <div class="md:col-span-6 bg-slate-950 rounded-2xl border border-slate-800 p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden">
+
+      <div class="w-full flex justify-center">
+        {layout.cabinType === 'suv' && (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 500" class="w-full max-w-[280px] sm:max-w-[320px] h-auto drop-shadow-md" role="img" aria-label={`${titleText} Seating Diagram`}>
+            <title>{titleText} SUV Seating & Boot Diagram</title>
+            <path d="M 50 70 C 50 20, 270 20, 270 70 L 275 420 C 275 465, 45 465, 45 420 Z" fill="#0f172a" stroke="#334155" stroke-width="4"/>
+            <text x="160" y="45" fill="#ef4444" font-size="12" font-weight="900" text-anchor="middle" letter-spacing="2">▲ FRONT / ROAD ▲</text>
+            <!-- Row 1 -->
+            <g transform="translate(170, 75)">
+              <rect x="0" y="0" width="65" height="65" rx="10" fill="#7f1d1d" stroke="#ef4444" stroke-width="2"/>
+              <circle cx="32.5" cy="32.5" r="13" stroke="#f87171" stroke-width="2" fill="none"/>
+              <text x="32.5" y="55" fill="#fca5a5" font-size="8" font-weight="bold" text-anchor="middle">DRIVER</text>
+            </g>
+            <g transform="translate(85, 75)">
+              <rect x="0" y="0" width="65" height="65" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="32.5" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 01</text>
+            </g>
+            <!-- Row 2 -->
+            <g transform="translate(70, 160)">
+              <rect x="0" y="0" width="55" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="27.5" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 02</text>
+              <rect x="62" y="0" width="55" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="89.5" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 03</text>
+              <rect x="124" y="0" width="55" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="151.5" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 04</text>
+            </g>
+            <!-- Row 3 -->
+            <g transform="translate(85, 245)">
+              <rect x="0" y="0" width="65" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="32.5" y="35" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 05</text>
+              <rect x="85" y="0" width="65" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="117.5" y="35" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 06</text>
+            </g>
+            <line x1="55" y1="320" x2="265" y2="320" stroke="#475569" stroke-width="3" stroke-dasharray="6 4"/>
+            <g transform="translate(65, 330)">
+              <rect x="0" y="0" width="190" height="110" rx="10" fill="#022c22" stroke="#10b981" stroke-dasharray="4 2" stroke-width="2"/>
+              <text x="95" y="20" fill="#34d399" font-size="10" font-weight="900" text-anchor="middle" letter-spacing="1">BOOT / LUGGAGE ZONE</text>
+              <text x="95" y="36" fill="#a7f3d0" font-size="8" text-anchor="middle" font-style="italic">Expandable when 3rd Row is Folded</text>
+              <rect x="25" y="45" width="45" height="40" rx="4" fill="#065f46" stroke="#10b981" stroke-width="1.5"/>
+              <text x="47.5" y="70" fill="#a7f3d0" font-size="9" font-weight="bold" text-anchor="middle">BAG 1</text>
+              <rect x="78" y="45" width="45" height="40" rx="4" fill="#065f46" stroke="#10b981" stroke-width="1.5"/>
+              <text x="100.5" y="70" fill="#a7f3d0" font-size="9" font-weight="bold" text-anchor="middle">BAG 2</text>
+              <rect x="130" y="45" width="35" height="40" rx="4" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="147.5" y="70" fill="#bae6fd" font-size="8" font-weight="bold" text-anchor="middle">CABIN</text>
+            </g>
+          </svg>
+        )}
+
+        {layout.cabinType === 'van' && (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" class="w-full max-w-[280px] sm:max-w-[320px] h-auto drop-shadow-md" role="img" aria-label={`${titleText} Seating Diagram`}>
+            <title>{titleText} Van Seating Diagram</title>
+            <rect x="45" y="30" width="230" height="480" rx="20" fill="#0f172a" stroke="#334155" stroke-width="4"/>
+            <text x="160" y="55" fill="#ef4444" font-size="11" font-weight="900" text-anchor="middle" letter-spacing="2">▲ FRONT / ROAD ▲</text>
+            <g transform="translate(170, 70)">
+              <rect x="0" y="0" width="60" height="55" rx="8" fill="#7f1d1d" stroke="#ef4444" stroke-width="2"/>
+              <text x="30" y="33" fill="#fca5a5" font-size="8" font-weight="bold" text-anchor="middle">DRIVER</text>
+            </g>
+            <g transform="translate(90, 70)">
+              <rect x="0" y="0" width="60" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="30" y="33" fill="#93c5fd" font-size="9" font-weight="bold" text-anchor="middle">PAX 01</text>
+            </g>
+            <g transform="translate(60, 140)">
+              <rect x="0" y="0" width="55" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="27.5" y="33" fill="#93c5fd" font-size="9" font-weight="bold" text-anchor="middle">PAX 02</text>
+              <rect x="62" y="0" width="30" height="55" fill="#1e293b" stroke="#334155" stroke-dasharray="2 2" rx="4"/>
+              <text x="77" y="33" fill="#64748b" font-size="7" font-weight="bold" text-anchor="middle">AISLE</text>
+              <rect x="98" y="0" width="50" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="123" y="33" fill="#93c5fd" font-size="9" font-weight="bold" text-anchor="middle">PAX 03</text>
+              <rect x="152" y="0" width="50" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="177" y="33" fill="#93c5fd" font-size="9" font-weight="bold" text-anchor="middle">PAX 04</text>
+            </g>
+            <g transform="translate(60, 210)">
+              <rect x="0" y="0" width="55" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="27.5" y="33" fill="#93c5fd" font-size="9" font-weight="bold" text-anchor="middle">PAX 05</text>
+              <rect x="62" y="0" width="30" height="55" fill="#1e293b" stroke="#334155" stroke-dasharray="2 2" rx="4"/>
+              <rect x="98" y="0" width="50" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="123" y="33" fill="#93c5fd" font-size="9" font-weight="bold" text-anchor="middle">PAX 06</text>
+              <rect x="152" y="0" width="50" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="177" y="33" fill="#93c5fd" font-size="9" font-weight="bold" text-anchor="middle">PAX 07</text>
+            </g>
+            <g transform="translate(60, 280)">
+              <rect x="0" y="0" width="55" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="27.5" y="33" fill="#93c5fd" font-size="9" font-weight="bold" text-anchor="middle">PAX 08</text>
+              <rect x="62" y="0" width="30" height="55" fill="#1e293b" stroke="#334155" stroke-dasharray="2 2" rx="4"/>
+              <rect x="98" y="0" width="50" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="123" y="33" fill="#93c5fd" font-size="9" font-weight="bold" text-anchor="middle">PAX 09</text>
+              <rect x="152" y="0" width="50" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="177" y="33" fill="#93c5fd" font-size="9" font-weight="bold" text-anchor="middle">PAX 10</text>
+            </g>
+            <g transform="translate(60, 350)">
+              <rect x="0" y="0" width="48" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="24" y="33" fill="#93c5fd" font-size="8" font-weight="bold" text-anchor="middle">PAX 11</text>
+              <rect x="52" y="0" width="48" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="76" y="33" fill="#93c5fd" font-size="8" font-weight="bold" text-anchor="middle">PAX 12</text>
+              <rect x="104" y="0" width="48" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="128" y="33" fill="#93c5fd" font-size="8" font-weight="bold" text-anchor="middle">PAX 13</text>
+              <rect x="156" y="0" width="46" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="179" y="33" fill="#93c5fd" font-size="8" font-weight="bold" text-anchor="middle">PAX 14</text>
+            </g>
+            <g transform="translate(60, 415)">
+              <rect x="0" y="0" width="202" height="80" rx="10" fill="#022c22" stroke="#10b981" stroke-dasharray="4 2" stroke-width="2"/>
+              <text x="101" y="20" fill="#34d399" font-size="10" font-weight="900" text-anchor="middle" letter-spacing="1">REAR BAGGAGE CARGO DECK</text>
+              <text x="101" y="45" fill="#a7f3d0" font-size="9" font-weight="bold" text-anchor="middle">Approx. 8 Large Suitcases + Cabin Bags</text>
+            </g>
+          </svg>
+        )}
+
+        {layout.cabinType === 'hatchback' && (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 440" class="w-full max-w-[280px] sm:max-w-[320px] h-auto drop-shadow-md" role="img" aria-label={`${titleText} Seating Diagram`}>
+            <title>{titleText} Hatchback Seating Diagram</title>
+            <path d="M 65 60 C 65 20, 255 20, 255 60 L 260 350 C 260 400, 60 400, 60 350 Z" fill="#0f172a" stroke="#334155" stroke-width="4"/>
+            <text x="160" y="48" fill="#ef4444" font-size="11" font-weight="900" text-anchor="middle" letter-spacing="2">▲ FRONT / ROAD ▲</text>
+            <g transform="translate(165, 75)">
+              <rect x="0" y="0" width="65" height="65" rx="8" fill="#7f1d1d" stroke="#ef4444" stroke-width="2"/>
+              <text x="32.5" y="38" fill="#fca5a5" font-size="8" font-weight="bold" text-anchor="middle">DRIVER</text>
+            </g>
+            <g transform="translate(90, 75)">
+              <rect x="0" y="0" width="65" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="32.5" y="38" fill="#93c5fd" font-size="9" font-weight="bold" text-anchor="middle">PAX 01</text>
+            </g>
+            <g transform="translate(80, 175)">
+              <rect x="0" y="0" width="70" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="35" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 02</text>
+              <rect x="90" y="0" width="70" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="125" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 03</text>
+            </g>
+            <line x1="65" y1="265" x2="255" y2="265" stroke="#475569" stroke-width="3" stroke-dasharray="6 4"/>
+            <g transform="translate(70, 275)">
+              <rect x="0" y="0" width="180" height="85" rx="10" fill="#022c22" stroke="#10b981" stroke-dasharray="4 2" stroke-width="2"/>
+              <text x="90" y="22" fill="#34d399" font-size="10" font-weight="900" text-anchor="middle" letter-spacing="1">REAR HATCH TRUNK</text>
+              <rect x="25" y="35" width="50" height="40" rx="4" fill="#065f46" stroke="#10b981" stroke-width="1.5"/>
+              <text x="50" y="60" fill="#a7f3d0" font-size="9" font-weight="bold" text-anchor="middle">1 LARGE</text>
+              <rect x="95" y="35" width="60" height="40" rx="4" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="125" y="60" fill="#bae6fd" font-size="8" font-weight="bold" text-anchor="middle">2 CABIN</text>
+            </g>
+          </svg>
+        )}
+
+        {(layout.cabinType === 'sedan' || layout.cabinType === 'luxury' || layout.cabinType === 'pickup') && (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" class="w-full max-w-[280px] sm:max-w-[320px] h-auto drop-shadow-md" role="img" aria-label={`${titleText} Seating Diagram`}>
+            <title>{titleText} Sedan Seating Diagram</title>
+            <path d="M 60 80 C 60 20, 260 20, 260 80 L 270 380 C 270 440, 50 440, 50 380 Z" fill="#0f172a" stroke="#334155" stroke-width="4"/>
+            <path d="M 75 100 Q 160 80 245 100 L 235 140 Q 160 130 85 140 Z" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+            <text x="160" y="55" fill="#ef4444" font-size="12" font-weight="900" text-anchor="middle" letter-spacing="2">▲ FRONT / ROAD ▲</text>
+            <g transform="translate(170, 150)">
+              <rect x="0" y="0" width="65" height="70" rx="10" fill="#7f1d1d" stroke="#ef4444" stroke-width="2"/>
+              <rect x="8" y="-10" width="49" height="15" rx="5" fill="#991b1b" stroke="#f87171" stroke-width="1.5"/>
+              <circle cx="32.5" cy="35" r="14" stroke="#f87171" stroke-width="2.5" fill="none"/>
+              <circle cx="32.5" cy="35" r="4" fill="#f87171"/>
+              <text x="32.5" y="60" fill="#fca5a5" font-size="9" font-weight="bold" text-anchor="middle">DRIVER</text>
+            </g>
+            <g transform="translate(85, 150)">
+              <rect x="0" y="0" width="65" height="70" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <rect x="8" y="-10" width="49" height="15" rx="5" fill="#334155" stroke="#60a5fa" stroke-width="1.5"/>
+              <text x="32.5" y="40" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 01</text>
+            </g>
+            <g transform="translate(75, 250)">
+              <rect x="0" y="0" width="52" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="26" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 02</text>
+              <rect x="58" y="0" width="52" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="84" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 03</text>
+              <rect x="116" y="0" width="52" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+              <text x="142" y="38" fill="#93c5fd" font-size="10" font-weight="extrabold" text-anchor="middle">PAX 04</text>
+            </g>
+            <line x1="60" y1="335" x2="260" y2="335" stroke="#475569" stroke-width="3" stroke-dasharray="6 4"/>
+            <g transform="translate(70, 345)">
+              <rect x="0" y="0" width="180" height="75" rx="10" fill="#022c22" stroke="#10b981" stroke-dasharray="4 2" stroke-width="2"/>
+              <text x="90" y="20" fill="#34d399" font-size="11" font-weight="900" text-anchor="middle" letter-spacing="1">BOOT / CARGO TRUNK</text>
+              <rect x="20" y="30" width="40" height="35" rx="4" fill="#065f46" stroke="#10b981" stroke-width="1.5"/>
+              <text x="40" y="52" fill="#a7f3d0" font-size="9" font-weight="bold" text-anchor="middle">BAG 1</text>
+              <rect x="70" y="30" width="40" height="35" rx="4" fill="#065f46" stroke="#10b981" stroke-width="1.5"/>
+              <text x="90" y="52" fill="#a7f3d0" font-size="9" font-weight="bold" text-anchor="middle">BAG 2</text>
+              <rect x="120" y="30" width="35" height="35" rx="4" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="137.5" y="52" fill="#bae6fd" font-size="8" font-weight="bold" text-anchor="middle">CABIN</text>
+            </g>
+          </svg>
+        )}
+      </div>
+
+      <div class="mt-3 text-[11px] text-slate-500 text-center italic">
+        Clean top-down automotive cabin outline. RHD driver position shown.
+      </div>
+    </div>
+
+    <!-- Right Side: Structured Breakdown & Luggage Fit -->
+    <div class="md:col-span-6 space-y-4">
+
+      <!-- Capacity Breakdown Card -->
+      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-slate-400 border-b border-slate-800 pb-2">
+          1. Cabin Passenger Arrangement
+        </h4>
+
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+            <span class="text-[10px] text-slate-500 font-bold block uppercase">Total Cabin Occupants</span>
+            <span class="text-2xl font-black text-white">{layout.totalOccupants}</span>
+            <span class="text-[10px] text-slate-400 block mt-0.5">({layout.driverIncluded ? 'Includes 1 Driver' : 'Passengers Only'})</span>
+          </div>
+
+          <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+            <span class="text-[10px] text-slate-500 font-bold block uppercase">Passenger Capacity</span>
+            <span class="text-2xl font-black text-red-500">{layout.maxPassengers} Pax</span>
+            <span class="text-[10px] text-slate-400 block mt-0.5">Maximum Comfort</span>
+          </div>
+        </div>
+
+        <!-- Seating Rows Detail List -->
+        <div class="space-y-1.5 pt-1 text-xs">
+          {layout.rows.map(row => (
+            <div class="flex items-center justify-between bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+              <span class="font-bold text-slate-300">{row.label || `Row ${row.row}`}</span>
+              <span class="font-black text-slate-100">{row.seats.filter(s => s !== 'aisle').length} Positions</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Luggage Area Card -->
+      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-slate-400 border-b border-slate-800 pb-2 flex items-center justify-between">
+          <span>2. Boot & Luggage Space</span>
+          <span class="text-[10px] text-emerald-400 font-bold bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">
+            VERIFIED FIT
+          </span>
+        </h4>
+
+        <!-- Luggage SVG Icons Visual -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 bg-slate-900 p-3 rounded-xl border border-slate-800 overflow-hidden">
+          <div class="flex items-center gap-2 shrink-0">
+            {Array.from({ length: Math.min(layout.luggageArea.largeSuitcases, 4) }).map((_, i) => (
+              <img src="/vehicles/seating/large-bag.svg" alt="Large Suitcase" class="w-7 h-7" title="Large Suitcase" />
+            ))}
+            {Array.from({ length: Math.min(layout.luggageArea.cabinBags, 4) }).map((_, i) => (
+              <img src="/vehicles/seating/cabin-bag.svg" alt="Cabin Suitcase" class="w-6 h-6" title="Cabin Suitcase" />
+            ))}
+          </div>
+
+          <div class="text-xs font-bold text-slate-200">
+            {layout.luggageArea.largeSuitcases} Large + {layout.luggageArea.cabinBags} Cabin Bags
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-300 font-medium leading-relaxed">
+          {layout.luggageArea.description}
+        </p>
+
+        <!-- 3rd Row Behavior State Notice if SUV/MPV -->
+        {layout.thirdRowBehavior && (
+          <div class="mt-3 bg-amber-950/60 border border-amber-800/80 p-3 rounded-xl space-y-2">
+            <div class="flex items-center justify-between text-xs font-bold text-amber-300">
+              <span>🔄 Third-Row Seating vs Cargo Toggle</span>
+              <span class="text-[10px] bg-amber-900 text-amber-100 px-2 py-0.5 rounded">SUV Flexible Boot</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] text-slate-200 pt-1">
+              <div class="bg-slate-900/80 p-2 rounded border border-slate-800">
+                <strong class="block text-amber-400">All Seats In Use (7-Seat):</strong>
+                <span>{layout.thirdRowBehavior.seatsUpCapacity.luggage.description}</span>
+              </div>
+              <div class="bg-slate-900/80 p-2 rounded border border-slate-800">
+                <strong class="block text-emerald-400">Third Row Folded (5-Seat):</strong>
+                <span>{layout.thirdRowBehavior.thirdRowFoldedCapacity?.luggage.description}</span>
+              </div>
+            </div>
+
+            <p class="text-[10px] text-amber-200/80 italic pt-1">
+              "{layout.thirdRowBehavior.note}"
+            </p>
+          </div>
+        )}
+      </div>
+
+      <!-- Source & Disclaimer Box -->
+      <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80 text-[11px] text-slate-400 space-y-1">
+        <div><strong>Configuration Source:</strong> {layout.sourceNote}</div>
+        <p class="text-[10px] text-slate-500 italic">
+          *Luggage capacity figures are approximate. Actual bag fit varies depending on suitcase dimensions and passenger carry-ons.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
