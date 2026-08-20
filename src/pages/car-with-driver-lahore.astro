@@ -3,8 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Cars With Driver Lahore | Professional Chauffeur Rental | 4WHEELS";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'service',
+  pageTitle: 'Cars With Driver in Lahore',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/car-with-driver-lahore/`,
+});
 const description = "Rent a car with a driver in Lahore with 4WHEELS. Professional chauffeur services for business meetings, airport journeys, family travel, and daily bookings.";
 
 const faqs = [
@@ -45,7 +51,7 @@ const faqs = [
             📞 Call {BUSINESS_INFO.phoneDisplay}
           </a>
           <a
-            href={BUSINESS_INFO.whatsappLink}
+            href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
@@ -117,7 +123,7 @@ const faqs = [
             📞 Call 0321 6616644
           </a>
           <a
-            href={BUSINESS_INFO.whatsappLink}
+            href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
@@ -139,6 +145,8 @@ const faqs = [
     <CTASection
       heading="Need a Car With Driver in Lahore?"
       subheading="Contact 4WHEELS to confirm driver availability and book your vehicle."
+      pageType="service"
+      pageTitle="Cars With Driver in Lahore"
     />
   </div>
 </Layout>

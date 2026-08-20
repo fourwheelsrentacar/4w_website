@@ -3,8 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Corporate Car Rental Lahore | Business Travel Solutions | 4WHEELS";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'corporate',
+  pageTitle: 'Corporate Car Rental Lahore',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/corporate-car-rental-lahore/`,
+});
 const description = "Corporate car rental services in Lahore by 4WHEELS. Tailored vehicle arrangements for business travel, executive visitors, project teams, and monthly corporate needs.";
 
 const faqs = [
@@ -45,7 +51,7 @@ const faqs = [
             📞 Call {BUSINESS_INFO.phoneDisplay}
           </a>
           <a
-            href={BUSINESS_INFO.whatsappLink}
+            href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
@@ -115,7 +121,7 @@ const faqs = [
             📞 Call 0321 6616644
           </a>
           <a
-            href={BUSINESS_INFO.whatsappLink}
+            href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
@@ -137,6 +143,8 @@ const faqs = [
     <CTASection
       heading="Need Corporate Transportation in Lahore?"
       subheading="Contact 4WHEELS to discuss corporate car rental arrangements and availability."
+      pageType="corporate"
+      pageTitle="Corporate Car Rental Lahore"
     />
   </div>
 </Layout>

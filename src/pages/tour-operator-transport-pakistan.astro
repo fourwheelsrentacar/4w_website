@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Tour Operator Transport Pakistan - Buses, Coasters & Fleet | 4WHEELS";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'corporate',
+  pageTitle: 'Tour Operator Transport Services in Pakistan',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/tour-operator-transport-pakistan/`,
+});
 const description = "Transport supplier for tour operators, travel agencies, and group organizers in Pakistan. Toyota Coasters, HiAce vans, SUVs, and luxury coaches with professional drivers.";
 const canonicalPath = "/tour-operator-transport-pakistan/";
 ---
@@ -20,7 +26,7 @@ const canonicalPath = "/tour-operator-transport-pakistan/";
         Dedicated fleet partner for travel agencies, tour operators, corporate group organizers, and educational institutions. Professional drivers, high-roof Coasters, 4x4 SUVs, and passenger vans.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+        <a href={waUrl} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
           💬 WhatsApp Tour Fleet Requirements
         </a>
         <a href={BUSINESS_INFO.mailtoLink} class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm border border-slate-700">

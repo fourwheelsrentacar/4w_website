@@ -3,8 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Monthly Car Rental Lahore | Long-Term Vehicle Rentals | 4WHEELS";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'service',
+  pageTitle: 'Monthly Car Rental Lahore',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/monthly-car-rental-lahore/`,
+});
 const description = "Need a monthly car rental in Lahore? 4WHEELS offers long-term rental options for business, overseas visitors, and temporary stays. Contact us for custom quotations.";
 
 const faqs = [
@@ -45,7 +51,7 @@ const faqs = [
             📞 Call {BUSINESS_INFO.phoneDisplay}
           </a>
           <a
-            href={BUSINESS_INFO.whatsappLink}
+            href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
@@ -111,7 +117,7 @@ const faqs = [
             📞 Call 0321 6616644
           </a>
           <a
-            href={BUSINESS_INFO.whatsappLink}
+            href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
@@ -133,6 +139,8 @@ const faqs = [
     <CTASection
       heading="Need a Monthly Car Rental in Lahore?"
       subheading="Contact 4WHEELS for current vehicle availability and monthly rental quotation."
+      pageType="service"
+      pageTitle="Monthly Car Rental Lahore"
     />
   </div>
 </Layout>

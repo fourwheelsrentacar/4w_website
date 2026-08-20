@@ -3,12 +3,17 @@ import Layout from '../../layouts/Layout.astro';
 import SEOHead from '../../components/SEOHead.astro';
 import CTASection from '../../components/CTASection.astro';
 import { BUSINESS_INFO } from '../../data/business';
+import { getContextualWhatsAppUrl } from '../../utils/whatsappContext';
 
 const pageTitle = "Official 4WHEELS Rent a Car Locations | Johar Town Lahore";
 const pageDescription = "View confirmed official 4WHEELS Rent a Car physical office location in Johar Town Phase 1, Lahore. Only locations listed on this page are confirmed official branches.";
 
-const mapsSearchUrl = "https://www.google.com/maps/search/?api=1&query=4WHEELS+Rent+a+Car+Johar+Town+Phase+1+Lahore";
-const mapsDirectionsUrl = "https://www.google.com/maps/dir/?api=1&destination=Plot+number+5+Block+F1+Johar+Town+Phase+1+Lahore";
+const mapsSearchUrl = BUSINESS_INFO.mapsSearchUrl;
+const mapsDirectionsUrl = BUSINESS_INFO.mapsDirectionsUrl;
+const waUrl = getContextualWhatsAppUrl({
+  pageTitle: 'Official Office Location',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/locations/official/`,
+});
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonicalPath="/locations/official/">
@@ -68,7 +73,7 @@ const mapsDirectionsUrl = "https://www.google.com/maps/dir/?api=1&destination=Pl
             </div>
             <div>
               <strong class="text-slate-900">Official WhatsApp:</strong>
-              <p><a href={BUSINESS_INFO.whatsappLink} target="_blank" class="text-emerald-600 font-bold hover:underline">{BUSINESS_INFO.phoneInternational}</a></p>
+              <p><a href={waUrl} target="_blank" class="text-emerald-600 font-bold hover:underline">{BUSINESS_INFO.phoneInternational}</a></p>
             </div>
           </div>
 
@@ -139,9 +144,9 @@ const mapsDirectionsUrl = "https://www.google.com/maps/dir/?api=1&destination=Pl
   </section>
 
   <CTASection
-    title="Need Vehicle Service in Lahore or Intercity Travel?"
-    description="Contact official 4WHEELS customer care for verified booking and vehicle availability."
+    heading="Need Vehicle Service in Lahore or Intercity Travel?"
+    subheading="Contact official 4WHEELS customer care for verified booking and vehicle availability."
     primaryButtonText="💬 WhatsApp Customer Care"
-    primaryButtonHref={BUSINESS_INFO.whatsappLink}
+    primaryButtonHref={waUrl}
   />
 </Layout>

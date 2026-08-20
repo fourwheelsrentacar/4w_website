@@ -3,13 +3,18 @@ import Layout from '../layouts/Layout.astro';
 import SEOHead from '../components/SEOHead.astro';
 import CTASection from '../components/CTASection.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const pageTitle = "Official 4WHEELS Rent a Car | Serving Lahore Since 2008";
 const pageDescription = "Verify the genuine official 4WHEELS Rent a Car business identity, contact details, Johar Town office address, website domain, and payment instructions.";
 
-const mapsSearchUrl = "https://www.google.com/maps/search/?api=1&query=4WHEELS+Rent+a+Car+Johar+Town+Phase+1+Lahore";
-const mapsDirectionsUrl = "https://www.google.com/maps/dir/?api=1&destination=Plot+number+5+Block+F1+Johar+Town+Phase+1+Lahore";
-const googleReviewsUrl = "https://www.google.com/maps/search/?api=1&query=4WHEELS+Rent+a+Car+Johar+Town+Phase+1+Lahore";
+const mapsSearchUrl = BUSINESS_INFO.mapsSearchUrl;
+const mapsDirectionsUrl = BUSINESS_INFO.mapsDirectionsUrl;
+const googleReviewsUrl = BUSINESS_INFO.googleReviewsUrl;
+const waUrl = getContextualWhatsAppUrl({
+  pageTitle: 'Official Brand Verification Hub',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/official/`,
+});
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonicalPath="/official/">
@@ -69,7 +74,7 @@ const googleReviewsUrl = "https://www.google.com/maps/search/?api=1&query=4WHEEL
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
             <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official WhatsApp</span>
             <span class="sm:col-span-2">
-              <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="text-emerald-600 font-bold hover:underline">{BUSINESS_INFO.phoneInternational}</a>
+              <a href={waUrl} target="_blank" rel="noopener noreferrer" class="text-emerald-600 font-bold hover:underline">{BUSINESS_INFO.phoneInternational}</a>
             </span>
           </div>
 
@@ -249,9 +254,9 @@ const googleReviewsUrl = "https://www.google.com/maps/search/?api=1&query=4WHEEL
   </section>
 
   <CTASection
-    title="Need Immediate Vehicle Assistance?"
-    description="Connect directly with official 4WHEELS customer care in Johar Town, Lahore for rental quotes and availability."
+    heading="Need Immediate Vehicle Assistance?"
+    subheading="Connect directly with official 4WHEELS customer care in Johar Town, Lahore for rental quotes and availability."
     primaryButtonText="💬 Contact Official WhatsApp"
-    primaryButtonHref={BUSINESS_INFO.whatsappLink}
+    primaryButtonHref={waUrl}
   />
 </Layout>

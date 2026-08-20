@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Rental Terms & Policies - 4WHEELS Rent a Car Lahore";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'support',
+  pageTitle: 'Rental Terms & Policies',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/rental-terms/`,
+});
 const description = "Official rental terms, daily cycle rules, fuel policy, toll charges, traffic violations (challans), and rental extension policies for 4WHEELS Rent a Car Lahore.";
 const canonicalPath = "/rental-terms/";
 ---
@@ -84,7 +90,7 @@ const canonicalPath = "/rental-terms/";
       <div class="bg-slate-900 text-white rounded-2xl p-6 text-center">
         <h3 class="text-lg font-bold mb-2">Have Specific Questions About Rental Terms?</h3>
         <p class="text-xs text-slate-300 mb-4">Our customer care team is available on WhatsApp and Phone to confirm exact policies for your booking.</p>
-        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-xs">
+        <a href={waUrl} target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-xs">
           💬 Ask Customer Care on WhatsApp
         </a>
       </div>

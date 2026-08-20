@@ -21,6 +21,9 @@ export const BUSINESS_INFO = {
     { channel: 'Email', detail: '4wheels44@gmail.com', note: 'Corporate, enterprise quotations, formal procurement', link: 'mailto:4wheels44@gmail.com' }
   ],
   facebookUrl: 'https://www.facebook.com/4wheelrentacar/',
+  mapsSearchUrl: 'https://www.google.com/maps/search/?api=1&query=4WHEELS+Rent+a+Car+Johar+Town+Phase+1+Lahore',
+  mapsDirectionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Plot+number+5+Block+F1+Johar+Town+Phase+1+Lahore',
+  googleReviewsUrl: 'https://www.google.com/maps/search/?api=1&query=4WHEELS+Rent+a+Car+Johar+Town+Phase+1+Lahore',
   address: {
     street: 'Plot number 5, Block F1, Johar Town Phase 1',
     locality: 'Johar Town Phase 1',

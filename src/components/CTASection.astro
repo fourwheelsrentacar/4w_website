@@ -1,28 +1,46 @@
 ---
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl, type WhatsAppContextOptions } from '../utils/whatsappContext';
 
 export interface Props {
   heading?: string;
   subheading?: string;
   ctaType?: 'price' | 'trip' | 'general';
+  pageType?: WhatsAppContextOptions['pageType'];
+  pageTitle?: string;
+  vehicleName?: string;
+  destinationRoute?: string;
+  primaryButtonHref?: string;
+  primaryButtonText?: string;
 }
 
 const {
   heading = 'Need the Latest Rental Price?',
   subheading = 'Quotations vary based on vehicle selection, duration, fuel, route, and driver requirements. Contact 4WHEELS directly for an accurate quote.',
   ctaType = 'price',
+  pageType = 'general',
+  pageTitle = '',
+  vehicleName = '',
+  destinationRoute = '',
+  primaryButtonHref,
+  primaryButtonText,
 } = Astro.props;
 
-let whatsappLink = BUSINESS_INFO.whatsappPriceLink;
-let whatsappText = '💬 WhatsApp for Latest Price';
+let whatsappText = '💬 WhatsApp to Inquire';
+if (ctaType === 'price') whatsappText = '💬 WhatsApp for Latest Price';
+if (ctaType === 'trip') whatsappText = '💬 WhatsApp for Trip Information';
+if (ctaType === 'general') whatsappText = '💬 WhatsApp to Book';
+if (primaryButtonText) whatsappText = primaryButtonText;
 
-if (ctaType === 'trip') {
-  whatsappLink = BUSINESS_INFO.whatsappTripLink;
-  whatsappText = '💬 WhatsApp for Trip Information';
-} else if (ctaType === 'general') {
-  whatsappLink = BUSINESS_INFO.whatsappLink;
-  whatsappText = '💬 WhatsApp to Book';
-}
+const currentUrl = Astro.url ? Astro.url.href : BUSINESS_INFO.siteUrl;
+
+const whatsappLink = primaryButtonHref || getContextualWhatsAppUrl({
+  pageType,
+  pageTitle,
+  vehicleName,
+  destinationRoute,
+  canonicalUrl: currentUrl,
+});
 ---
 
 <section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12 md:py-16 px-4 rounded-2xl my-8 text-center max-w-7xl mx-auto shadow-xl border border-slate-700/50">

@@ -3,8 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Self Drive Car Rental Lahore | Flexible Rentals | 4WHEELS";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'service',
+  pageTitle: 'Self Drive Car Rental Lahore',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/self-drive-car-rental-lahore/`,
+});
 const description = "Rent a self-drive car in Lahore with 4WHEELS. Independent vehicle rental options for daily, weekly, and monthly trips. Call or WhatsApp to check availability.";
 
 const faqs = [
@@ -45,7 +51,7 @@ const faqs = [
             📞 Call {BUSINESS_INFO.phoneDisplay}
           </a>
           <a
-            href={BUSINESS_INFO.whatsappLink}
+            href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
@@ -135,7 +141,7 @@ const faqs = [
             📞 Call 0321 6616644
           </a>
           <a
-            href={BUSINESS_INFO.whatsappLink}
+            href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
@@ -157,6 +163,8 @@ const faqs = [
     <CTASection
       heading="Looking for a Self-Drive Car in Lahore?"
       subheading="Contact 4WHEELS to confirm current rental requirements and vehicle availability."
+      pageType="service"
+      pageTitle="Self Drive Car Rental Lahore"
     />
   </div>
 </Layout>

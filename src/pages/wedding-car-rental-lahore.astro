@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Wedding Car Rental Lahore - Luxury Cars & Guest Transport | 4WHEELS";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'service',
+  pageTitle: 'Wedding Car Rental Lahore',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/wedding-car-rental-lahore/`,
+});
 const description = "Book luxury wedding cars, groom cars, and guest transport coasters in Lahore with 4WHEELS. Audi A6, Fortuner, Civic, Corolla, and Toyota Coaster mini-buses.";
 const canonicalPath = "/wedding-car-rental-lahore/";
 ---
@@ -20,7 +26,7 @@ const canonicalPath = "/wedding-car-rental-lahore/";
         Make your special day seamless and memorable. From executive groom sedans and decorated luxury cars to multi-vehicle guest transport coasters and venue shuttles.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+        <a href={waUrl} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
           💬 Check Wedding Fleet Availability
         </a>
       </div>

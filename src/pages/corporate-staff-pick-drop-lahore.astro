@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Corporate Staff Pick & Drop Transport Lahore - 4WHEELS";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'corporate',
+  pageTitle: 'Corporate Staff Pick & Drop Services',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/corporate-staff-pick-drop-lahore/`,
+});
 const description = "Reliable employee transportation and daily staff pick & drop services in Lahore. Cars, vans, Toyota Coasters, and buses for office routes and corporate shifts.";
 const canonicalPath = "/corporate-staff-pick-drop-lahore/";
 ---
@@ -20,7 +26,7 @@ const canonicalPath = "/corporate-staff-pick-drop-lahore/";
         Dedicated employee commuting services across Lahore. From executive sedans and 13-seater HiAce vans to 22-29 seater Toyota Coasters and buses for shift-based corporate office routes.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+        <a href={waUrl} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
           💬 Request Staff Transport Plan on WhatsApp
         </a>
         <a href={BUSINESS_INFO.mailtoLink} class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm border border-slate-700">

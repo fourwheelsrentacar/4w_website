@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Business Car Rental Lahore - Corporate Fleet Solutions | 4WHEELS";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'corporate',
+  pageTitle: 'Business Car Rental in Lahore',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/business-car-rental-lahore/`,
+});
 const description = "Flexible business and corporate car rental solutions in Lahore. Executive sedans, long-term project vehicles, visiting team mobility, and commercial fleet support.";
 const canonicalPath = "/business-car-rental-lahore/";
 ---
@@ -20,7 +26,7 @@ const canonicalPath = "/business-car-rental-lahore/";
         Get the vehicles your business needs without making a large upfront fleet capital investment. Flexible executive sedans, project SUVs, and commercial mobility contracts.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+        <a href={waUrl} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
           💬 WhatsApp Corporate Requirements
         </a>
         <a href={BUSINESS_INFO.mailtoLink} class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm border border-slate-700">
