@@ -1,9 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { FLEET_VEHICLES as FLEET } from '../data/fleet';
-import { PAKISTAN_VEHICLES } from '../data/pakistanVehicles';
+import { FLEET_VEHICLES, FLEET_VEHICLES as FLEET } from '../data/fleet';
+import { PAKISTAN_VEHICLE_CATALOG } from '../data/pakistanVehicles';
+import { VERIFIED_ROUTE_DATABASE } from '../data/routes';
 import { BUSINESS_INFO } from '../data/business';
-import { getVehicleVisualUrl } from '../utils/vehicleVisual';
+import { resolveVehicleImage } from '../utils/vehicleImageProvider';
+
+// Pre-compute resolved vehicle images for client-side JS propagation
+// Prioritize FLEET_VEHICLES so core fleet hero photos override catalog fallbacks
+const allVehicles = [...PAKISTAN_VEHICLE_CATALOG, ...FLEET_VEHICLES];
+const resolvedVehicleMap: Record<string, any> = {};
+
+allVehicles.forEach(v => {
+  const resolved = resolveVehicleImage(v);
+  const brandName = (v as any).manufacturer || (v as any).brand || '';
+  const keys = [
+    v.slug.toLowerCase(),
+    v.slug.replace(/-/g, ' ').toLowerCase(),
+    v.model.toLowerCase(),
+    `${brandName} ${v.model}`.toLowerCase(),
+    `${brandName}-${v.model}`.toLowerCase().replace(/\s+/g, '-')
+  ];
+  keys.forEach(k => {
+    if (k && k.trim()) {
+      resolvedVehicleMap[k.trim()] = resolved;
+    }
+  });
+});
 
 const title = "Build Your Rental - 4WHEELS Rent a Car Lahore Configurator";
 const description = "Configure your rental car booking online with live vehicle visual preview, Pakistan route duration estimation, passenger/luggage fit check, and instant WhatsApp inquiry.";
@@ -204,23 +227,56 @@ const canonicalPath = "/build-your-rental/";
               </div>
 
               <!-- Route Calculation Display Box -->
-              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
-                <div class="flex items-center justify-between">
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                <div class="flex items-center justify-between flex-wrap gap-2">
                   <span class="text-xs font-extrabold text-red-500 uppercase tracking-wider flex items-center gap-1.5">
                     <span>⚡ Route Distance Estimation</span>
                   </span>
                   <span id="calc-status-badge" class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold px-2 py-0.5 rounded">
-                    Route Verified
+                    4WHEELS Verified Route Database
                   </span>
                 </div>
                 <div class="grid grid-cols-2 gap-4 pt-1">
                   <div>
                     <span class="text-[10px] text-slate-500 uppercase font-bold block">Estimated Distance</span>
-                    <span id="route-calc-distance" class="text-lg font-black text-white">375 km</span>
+                    <span id="route-calc-distance" class="text-lg font-black text-white">Approx. 375 km</span>
                   </div>
                   <div>
                     <span class="text-[10px] text-slate-500 uppercase font-bold block">Driving Duration</span>
                     <span id="route-calc-duration" class="text-lg font-black text-amber-400">4 hrs 30 mins</span>
+                  </div>
+                </div>
+
+                <p id="route-source-note" class="text-[11px] text-slate-400 font-medium italic border-t border-slate-800/80 pt-2">
+                  Planning distance from 4WHEELS verified route database. Last verified: 2026-08-18
+                </p>
+
+                <!-- Google Maps External Link & Unknown Route Custom Input -->
+                <div class="pt-1 flex flex-col gap-2">
+                  <a
+                    id="btn-google-maps-check"
+                    href="https://www.google.com/maps/dir/?api=1&origin=Johar+Town+Lahore&destination=Islamabad+F-7&travelmode=driving"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold text-xs py-2 px-3 rounded-lg border border-slate-700 transition-colors"
+                  >
+                    <span>🗺️ CHECK ROUTE ON GOOGLE MAPS</span>
+                    <span>↗</span>
+                  </a>
+
+                  <div id="custom-distance-container" class="hidden space-y-1.5 pt-1">
+                    <label for="field-custom-distance" class="block text-[11px] font-bold text-amber-300">
+                      I checked Google Maps. Distance shown by Google:
+                    </label>
+                    <div class="flex items-center gap-2">
+                      <input
+                        type="number"
+                        id="field-custom-distance"
+                        placeholder="e.g. 240"
+                        class="w-32 bg-slate-800 border border-slate-700 rounded-lg p-2 text-xs font-bold text-white focus:ring-1 focus:ring-red-500"
+                      />
+                      <span class="text-xs text-slate-400 font-semibold">km</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -482,22 +538,25 @@ const canonicalPath = "/build-your-rental/";
         </div>
 
         <!-- RIGHT 35%: Sticky Live Rental Summary Panel -->
-        <div class="lg:col-span-5 sticky top-24 space-y-6">
+        <div id="summary-drawer" class="lg:col-span-5 lg:sticky lg:top-24 space-y-6 hidden lg:block">
           <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 shadow-xl space-y-5">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
               <h3 class="text-xs font-extrabold text-slate-400 uppercase tracking-widest">Your Rental Summary</h3>
               <span class="text-[10px] bg-red-600 text-white font-black px-2 py-0.5 rounded uppercase">LIVE CONFIG</span>
             </div>
 
-            <!-- Large Live Visual -->
-            <div class="bg-slate-950 rounded-xl border border-slate-800 h-44 flex items-center justify-center p-3 relative overflow-hidden group">
+            <!-- Large Live Visual Stage -->
+            <div class="bg-slate-950 rounded-xl border border-slate-800 h-52 flex flex-col items-center justify-center p-3 relative overflow-hidden group">
               <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:12px_12px]"></div>
               <img
                 id="summary-visual-img"
-                src="/vehicles/illustrations/toyota/corolla.svg"
+                src="/vehicles/fleet/toyota-corolla/hero.jpg"
                 alt="Selected Vehicle Visual"
-                class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                class="w-full h-36 object-contain transition-transform duration-300 group-hover:scale-105 relative z-10"
               />
+              <p id="summary-visual-label" class="text-[10px] text-slate-400 font-medium bg-slate-950/90 px-2 py-0.5 rounded border border-slate-800/80 z-20 text-center truncate max-w-full mt-1">
+                Representative model image. Actual rental vehicle/color may vary.
+              </p>
             </div>
 
             <div class="space-y-3 text-xs">
@@ -540,83 +599,127 @@ const canonicalPath = "/build-your-rental/";
       </div>
     </div>
   </section>
+
+  <!-- Mobile Sticky Bottom Bar & Drawer Toggle -->
+  <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 p-3 shadow-2xl flex items-center justify-between gap-2">
+    <button type="button" class="btn-prev bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs px-4 py-3 rounded-xl border border-slate-700">
+      ← Back
+    </button>
+
+    <button type="button" id="btn-toggle-mobile-drawer" class="text-xs font-bold text-slate-200 flex items-center gap-1.5 bg-slate-950 px-3 py-2.5 rounded-xl border border-slate-800">
+      <span>📋 Summary</span>
+      <span id="drawer-arrow-icon">▲</span>
+    </button>
+
+    <button type="button" class="btn-next bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow-lg flex items-center gap-1">
+      <span>Continue</span>
+      <span>→</span>
+    </button>
+  </div>
 </Layout>
 
-<script>
+<script is:inline set:html={`
   let currentStep = 1;
 
-  // Visual Map
-  const visualMap: Record<string, string> = {
-    'corolla': '/vehicles/illustrations/toyota/corolla.svg',
-    'fortuner': '/vehicles/illustrations/toyota/fortuner.svg',
-    'civic': '/vehicles/illustrations/honda/civic.svg',
-    'city': '/vehicles/illustrations/honda/city.svg',
-    'hrv': '/vehicles/illustrations/honda/hrv.svg',
-    'tucson': '/vehicles/illustrations/hyundai/tucson.svg',
-    'elantra': '/vehicles/illustrations/hyundai/elantra.svg',
-    'santafe': '/vehicles/illustrations/hyundai/santafe.svg',
-    'alto': '/vehicles/illustrations/suzuki/alto.svg',
-    'swift': '/vehicles/illustrations/suzuki/swift.svg',
-    'atto3': '/vehicles/illustrations/byd/atto3.svg',
-    'seal': '/vehicles/illustrations/byd/seal.svg',
-    's07': '/vehicles/illustrations/deepal/s07.svg',
-    'l07': '/vehicles/illustrations/deepal/l07.svg',
-    'h6': '/vehicles/illustrations/haval/h6.svg',
-    'hs': '/vehicles/illustrations/mg/hs.svg',
-    'alsvin': '/vehicles/illustrations/changan/alsvin.svg',
-    'ochanx7': '/vehicles/illustrations/changan/ochanx7.svg',
-    'hiace': '/vehicles/illustrations/vamp/hiace.svg',
-    'coaster': '/vehicles/illustrations/buses/coaster.svg',
-    'a6': '/vehicles/illustrations/audi/a6.svg',
-  };
+  window.vehicleMapData = ${JSON.stringify(resolvedVehicleMap)};
+  window.verifiedRouteDb = ${JSON.stringify(VERIFIED_ROUTE_DATABASE)};
 
-  const getVisualForModel = (modelName: string): string => {
-    const key = modelName.toLowerCase();
-    for (const k in visualMap) {
-      if (key.includes(k)) return visualMap[k];
+  window.getVehicleImageInfo = (modelName) => {
+    const key = (modelName || '').toLowerCase();
+    for (const k in window.vehicleMapData) {
+      if (key.includes(k) || k.includes(key)) return window.vehicleMapData[k];
     }
-    return '/vehicles/illustrations/toyota/corolla.svg';
+    return {
+      imageUrl: '/vehicles/fleet/toyota-corolla/hero.jpg',
+      fallbackUrl: '/vehicles/illustrations/toyota/corolla.svg',
+      label: 'Representative model image. Actual rental vehicle/color may vary.'
+    };
   };
+`}>
+</script>
 
-  // Known Route Database Matrix
-  const knownRoutes: Record<string, { dist: number; duration: string }> = {
-    'islamabad': { dist: 375, duration: '4 hrs 30 mins' },
-    'rawalpindi': { dist: 375, duration: '4 hrs 30 mins' },
-    'murree': { dist: 435, duration: '5 hrs 45 mins' },
-    'multan': { dist: 315, duration: '3 hrs 45 mins' },
-    'sialkot': { dist: 103, duration: '1 hr 45 mins' },
-    'faisalabad': { dist: 180, duration: '2 hrs 15 mins' },
-    'peshawar': { dist: 490, duration: '5 hrs 30 mins' },
-    'lahore': { dist: 45, duration: '1 hr 00 min' },
-    'airport': { dist: 35, duration: '45 mins' }
-  };
+<script>
 
   // Calculate Route Distance based on pickup & destination inputs
   const calculateRouteDistance = () => {
-    const pickup = (document.getElementById('field-pickup') as HTMLInputElement)?.value.toLowerCase() || '';
-    const dest = (document.getElementById('field-destination') as HTMLInputElement)?.value.toLowerCase() || '';
+    const pickup = (document.getElementById('field-pickup') as HTMLInputElement)?.value || '';
+    const dest = (document.getElementById('field-destination') as HTMLInputElement)?.value || '';
 
-    let matched = false;
-    let dist = 375;
-    let duration = '4 hrs 30 mins';
+    const normPickup = pickup.toLowerCase().trim();
+    const normDest = dest.toLowerCase().trim();
 
-    for (const city in knownRoutes) {
-      if (dest.includes(city) || pickup.includes(city)) {
-        dist = knownRoutes[city].dist;
-        duration = knownRoutes[city].duration;
-        matched = true;
+    const encodedMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(pickup)}&destination=${encodeURIComponent(dest)}&travelmode=driving`;
+
+    const routeDb = (window as any).verifiedRouteDb || [];
+    let matchedRoute: any = null;
+
+    for (const r of routeDb) {
+      const origMatch = normPickup.includes(r.originSlug) || normPickup.includes(r.originCity.toLowerCase()) || normPickup.includes(r.originName.toLowerCase());
+      const destMatch = normDest.includes(r.destinationSlug) || normDest.includes(r.destinationCity.toLowerCase()) || normDest.includes(r.destinationName.toLowerCase());
+      if (origMatch && destMatch) {
+        matchedRoute = r;
+        break;
+      }
+      const revOrigMatch = normPickup.includes(r.destinationSlug) || normPickup.includes(r.destinationCity.toLowerCase()) || normPickup.includes(r.destinationName.toLowerCase());
+      const revDestMatch = normDest.includes(r.originSlug) || normDest.includes(r.originCity.toLowerCase()) || normDest.includes(r.originName.toLowerCase());
+      if (revOrigMatch && revDestMatch) {
+        matchedRoute = r;
         break;
       }
     }
 
+    const badgeElem = document.getElementById('calc-status-badge');
     const distElem = document.getElementById('route-calc-distance');
     const durElem = document.getElementById('route-calc-duration');
     const sumDist = document.getElementById('summary-distance');
+    const routeSourceNote = document.getElementById('route-source-note');
+    const googleMapsBtn = document.getElementById('btn-google-maps-check') as HTMLAnchorElement;
+    const customDistContainer = document.getElementById('custom-distance-container');
 
-    if (distElem) distElem.textContent = `${dist} km`;
-    if (durElem) durElem.textContent = duration;
-    if (sumDist) sumDist.textContent = `${dist} km`;
+    if (matchedRoute) {
+      const kmText = `Approx. ${matchedRoute.distanceKm} km`;
+      const hrs = Math.floor(matchedRoute.typicalDurationMinutes / 60);
+      const mins = matchedRoute.typicalDurationMinutes % 60;
+      const durText = hrs > 0 ? `${hrs} hrs ${mins > 0 ? `${mins} mins` : ''}` : `${mins} mins`;
+
+      if (badgeElem) {
+        badgeElem.className = 'text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold px-2 py-0.5 rounded';
+        badgeElem.textContent = '4WHEELS Verified Route Database';
+      }
+      if (distElem) distElem.textContent = kmText;
+      if (durElem) durElem.textContent = durText;
+      if (sumDist) sumDist.textContent = kmText;
+      if (routeSourceNote) routeSourceNote.textContent = `Planning distance from 4WHEELS verified route database. Last verified: ${matchedRoute.verifiedDate}`;
+      if (googleMapsBtn) {
+        googleMapsBtn.href = matchedRoute.googleMapsUrl || encodedMapsUrl;
+      }
+      if (customDistContainer) customDistContainer.classList.add('hidden');
+    } else {
+      if (badgeElem) {
+        badgeElem.className = 'text-[10px] bg-amber-950 text-amber-300 border border-amber-800 font-bold px-2 py-0.5 rounded';
+        badgeElem.textContent = 'Route Not in Quick Database';
+      }
+      const customDistInput = (document.getElementById('field-custom-distance') as HTMLInputElement)?.value;
+      const customDist = customDistInput ? parseInt(customDistInput, 10) : null;
+
+      if (customDist && customDist > 0) {
+        if (distElem) distElem.textContent = `Approx. ${customDist} km`;
+        if (sumDist) sumDist.textContent = `Approx. ${customDist} km`;
+        if (routeSourceNote) routeSourceNote.textContent = 'Customer-entered planning distance. 4WHEELS will confirm.';
+      } else {
+        if (distElem) distElem.textContent = 'To be confirmed';
+        if (sumDist) sumDist.textContent = 'To be confirmed';
+        if (routeSourceNote) routeSourceNote.textContent = '4WHEELS will confirm final route and distance with your quotation.';
+      }
+      if (durElem) durElem.textContent = 'Depends on traffic';
+      if (googleMapsBtn) {
+        googleMapsBtn.href = encodedMapsUrl;
+      }
+      if (customDistContainer) customDistContainer.classList.remove('hidden');
+    }
   };
+
+  document.getElementById('field-custom-distance')?.addEventListener('input', calculateRouteDistance);
 
   // Stepper Logic
   const showStep = (stepNumber: number) => {
@@ -706,11 +809,34 @@ const canonicalPath = "/build-your-rental/";
 
     if (sBrand) sBrand.textContent = brand.toUpperCase();
     if (sModel) sModel.textContent = model;
-    if (sSpecs) sSpecs.textContent = `${trans} • ${mode} • ${cat.toUpperCase()}`;
+
+    // Resolve accurate vehicle body category dynamically
+    const allVehList = (window as any).vehicleMapData || {};
+    let resolvedCategory = cat.toUpperCase();
+    if (model.toLowerCase().includes('fortuner') || model.toLowerCase().includes('revo')) resolvedCategory = 'SUV / 4X4';
+    else if (model.toLowerCase().includes('hiace')) resolvedCategory = 'VAN';
+    else if (model.toLowerCase().includes('coaster')) resolvedCategory = 'COASTER BUS';
+    else if (model.toLowerCase().includes('alto') || model.toLowerCase().includes('swift')) resolvedCategory = 'HATCHBACK';
+    else if (model.toLowerCase().includes('corolla') || model.toLowerCase().includes('civic') || model.toLowerCase().includes('yaris') || model.toLowerCase().includes('city') || model.toLowerCase().includes('a6')) resolvedCategory = 'SEDAN';
+
+    if (sSpecs) sSpecs.textContent = `${trans} • ${mode} • ${resolvedCategory}`;
     if (sPickup) sPickup.textContent = pickup;
     if (sDropoff) sDropoff.textContent = dest;
     if (sCapacity) sCapacity.textContent = `${pCount} Passengers, ${lCount} Bags`;
-    if (sVisual) sVisual.src = getVisualForModel(model);
+    const imageInfo = (window as any).getVehicleImageInfo ? (window as any).getVehicleImageInfo(model) : null;
+    if (sVisual && imageInfo) {
+      sVisual.src = imageInfo.imageUrl;
+      sVisual.setAttribute('data-fallback', imageInfo.fallbackUrl || '');
+      sVisual.onerror = function() {
+        if (sVisual.src !== sVisual.getAttribute('data-fallback')) {
+          sVisual.src = sVisual.getAttribute('data-fallback') || '';
+        }
+      };
+    }
+    const sLabel = document.getElementById('summary-visual-label');
+    if (sLabel && imageInfo) {
+      sLabel.textContent = imageInfo.label;
+    }
 
     if (preTitle) preTitle.textContent = model;
     if (preSub) preSub.textContent = `${cat.toUpperCase()} • ${trans} • ${mode}`;
@@ -1070,6 +1196,23 @@ const canonicalPath = "/build-your-rental/";
         setTimeout(() => copyToast.classList.add('hidden'), 3000);
       }
     });
+  });
+
+  // Mobile Summary Drawer Toggle
+  const toggleDrawerBtn = document.getElementById('btn-toggle-mobile-drawer');
+  const summaryDrawer = document.getElementById('summary-drawer');
+  const arrowIcon = document.getElementById('drawer-arrow-icon');
+
+  toggleDrawerBtn?.addEventListener('click', () => {
+    if (summaryDrawer) {
+      summaryDrawer.classList.toggle('hidden');
+      if (summaryDrawer.classList.contains('hidden')) {
+        if (arrowIcon) arrowIcon.textContent = '▲';
+      } else {
+        if (arrowIcon) arrowIcon.textContent = '▼';
+        summaryDrawer.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   });
 
   updateSummary();

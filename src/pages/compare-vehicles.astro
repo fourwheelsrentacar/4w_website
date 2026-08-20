@@ -5,6 +5,17 @@ import Footer from '../components/Footer.astro';
 import CTASection from '../components/CTASection.astro';
 import { BUSINESS_INFO } from '../data/business';
 import { PAKISTAN_VEHICLE_CATALOG } from '../data/pakistanVehicles';
+import { resolveVehicleImage } from '../utils/vehicleImageProvider';
+
+const vehiclesWithImages = PAKISTAN_VEHICLE_CATALOG.map(v => {
+  const resolved = resolveVehicleImage(v);
+  return {
+    ...v,
+    resolvedImage: resolved.imageUrl,
+    resolvedFallback: resolved.fallbackUrl,
+    resolvedLabel: resolved.label
+  };
+});
 
 const canonicalUrl = `${BUSINESS_INFO.siteUrl}/compare-vehicles/`;
 ---
@@ -103,7 +114,7 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/compare-vehicles/`;
   <Footer />
 
   <script is:inline set:html={`
-    const vehiclesData = ${JSON.stringify(PAKISTAN_VEHICLE_CATALOG)};
+    const vehiclesData = ${JSON.stringify(vehiclesWithImages)};
 
     const v1Select = document.getElementById('v1Select');
     const v2Select = document.getElementById('v2Select');
@@ -126,7 +137,12 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/compare-vehicles/`;
       // Header
       html += '<thead><tr class="bg-slate-900 text-white"><th class="p-3 border border-slate-800 font-bold w-1/4">Specification</th>';
       selected.forEach(v => {
-        html += '<th class="p-3 border border-slate-800 font-extrabold text-center text-brand-red">' + v.brand + ' ' + v.model + '<br/><span class="text-[10px] text-gray-300 font-normal">' + (v.variant || '') + '</span></th>';
+        html += '<th class="p-3 border border-slate-800 font-extrabold text-center text-brand-red">' +
+          '<div class="mb-2 h-28 flex flex-col items-center justify-center bg-slate-950 rounded p-2 border border-slate-800">' +
+          '<img src="' + v.resolvedImage + '" alt="' + v.brand + ' ' + v.model + '" class="max-h-20 object-contain" />' +
+          '<span class="text-[9px] text-slate-400 mt-1 block truncate max-w-full">' + v.resolvedLabel + '</span>' +
+          '</div>' +
+          v.brand + ' ' + v.model + '<br/><span class="text-[10px] text-gray-300 font-normal">' + (v.variant || '') + '</span></th>';
       });
       html += '</tr></thead><tbody>';
 
