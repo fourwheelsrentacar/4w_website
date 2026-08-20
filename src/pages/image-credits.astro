@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FLEET_VEHICLES } from '../data/fleet';
+
+const title = "Media & Image Credits - 4WHEELS Rent a Car Lahore";
+const description = "Public media attribution and image licensing registry for 4WHEELS Rent a Car fleet photography and illustrative media.";
+const canonicalPath = "/image-credits/";
+
+const creditsList = FLEET_VEHICLES.map(v => ({
+  vehicle: `${v.manufacturer} ${v.model}`,
+  variant: v.variant,
+  meta: v.imageMeta
+})).filter(c => c.meta && c.meta.sourceUrl);
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="bg-slate-900 text-white py-12 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block bg-red-600 text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
+        Transparency & Licensing
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-3">
+        Media & Image Credits
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+        4WHEELS Rent a Car adheres strictly to open-source media licensing standards. Representative vehicle photography is sourced under verified Creative Commons and Public Domain licenses.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-slate-950 text-slate-200 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+
+      <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-xl space-y-4">
+        <h2 class="text-xl font-extrabold text-white">Visual Labeling Policy</h2>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          Every vehicle displayed across 4WHEELS Rent a Car is labeled according to its verified source type:
+        </p>
+        <ul class="text-xs space-y-2 text-slate-300 list-disc list-inside">
+          <li><strong class="text-emerald-400">Actual 4WHEELS vehicle:</strong> Genuine photo of an active vehicle in the 4WHEELS Lahore fleet.</li>
+          <li><strong class="text-amber-400">Representative model image:</strong> License-compatible real photo of the exact make, model, and body generation. Actual rental vehicle color or minor trim may vary.</li>
+          <li><strong class="text-blue-400">Model illustration:</strong> Custom 2D vector graphic drawn to reflect exact vehicle dimensions and styling.</li>
+        </ul>
+      </div>
+
+      <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-xl">
+        <h2 class="text-xl font-extrabold text-white mb-6">Representative Photography Licensing Registry</h2>
+
+        <div class="space-y-6">
+          {creditsList.map((item) => (
+            <div class="border-b border-slate-800 pb-5 last:border-b-0 last:pb-0 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h3 class="text-base font-bold text-white">{item.vehicle}</h3>
+                <span class="text-[10px] font-black uppercase bg-slate-800 text-amber-400 px-2.5 py-1 rounded-md border border-slate-700">
+                  {item.meta?.license || 'CC Licensed'}
+                </span>
+              </div>
+              <p class="text-xs text-slate-400">
+                Generation: <span class="text-slate-200 font-medium">{item.meta?.vehicleGeneration}</span>
+              </p>
+              <div class="text-xs text-slate-400 flex flex-wrap gap-x-4 gap-y-1">
+                <span>Author: <strong class="text-slate-300">{item.meta?.author || 'Wikimedia Contributor'}</strong></span>
+                {item.meta?.sourceUrl && (
+                  <span>
+                    Source: <a href={item.meta.sourceUrl} target="_blank" rel="noopener noreferrer" class="text-red-400 hover:underline">Wikimedia Commons</a>
+                  </span>
+                )}
+                {item.meta?.licenseUrl && (
+                  <span>
+                    License terms: <a href={item.meta.licenseUrl} target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:underline">{item.meta.license}</a>
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="text-center text-xs text-slate-500 pt-4">
+        <p>To request media updates or submit original 4WHEELS vehicle photography, contact our team at <a href="mailto:4wheels44@gmail.com" class="text-red-400 underline">4wheels44@gmail.com</a>.</p>
+      </div>
+
+    </div>
+  </section>
+</Layout>
