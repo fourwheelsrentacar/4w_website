@@ -6,10 +6,21 @@ import { VERIFIED_ROUTE_DATABASE } from '../data/routes';
 import { BUSINESS_INFO } from '../data/business';
 import { resolveVehicleImage } from '../utils/vehicleImageProvider';
 
-// Pre-compute resolved vehicle images for client-side JS propagation
-// Prioritize FLEET_VEHICLES so core fleet hero photos override catalog fallbacks
+// Pre-compute resolved vehicle images and full structured vehicle list for client-side JS filtering
 const allVehicles = [...PAKISTAN_VEHICLE_CATALOG, ...FLEET_VEHICLES];
 const resolvedVehicleMap: Record<string, any> = {};
+
+const fullVehicleList = PAKISTAN_VEHICLE_CATALOG.map(v => ({
+  id: v.id,
+  brand: v.brand,
+  model: v.model,
+  slug: v.slug,
+  category: v.category.toLowerCase(),
+  variant: v.variant || '',
+  transmission: v.transmission,
+  fuelType: v.fuelType,
+  isFleetConfirmed: v.isFleetConfirmed
+}));
 
 allVehicles.forEach(v => {
   const resolved = resolveVehicleImage(v);
@@ -621,6 +632,7 @@ const canonicalPath = "/build-your-rental/";
 <script is:inline set:html={`
   let currentStep = 1;
 
+  window.fullVehicleList = ${JSON.stringify(fullVehicleList)};
   window.vehicleMapData = ${JSON.stringify(resolvedVehicleMap)};
   window.verifiedRouteDb = ${JSON.stringify(VERIFIED_ROUTE_DATABASE)};
 
@@ -642,16 +654,18 @@ const canonicalPath = "/build-your-rental/";
 
   // Calculate Route Distance based on pickup & destination inputs
   const calculateRouteDistance = () => {
-    const pickup = (document.getElementById('field-pickup') as HTMLInputElement)?.value || '';
-    const dest = (document.getElementById('field-destination') as HTMLInputElement)?.value || '';
+    const pickupInput = document.getElementById('field-pickup');
+    const destInput = document.getElementById('field-destination');
+    const pickup = pickupInput ? pickupInput.value : '';
+    const dest = destInput ? destInput.value : '';
 
     const normPickup = pickup.toLowerCase().trim();
     const normDest = dest.toLowerCase().trim();
 
-    const encodedMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(pickup)}&destination=${encodeURIComponent(dest)}&travelmode=driving`;
+    const encodedMapsUrl = 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(pickup) + '&destination=' + encodeURIComponent(dest) + '&travelmode=driving';
 
-    const routeDb = (window as any).verifiedRouteDb || [];
-    let matchedRoute: any = null;
+    const routeDb = window.verifiedRouteDb || [];
+    let matchedRoute = null;
 
     for (const r of routeDb) {
       const origMatch = normPickup.includes(r.originSlug) || normPickup.includes(r.originCity.toLowerCase()) || normPickup.includes(r.originName.toLowerCase());
@@ -673,14 +687,14 @@ const canonicalPath = "/build-your-rental/";
     const durElem = document.getElementById('route-calc-duration');
     const sumDist = document.getElementById('summary-distance');
     const routeSourceNote = document.getElementById('route-source-note');
-    const googleMapsBtn = document.getElementById('btn-google-maps-check') as HTMLAnchorElement;
+    const googleMapsBtn = document.getElementById('btn-google-maps-check');
     const customDistContainer = document.getElementById('custom-distance-container');
 
     if (matchedRoute) {
-      const kmText = `Approx. ${matchedRoute.distanceKm} km`;
+      const kmText = 'Approx. ' + matchedRoute.distanceKm + ' km';
       const hrs = Math.floor(matchedRoute.typicalDurationMinutes / 60);
       const mins = matchedRoute.typicalDurationMinutes % 60;
-      const durText = hrs > 0 ? `${hrs} hrs ${mins > 0 ? `${mins} mins` : ''}` : `${mins} mins`;
+      const durText = hrs > 0 ? (hrs + ' hrs ' + (mins > 0 ? mins + ' mins' : '')) : (mins + ' mins');
 
       if (badgeElem) {
         badgeElem.className = 'text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold px-2 py-0.5 rounded';
@@ -689,7 +703,7 @@ const canonicalPath = "/build-your-rental/";
       if (distElem) distElem.textContent = kmText;
       if (durElem) durElem.textContent = durText;
       if (sumDist) sumDist.textContent = kmText;
-      if (routeSourceNote) routeSourceNote.textContent = `Planning distance from 4WHEELS verified route database. Last verified: ${matchedRoute.verifiedDate}`;
+      if (routeSourceNote) routeSourceNote.textContent = 'Planning distance from 4WHEELS verified route database. Last verified: ' + matchedRoute.verifiedDate;
       if (googleMapsBtn) {
         googleMapsBtn.href = matchedRoute.googleMapsUrl || encodedMapsUrl;
       }
@@ -699,12 +713,13 @@ const canonicalPath = "/build-your-rental/";
         badgeElem.className = 'text-[10px] bg-amber-950 text-amber-300 border border-amber-800 font-bold px-2 py-0.5 rounded';
         badgeElem.textContent = 'Route Not in Quick Database';
       }
-      const customDistInput = (document.getElementById('field-custom-distance') as HTMLInputElement)?.value;
+      const customDistElem = document.getElementById('field-custom-distance');
+      const customDistInput = customDistElem ? customDistElem.value : null;
       const customDist = customDistInput ? parseInt(customDistInput, 10) : null;
 
       if (customDist && customDist > 0) {
-        if (distElem) distElem.textContent = `Approx. ${customDist} km`;
-        if (sumDist) sumDist.textContent = `Approx. ${customDist} km`;
+        if (distElem) distElem.textContent = 'Approx. ' + customDist + ' km';
+        if (sumDist) sumDist.textContent = 'Approx. ' + customDist + ' km';
         if (routeSourceNote) routeSourceNote.textContent = 'Customer-entered planning distance. 4WHEELS will confirm.';
       } else {
         if (distElem) distElem.textContent = 'To be confirmed';
@@ -785,16 +800,26 @@ const canonicalPath = "/build-your-rental/";
 
   // Dynamic Summary Live Updates
   const updateSummary = () => {
-    const brand = (document.getElementById('field-brand') as HTMLSelectElement)?.value || 'Toyota';
-    const model = (document.getElementById('field-model') as HTMLSelectElement)?.value || 'Toyota Corolla';
-    const mode = (document.getElementById('field-mode') as HTMLSelectElement)?.value || 'With Driver';
-    const trans = (document.getElementById('field-transmission') as HTMLInputElement)?.value || 'Automatic';
-    const cat = (document.getElementById('field-category') as HTMLInputElement)?.value || 'sedan';
-    const pickup = (document.getElementById('field-pickup') as HTMLInputElement)?.value || 'Johar Town, Lahore';
-    const dest = (document.getElementById('field-destination') as HTMLInputElement)?.value || 'Islamabad F-7';
+    const brandElem = document.getElementById('field-brand');
+    const modelElem = document.getElementById('field-model');
+    const modeElem = document.getElementById('field-mode');
+    const transElem = document.getElementById('field-transmission');
+    const catElem = document.getElementById('field-category');
+    const pickupElem = document.getElementById('field-pickup');
+    const destElem = document.getElementById('field-destination');
+    const pElem = document.getElementById('field-passengers');
+    const lElem = document.getElementById('field-luggage');
 
-    const pCount = (document.getElementById('field-passengers') as HTMLInputElement)?.value || '4';
-    const lCount = (document.getElementById('field-luggage') as HTMLInputElement)?.value || '2';
+    const brand = brandElem ? brandElem.value : 'Toyota';
+    const model = modelElem ? modelElem.value : 'Toyota Corolla';
+    const mode = modeElem ? modeElem.value : 'With Driver';
+    const trans = transElem ? transElem.value : 'Automatic';
+    const cat = catElem ? catElem.value : 'sedan';
+    const pickup = pickupElem ? pickupElem.value : 'Johar Town, Lahore';
+    const dest = destElem ? destElem.value : 'Islamabad F-7';
+
+    const pCount = pElem ? pElem.value : '4';
+    const lCount = lElem ? lElem.value : '2';
 
     const sBrand = document.getElementById('summary-brand');
     const sModel = document.getElementById('summary-model');
@@ -802,7 +827,7 @@ const canonicalPath = "/build-your-rental/";
     const sPickup = document.getElementById('summary-pickup');
     const sDropoff = document.getElementById('summary-dropoff');
     const sCapacity = document.getElementById('summary-capacity');
-    const sVisual = document.getElementById('summary-visual-img') as HTMLImageElement;
+    const sVisual = document.getElementById('summary-visual-img');
 
     const preTitle = document.getElementById('preselect-title');
     const preSub = document.getElementById('preselect-subtitle');
@@ -811,7 +836,6 @@ const canonicalPath = "/build-your-rental/";
     if (sModel) sModel.textContent = model;
 
     // Resolve accurate vehicle body category dynamically
-    const allVehList = (window as any).vehicleMapData || {};
     let resolvedCategory = cat.toUpperCase();
     if (model.toLowerCase().includes('fortuner') || model.toLowerCase().includes('revo')) resolvedCategory = 'SUV / 4X4';
     else if (model.toLowerCase().includes('hiace')) resolvedCategory = 'VAN';
@@ -819,11 +843,11 @@ const canonicalPath = "/build-your-rental/";
     else if (model.toLowerCase().includes('alto') || model.toLowerCase().includes('swift')) resolvedCategory = 'HATCHBACK';
     else if (model.toLowerCase().includes('corolla') || model.toLowerCase().includes('civic') || model.toLowerCase().includes('yaris') || model.toLowerCase().includes('city') || model.toLowerCase().includes('a6')) resolvedCategory = 'SEDAN';
 
-    if (sSpecs) sSpecs.textContent = `${trans} • ${mode} • ${resolvedCategory}`;
+    if (sSpecs) sSpecs.textContent = trans + ' • ' + mode + ' • ' + resolvedCategory;
     if (sPickup) sPickup.textContent = pickup;
     if (sDropoff) sDropoff.textContent = dest;
-    if (sCapacity) sCapacity.textContent = `${pCount} Passengers, ${lCount} Bags`;
-    const imageInfo = (window as any).getVehicleImageInfo ? (window as any).getVehicleImageInfo(model) : null;
+    if (sCapacity) sCapacity.textContent = pCount + ' Passengers, ' + lCount + ' Bags';
+    const imageInfo = window.getVehicleImageInfo ? window.getVehicleImageInfo(model) : null;
     if (sVisual && imageInfo) {
       sVisual.src = imageInfo.imageUrl;
       sVisual.setAttribute('data-fallback', imageInfo.fallbackUrl || '');
@@ -839,7 +863,7 @@ const canonicalPath = "/build-your-rental/";
     }
 
     if (preTitle) preTitle.textContent = model;
-    if (preSub) preSub.textContent = `${cat.toUpperCase()} • ${trans} • ${mode}`;
+    if (preSub) preSub.textContent = cat.toUpperCase() + ' • ' + trans + ' • ' + mode;
 
     calculateRouteDistance();
     calculateDatesDuration();
@@ -855,28 +879,157 @@ const canonicalPath = "/build-your-rental/";
     }
   });
 
-  // Category Selector Buttons
+  // Dynamic Vehicle Cascade Dropdown & Filter Manager
+  const brandSelect = document.getElementById('field-brand');
+  const modelSelect = document.getElementById('field-model');
+  const catInput = document.getElementById('field-category');
   const catButtons = document.querySelectorAll('.cat-btn');
-  const catInput = document.getElementById('field-category') as HTMLInputElement;
+
+  const populateVehicleCascade = (trigger, targetVal) => {
+    const vehicles = window.fullVehicleList || [];
+    let selectedCat = (catInput && catInput.value) ? catInput.value.toLowerCase() : 'all';
+    let selectedBrand = (brandSelect && brandSelect.value) ? brandSelect.value : 'all';
+    let selectedModel = (modelSelect && modelSelect.value) ? modelSelect.value : '';
+
+    // Handle Category Trigger
+    if (trigger === 'category' && targetVal) {
+      selectedCat = targetVal.toLowerCase();
+      if (catInput) catInput.value = selectedCat;
+    }
+
+    // Highlight Category UI Buttons
+    catButtons.forEach(btn => {
+      const attrVal = btn.getAttribute('data-val');
+      const bVal = attrVal ? attrVal.toLowerCase() : '';
+      if (bVal === selectedCat) {
+        btn.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
+        btn.classList.add('bg-red-600', 'text-white', 'border-red-500');
+      } else {
+        btn.classList.remove('bg-red-600', 'text-white', 'border-red-500');
+        btn.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-700');
+      }
+    });
+
+    // Populate Brand Select Options
+    let availableVehicles = vehicles;
+    if (selectedCat && selectedCat !== 'all') {
+      availableVehicles = vehicles.filter(v => {
+        if (selectedCat === 'van') return v.category === 'van';
+        if (selectedCat === 'coaster') return v.category === 'coaster' || v.category === 'bus';
+        if (selectedCat === 'suv') return v.category === 'suv' || v.category === 'crossover' || v.category === 'pickup' || v.category === 'phev';
+        if (selectedCat === 'luxury') return v.category === 'luxury';
+        if (selectedCat === 'hatchback') return v.category === 'hatchback';
+        if (selectedCat === 'sedan') return v.category === 'sedan';
+        return v.category === selectedCat;
+      });
+    }
+
+    const availableBrands = Array.from(new Set(availableVehicles.map(v => v.brand)));
+
+    // Refresh Brand Options
+    const currBrand = brandSelect ? brandSelect.value : '';
+    if (brandSelect) {
+      brandSelect.innerHTML = '';
+      availableBrands.forEach(b => {
+        const opt = document.createElement('option');
+        opt.value = b;
+        opt.textContent = b;
+        brandSelect.appendChild(opt);
+      });
+
+      if (availableBrands.includes(currBrand) && trigger !== 'category') {
+        brandSelect.value = currBrand;
+      } else if (availableBrands.length > 0) {
+        brandSelect.value = availableBrands[0];
+      }
+      selectedBrand = brandSelect.value;
+    }
+
+    // Filter Models for current Brand and Category
+    let modelVehicles = availableVehicles.filter(v => v.brand.toLowerCase() === selectedBrand.toLowerCase());
+    if (modelVehicles.length === 0) {
+      modelVehicles = vehicles.filter(v => v.brand.toLowerCase() === selectedBrand.toLowerCase());
+    }
+
+    const currModel = modelSelect ? modelSelect.value : '';
+    if (modelSelect) {
+      modelSelect.innerHTML = '';
+      modelVehicles.forEach(v => {
+        const opt = document.createElement('option');
+        opt.value = v.brand + ' ' + v.model;
+        opt.textContent = v.brand + ' ' + v.model + ' (' + (v.variant || v.category.toUpperCase()) + ')';
+        modelSelect.appendChild(opt);
+      });
+
+      if (trigger === 'model' && targetVal) {
+        let found = false;
+        for (let i = 0; i < modelSelect.options.length; i++) {
+          if (modelSelect.options[i].value.toLowerCase().includes(targetVal.toLowerCase())) {
+            modelSelect.selectedIndex = i;
+            found = true;
+            break;
+          }
+        }
+        if (!found && targetVal) {
+          const opt = document.createElement('option');
+          opt.value = targetVal;
+          opt.textContent = targetVal;
+          modelSelect.appendChild(opt);
+          modelSelect.value = targetVal;
+        }
+      } else if (modelSelect.options.length > 0) {
+        let matchedIdx = -1;
+        for (let i = 0; i < modelSelect.options.length; i++) {
+          if (modelSelect.options[i].value.toLowerCase() === currModel.toLowerCase()) {
+            matchedIdx = i;
+            break;
+          }
+        }
+        if (matchedIdx >= 0) modelSelect.selectedIndex = matchedIdx;
+        else modelSelect.selectedIndex = 0;
+      }
+    }
+
+    updateSummary();
+  };
+
+  // Category Buttons Event Listeners
   catButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const val = btn.getAttribute('data-val');
-      if (val && catInput) {
-        catInput.value = val;
-        catButtons.forEach(b => {
+      if (val) populateVehicleCascade('category', val);
+    });
+  });
+
+  // Brand Dropdown Listener
+  brandSelect?.addEventListener('change', () => {
+    populateVehicleCascade('brand');
+  });
+
+  // Model Dropdown Listener
+  modelSelect?.addEventListener('change', () => {
+    const selectedM = modelSelect.value;
+    const v = (window.fullVehicleList || []).find(veh => (veh.brand + ' ' + veh.model).toLowerCase() === selectedM.toLowerCase());
+    if (v) {
+      if (catInput) catInput.value = v.category;
+      catButtons.forEach(b => {
+        const attrVal = b.getAttribute('data-val');
+        const bVal = attrVal ? attrVal.toLowerCase() : '';
+        if (bVal === v.category) {
+          b.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
+          b.classList.add('bg-red-600', 'text-white', 'border-red-500');
+        } else {
           b.classList.remove('bg-red-600', 'text-white', 'border-red-500');
           b.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-700');
-        });
-        btn.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
-        btn.classList.add('bg-red-600', 'text-white', 'border-red-500');
-        updateSummary();
-      }
-    });
+        }
+      });
+    }
+    updateSummary();
   });
 
   // Transmission Switch Buttons
   const transButtons = document.querySelectorAll('.trans-btn');
-  const transInput = document.getElementById('field-transmission') as HTMLInputElement;
+  const transInput = document.getElementById('field-transmission');
   transButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const val = btn.getAttribute('data-val');
@@ -894,8 +1047,8 @@ const canonicalPath = "/build-your-rental/";
   });
 
   // Dates Calculation Logic
-  const startDateInput = document.getElementById('field-start-date') as HTMLInputElement;
-  const endDateInput = document.getElementById('field-end-date') as HTMLInputElement;
+  const startDateInput = document.getElementById('field-start-date');
+  const endDateInput = document.getElementById('field-end-date');
   const durationDisplay = document.getElementById('display-duration');
   const sumDuration = document.getElementById('summary-duration');
 
@@ -919,23 +1072,23 @@ const canonicalPath = "/build-your-rental/";
     }
     const diffTime = Math.abs(new Date(endDateInput.value).getTime() - new Date(startDateInput.value).getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1;
-    const text = `${diffDays} Rental Day${diffDays > 1 ? 's' : ''}`;
+    const text = diffDays + ' Rental Day' + (diffDays > 1 ? 's' : '');
 
     if (durationDisplay) durationDisplay.textContent = text;
     if (sumDuration) sumDuration.textContent = text;
   };
 
   startDateInput?.addEventListener('change', () => {
-    endDateInput.min = startDateInput.value;
+    if (endDateInput && startDateInput) endDateInput.min = startDateInput.value;
     calculateDatesDuration();
   });
   endDateInput?.addEventListener('change', calculateDatesDuration);
 
   // Stepper Capacity Controls & Fit Check
-  const pInput = document.getElementById('field-passengers') as HTMLInputElement;
-  const lInput = document.getElementById('field-luggage') as HTMLInputElement;
+  const pInput = document.getElementById('field-passengers');
+  const lInput = document.getElementById('field-luggage');
 
-  const seatingDiagramMap: Record<string, string> = {
+  const seatingDiagramMap = {
     'corolla': '/vehicles/seating/corolla-5-seat.svg',
     'civic': '/vehicles/seating/corolla-5-seat.svg',
     'fortuner': '/vehicles/seating/fortuner-7-seat.svg',
@@ -944,8 +1097,8 @@ const canonicalPath = "/build-your-rental/";
     'alto': '/vehicles/seating/alto-4-seat.svg'
   };
 
-  const getSeatingDiagramForModel = (modelName: string): string => {
-    const k = modelName.toLowerCase();
+  const getSeatingDiagramForModel = (modelName) => {
+    const k = (modelName || '').toLowerCase();
     for (const key in seatingDiagramMap) {
       if (k.includes(key)) return seatingDiagramMap[key];
     }
@@ -953,14 +1106,15 @@ const canonicalPath = "/build-your-rental/";
   };
 
   const checkTripFit = () => {
-    const pCount = parseInt(pInput?.value || '4', 10);
-    const lCount = parseInt(lInput?.value || '2', 10);
-    const model = (document.getElementById('field-model') as HTMLSelectElement)?.value || '';
+    const pCount = parseInt(pInput ? pInput.value : '4', 10);
+    const lCount = parseInt(lInput ? lInput.value : '2', 10);
+    const modelElem = document.getElementById('field-model');
+    const model = modelElem ? modelElem.value : '';
 
     const fitTitle = document.getElementById('trip-fit-title');
     const fitDesc = document.getElementById('trip-fit-desc');
     const fitIcon = document.getElementById('trip-fit-icon');
-    const seatingImg = document.getElementById('configurator-seating-img') as HTMLImageElement;
+    const seatingImg = document.getElementById('configurator-seating-img');
     const seatingText = document.getElementById('configurator-seating-text');
     const bootNote = document.getElementById('configurator-boot-note');
     const altBox = document.getElementById('alt-vehicle-recommendation');
@@ -972,7 +1126,7 @@ const canonicalPath = "/build-your-rental/";
 
     if (pCount > 12) {
       if (fitTitle) fitTitle.textContent = 'CONSIDER A LARGER VEHICLE (COASTER BUS)';
-      if (fitDesc) fitDesc.textContent = `${pCount} passengers require a 22-seater Toyota Coaster or bus.`;
+      if (fitDesc) fitDesc.textContent = pCount + ' passengers require a 22-seater Toyota Coaster or bus.';
       if (fitIcon) fitIcon.textContent = '🚌';
       if (seatingText) seatingText.textContent = 'Toyota Coaster Executive 22-seat layout required.';
       if (bootNote) bootNote.textContent = 'Heavy luggage capacity with rear cargo deck.';
@@ -982,7 +1136,7 @@ const canonicalPath = "/build-your-rental/";
       }
     } else if (pCount > 5 || lCount >= 4) {
       if (fitTitle) fitTitle.textContent = '⚠ LUGGAGE MAY BE TIGHT (CONSIDER SUV / VAN)';
-      if (fitDesc) fitDesc.textContent = `${pCount} passengers and ${lCount} large bags fit best in 7-seat Fortuner or HiAce Van.`;
+      if (fitDesc) fitDesc.textContent = pCount + ' passengers and ' + lCount + ' large bags fit best in 7-seat Fortuner or HiAce Van.';
       if (fitIcon) fitIcon.textContent = '⚠️';
       if (seatingText) seatingText.textContent = 'Standard sedan luggage space may be tight for this cargo volume.';
       if (bootNote) bootNote.textContent = 'Consider 3rd row SUV or Grand Cabin Van.';
@@ -992,7 +1146,7 @@ const canonicalPath = "/build-your-rental/";
       }
     } else {
       if (fitTitle) fitTitle.textContent = '✓ GOOD FIT';
-      if (fitDesc) fitDesc.textContent = `${pCount} passengers and ${lCount} bags fit comfortably in ${model}.`;
+      if (fitDesc) fitDesc.textContent = pCount + ' passengers and ' + lCount + ' bags fit comfortably in ' + model + '.';
       if (fitIcon) fitIcon.textContent = '✓';
       if (seatingText) seatingText.textContent = 'Top-down cabin layout with verified seating positions.';
       if (bootNote) bootNote.textContent = 'Boot space verified for standard baggage.';
@@ -1022,73 +1176,70 @@ const canonicalPath = "/build-your-rental/";
   document.getElementById('field-pickup')?.addEventListener('input', updateSummary);
   document.getElementById('field-destination')?.addEventListener('input', updateSummary);
 
-  // URL Parameter Pre-filling
+  // URL Parameter Pre-filling & Initial Dynamic Cascade Hydration
   const urlParams = new URLSearchParams(window.location.search);
   const paramVehicle = urlParams.get('vehicle');
   const paramBrand = urlParams.get('brand');
   const paramModel = urlParams.get('model');
   const paramCategory = urlParams.get('category');
 
-  if (paramBrand) {
-    const brandSelect = document.getElementById('field-brand') as HTMLSelectElement;
-    if (brandSelect) {
-      for (let i = 0; i < brandSelect.options.length; i++) {
-        if (brandSelect.options[i].value.toLowerCase().includes(paramBrand.toLowerCase())) {
-          brandSelect.selectedIndex = i;
-          break;
-        }
+  if (paramCategory && catInput) {
+    catInput.value = paramCategory.toLowerCase();
+  }
+
+  populateVehicleCascade('init');
+
+  if (paramBrand && brandSelect) {
+    for (let i = 0; i < brandSelect.options.length; i++) {
+      if (brandSelect.options[i].value.toLowerCase().includes(paramBrand.toLowerCase())) {
+        brandSelect.selectedIndex = i;
+        populateVehicleCascade('brand');
+        break;
       }
     }
   }
 
   if (paramModel || paramVehicle) {
     const targetModel = (paramModel || paramVehicle || '').replace(/-/g, ' ');
-    const modelSelect = document.getElementById('field-model') as HTMLSelectElement;
-    if (modelSelect) {
-      let matched = false;
-      for (let i = 0; i < modelSelect.options.length; i++) {
-        if (modelSelect.options[i].value.toLowerCase().includes(targetModel.toLowerCase())) {
-          modelSelect.selectedIndex = i;
-          matched = true;
-          break;
-        }
-      }
-      if (!matched) {
-        const customOpt = document.createElement('option');
-        customOpt.value = targetModel.toUpperCase();
-        customOpt.textContent = targetModel.toUpperCase();
-        modelSelect.appendChild(customOpt);
-        modelSelect.value = customOpt.value;
-      }
-    }
-  }
-
-  if (paramCategory && catInput) {
-    catInput.value = paramCategory.toLowerCase();
+    populateVehicleCascade('model', targetModel);
   }
 
   // Populate Review Screen
   const populateReviewScreen = () => {
-    const brand = (document.getElementById('field-brand') as HTMLSelectElement)?.value;
-    const model = (document.getElementById('field-model') as HTMLSelectElement)?.value;
-    const trans = (document.getElementById('field-transmission') as HTMLInputElement)?.value;
-    const mode = (document.getElementById('field-mode') as HTMLSelectElement)?.value;
-    const cat = (document.getElementById('field-category') as HTMLInputElement)?.value;
+    const brandElem = document.getElementById('field-brand');
+    const modelElem = document.getElementById('field-model');
+    const transElem = document.getElementById('field-transmission');
+    const modeElem = document.getElementById('field-mode');
+    const catElem = document.getElementById('field-category');
+    const pickupElem = document.getElementById('field-pickup');
+    const destElem = document.getElementById('field-destination');
+    const startElem = document.getElementById('field-start-date');
+    const endElem = document.getElementById('field-end-date');
+    const pElem = document.getElementById('field-passengers');
+    const lElem = document.getElementById('field-luggage');
+    const nameElem = document.getElementById('field-name');
+    const phoneElem = document.getElementById('field-phone');
 
-    const pickup = (document.getElementById('field-pickup') as HTMLInputElement)?.value;
-    const dest = (document.getElementById('field-destination') as HTMLInputElement)?.value;
+    const brand = brandElem ? brandElem.value : '';
+    const model = modelElem ? modelElem.value : '';
+    const trans = transElem ? transElem.value : '';
+    const mode = modeElem ? modeElem.value : '';
+    const cat = catElem ? catElem.value : '';
+
+    const pickup = pickupElem ? pickupElem.value : '';
+    const dest = destElem ? destElem.value : '';
     const distText = document.getElementById('route-calc-distance')?.textContent || '375 km';
     const durText = document.getElementById('route-calc-duration')?.textContent || '4 hrs 30 mins';
 
-    const start = (document.getElementById('field-start-date') as HTMLInputElement)?.value;
-    const end = (document.getElementById('field-end-date') as HTMLInputElement)?.value;
+    const start = startElem ? startElem.value : '';
+    const end = endElem ? endElem.value : '';
     const daysText = durationDisplay?.textContent || '1 Day';
 
-    const pCount = (document.getElementById('field-passengers') as HTMLInputElement)?.value;
-    const lCount = (document.getElementById('field-luggage') as HTMLInputElement)?.value;
+    const pCount = pElem ? pElem.value : '';
+    const lCount = lElem ? lElem.value : '';
 
-    const name = (document.getElementById('field-name') as HTMLInputElement)?.value;
-    const phone = (document.getElementById('field-phone') as HTMLInputElement)?.value;
+    const name = nameElem ? nameElem.value : '';
+    const phone = phoneElem ? phoneElem.value : '';
 
     const rVehicle = document.getElementById('review-vehicle-title');
     const rTrans = document.getElementById('review-transmission');
@@ -1127,56 +1278,73 @@ const canonicalPath = "/build-your-rental/";
     if (rPhone) rPhone.textContent = phone;
   };
 
-  // Structured Requirement 68 WhatsApp Message Builder
+  // Structured WhatsApp Message Builder
   const buildWhatsAppMessage = () => {
-    const brand = (document.getElementById('field-brand') as HTMLSelectElement)?.value;
-    const model = (document.getElementById('field-model') as HTMLSelectElement)?.value;
-    const trans = (document.getElementById('field-transmission') as HTMLInputElement)?.value;
-    const mode = (document.getElementById('field-mode') as HTMLSelectElement)?.value;
-    const cat = (document.getElementById('field-category') as HTMLInputElement)?.value;
+    const brandElem = document.getElementById('field-brand');
+    const modelElem = document.getElementById('field-model');
+    const transElem = document.getElementById('field-transmission');
+    const modeElem = document.getElementById('field-mode');
+    const catElem = document.getElementById('field-category');
+    const pickupElem = document.getElementById('field-pickup');
+    const destElem = document.getElementById('field-destination');
+    const startElem = document.getElementById('field-start-date');
+    const endElem = document.getElementById('field-end-date');
+    const pElem = document.getElementById('field-passengers');
+    const lElem = document.getElementById('field-luggage');
+    const purposeElem = document.getElementById('field-purpose');
+    const nameElem = document.getElementById('field-name');
+    const phoneElem = document.getElementById('field-phone');
+    const companyElem = document.getElementById('field-company');
+    const notesElem = document.getElementById('field-notes');
 
-    const pickup = (document.getElementById('field-pickup') as HTMLInputElement)?.value;
-    const dest = (document.getElementById('field-destination') as HTMLInputElement)?.value;
+    const brand = brandElem ? brandElem.value : '';
+    const model = modelElem ? modelElem.value : '';
+    const trans = transElem ? transElem.value : '';
+    const mode = modeElem ? modeElem.value : '';
+    const cat = catElem ? catElem.value : '';
+
+    const pickup = pickupElem ? pickupElem.value : '';
+    const dest = destElem ? destElem.value : '';
     const distText = document.getElementById('route-calc-distance')?.textContent || '375 km';
     const durText = document.getElementById('route-calc-duration')?.textContent || '4 hrs 30 mins';
 
-    const start = (document.getElementById('field-start-date') as HTMLInputElement)?.value;
-    const end = (document.getElementById('field-end-date') as HTMLInputElement)?.value;
+    const start = startElem ? startElem.value : '';
+    const end = endElem ? endElem.value : '';
     const daysText = durationDisplay?.textContent || '1 Day';
 
-    const pCount = (document.getElementById('field-passengers') as HTMLInputElement)?.value;
-    const lCount = (document.getElementById('field-luggage') as HTMLInputElement)?.value;
-    const purpose = (document.getElementById('field-purpose') as HTMLSelectElement)?.value;
+    const pCount = pElem ? pElem.value : '';
+    const lCount = lElem ? lElem.value : '';
+    const purpose = purposeElem ? purposeElem.value : '';
 
-    const name = (document.getElementById('field-name') as HTMLInputElement)?.value;
-    const phone = (document.getElementById('field-phone') as HTMLInputElement)?.value;
-    const company = (document.getElementById('field-company') as HTMLInputElement)?.value;
-    const notes = (document.getElementById('field-notes') as HTMLTextAreaElement)?.value;
+    const name = nameElem ? nameElem.value : '';
+    const phone = phoneElem ? phoneElem.value : '';
+    const company = companyElem ? companyElem.value : '';
+    const notes = notesElem ? notesElem.value : '';
 
     return (
-      `Hello 4WHEELS, I would like to send a configured rental inquiry.\n\n` +
-      `🚗 VEHICLE SELECTION\n` +
-      `• Model: ${brand} ${model}\n` +
-      `• Category: ${cat.toUpperCase()}\n` +
-      `• Transmission: ${trans}\n` +
-      `• Rental Mode: ${mode}\n\n` +
-      `📍 ROUTE & DATES\n` +
-      `• Pickup: ${pickup}\n` +
-      `• Drop-off: ${dest}\n` +
-      `• Estimated Distance: ${distText} (${durText})\n` +
-      `• Start Date: ${start}\n` +
-      `• End Date: ${end}\n` +
-      `• Total Duration: ${daysText}\n\n` +
-      `👥 TRAVELERS & PURPOSE\n` +
-      `• Passengers: ${pCount} Occupants\n` +
-      `• Luggage: ${lCount} Large Bags\n` +
-      `• Trip Purpose: ${purpose}\n\n` +
-      `👤 CUSTOMER INFORMATION\n` +
-      `• Name: ${name}\n` +
-      `• Phone: ${phone}\n` +
-      (company ? `• Company: ${company}\n` : '') +
-      (notes ? `• Special Notes: ${notes}\n` : '') +
-      `\nPlease confirm vehicle availability and current rental quotation. Thank you.`
+      'Hello 4WHEELS, I would like to send a configured rental inquiry.\n\n' +
+      '🚗 VEHICLE SELECTION\n' +
+      '• Model: ' + brand + ' ' + model + '\n' +
+      '• Category: ' + cat.toUpperCase() + '\n' +
+      '• Transmission: ' + trans + '\n' +
+      '• Rental Mode: ' + mode + '\n\n' +
+      '📍 ROUTE & DATES\n' +
+      '• Pickup: ' + pickup + '\n' +
+      '• Drop-off: ' + dest + '\n' +
+      '• Estimated Distance: ' + distText + ' (' + durText + ')\n' +
+      '• Start Date: ' + start + '\n' +
+      '• End Date: ' + end + '\n' +
+      '• Total Duration: ' + daysText + '\n\n' +
+      '👥 TRAVELERS & PURPOSE\n' +
+      '• Passengers: ' + pCount + ' Occupants\n' +
+      '• Luggage: ' + lCount + ' Large Bags\n' +
+      '• Trip Purpose: ' + purpose + '\n\n' +
+      '👤 CUSTOMER INFORMATION\n' +
+      '• Name: ' + name + '\n' +
+      '• Phone: ' + phone + '\n' +
+      (company ? '• Company: ' + company + '\n' : '') +
+      (notes ? '• Special Notes: ' + notes + '\n' : '') +
+      '\nPlease confirm vehicle availability and current rental quotation. Thank you.'
     );
   };
 
