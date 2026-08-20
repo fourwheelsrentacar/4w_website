@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { FLEET_VEHICLES } from '../../data/fleet';
 import { FUEL_DISCLAIMER_TEXT } from '../../data/rates';
-import { getVehicleVisualUrl } from '../../utils/vehicleVisual';
+import VehicleImage from '../../components/VehicleImage.astro';
 
 const title = "4WHEELS Vehicle Fleet Configurator - Executive Cars, SUVs & Buses in Lahore";
 const description = "Explore and configure 4WHEELS Rent a Car vehicle fleet in Lahore. Compare sedans, 4x4 SUVs, luxury cars, HiAce vans, and 22-seat Toyota Coaster executive buses.";
@@ -116,7 +116,6 @@ const transmissions = ['All', 'Automatic', 'Manual'];
       <!-- Vehicle Card Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="fleet-grid">
         {FLEET_VEHICLES.map(vehicle => {
-          const visual = getVehicleVisualUrl(vehicle);
           const isCoaster = vehicle.slug === 'toyota-coaster';
 
           return (
@@ -132,22 +131,11 @@ const transmissions = ['All', 'Automatic', 'Manual'];
               data-seats={vehicle.seats || 5}
             >
               <div>
-                <!-- Vehicle Stage (DOMINANT VISUAL 55-65% HEIGHT) -->
-                <a href={`/fleet/${vehicle.slug}/`} class="relative h-56 sm:h-64 bg-slate-950/90 flex items-center justify-center border-b border-slate-800/80 overflow-hidden group block">
-                  <!-- Clean subtle gradient background -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-slate-900/10 z-0"></div>
+                <!-- Vehicle Stage using Reusable VehicleImage -->
+                <a href={`/fleet/${vehicle.slug}/`} class="block relative group">
+                  <VehicleImage vehicle={vehicle} showLabel={true} />
 
-                  <img
-                    src={visual.url}
-                    alt={vehicle.imageAlt}
-                    class={`w-full h-full relative z-10 transition-transform duration-500 group-hover:scale-105 ${
-                      visual.isRealPhoto ? 'object-cover' : 'object-contain p-4'
-                    }`}
-                    loading="lazy"
-                    onerror={`this.onerror=null; this.src='${visual.fallbackUrl}';`}
-                  />
-
-                  <!-- Badges Top Bar -->
+                  <!-- Badges Top Bar Overlay -->
                   <div class="absolute top-3 left-3 flex gap-1.5 flex-wrap z-20">
                     <span class="bg-slate-900/90 border border-slate-700 text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider backdrop-blur-sm shadow-md">
                       {vehicle.category}
@@ -165,16 +153,11 @@ const transmissions = ['All', 'Automatic', 'Manual'];
                         POPULAR
                       </span>
                     )}
-                    <span class={`text-[10px] font-black px-2 py-0.5 rounded backdrop-blur-md shadow-md uppercase tracking-wider ${
-                      visual.type === 'actual-fleet' ? 'bg-emerald-600 text-white' : 'bg-slate-900/90 text-amber-400 border border-amber-500/30'
-                    }`}>
-                      {visual.type === 'actual-fleet' ? 'Actual Vehicle' : 'Representative Photo'}
-                    </span>
                   </div>
 
                   {isCoaster && (
-                    <div class="absolute bottom-2 left-3 right-3 bg-amber-500/90 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded text-center uppercase tracking-wider z-20">
-                      Customized 22-Seat 4WHEELS Executive Configuration
+                    <div class="absolute top-10 right-3 bg-amber-500/90 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded text-center uppercase tracking-wider z-20 shadow-md">
+                      Customized 22-Seat Executive
                     </div>
                   )}
                 </a>
@@ -244,9 +227,6 @@ const transmissions = ['All', 'Automatic', 'Manual'];
                     )}
                   </div>
 
-                  <p class="text-[10px] text-slate-400 font-medium italic">
-                    {visual.label}
-                  </p>
                 </div>
               </div>
 
