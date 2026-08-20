@@ -3,8 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Lahore Airport Car Rental | Pickup & Drop-Off | 4WHEELS";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'service',
+  pageTitle: 'Lahore Airport Car Rental',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/lahore-airport-car-rental/`,
+});
 const description = "Book reliable airport car rental in Lahore with 4WHEELS. Pickup and drop-off services for Allama Iqbal International Airport with self-drive and driver options.";
 
 const faqs = [
@@ -45,7 +51,7 @@ const faqs = [
             📞 Call {BUSINESS_INFO.phoneDisplay}
           </a>
           <a
-            href={BUSINESS_INFO.whatsappLink}
+            href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
@@ -107,7 +113,7 @@ const faqs = [
             📞 Call 0321 6616644
           </a>
           <a
-            href={BUSINESS_INFO.whatsappLink}
+            href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
@@ -129,6 +135,8 @@ const faqs = [
     <CTASection
       heading="Traveling To or From Lahore Airport?"
       subheading="Contact 4WHEELS to arrange timely airport pickup or drop-off."
+      pageType="service"
+      pageTitle="Lahore Airport Car Rental"
     />
   </div>
 </Layout>

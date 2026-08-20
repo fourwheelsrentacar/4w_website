@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Contact 4WHEELS Rent a Car Lahore | Call or WhatsApp";
+const contactWaUrl = getContextualWhatsAppUrl({
+  pageType: 'general',
+  pageTitle: 'Contact 4WHEELS Rent a Car',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/contact/`,
+});
 const description = "Contact 4WHEELS Rent a Car in Lahore. Call 0321 6616644 or WhatsApp us to check vehicle availability, inquire about rates, and book your rental car in Johar Town.";
 ---
 
@@ -46,7 +52,7 @@ const description = "Contact 4WHEELS Rent a Car in Lahore. Call 0321 6616644 or 
             </a>
 
             <a
-              href={BUSINESS_INFO.whatsappLink}
+              href={contactWaUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center gap-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 hover:bg-emerald-100 transition-colors"
@@ -96,7 +102,7 @@ const description = "Contact 4WHEELS Rent a Car in Lahore. Call 0321 6616644 or 
 
           <div class="pt-2 flex flex-wrap gap-3">
             <a
-              href="https://maps.google.com/?q=Plot+number+5,+Block+F1,+Johar+Town+Phase+1,+Lahore"
+              href={BUSINESS_INFO.mapsDirectionsUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold py-2.5 px-4 rounded-lg transition-colors flex items-center gap-1.5"
@@ -104,7 +110,7 @@ const description = "Contact 4WHEELS Rent a Car in Lahore. Call 0321 6616644 or 
               📍 Open in Google Maps & Get Directions
             </a>
             <a
-              href="https://maps.google.com/?q=Plot+number+5,+Block+F1,+Johar+Town+Phase+1,+Lahore"
+              href={BUSINESS_INFO.googleReviewsUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="bg-amber-500 hover:bg-amber-600 text-slate-900 text-xs font-bold py-2.5 px-4 rounded-lg transition-colors flex items-center gap-1.5"

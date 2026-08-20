@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Event Transport Lahore - Conferences, Exhibitions & Guest Shuttles | 4WHEELS";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'service',
+  pageTitle: 'Event Transport Services in Lahore',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/event-transport-lahore/`,
+});
 const description = "Professional event transport management in Lahore. Corporate conferences, exhibitions, private functions, guest shuttle services, multi-vehicle fleets, and venue transfers.";
 const canonicalPath = "/event-transport-lahore/";
 ---
@@ -20,7 +26,7 @@ const canonicalPath = "/event-transport-lahore/";
         Complete transport coordination for corporate conferences, trade exhibitions, sport events, private celebrations, and VIP delegation movement across Lahore.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+        <a href={waUrl} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
           💬 Plan Event Transport on WhatsApp
         </a>
       </div>

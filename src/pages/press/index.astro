@@ -4,8 +4,13 @@ import SEOHead from '../../components/SEOHead.astro';
 import CTASection from '../../components/CTASection.astro';
 import { BUSINESS_INFO } from '../../data/business';
 import { PRESS_RELEASES } from '../../data/press';
+import { getContextualWhatsAppUrl } from '../../utils/whatsappContext';
 
 const pageTitle = "Press Centre & Official Announcements | 4WHEELS Rent a Car";
+const waUrl = getContextualWhatsAppUrl({
+  pageTitle: 'Press Centre & Official Announcements',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/press/`,
+});
 const pageDescription = "Official press releases, brand verification advisories, company announcements, and digital media disclosures from 4WHEELS Rent a Car Lahore.";
 ---
 
@@ -112,9 +117,9 @@ const pageDescription = "Official press releases, brand verification advisories,
   </section>
 
   <CTASection
-    title="Need Official Vehicle Reservation or Support?"
-    description="Connect directly with verified 4WHEELS customer care in Johar Town, Lahore."
+    heading="Need Official Vehicle Reservation or Support?"
+    subheading="Connect directly with verified 4WHEELS customer care in Johar Town, Lahore."
     primaryButtonText="💬 Contact Official WhatsApp"
-    primaryButtonHref={BUSINESS_INFO.whatsappLink}
+    primaryButtonHref={waUrl}
   />
 </Layout>

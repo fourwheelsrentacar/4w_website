@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Outstation Car Rental Lahore - Intercity & Northern Trips | 4WHEELS";
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'service',
+  pageTitle: 'Outstation Car Rental Lahore',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}/outstation-car-rental-lahore/`,
+});
 const description = "Rent a car for outstation travel from Lahore to Islamabad, Murree, Faisalabad, Multan, or Northern Areas. Chauffeur driven SUVs, sedans, HiAce vans, and Toyota Coasters.";
 const canonicalPath = "/outstation-car-rental-lahore/";
 ---
@@ -20,7 +26,7 @@ const canonicalPath = "/outstation-car-rental-lahore/";
         Comfortable, long-distance intercity travel from Lahore to Islamabad, Rawalpindi, Faisalabad, Multan, Peshawar, Murree, and Northern Pakistan.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={BUSINESS_INFO.whatsappLink} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
+        <a href={waUrl} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
           💬 Get Latest Trip Quote on WhatsApp
         </a>
       </div>
