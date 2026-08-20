@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { FLEET_VEHICLES } from '../data/fleet';
+import { VERIFIED_ROUTE_DATABASE } from '../data/routes';
 import { CURRENT_PETROLEUM_RATES, COMMON_TOLL_ROUTES, HOTEL_PLANNING_BANDS, ESTIMATE_DISCLAIMER_TEXT, FUEL_DISCLAIMER_TEXT } from '../data/rates';
 
 const title = "Plan Your Trip & Estimate Budget - 4WHEELS Rent a Car Lahore";
@@ -342,6 +343,11 @@ const canonicalPath = "/trip-planner/";
   </section>
 </Layout>
 
+<script is:inline set:html={`
+  const verifiedRouteDb = ${JSON.stringify(VERIFIED_ROUTE_DATABASE)};
+`}>
+</script>
+
 <script>
   import { trackEvent } from '../utils/analytics';
 
@@ -424,14 +430,42 @@ const canonicalPath = "/trip-planner/";
   });
 
   const updateRouteDistance = () => {
+    const origin = originInput?.value || 'Lahore';
+    const dest = destCustomInput?.value || 'Islamabad';
+    const normOrigin = origin.toLowerCase().trim();
+    const normDest = dest.toLowerCase().trim();
+
     const opt = presetSelect?.selectedOptions[0];
-    if (opt && opt.value !== 'custom' && distanceInput) {
-      const baseDist = parseInt(opt.getAttribute('data-dist') || '350', 10);
-      const isReturn = tripTypeInput?.value === 'return';
-      distanceInput.value = (baseDist * (isReturn ? 2 : 1)).toString();
-      if (destCustomInput && opt.getAttribute('data-dest')) {
-        destCustomInput.value = opt.getAttribute('data-dest') || '';
+    if (opt && opt.value !== 'custom' && destCustomInput && opt.getAttribute('data-dest')) {
+      destCustomInput.value = opt.getAttribute('data-dest') || '';
+    }
+
+    const routeDb = (window as any).verifiedRouteDb || [];
+    let matchedRoute: any = null;
+
+    for (const r of routeDb) {
+      const origMatch = normOrigin.includes(r.originSlug) || normOrigin.includes(r.originCity.toLowerCase()) || normOrigin.includes(r.originName.toLowerCase());
+      const destMatch = normDest.includes(r.destinationSlug) || normDest.includes(r.destinationCity.toLowerCase()) || normDest.includes(r.destinationName.toLowerCase());
+      if (origMatch && destMatch) {
+        matchedRoute = r;
+        break;
       }
+      const revOrigMatch = normOrigin.includes(r.destinationSlug) || normOrigin.includes(r.destinationCity.toLowerCase()) || normOrigin.includes(r.destinationName.toLowerCase());
+      const revDestMatch = normDest.includes(r.originSlug) || normDest.includes(r.originCity.toLowerCase()) || normDest.includes(r.originName.toLowerCase());
+      if (revOrigMatch && revDestMatch) {
+        matchedRoute = r;
+        break;
+      }
+    }
+
+    const isReturn = tripTypeInput?.value === 'return';
+
+    if (matchedRoute && distanceInput) {
+      const baseDist = matchedRoute.distanceKm;
+      distanceInput.value = (baseDist * (isReturn ? 2 : 1)).toString();
+    } else if (opt && opt.value !== 'custom' && distanceInput) {
+      const baseDist = parseInt(opt.getAttribute('data-dist') || '350', 10);
+      distanceInput.value = (baseDist * (isReturn ? 2 : 1)).toString();
     }
   };
 
