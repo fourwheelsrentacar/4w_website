@@ -132,37 +132,48 @@ const transmissions = ['All', 'Automatic', 'Manual'];
               data-seats={vehicle.seats || 5}
             >
               <div>
-                <!-- Vehicle Illustration / Photo Stage (DOMINANT VISUAL 60% HEIGHT) -->
-                <a href={`/fleet/${vehicle.slug}/`} class="relative h-60 sm:h-64 bg-slate-950 flex items-center justify-center p-4 border-b border-slate-800/80 overflow-hidden group block">
-                  <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:12px_12px]"></div>
+                <!-- Vehicle Stage (DOMINANT VISUAL 55-65% HEIGHT) -->
+                <a href={`/fleet/${vehicle.slug}/`} class="relative h-56 sm:h-64 bg-slate-950/90 flex items-center justify-center border-b border-slate-800/80 overflow-hidden group block">
+                  <!-- Clean subtle gradient background -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-slate-900/10 z-0"></div>
 
                   <img
                     src={visual.url}
                     alt={vehicle.imageAlt}
-                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    class={`w-full h-full relative z-10 transition-transform duration-500 group-hover:scale-105 ${
+                      visual.isRealPhoto ? 'object-cover' : 'object-contain p-4'
+                    }`}
                     loading="lazy"
+                    onerror={`this.onerror=null; this.src='${visual.fallbackUrl}';`}
                   />
 
                   <!-- Badges Top Bar -->
-                  <div class="absolute top-3 left-3 flex gap-1.5 flex-wrap z-10">
-                    <span class="bg-slate-900/90 border border-slate-700 text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider backdrop-blur-sm">
+                  <div class="absolute top-3 left-3 flex gap-1.5 flex-wrap z-20">
+                    <span class="bg-slate-900/90 border border-slate-700 text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider backdrop-blur-sm shadow-md">
                       {vehicle.category}
                     </span>
                     {vehicle.engineCc && (
-                      <span class="bg-red-600/90 text-white text-[10px] font-black px-2.5 py-1 rounded-md tracking-wider backdrop-blur-sm">
+                      <span class="bg-red-600/90 text-white text-[10px] font-black px-2.5 py-1 rounded-md tracking-wider backdrop-blur-sm shadow-md">
                         {vehicle.engineCc}
                       </span>
                     )}
                   </div>
 
-                  {vehicle.featured && (
-                    <div class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-md z-10">
-                      POPULAR
-                    </div>
-                  )}
+                  <div class="absolute top-3 right-3 flex flex-col gap-1.5 items-end z-20">
+                    {vehicle.featured && (
+                      <span class="bg-amber-500 text-slate-950 text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-md">
+                        POPULAR
+                      </span>
+                    )}
+                    <span class={`text-[10px] font-black px-2 py-0.5 rounded backdrop-blur-md shadow-md uppercase tracking-wider ${
+                      visual.type === 'actual-fleet' ? 'bg-emerald-600 text-white' : 'bg-slate-900/90 text-amber-400 border border-amber-500/30'
+                    }`}>
+                      {visual.type === 'actual-fleet' ? 'Actual Vehicle' : 'Representative Photo'}
+                    </span>
+                  </div>
 
                   {isCoaster && (
-                    <div class="absolute bottom-2 left-3 right-3 bg-amber-500/90 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded text-center uppercase tracking-wider z-10">
+                    <div class="absolute bottom-2 left-3 right-3 bg-amber-500/90 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded text-center uppercase tracking-wider z-20">
                       Customized 22-Seat 4WHEELS Executive Configuration
                     </div>
                   )}
@@ -233,8 +244,8 @@ const transmissions = ['All', 'Automatic', 'Manual'];
                     )}
                   </div>
 
-                  <p class="text-[10px] text-slate-500 italic">
-                    Illustrative vehicle visual. Actual rental vehicle/color may vary.
+                  <p class="text-[10px] text-slate-400 font-medium italic">
+                    {visual.label}
                   </p>
                 </div>
               </div>

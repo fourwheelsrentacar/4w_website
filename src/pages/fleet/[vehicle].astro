@@ -48,17 +48,21 @@ const isCoaster = vehicle.slug === 'toyota-coaster';
         <!-- Left Column: Visual Stage & Detailed Specs -->
         <div class="lg:col-span-7 space-y-6">
           <!-- Large Visual Display Stage -->
-          <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 h-80 sm:h-[420px] flex items-center justify-center relative p-6 group">
-            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+          <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 h-80 sm:h-[420px] flex items-center justify-center relative group">
+            <!-- Clean subtle gradient background stage -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/50 to-slate-900/10 z-0"></div>
 
             <img
               src={visual.url}
               alt={vehicle.imageAlt}
-              class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+              class={`w-full h-full relative z-10 transition-transform duration-500 group-hover:scale-105 ${
+                visual.isRealPhoto ? 'object-cover' : 'object-contain p-6'
+              }`}
+              onerror={`this.onerror=null; this.src='${visual.fallbackUrl}';`}
             />
 
-            <div class="absolute top-4 left-4 flex gap-2">
-              <span class="bg-slate-950/90 text-white border border-slate-700 text-xs font-black px-3 py-1.5 rounded-lg uppercase tracking-wider backdrop-blur-sm">
+            <div class="absolute top-4 left-4 flex gap-2 z-20">
+              <span class="bg-slate-950/90 text-white border border-slate-700 text-xs font-black px-3 py-1.5 rounded-lg uppercase tracking-wider backdrop-blur-sm shadow-md">
                 {vehicle.category}
               </span>
               {vehicle.engineCc && (
@@ -68,12 +72,24 @@ const isCoaster = vehicle.slug === 'toyota-coaster';
               )}
             </div>
 
+            <div class="absolute top-4 right-4 z-20 flex flex-col items-end gap-1.5">
+              <span class={`text-xs font-black px-3 py-1.5 rounded-lg backdrop-blur-md shadow-md uppercase tracking-wider ${
+                visual.type === 'actual-fleet' ? 'bg-emerald-600 text-white' : 'bg-slate-900/90 text-amber-400 border border-amber-500/30'
+              }`}>
+                {visual.type === 'actual-fleet' ? 'Actual 4WHEELS Vehicle' : 'Representative Model Image'}
+              </span>
+            </div>
+
             {isCoaster && (
-              <div class="absolute bottom-4 left-4 right-4 bg-amber-500 text-slate-950 text-xs font-black px-3 py-1.5 rounded-lg text-center uppercase tracking-wider shadow-lg">
+              <div class="absolute bottom-4 left-4 right-4 bg-amber-500 text-slate-950 text-xs font-black px-3 py-1.5 rounded-lg text-center uppercase tracking-wider shadow-lg z-20">
                 Customized 22-Seat 4WHEELS Executive Configuration
               </div>
             )}
           </div>
+
+          <p class="text-xs text-slate-400 italic text-center font-medium">
+            {visual.label}
+          </p>
 
           <!-- PASSENGERS & LUGGAGE DIAGRAM (Part B Visual System) -->
           {isCoaster ? (

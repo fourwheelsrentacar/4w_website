@@ -1,3 +1,17 @@
+export type FleetImageType = 'actual-fleet' | 'representative-photo' | 'model-illustration' | 'category-fallback';
+
+export interface ImageMetadata {
+  hero: string;
+  gallery?: string[];
+  imageType: FleetImageType;
+  sourceUrl?: string;
+  author?: string;
+  license?: string;
+  licenseUrl?: string;
+  vehicleGeneration?: string;
+  dateChecked?: string;
+}
+
 export interface Vehicle {
   id: string;
   slug: string;
@@ -30,6 +44,7 @@ export interface Vehicle {
   status: 'available' | 'recently_available' | 'on_request';
   images: string[];
   interiorImages: string[];
+  imageMeta?: ImageMetadata;
   imageAlt: string;
   suitableFor: string[];
   description: string;
@@ -72,8 +87,18 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: [],
+    images: ['/vehicles/fleet/toyota-corolla/hero.jpg'],
     interiorImages: [],
+    imageMeta: {
+      hero: '/vehicles/fleet/toyota-corolla/hero.jpg',
+      imageType: 'representative-photo',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Toyota_Corolla_Altis_X_002.jpg',
+      author: 'JustAnotherCarDesigner',
+      license: 'CC0',
+      licenseUrl: 'http://creativecommons.org/publicdomain/zero/1.0/deed.en',
+      vehicleGeneration: 'Toyota Corolla Altis X (E170 Facelift)',
+      dateChecked: '2026-08-20'
+    },
     imageAlt: 'Toyota Corolla Sedan offered by 4WHEELS Rent a Car Lahore',
     suitableFor: ['City Travel', 'Airport Transfer', 'Corporate', 'Family Trip', 'Outstation'],
     description: 'Pakistan\'s most trusted sedan for city commuting and long-distance outstation travel. Known for durability, executive comfort, and efficient performance.',
@@ -82,7 +107,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
     lastVerifiedDate: '2026-08-18',
     source: '4WHEELS Official Fleet Inventory',
     sourceDate: '2026-08-18',
-    verificationNotes: 'Verified core fleet unit. Exterior and interior photos available on official presentation.'
+    verificationNotes: 'Verified core fleet unit. Representative model image shown until original 4WHEELS photo uploaded.'
   },
   {
     id: 'honda-civic-oriell-rs',
@@ -114,8 +139,18 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: [],
+    images: ['/vehicles/fleet/honda-civic/hero.jpg'],
     interiorImages: [],
+    imageMeta: {
+      hero: '/vehicles/fleet/honda-civic/hero.jpg',
+      imageType: 'representative-photo',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:%2722_Honda_Civic.jpg',
+      author: 'Bull-Doser',
+      license: 'Public domain',
+      licenseUrl: 'https://creativecommons.org/publicdomain/mark/1.0/',
+      vehicleGeneration: 'Honda Civic FE 11th Generation (2022+)',
+      dateChecked: '2026-08-20'
+    },
     imageAlt: 'Honda Civic Sedan available for rent in Lahore with driver or self drive',
     suitableFor: ['Corporate Executive', 'Wedding Transport', 'City Travel', 'Outstation Travel'],
     description: 'Sleek executive sedan offering superior driving dynamics, digital cockpit comfort, and premium styling for business or leisure in Lahore.',
@@ -156,8 +191,18 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: [],
+    images: ['/vehicles/fleet/toyota-fortuner/hero.jpg'],
     interiorImages: [],
+    imageMeta: {
+      hero: '/vehicles/fleet/toyota-fortuner/hero.jpg',
+      imageType: 'representative-photo',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:TOYOTA_FORTUNER_(AN150,AN160)_China.jpg',
+      author: 'Dinkun Chen',
+      license: 'CC BY-SA 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
+      vehicleGeneration: 'Toyota Fortuner AN160 2nd Gen Facelift',
+      dateChecked: '2026-08-20'
+    },
     imageAlt: 'Toyota Fortuner SUV available at 4WHEELS Rent a Car Lahore',
     suitableFor: ['VIP Transport', 'Northern Areas Tour', 'Wedding Car', 'Corporate Delegation', 'Family Trip'],
     description: 'Commanding 7-seater luxury SUV designed for rugged outstation journeys, VIP transport, wedding motorcades, and executive tours across Pakistan.',
@@ -198,8 +243,18 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: [],
+    images: ['/vehicles/fleet/toyota-revo/hero.jpg'],
     interiorImages: [],
+    imageMeta: {
+      hero: '/vehicles/fleet/toyota-revo/hero.jpg',
+      imageType: 'representative-photo',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:2019_Toyota_Hilux_Revo_Smart_Cab_Z_Edition_GUN122R.jpg',
+      author: 'LoveTripSpotting',
+      license: 'CC BY-SA 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
+      vehicleGeneration: 'Toyota Hilux Revo VIII Generation',
+      dateChecked: '2026-08-20'
+    },
     imageAlt: 'Toyota Hilux Revo 4x4 for outstation tours and corporate project rentals',
     suitableFor: ['Northern Areas Tour', 'Project Site Visit', 'Corporate Travel', 'Rugged Terrain'],
     description: 'Heavy-duty 4x4 double cab built for difficult terrain, outstation northern tours, construction project site visits, and rugged reliability.',
@@ -240,8 +295,18 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: false,
     status: 'available',
-    images: [],
+    images: ['/vehicles/fleet/suzuki-alto/hero.jpg'],
     interiorImages: [],
+    imageMeta: {
+      hero: '/vehicles/fleet/suzuki-alto/hero.jpg',
+      imageType: 'representative-photo',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Suzuki_Alto_L_%2715_(1).jpg',
+      author: 'Oq10pass',
+      license: 'CC0',
+      licenseUrl: 'http://creativecommons.org/publicdomain/zero/1.0/deed.en',
+      vehicleGeneration: 'Suzuki Alto HA36 8th Generation (660cc)',
+      dateChecked: '2026-08-20'
+    },
     imageAlt: 'Suzuki Alto fuel-efficient compact rental car Lahore',
     suitableFor: ['City Commute', 'Daily Personal Use', 'Budget Travel', 'Staff Movement'],
     description: 'Ultra fuel-efficient hatchback perfect for dense city traffic, daily errands, economical commuting, and budget-friendly rental needs in Lahore.',
@@ -250,7 +315,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
     lastVerifiedDate: '2026-08-18',
     source: '4WHEELS Official Fleet Inventory',
     sourceDate: '2026-08-18',
-    verificationNotes: 'Owner photo required.'
+    verificationNotes: 'Owner photo requested.'
   },
   {
     id: 'toyota-yaris-ativ',
@@ -282,8 +347,18 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: false,
     status: 'available',
-    images: [],
+    images: ['/vehicles/fleet/toyota-yaris/hero.jpg'],
     interiorImages: [],
+    imageMeta: {
+      hero: '/vehicles/fleet/toyota-yaris/hero.jpg',
+      imageType: 'representative-photo',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:2022_Toyota_Yaris_ATIV_1.2_Premium_Luxury.jpg',
+      author: 'Andra Febrian',
+      license: 'CC BY-SA 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
+      vehicleGeneration: 'Toyota Yaris Ativ XP150 Sedan',
+      dateChecked: '2026-08-20'
+    },
     imageAlt: 'Toyota Yaris compact sedan rental Lahore',
     suitableFor: ['City Commute', 'Airport Transfer', 'Corporate Rental', 'Small Family Trip'],
     description: 'Compact sedan delivering exceptional fuel economy, smooth automatic transmission, and air-conditioned passenger comfort for city and airport trips.',
@@ -292,7 +367,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
     lastVerifiedDate: '2026-08-18',
     source: '4WHEELS Official Fleet Inventory',
     sourceDate: '2026-08-18',
-    verificationNotes: 'Owner photo required.'
+    verificationNotes: 'Owner photo requested.'
   },
   {
     id: 'toyota-hiace-grand-cabin',
@@ -324,8 +399,18 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: [],
+    images: ['/vehicles/fleet/toyota-hiace/hero.jpg'],
     interiorImages: [],
+    imageMeta: {
+      hero: '/vehicles/fleet/toyota-hiace/hero.jpg',
+      imageType: 'representative-photo',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Toyota_H-200_HiAce.jpg',
+      author: 'Bull-Doser',
+      license: 'Public domain',
+      licenseUrl: 'https://creativecommons.org/publicdomain/mark/1.0/',
+      vehicleGeneration: 'Toyota HiAce H200 High-Roof Van',
+      dateChecked: '2026-08-20'
+    },
     imageAlt: 'Toyota HiAce Grand Cabin passenger van with driver in Lahore',
     suitableFor: ['Family Group Travel', 'Airport Delegation', 'Corporate Event', 'Tour Group', 'Northern Trip'],
     description: 'Spacious 12-14 seater executive van equipped with high-roof air conditioning and plush seating for group transport, intercity travel, and airport pickup.',
@@ -366,8 +451,18 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: [],
+    images: ['/vehicles/fleet/toyota-coaster/hero.jpg'],
     interiorImages: [],
+    imageMeta: {
+      hero: '/vehicles/fleet/toyota-coaster/hero.jpg',
+      imageType: 'representative-photo',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Toyota_Coaster_EX_XZB70.jpg',
+      author: 'Ypy31',
+      license: 'CC0',
+      licenseUrl: 'http://creativecommons.org/publicdomain/zero/1.0/deed.en',
+      vehicleGeneration: 'Toyota Coaster Executive (XZB70 Generation Body)',
+      dateChecked: '2026-08-20'
+    },
     imageAlt: 'Toyota Coaster 22-seater luxury mini bus for group transport Lahore',
     suitableFor: ['Wedding Guests', 'Corporate Event Transport', 'Tour Operator Transport', 'School/University Trip', 'Outstation Tour'],
     description: 'Customized 22-seat 4WHEELS executive configuration featuring plush leather seating, dual AC systems, extra legroom aisle, and dedicated luggage space.',
@@ -408,8 +503,18 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: false,
     status: 'on_request',
-    images: [],
+    images: ['/vehicles/fleet/audi-a6/hero.jpg'],
     interiorImages: [],
+    imageMeta: {
+      hero: '/vehicles/fleet/audi-a6/hero.jpg',
+      imageType: 'representative-photo',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Audi_A6_S-line_(C7)_%E2%80%93_Frontansicht,_1._Mai_2012,_D%C3%BCsseldorf.jpg',
+      author: 'M 93',
+      license: 'CC BY-SA 3.0 de',
+      licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/de/deed.en',
+      vehicleGeneration: 'Audi A6 C7 Executive Sedan (1.8 TFSI)',
+      dateChecked: '2026-08-20'
+    },
     imageAlt: 'Audi A6 VIP luxury rental car Lahore',
     suitableFor: ['VIP Delegation', 'Wedding Groom Car', 'Corporate Executive', 'High-Profile Event'],
     description: 'Ultra-luxurious German executive sedan for prestigious weddings, diplomat/VIP travel, and high-profile corporate mobility in Lahore.',
@@ -418,7 +523,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
     lastVerifiedDate: '2026-08-18',
     source: '4WHEELS Fleet Special Order Inventory',
     sourceDate: '2026-08-18',
-    verificationNotes: 'Owner photo required. Chauffeur driven on request.'
+    verificationNotes: 'Owner photo requested. Chauffeur driven on request.'
   }
 ];
 
