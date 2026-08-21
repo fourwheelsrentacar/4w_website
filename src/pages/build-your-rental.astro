@@ -8,8 +8,44 @@ import { VERIFIED_ROUTE_DATABASE } from '../data/routes';
 import { BUSINESS_INFO } from '../data/business';
 import { resolveVehicleImage } from '../utils/vehicleImageProvider';
 
-// Combine fleet and request catalog into unified list
-const allCatalogVehicles = [...PAKISTAN_VEHICLE_CATALOG];
+// Combine catalog vehicles with group transport bus/coaster items so bus options are fully selectable
+const groupCatalogVehicles: CatalogVehicle[] = GROUP_TRANSPORT_VEHICLES.map(gt => ({
+  id: gt.id,
+  slug: gt.slug,
+  brand: gt.title.includes('Toyota') ? 'Toyota' : (gt.title.includes('Yutong') ? 'Yutong / Daewoo' : 'Hinopak / Isuzu'),
+  brandSlug: gt.title.includes('Toyota') ? 'toyota' : (gt.title.includes('Yutong') ? 'yutong' : 'hinopak'),
+  model: gt.title,
+  variant: gt.category,
+  modelYear: '2024-2026',
+  bodyType: gt.category,
+  category: gt.category === 'Coaster' ? 'coaster' : (gt.category === 'Passenger Van' ? 'van' : 'bus'),
+  status: gt.isFleetConfirmed ? '4WHEELS Core Fleet' : 'Available on Request',
+  seats: gt.maxPassengers,
+  maxPassengers: gt.maxPassengers,
+  transmission: 'Manual',
+  fuelType: 'Diesel',
+  engine: 'Heavy Duty Diesel Engine',
+  fuelTankCapacity: '95 Litres',
+  batteryCapacity: null,
+  electricRange: null,
+  bootCapacity: gt.luggageCapacity,
+  groundClearance: '200 mm',
+  colors: ['White / Gold', 'White', 'Silver'],
+  suitableUse: gt.suitableUse,
+  manufacturerUrl: 'https://toyota-indus.com',
+  brochureUrl: null,
+  sourceUrl: 'https://4wheelsrentacar.pk',
+  verifiedDate: '2026-08-20',
+  isFleetConfirmed: gt.isFleetConfirmed,
+  tagline: gt.description,
+  description: gt.description
+}));
+
+// De-duplicate if already in PAKISTAN_VEHICLE_CATALOG
+const existingIds = new Set(PAKISTAN_VEHICLE_CATALOG.map(v => v.id));
+const extraGroupVehicles = groupCatalogVehicles.filter(v => !existingIds.has(v.id));
+
+const allCatalogVehicles = [...PAKISTAN_VEHICLE_CATALOG, ...extraGroupVehicles];
 
 // Build brand vehicle count maps per category
 const brandCategoryCountMap: Record<string, Record<string, number>> = {};
@@ -135,39 +171,39 @@ const CATEGORIES = [
 
       <!-- Step Indicator Bar -->
       <div class="bg-slate-900 rounded-2xl border border-slate-800 p-4 mb-8 shadow-xl">
-        <!-- Desktop Stepper Labels -->
+        <!-- Desktop Stepper Labels (Interactive Tabs) -->
         <div class="hidden md:flex items-center justify-between text-xs font-extrabold text-slate-400">
-          <div id="step-tab-1" class="step-tab flex items-center gap-2 text-red-500">
-            <span class="w-7 h-7 rounded-full bg-red-600 text-white flex items-center justify-center text-xs">1</span>
+          <div id="step-tab-1" class="step-tab flex items-center gap-2 text-red-500 cursor-pointer hover:text-white transition-colors" data-tab-step="1">
+            <span class="w-7 h-7 rounded-full bg-red-600 text-white flex items-center justify-center text-xs shadow-md">1</span>
             <span>Category</span>
           </div>
           <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-2" class="step-tab flex items-center gap-2">
+          <div id="step-tab-2" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="2">
             <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">2</span>
             <span>Brand</span>
           </div>
           <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-3" class="step-tab flex items-center gap-2">
+          <div id="step-tab-3" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="3">
             <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">3</span>
             <span>Model</span>
           </div>
           <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-4" class="step-tab flex items-center gap-2">
+          <div id="step-tab-4" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="4">
             <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">4</span>
             <span>Route</span>
           </div>
           <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-5" class="step-tab flex items-center gap-2">
+          <div id="step-tab-5" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="5">
             <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">5</span>
             <span>Dates</span>
           </div>
           <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-6" class="step-tab flex items-center gap-2">
+          <div id="step-tab-6" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="6">
             <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">6</span>
             <span>Details</span>
           </div>
           <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-7" class="step-tab flex items-center gap-2">
+          <div id="step-tab-7" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="7">
             <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">7</span>
             <span>Review</span>
           </div>
@@ -1099,6 +1135,19 @@ const CATEGORIES = [
     currentStep = stepNumber;
     window.scrollTo({ top: 180, behavior: 'smooth' });
   };
+
+  // Enable direct clicking on Desktop Stepper Tabs
+  document.querySelectorAll('.step-tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const targetStepStr = tab.getAttribute('data-tab-step');
+      if (targetStepStr) {
+        const targetStep = parseInt(targetStepStr, 10);
+        if (targetStep === 3) renderModelCards();
+        if (targetStep === 7) populateReviewScreen();
+        showStep(targetStep);
+      }
+    });
+  });
 
   document.querySelectorAll('.btn-next').forEach(btn => {
     btn.addEventListener('click', () => {

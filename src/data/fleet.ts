@@ -794,7 +794,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
       verified: true,
       verifiedDate: '2026-08-20',
       imageUrl: '/vehicles/fleet/kia-sportage/hero.jpg',
-      fallbackUrl: '/vehicles/illustrations/kia/sportage.svg',
+      fallbackUrl: '/vehicles/fleet/kia-sportage/hero.jpg',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -866,7 +866,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
       verified: true,
       verifiedDate: '2026-08-20',
       imageUrl: '/vehicles/fleet/kia-carnival/hero.jpg',
-      fallbackUrl: '/vehicles/illustrations/kia/carnival.svg',
+      fallbackUrl: '/vehicles/fleet/kia-carnival/hero.jpg',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
