@@ -1243,7 +1243,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     description: 'Pioneer 7-seater Chinese SUV in Pakistan with smart voice control and spacious 3-row layout.'
   },
 
-  // --- BYD (ADDITIONAL SEALION 6) ---
+  // --- BYD (ADDITIONAL SEALION 6, DOLPHIN, SHARK 6) ---
   {
     id: 'byd-sealion-6-phev',
     slug: 'byd-sealion-6',
@@ -1274,6 +1274,68 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'BYD DM-i Super Hybrid crossover with 1,100km total range and ultra-quiet cabin.',
     description: 'Plug-in hybrid crossover officially introduced in Pakistan with 100km pure electric city driving and 1,100km combined range.'
+  },
+  {
+    id: 'byd-dolphin-ev',
+    slug: 'byd-dolphin',
+    brand: 'BYD',
+    brandSlug: 'byd',
+    model: 'Dolphin',
+    variant: 'Extended Range 60.4 kWh',
+    modelYear: '2024-2026',
+    bodyType: 'Hatchback EV',
+    category: 'ev',
+    status: 'Official Pakistan Lineup',
+    seats: 5,
+    maxPassengers: 4,
+    transmission: 'Single Speed AT',
+    fuelType: 'Electric',
+    engine: '204 hp Electric Motor',
+    fuelTankCapacity: null,
+    batteryCapacity: '60.4 kWh Blade Battery',
+    electricRange: '427 km (WLTP)',
+    bootCapacity: '345 Litres',
+    groundClearance: '150 mm',
+    colors: ['Ski White', 'Urban Grey', 'Coral Pink'],
+    suitableUse: ['City Commute', 'Eco Urban Driving', 'Personal Rental'],
+    manufacturerUrl: 'https://byd.com/pk',
+    brochureUrl: null,
+    sourceUrl: 'https://byd.com/pk',
+    verifiedDate: '2026-08-18',
+    isFleetConfirmed: false,
+    tagline: 'Agile electric hatchback built on BYD e-Platform 3.0 with Blade Battery safety.',
+    description: 'Compact EV hatch with high efficiency, 345L trunk, and modern interior technology for urban commuters.'
+  },
+  {
+    id: 'byd-shark-6-phev',
+    slug: 'byd-shark-6',
+    brand: 'BYD',
+    brandSlug: 'byd',
+    model: 'Shark 6',
+    variant: 'DMO Super Hybrid 4x4 Pickup',
+    modelYear: '2024-2026',
+    bodyType: 'Pickup SUV',
+    category: 'pickup',
+    status: 'Official Pakistan Lineup',
+    seats: 5,
+    maxPassengers: 4,
+    transmission: 'Single Speed AT',
+    fuelType: 'PHEV',
+    engine: '1.5T Petrol + Dual Electric Motors (430 hp)',
+    fuelTankCapacity: '60 Litres',
+    batteryCapacity: '29.58 kWh Blade Battery',
+    electricRange: '100 km EV / 840 km Combined',
+    bootCapacity: 'Heavy Open Cargo Bed',
+    groundClearance: '230 mm',
+    colors: ['Atlantis Grey', 'Polar White', 'Cosmos Black'],
+    suitableUse: ['Field Expeditions', 'Heavy Duty 4x4 Travel', 'Rugged Terrain'],
+    manufacturerUrl: 'https://byd.com/pk',
+    brochureUrl: null,
+    sourceUrl: 'https://byd.com/pk',
+    verifiedDate: '2026-08-18',
+    isFleetConfirmed: false,
+    tagline: 'High-performance 430hp plug-in hybrid 4x4 pickup truck for tough terrain and project travel.',
+    description: 'Revolutionary plug-in hybrid pickup truck combining 4x4 off-road torque with low emissions and high utility.'
   }
 ];
 
