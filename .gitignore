@@ -4,3 +4,4 @@ dist/
 .DS_Store
 test-results/
 *.log
+docs/ux-audit/screenshots/after/
