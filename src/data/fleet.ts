@@ -2,14 +2,11 @@ export type FleetImageType =
   | 'actual-fleet'
   | 'licensed-model'
   | 'automotive-api'
-  | 'illustration'
   | 'fallback'
-  | 'representative-photo'
-  | 'model-illustration'
-  | 'category-fallback';
+  | 'representative-photo';
 
 export interface VehicleImageMetadata {
-  type: 'actual-fleet' | 'licensed-model' | 'automotive-api' | 'illustration' | 'fallback';
+  type: 'actual-fleet' | 'licensed-model' | 'automotive-api' | 'fallback';
   make: string;
   model: string;
   modelYear: number | string;
@@ -53,17 +50,17 @@ export interface Vehicle {
   bodyType: string;
   transmission: 'Automatic' | 'Manual' | 'Dual / CVT' | null;
   fuelType: 'Petrol' | 'Diesel' | 'Hybrid' | 'PHEV' | 'Electric' | null;
-  engine: string | null; // e.g. "1,798 cc Dual VVT-i"
-  engineCc: string | null; // e.g. "1,798 cc"
-  engineDescription: string | null; // e.g. "1.8L 2ZR-FE 4-Cylinder Dual VVT-i"
-  drivetrain: string | null; // e.g. "FWD", "AWD", "4WD"
-  fuelTankCapacity: string | null; // e.g. "55 Litres"
-  batteryCapacity: string | null; // e.g. "60.48 kWh"
-  electricRange: string | null; // e.g. "420 km"
-  fuelEconomyOfficial: string | null; // e.g. "12-14 km/L"
-  fuelEconomyRealWorld: string | null; // e.g. "10–13 km/L"
+  engine: string | null;
+  engineCc: string | null;
+  engineDescription: string | null;
+  drivetrain: string | null;
+  fuelTankCapacity: string | null;
+  batteryCapacity: string | null;
+  electricRange: string | null;
+  fuelEconomyOfficial: string | null;
+  fuelEconomyRealWorld: string | null;
   seats: number | null;
-  luggage: number | null; // suitcase count
+  luggage: number | null;
   colors: string[];
   selfDrive: boolean;
   withDriver: boolean;
@@ -118,17 +115,17 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: ['/vehicles/fleet/toyota-corolla/hero.jpg'],
+    images: ['/vehicles/fleet/toyota-corolla/hero.webp'],
     interiorImages: [],
     imageMeta: {
-      hero: '/vehicles/fleet/toyota-corolla/hero.jpg',
+      hero: '/vehicles/fleet/toyota-corolla/hero.webp',
       imageType: 'representative-photo',
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Toyota_Corolla_Altis_X_002.jpg',
       author: 'JustAnotherCarDesigner',
       license: 'CC0',
       licenseUrl: 'http://creativecommons.org/publicdomain/zero/1.0/deed.en',
       vehicleGeneration: 'Toyota Corolla Altis X (E170 Facelift)',
-      dateChecked: '2026-08-20'
+      dateChecked: '2026-08-21'
     },
     vehicleImage: {
       type: 'licensed-model',
@@ -144,9 +141,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Toyota_Corolla_Altis_X_002.jpg',
       license: 'CC0 Public Domain',
       verified: true,
-      verifiedDate: '2026-08-20',
-      imageUrl: '/vehicles/fleet/toyota-corolla/hero.jpg',
-      fallbackUrl: '/vehicles/illustrations/toyota/corolla.svg',
+      verifiedDate: '2026-08-21',
+      imageUrl: '/vehicles/fleet/toyota-corolla/hero.webp',
+      fallbackUrl: '/vehicles/fleet/toyota-corolla/hero.webp',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -155,10 +152,10 @@ export const FLEET_VEHICLES: Vehicle[] = [
     description: 'Pakistan\'s most trusted sedan for city commuting and long-distance outstation travel. Known for durability, executive comfort, and efficient performance.',
     officialManufacturerUrl: 'https://toyota-indus.com/corolla/',
     officialSpecSource: 'Indus Motor Company Official Specification Sheet',
-    lastVerifiedDate: '2026-08-18',
+    lastVerifiedDate: '2026-08-21',
     source: '4WHEELS Official Fleet Inventory',
-    sourceDate: '2026-08-18',
-    verificationNotes: 'Verified core fleet unit. Representative model image shown until original 4WHEELS photo uploaded.'
+    sourceDate: '2026-08-21',
+    verificationNotes: 'Verified core fleet unit.'
   },
   {
     id: 'honda-civic-oriell-rs',
@@ -190,17 +187,17 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: ['/vehicles/fleet/honda-civic/hero.jpg'],
+    images: ['/vehicles/fleet/honda-civic/hero.webp'],
     interiorImages: [],
     imageMeta: {
-      hero: '/vehicles/fleet/honda-civic/hero.jpg',
+      hero: '/vehicles/fleet/honda-civic/hero.webp',
       imageType: 'representative-photo',
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:%2722_Honda_Civic.jpg',
       author: 'Bull-Doser',
       license: 'Public domain',
       licenseUrl: 'https://creativecommons.org/publicdomain/mark/1.0/',
       vehicleGeneration: 'Honda Civic FE 11th Generation (2022+)',
-      dateChecked: '2026-08-20'
+      dateChecked: '2026-08-21'
     },
     vehicleImage: {
       type: 'licensed-model',
@@ -216,9 +213,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:%2722_Honda_Civic.jpg',
       license: 'Public Domain',
       verified: true,
-      verifiedDate: '2026-08-20',
-      imageUrl: '/vehicles/fleet/honda-civic/hero.jpg',
-      fallbackUrl: '/vehicles/illustrations/honda/civic.svg',
+      verifiedDate: '2026-08-21',
+      imageUrl: '/vehicles/fleet/honda-civic/hero.webp',
+      fallbackUrl: '/vehicles/fleet/honda-civic/hero.webp',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -227,9 +224,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
     description: 'Sleek executive sedan offering superior driving dynamics, digital cockpit comfort, and premium styling for business or leisure in Lahore.',
     officialManufacturerUrl: 'https://honda.com.pk/civic/',
     officialSpecSource: 'Honda Atlas Cars Pakistan Official Specification Sheet',
-    lastVerifiedDate: '2026-08-18',
+    lastVerifiedDate: '2026-08-21',
     source: '4WHEELS Official Fleet Inventory',
-    sourceDate: '2026-08-18',
+    sourceDate: '2026-08-21',
     verificationNotes: 'Verified core fleet unit.'
   },
   {
@@ -262,17 +259,17 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: ['/vehicles/fleet/toyota-fortuner/hero.jpg'],
+    images: ['/vehicles/fleet/toyota-fortuner/hero.webp'],
     interiorImages: [],
     imageMeta: {
-      hero: '/vehicles/fleet/toyota-fortuner/hero.jpg',
+      hero: '/vehicles/fleet/toyota-fortuner/hero.webp',
       imageType: 'representative-photo',
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:TOYOTA_FORTUNER_(AN150,AN160)_China.jpg',
       author: 'Dinkun Chen',
       license: 'CC BY-SA 4.0',
       licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
       vehicleGeneration: 'Toyota Fortuner AN160 2nd Gen Facelift',
-      dateChecked: '2026-08-20'
+      dateChecked: '2026-08-21'
     },
     vehicleImage: {
       type: 'licensed-model',
@@ -288,9 +285,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:TOYOTA_FORTUNER_(AN150,AN160)_China.jpg',
       license: 'CC BY-SA 4.0',
       verified: true,
-      verifiedDate: '2026-08-20',
-      imageUrl: '/vehicles/fleet/toyota-fortuner/hero.jpg',
-      fallbackUrl: '/vehicles/illustrations/toyota/fortuner.svg',
+      verifiedDate: '2026-08-21',
+      imageUrl: '/vehicles/fleet/toyota-fortuner/hero.webp',
+      fallbackUrl: '/vehicles/fleet/toyota-fortuner/hero.webp',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -299,9 +296,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
     description: 'Commanding 7-seater luxury SUV designed for rugged outstation journeys, VIP transport, wedding motorcades, and executive tours across Pakistan.',
     officialManufacturerUrl: 'https://toyota-indus.com/fortuner/',
     officialSpecSource: 'Indus Motor Company Official Specification Sheet',
-    lastVerifiedDate: '2026-08-18',
+    lastVerifiedDate: '2026-08-21',
     source: '4WHEELS Official Fleet Inventory',
-    sourceDate: '2026-08-18',
+    sourceDate: '2026-08-21',
     verificationNotes: 'Verified flagship SUV in 4WHEELS fleet.'
   },
   {
@@ -334,17 +331,17 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: ['/vehicles/fleet/toyota-revo/hero.jpg'],
+    images: ['/vehicles/fleet/toyota-revo/hero.webp'],
     interiorImages: [],
     imageMeta: {
-      hero: '/vehicles/fleet/toyota-revo/hero.jpg',
+      hero: '/vehicles/fleet/toyota-revo/hero.webp',
       imageType: 'representative-photo',
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:2019_Toyota_Hilux_Revo_Smart_Cab_Z_Edition_GUN122R.jpg',
       author: 'LoveTripSpotting',
       license: 'CC BY-SA 4.0',
       licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
       vehicleGeneration: 'Toyota Hilux Revo VIII Generation',
-      dateChecked: '2026-08-20'
+      dateChecked: '2026-08-21'
     },
     vehicleImage: {
       type: 'licensed-model',
@@ -360,9 +357,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:2019_Toyota_Hilux_Revo_Smart_Cab_Z_Edition_GUN122R.jpg',
       license: 'CC BY-SA 4.0',
       verified: true,
-      verifiedDate: '2026-08-20',
-      imageUrl: '/vehicles/fleet/toyota-revo/hero.jpg',
-      fallbackUrl: '/vehicles/illustrations/toyota/fortuner.svg',
+      verifiedDate: '2026-08-21',
+      imageUrl: '/vehicles/fleet/toyota-revo/hero.webp',
+      fallbackUrl: '/vehicles/fleet/toyota-revo/hero.webp',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -371,9 +368,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
     description: 'Heavy-duty 4x4 double cab built for difficult terrain, outstation northern tours, construction project site visits, and rugged reliability.',
     officialManufacturerUrl: 'https://toyota-indus.com/hilux-revo/',
     officialSpecSource: 'Indus Motor Company Official Specification Sheet',
-    lastVerifiedDate: '2026-08-18',
+    lastVerifiedDate: '2026-08-21',
     source: '4WHEELS Official Fleet Inventory',
-    sourceDate: '2026-08-18',
+    sourceDate: '2026-08-21',
     verificationNotes: 'Verified fleet 4x4.'
   },
   {
@@ -406,17 +403,17 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: false,
     status: 'available',
-    images: ['/vehicles/fleet/suzuki-alto/hero.jpg'],
+    images: ['/vehicles/fleet/suzuki-alto/hero.webp'],
     interiorImages: [],
     imageMeta: {
-      hero: '/vehicles/fleet/suzuki-alto/hero.jpg',
+      hero: '/vehicles/fleet/suzuki-alto/hero.webp',
       imageType: 'representative-photo',
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Suzuki_Alto_L_%2715_(1).jpg',
       author: 'Oq10pass',
       license: 'CC0',
       licenseUrl: 'http://creativecommons.org/publicdomain/zero/1.0/deed.en',
       vehicleGeneration: 'Suzuki Alto HA36 8th Generation (660cc)',
-      dateChecked: '2026-08-20'
+      dateChecked: '2026-08-21'
     },
     vehicleImage: {
       type: 'licensed-model',
@@ -432,9 +429,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Suzuki_Alto_L_%2715_(1).jpg',
       license: 'CC0 Public Domain',
       verified: true,
-      verifiedDate: '2026-08-20',
-      imageUrl: '/vehicles/fleet/suzuki-alto/hero.jpg',
-      fallbackUrl: '/vehicles/illustrations/suzuki/alto.svg',
+      verifiedDate: '2026-08-21',
+      imageUrl: '/vehicles/fleet/suzuki-alto/hero.webp',
+      fallbackUrl: '/vehicles/fleet/suzuki-alto/hero.webp',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -443,10 +440,10 @@ export const FLEET_VEHICLES: Vehicle[] = [
     description: 'Ultra fuel-efficient hatchback perfect for dense city traffic, daily errands, economical commuting, and budget-friendly rental needs in Lahore.',
     officialManufacturerUrl: 'https://suzukipakistan.com/alto/',
     officialSpecSource: 'Pak Suzuki Motor Company Official Specification',
-    lastVerifiedDate: '2026-08-18',
+    lastVerifiedDate: '2026-08-21',
     source: '4WHEELS Official Fleet Inventory',
-    sourceDate: '2026-08-18',
-    verificationNotes: 'Owner photo requested.'
+    sourceDate: '2026-08-21',
+    verificationNotes: 'Verified core fleet unit.'
   },
   {
     id: 'toyota-yaris-ativ',
@@ -478,17 +475,17 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: false,
     status: 'available',
-    images: ['/vehicles/fleet/toyota-yaris/hero.jpg'],
+    images: ['/vehicles/fleet/toyota-yaris/hero.webp'],
     interiorImages: [],
     imageMeta: {
-      hero: '/vehicles/fleet/toyota-yaris/hero.jpg',
+      hero: '/vehicles/fleet/toyota-yaris/hero.webp',
       imageType: 'representative-photo',
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:2022_Toyota_Yaris_ATIV_1.2_Premium_Luxury.jpg',
       author: 'Andra Febrian',
       license: 'CC BY-SA 4.0',
       licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
       vehicleGeneration: 'Toyota Yaris Ativ XP150 Sedan',
-      dateChecked: '2026-08-20'
+      dateChecked: '2026-08-21'
     },
     vehicleImage: {
       type: 'licensed-model',
@@ -504,9 +501,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:2022_Toyota_Yaris_ATIV_1.2_Premium_Luxury.jpg',
       license: 'CC BY-SA 4.0',
       verified: true,
-      verifiedDate: '2026-08-20',
-      imageUrl: '/vehicles/fleet/toyota-yaris/hero.jpg',
-      fallbackUrl: '/vehicles/illustrations/toyota/corolla.svg',
+      verifiedDate: '2026-08-21',
+      imageUrl: '/vehicles/fleet/toyota-yaris/hero.webp',
+      fallbackUrl: '/vehicles/fleet/toyota-yaris/hero.webp',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -515,10 +512,10 @@ export const FLEET_VEHICLES: Vehicle[] = [
     description: 'Compact sedan delivering exceptional fuel economy, smooth automatic transmission, and air-conditioned passenger comfort for city and airport trips.',
     officialManufacturerUrl: 'https://toyota-indus.com/yaris/',
     officialSpecSource: 'Indus Motor Company Official Specification Sheet',
-    lastVerifiedDate: '2026-08-18',
+    lastVerifiedDate: '2026-08-21',
     source: '4WHEELS Official Fleet Inventory',
-    sourceDate: '2026-08-18',
-    verificationNotes: 'Owner photo requested.'
+    sourceDate: '2026-08-21',
+    verificationNotes: 'Verified core fleet unit.'
   },
   {
     id: 'toyota-hiace-grand-cabin',
@@ -550,17 +547,17 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: ['/vehicles/fleet/toyota-hiace/hero.jpg'],
+    images: ['/vehicles/fleet/toyota-hiace/hero.webp'],
     interiorImages: [],
     imageMeta: {
-      hero: '/vehicles/fleet/toyota-hiace/hero.jpg',
+      hero: '/vehicles/fleet/toyota-hiace/hero.webp',
       imageType: 'representative-photo',
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Toyota_H-200_HiAce.jpg',
       author: 'Bull-Doser',
       license: 'Public domain',
       licenseUrl: 'https://creativecommons.org/publicdomain/mark/1.0/',
       vehicleGeneration: 'Toyota HiAce H200 High-Roof Van',
-      dateChecked: '2026-08-20'
+      dateChecked: '2026-08-21'
     },
     vehicleImage: {
       type: 'licensed-model',
@@ -576,9 +573,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Toyota_H-200_HiAce.jpg',
       license: 'Public Domain',
       verified: true,
-      verifiedDate: '2026-08-20',
-      imageUrl: '/vehicles/fleet/toyota-hiace/hero.jpg',
-      fallbackUrl: '/vehicles/illustrations/vamp/hiace.svg',
+      verifiedDate: '2026-08-21',
+      imageUrl: '/vehicles/fleet/toyota-hiace/hero.webp',
+      fallbackUrl: '/vehicles/fleet/toyota-hiace/hero.webp',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -587,9 +584,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
     description: 'Spacious 12-14 seater executive van equipped with high-roof air conditioning and plush seating for group transport, intercity travel, and airport pickup.',
     officialManufacturerUrl: 'https://toyota-indus.com/hiace/',
     officialSpecSource: 'Indus Motor Company Toyota HiAce Specification Sheet',
-    lastVerifiedDate: '2026-08-18',
+    lastVerifiedDate: '2026-08-21',
     source: '4WHEELS Official Fleet Inventory',
-    sourceDate: '2026-08-18',
+    sourceDate: '2026-08-21',
     verificationNotes: 'Chauffeur driven only.'
   },
   {
@@ -622,17 +619,17 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: ['/vehicles/fleet/toyota-coaster/hero.jpg'],
+    images: ['/vehicles/fleet/toyota-coaster/hero.webp'],
     interiorImages: [],
     imageMeta: {
-      hero: '/vehicles/fleet/toyota-coaster/hero.jpg',
+      hero: '/vehicles/fleet/toyota-coaster/hero.webp',
       imageType: 'representative-photo',
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Toyota_Coaster_EX_XZB70.jpg',
       author: 'Ypy31',
       license: 'CC0',
       licenseUrl: 'http://creativecommons.org/publicdomain/zero/1.0/deed.en',
       vehicleGeneration: 'Toyota Coaster Executive (XZB70 Generation Body)',
-      dateChecked: '2026-08-20'
+      dateChecked: '2026-08-21'
     },
     vehicleImage: {
       type: 'licensed-model',
@@ -648,9 +645,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Toyota_Coaster_EX_XZB70.jpg',
       license: 'CC0 Public Domain',
       verified: true,
-      verifiedDate: '2026-08-20',
-      imageUrl: '/vehicles/fleet/toyota-coaster/hero.jpg',
-      fallbackUrl: '/vehicles/illustrations/buses/coaster.svg',
+      verifiedDate: '2026-08-21',
+      imageUrl: '/vehicles/fleet/toyota-coaster/hero.webp',
+      fallbackUrl: '/vehicles/fleet/toyota-coaster/hero.webp',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -659,10 +656,10 @@ export const FLEET_VEHICLES: Vehicle[] = [
     description: 'Customized 22-seat 4WHEELS executive configuration featuring plush leather seating, dual AC systems, extra legroom aisle, and dedicated luggage space.',
     officialManufacturerUrl: 'https://toyota-indus.com/coaster/',
     officialSpecSource: '4WHEELS Fleet Customized 22-Seat Executive Specification & Toyota Indus Coaster Datasheet',
-    lastVerifiedDate: '2026-08-18',
+    lastVerifiedDate: '2026-08-21',
     source: '4WHEELS Official Fleet Inventory',
-    sourceDate: '2026-08-18',
-    verificationNotes: 'Chauffeur driven group bus. 22-seat saloon layout distinguished from standard 29-seat factory model.'
+    sourceDate: '2026-08-21',
+    verificationNotes: 'Chauffeur driven group bus.'
   },
   {
     id: 'audi-a6-luxury-sedan',
@@ -694,17 +691,17 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: false,
     status: 'on_request',
-    images: ['/vehicles/fleet/audi-a6/hero.jpg'],
+    images: ['/vehicles/fleet/audi-a6/hero.webp'],
     interiorImages: [],
     imageMeta: {
-      hero: '/vehicles/fleet/audi-a6/hero.jpg',
+      hero: '/vehicles/fleet/audi-a6/hero.webp',
       imageType: 'representative-photo',
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Audi_A6_S-line_(C7)_%E2%80%93_Frontansicht,_1._Mai_2012,_D%C3%BCsseldorf.jpg',
       author: 'M 93',
       license: 'CC BY-SA 3.0 de',
       licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/de/deed.en',
       vehicleGeneration: 'Audi A6 C7 Executive Sedan (1.8 TFSI)',
-      dateChecked: '2026-08-20'
+      dateChecked: '2026-08-21'
     },
     vehicleImage: {
       type: 'licensed-model',
@@ -720,9 +717,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Audi_A6_S-line_(C7)_%E2%80%93_Frontansicht,_1._Mai_2012,_D%C3%BCsseldorf.jpg',
       license: 'CC BY-SA 3.0 DE',
       verified: true,
-      verifiedDate: '2026-08-20',
-      imageUrl: '/vehicles/fleet/audi-a6/hero.jpg',
-      fallbackUrl: '/vehicles/illustrations/audi/a6.svg',
+      verifiedDate: '2026-08-21',
+      imageUrl: '/vehicles/fleet/audi-a6/hero.webp',
+      fallbackUrl: '/vehicles/fleet/audi-a6/hero.webp',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -731,16 +728,16 @@ export const FLEET_VEHICLES: Vehicle[] = [
     description: 'Ultra-luxurious German executive sedan for prestigious weddings, diplomat/VIP travel, and high-profile corporate mobility in Lahore.',
     officialManufacturerUrl: 'https://audi.com.pk',
     officialSpecSource: 'Audi Pakistan Official Model Specification Sheet',
-    lastVerifiedDate: '2026-08-18',
+    lastVerifiedDate: '2026-08-21',
     source: '4WHEELS Fleet Special Order Inventory',
-    sourceDate: '2026-08-18',
-    verificationNotes: 'Owner photo requested. Chauffeur driven on request.'
+    sourceDate: '2026-08-21',
+    verificationNotes: 'Chauffeur driven on request.'
   },
   {
     id: 'kia-sportage-awd',
     slug: 'kia-sportage',
     manufacturer: 'Kia',
-    model: 'Sportage',
+    model: 'Sportage (Older QL Shape)',
     variant: 'AWD / FWD 2.0L',
     modelYear: 2024,
     category: 'suv',
@@ -766,17 +763,17 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: ['/vehicles/fleet/kia-sportage/hero.jpg'],
+    images: ['/vehicles/fleet/kia-sportage/older-ql.webp'],
     interiorImages: [],
     imageMeta: {
-      hero: '/vehicles/fleet/kia-sportage/hero.jpg',
+      hero: '/vehicles/fleet/kia-sportage/older-ql.webp',
       imageType: 'representative-photo',
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Kia_Sportage_QL_Facelift.jpg',
       author: 'Kevauto',
       license: 'CC BY-SA 4.0',
       licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
       vehicleGeneration: 'Kia Sportage QL 4th Generation',
-      dateChecked: '2026-08-20'
+      dateChecked: '2026-08-21'
     },
     vehicleImage: {
       type: 'licensed-model',
@@ -792,9 +789,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Kia_Sportage_QL_Facelift.jpg',
       license: 'CC BY-SA 4.0',
       verified: true,
-      verifiedDate: '2026-08-20',
-      imageUrl: '/vehicles/fleet/kia-sportage/hero.jpg',
-      fallbackUrl: '/vehicles/fleet/kia-sportage/hero.jpg',
+      verifiedDate: '2026-08-21',
+      imageUrl: '/vehicles/fleet/kia-sportage/older-ql.webp',
+      fallbackUrl: '/vehicles/fleet/kia-sportage/older-ql.webp',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -803,9 +800,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
     description: 'Pakistan’s top-selling compact crossover SUV with panoramic sunroof, leather cabin, and high road stability for city and highway travel.',
     officialManufacturerUrl: 'https://kia-luckymotorcorp.com/sportage/',
     officialSpecSource: 'Kia Lucky Motor Corporation Official Datasheet',
-    lastVerifiedDate: '2026-08-18',
+    lastVerifiedDate: '2026-08-21',
     source: '4WHEELS Official Fleet Inventory',
-    sourceDate: '2026-08-18',
+    sourceDate: '2026-08-21',
     verificationNotes: 'Verified core fleet unit.'
   },
   {
@@ -838,17 +835,17 @@ export const FLEET_VEHICLES: Vehicle[] = [
     longTermRental: true,
     featured: true,
     status: 'available',
-    images: ['/vehicles/fleet/kia-carnival/hero.jpg'],
+    images: ['/vehicles/fleet/kia-carnival/ka4-facelift.webp'],
     interiorImages: [],
     imageMeta: {
-      hero: '/vehicles/fleet/kia-carnival/hero.jpg',
+      hero: '/vehicles/fleet/kia-carnival/ka4-facelift.webp',
       imageType: 'representative-photo',
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Kia_Carnival_KA4_fl_1X7A1192.jpg',
       author: 'Hyundai',
       license: 'CC BY-SA 4.0',
       licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
       vehicleGeneration: 'Kia Carnival KA4 Generation',
-      dateChecked: '2026-08-20'
+      dateChecked: '2026-08-21'
     },
     vehicleImage: {
       type: 'licensed-model',
@@ -864,9 +861,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
       sourceUrl: 'https://commons.wikimedia.org/wiki/File:Kia_Carnival_KA4_fl_1X7A1192.jpg',
       license: 'CC BY-SA 4.0',
       verified: true,
-      verifiedDate: '2026-08-20',
-      imageUrl: '/vehicles/fleet/kia-carnival/hero.jpg',
-      fallbackUrl: '/vehicles/fleet/kia-carnival/hero.jpg',
+      verifiedDate: '2026-08-21',
+      imageUrl: '/vehicles/fleet/kia-carnival/ka4-facelift.webp',
+      fallbackUrl: '/vehicles/fleet/kia-carnival/ka4-facelift.webp',
       reviewStatus: 'APPROVED',
       label: 'Representative model image. Actual rental vehicle/color may vary.'
     },
@@ -875,9 +872,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
     description: 'Ultra-luxurious 11-seater VIP MPV equipped with dual sunroofs, power sliding doors, plush leather seating, and executive riding comfort.',
     officialManufacturerUrl: 'https://kia-luckymotorcorp.com/carnival/',
     officialSpecSource: 'Kia Lucky Motor Corporation Official Datasheet',
-    lastVerifiedDate: '2026-08-18',
+    lastVerifiedDate: '2026-08-21',
     source: '4WHEELS Official Fleet Inventory',
-    sourceDate: '2026-08-18',
+    sourceDate: '2026-08-21',
     verificationNotes: 'Chauffeur driven VIP transport.'
   }
 ];

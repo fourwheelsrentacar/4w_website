@@ -3,7 +3,7 @@ import type { Vehicle, VehicleImageMetadata } from '../data/fleet';
 export interface ResolvedVehicleImage {
   imageUrl: string;
   fallbackUrl: string;
-  type: 'actual-fleet' | 'licensed-model' | 'automotive-api' | 'illustration' | 'fallback';
+  type: 'actual-fleet' | 'licensed-model' | 'automotive-api' | 'fallback';
   provider: 'local-fleet' | 'imagin' | 'carsxe' | 'evox' | 'local-licensed' | 'fallback';
   label: string;
   make: string;
@@ -22,7 +22,7 @@ export function buildImaginUrl(params: {
   modelYear?: number | string;
   modelVariant?: string;
   trim?: string;
-  angle?: number | string; // 23 for front 3/4
+  angle?: number | string;
   paint?: string;
   width?: number;
 }): string {
@@ -41,27 +41,6 @@ export function buildImaginUrl(params: {
   return url.toString();
 }
 
-export function buildCarsXeUrl(params: {
-  apiKey?: string;
-  make: string;
-  model: string;
-  year?: number | string;
-  trim?: string;
-  angle?: string;
-}): string {
-  const apiKey = params.apiKey || process.env.CARSXE_API_KEY || '';
-  if (!apiKey) return '';
-  const url = new URL('https://api.carsxe.com/images');
-  url.searchParams.set('key', apiKey);
-  url.searchParams.set('make', params.make);
-  url.searchParams.set('model', params.model);
-  if (params.year) url.searchParams.set('year', String(params.year));
-  if (params.trim) url.searchParams.set('trim', params.trim);
-  url.searchParams.set('angle', params.angle || 'front_three_quarters');
-  url.searchParams.set('format', 'png');
-  return url.toString();
-}
-
 export function resolveVehicleImage(vehicle: Vehicle | Partial<Vehicle> | any): ResolvedVehicleImage {
   const brand = (vehicle.manufacturer || vehicle.brand || '').trim();
   const model = (vehicle.model || '').trim();
@@ -69,26 +48,43 @@ export function resolveVehicleImage(vehicle: Vehicle | Partial<Vehicle> | any): 
   const slug = (vehicle.slug || '').toLowerCase();
   const category = (vehicle.category || '').toLowerCase();
 
-  // Neutral Real Photographic Fallbacks (NO 2D SVGs or illustrations)
-  let realFallbackPhoto = '/vehicles/fleet/toyota-corolla/hero.jpg';
+  // Neutral Real Photographic WebP Fallbacks (NO 2D SVGs or illustrations)
+  let realFallbackPhoto = '/vehicles/fleet/toyota-corolla/hero.webp';
   if (slug.includes('fortuner') || slug.includes('revo') || category === 'suv' || category === 'crossover' || category === 'phev' || category === 'pickup') {
-    realFallbackPhoto = '/vehicles/fleet/toyota-fortuner/hero.jpg';
+    realFallbackPhoto = '/vehicles/fleet/toyota-fortuner/hero.webp';
   } else if (slug.includes('civic')) {
-    realFallbackPhoto = '/vehicles/fleet/honda-civic/hero.jpg';
+    realFallbackPhoto = '/vehicles/fleet/honda-civic/hero.webp';
   } else if (slug.includes('alto') || category === 'hatchback') {
-    realFallbackPhoto = '/vehicles/fleet/suzuki-alto/hero.jpg';
+    realFallbackPhoto = '/vehicles/fleet/suzuki-alto/hero.webp';
   } else if (slug.includes('audi') || category === 'luxury') {
-    realFallbackPhoto = '/vehicles/fleet/audi-a6/hero.jpg';
+    realFallbackPhoto = '/vehicles/fleet/audi-a6/hero.webp';
   } else if (category === 'van' || slug.includes('hiace') || slug.includes('carnival')) {
-    realFallbackPhoto = '/vehicles/fleet/toyota-hiace/hero.jpg';
+    realFallbackPhoto = '/vehicles/fleet/toyota-hiace/hero.webp';
   } else if (category === 'coaster' || category === 'bus' || slug.includes('coaster') || slug.includes('yutong') || slug.includes('daewoo')) {
-    realFallbackPhoto = '/vehicles/fleet/toyota-coaster/hero.jpg';
+    realFallbackPhoto = '/vehicles/fleet/toyota-coaster/hero.webp';
   } else if (slug.includes('yaris')) {
-    realFallbackPhoto = '/vehicles/fleet/toyota-yaris/hero.jpg';
+    realFallbackPhoto = '/vehicles/fleet/toyota-yaris/hero.webp';
   }
 
-  // 1. Priority 1: Actual 4WHEELS Fleet Photograph if explicitly uploaded and marked
-  if (vehicle.vehicleImage && vehicle.vehicleImage.type === 'actual-fleet' && vehicle.vehicleImage.imageUrl && !vehicle.vehicleImage.imageUrl.includes('illustrations')) {
+  // Check custom heroPhoto property if set on CatalogVehicle
+  if (vehicle.heroPhoto && !vehicle.heroPhoto.includes('illustrations') && !vehicle.heroPhoto.endsWith('.svg')) {
+    return {
+      imageUrl: vehicle.heroPhoto,
+      fallbackUrl: realFallbackPhoto,
+      type: 'licensed-model',
+      provider: 'local-licensed',
+      label: 'Representative model image. Actual rental vehicle/color may vary.',
+      make: brand,
+      model: model,
+      modelYear: year,
+      generation: vehicle.customerLabel || 'Model Generation',
+      verified: true,
+      reviewStatus: 'APPROVED'
+    };
+  }
+
+  // 1. Priority 1: Actual 4WHEELS Fleet Photograph
+  if (vehicle.vehicleImage && vehicle.vehicleImage.type === 'actual-fleet' && vehicle.vehicleImage.imageUrl && !vehicle.vehicleImage.imageUrl.includes('illustrations') && !vehicle.vehicleImage.imageUrl.endsWith('.svg')) {
     return {
       imageUrl: vehicle.vehicleImage.imageUrl,
       fallbackUrl: realFallbackPhoto,
@@ -104,61 +100,8 @@ export function resolveVehicleImage(vehicle: Vehicle | Partial<Vehicle> | any): 
     };
   }
 
-  // 2. Priority 2: Imagin / CarsXE API integration if API keys provided in environment
-  const imaginApiKey = process.env.IMAGIN_API_KEY || process.env.PUBLIC_IMAGIN_CUSTOMER_KEY;
-  const carsXeApiKey = process.env.CARSXE_API_KEY;
-
-  if (imaginApiKey) {
-    const imaginUrl = buildImaginUrl({
-      customerKey: imaginApiKey,
-      make: brand,
-      modelFamily: model,
-      modelYear: year,
-      trim: vehicle.vehicleImage?.trim,
-      angle: 23
-    });
-    return {
-      imageUrl: imaginUrl,
-      fallbackUrl: realFallbackPhoto,
-      type: 'automotive-api',
-      provider: 'imagin',
-      label: 'Representative model visual. Actual rental vehicle/color may vary.',
-      make: brand,
-      model: model,
-      modelYear: year,
-      generation: vehicle.vehicleImage?.generation || 'Current Generation',
-      verified: vehicle.vehicleImage?.verified ?? true,
-      reviewStatus: vehicle.vehicleImage?.reviewStatus || 'APPROVED',
-      isTransparent: true
-    };
-  } else if (carsXeApiKey) {
-    const carsXeUrl = buildCarsXeUrl({
-      apiKey: carsXeApiKey,
-      make: brand,
-      model: model,
-      year: year,
-      trim: vehicle.vehicleImage?.trim
-    });
-    if (carsXeUrl) {
-      return {
-        imageUrl: carsXeUrl,
-        fallbackUrl: realFallbackPhoto,
-        type: 'automotive-api',
-        provider: 'carsxe',
-        label: 'Representative model visual. Actual rental vehicle/color may vary.',
-        make: brand,
-        model: model,
-        modelYear: year,
-        generation: vehicle.vehicleImage?.generation || 'Current Generation',
-        verified: vehicle.vehicleImage?.verified ?? true,
-        reviewStatus: vehicle.vehicleImage?.reviewStatus || 'APPROVED',
-        isTransparent: true
-      };
-    }
-  }
-
-  // 3. Priority 3: Exact-generation local licensed representative photograph
-  if (vehicle.vehicleImage && vehicle.vehicleImage.imageUrl && !vehicle.vehicleImage.imageUrl.includes('illustrations')) {
+  // 2. Priority 2: Local licensed exact-generation real photograph
+  if (vehicle.vehicleImage && vehicle.vehicleImage.imageUrl && !vehicle.vehicleImage.imageUrl.includes('illustrations') && !vehicle.vehicleImage.imageUrl.endsWith('.svg')) {
     return {
       imageUrl: vehicle.vehicleImage.imageUrl,
       fallbackUrl: realFallbackPhoto,
@@ -174,8 +117,8 @@ export function resolveVehicleImage(vehicle: Vehicle | Partial<Vehicle> | any): 
     };
   }
 
-  // 4. Priority 4: Existing hero image in images array
-  if (vehicle.images && vehicle.images.length > 0 && vehicle.images[0] && !vehicle.images[0].includes('illustrations')) {
+  // 3. Priority 3: Existing hero image in images array
+  if (vehicle.images && vehicle.images.length > 0 && vehicle.images[0] && !vehicle.images[0].includes('illustrations') && !vehicle.images[0].endsWith('.svg')) {
     return {
       imageUrl: vehicle.images[0],
       fallbackUrl: realFallbackPhoto,
@@ -191,7 +134,7 @@ export function resolveVehicleImage(vehicle: Vehicle | Partial<Vehicle> | any): 
     };
   }
 
-  // 5. Direct Real Photo Fallback by Model/Category (Real Photographs Only)
+  // 4. Direct Real Photo Fallback
   return {
     imageUrl: realFallbackPhoto,
     fallbackUrl: realFallbackPhoto,
