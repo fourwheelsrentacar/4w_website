@@ -58,7 +58,7 @@ export const PAKISTAN_BRANDS: Brand[] = [
     activePakistan: true,
     lastVerified: '2026-08-18',
     categories: ['sedan', 'suv', 'luxury', 'hybrid'],
-    vehicleCount: 4,
+    vehicleCount: 3,
     featured: true
   },
   {

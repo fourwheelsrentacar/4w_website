@@ -386,6 +386,91 @@ export const VEHICLE_YEAR_GROUPS: VehicleYearGroup[] = [
     variants: ['1.5T HEV Hybrid (240 hp)', '2.0T AWD Petrol'],
     colors: ['Hamilton White', 'Ayers Grey', 'Sun Black'],
     description: '240hp locally assembled hybrid SUV with autonomous drive assist.'
+  },
+
+  // --- CHANGAN ALSVIN ---
+  {
+    id: 'changan-alsvin-2021-2026',
+    modelSlug: 'changan-alsvin',
+    modelName: 'Changan Alsvin',
+    brandSlug: 'changan',
+    startYear: 2021,
+    endYear: 2026,
+    customerLabel: '2021–2026 Current Shape',
+    generation: '3rd Generation Alsvin',
+    heroPhoto: '/vehicles/catalog/changan/alsvin.webp',
+    isFleetConfirmed: false,
+    variants: ['1.5L Lumiere DCT', '1.37L Comfort MT'],
+    colors: ['Starlight Silver', 'Galaxy Black', 'Space Grey', 'Cosmic Red'],
+    description: 'Smart compact sedan featuring electric sunroof, cruise control, and BlueCore engine.'
+  },
+
+  // --- CHANGAN OSHAN X7 ---
+  {
+    id: 'changan-oshan-x7-2022-2026',
+    modelSlug: 'changan-oshan-x7',
+    modelName: 'Changan Oshan X7',
+    brandSlug: 'changan',
+    startYear: 2022,
+    endYear: 2026,
+    customerLabel: '2022–2026 Current Shape',
+    generation: '1st Generation Oshan X7',
+    heroPhoto: '/vehicles/catalog/changan/oshan-x7.webp',
+    isFleetConfirmed: false,
+    variants: ['FutureSense 5-Seater', 'Comfort 7-Seater'],
+    colors: ['Space Gray', 'Galaxy Black', 'Cosmic Red', 'Orbit White'],
+    description: '185hp Turbo SUV with adaptive cruise control and panoramic sunroof.'
+  },
+
+  // --- HYUNDAI ELANTRA ---
+  {
+    id: 'hyundai-elantra-2021-2026',
+    modelSlug: 'hyundai-elantra',
+    modelName: 'Hyundai Elantra',
+    brandSlug: 'hyundai',
+    startYear: 2021,
+    endYear: 2026,
+    customerLabel: '2021–2026 6th Gen Facelift Shape',
+    generation: 'AD 6th Generation Facelift',
+    heroPhoto: '/vehicles/catalog/hyundai/elantra.webp',
+    isFleetConfirmed: false,
+    variants: ['2.0L GLS', '1.6L GL'],
+    colors: ['Polar White', 'Phantom Black', 'Silver Metallic', 'Fiery Red'],
+    description: 'Premium executive sedan with fluidic design and 2.0L Nu engine.'
+  },
+
+  // --- HYUNDAI TUCSON ---
+  {
+    id: 'hyundai-tucson-2020-2026',
+    modelSlug: 'hyundai-tucson',
+    modelName: 'Hyundai Tucson',
+    brandSlug: 'hyundai',
+    startYear: 2020,
+    endYear: 2026,
+    customerLabel: '2020–2026 Current Pakistan Shape',
+    generation: 'TL 3rd Generation Facelift',
+    heroPhoto: '/vehicles/catalog/hyundai/tucson.webp',
+    isFleetConfirmed: false,
+    variants: ['2.0L Ultimate AWD', '2.0L FWD'],
+    colors: ['Polar White', 'Phantom Black', 'Oxford Blue'],
+    description: 'High-comfort compact crossover with HTRAC AWD and panoramic sunroof.'
+  },
+
+  // --- MG HS ---
+  {
+    id: 'mg-hs-2021-2026',
+    modelSlug: 'mg-hs',
+    modelName: 'MG HS',
+    brandSlug: 'mg',
+    startYear: 2021,
+    endYear: 2026,
+    customerLabel: '2021–2026 Current Shape',
+    generation: '1st Generation MG HS',
+    heroPhoto: '/vehicles/catalog/mg/hs.webp',
+    isFleetConfirmed: false,
+    variants: ['1.5T Essence', '1.5T Exclusive'],
+    colors: ['Pearl White', 'Black Pearl', 'Brixton Blue', 'Diamond Red'],
+    description: 'Feature-rich British-designed turbo SUV with Trophy interior.'
   }
 ];
 
