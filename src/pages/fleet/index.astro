@@ -188,8 +188,8 @@ const transmissions = ['All', 'Automatic', 'Manual'];
 
           return (
             <div
-              class={`vehicle-card bg-slate-900 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-950/30 overflow-hidden flex flex-col justify-between ${
-                isCoaster ? 'border-amber-500/60 ring-1 ring-amber-500/30' : 'border-slate-800'
+              class={`vehicle-card bg-slate-900 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-950/30 overflow-hidden flex flex-col justify-between relative cursor-pointer ${
+                isCoaster ? 'border-amber-500/60 ring-1 ring-amber-500/30' : 'border-slate-800 hover:border-red-600/80'
               }`}
               data-category={vehicle.category}
               data-fuel={vehicle.fuelType || 'Petrol'}
@@ -197,6 +197,7 @@ const transmissions = ['All', 'Automatic', 'Manual'];
               data-selfdrive={vehicle.selfDrive ? 'true' : 'false'}
               data-withdriver={vehicle.withDriver ? 'true' : 'false'}
               data-seats={vehicle.seats || 5}
+              onclick={`if (!event.target.closest('a')) window.location.href='/fleet/${vehicle.slug}/'`}
             >
               <div>
                 <!-- Vehicle Stage using Reusable VehicleImage -->
