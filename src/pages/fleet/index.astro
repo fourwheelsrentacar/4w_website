@@ -68,43 +68,59 @@ const transmissions = ['All', 'Automatic', 'Manual'];
           return (
             <a
               href={`/vehicles/${brand.slug}/`}
-              class="bg-slate-900 rounded-2xl border border-slate-800 hover:border-red-600/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden flex flex-col justify-between group"
+              class="bg-slate-900 rounded-2xl border border-slate-800 hover:border-red-500/80 hover:shadow-2xl hover:shadow-red-950/40 transition-all duration-300 hover:-translate-y-1.5 overflow-hidden flex flex-col justify-between group relative"
             >
               <div>
                 <!-- Brand Sample Car Visual Stage -->
-                <div class="relative bg-slate-950 overflow-hidden">
+                <div class="relative bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden border-b border-slate-800/80">
                   {sampleCar ? (
-                    <VehicleImage vehicle={sampleCar} showLabel={false} className="h-44 group-hover:scale-105 transition-transform duration-300" />
+                    <VehicleImage vehicle={sampleCar} showLabel={false} className="h-44 group-hover:scale-105 transition-transform duration-500 ease-out" />
                   ) : (
                     <div class="h-44 flex items-center justify-center bg-slate-900 text-slate-500 text-xs font-bold">
                       {brand.name} Vehicle Fleet
                     </div>
                   )}
 
-                  <div class="absolute top-3 left-3 bg-slate-950/90 border border-slate-800 text-slate-300 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider backdrop-blur-sm">
+                  <div class="absolute top-3 left-3 bg-slate-950/90 border border-slate-800 text-slate-300 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider backdrop-blur-md shadow-md">
                     {brand.country}
+                  </div>
+
+                  <!-- Brand Badge Ribbon -->
+                  <div class="absolute top-3 right-3 bg-red-950/90 text-red-400 border border-red-800/80 text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider backdrop-blur-md shadow-md flex items-center gap-1">
+                    <span>{brand.logoUrl || '🔴'}</span>
+                    <span>{brand.name}</span>
                   </div>
                 </div>
 
                 <!-- Brand Card Body -->
-                <div class="p-5 space-y-2">
-                  <div class="flex items-center justify-between">
-                    <h3 class="text-xl font-black text-white group-hover:text-red-500 transition-colors">
-                      {brand.name}
-                    </h3>
-                    <span class="text-xs font-bold text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">
-                      {brandVehicles.length || 1} {brandVehicles.length === 1 ? 'Model' : 'Models'}
-                    </span>
+                <div class="p-5 space-y-3">
+                  <!-- Brand Logo Icon Above Name -->
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-lg shadow-inner group-hover:border-red-500 transition-colors">
+                      {brand.logoUrl || '🚘'}
+                    </div>
+                    <div>
+                      <span class="text-[10px] font-bold text-red-500 uppercase tracking-widest block">Automobile Brand</span>
+                      <h3 class="text-xl font-black text-white group-hover:text-red-400 transition-colors tracking-tight">
+                        {brand.name}
+                      </h3>
+                    </div>
                   </div>
+
                   <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
                     {brand.description || `Browse ${brand.name} models available through 4WHEELS Rent a Car Lahore.`}
                   </p>
                 </div>
               </div>
 
-              <div class="p-5 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between text-xs font-bold text-red-500 group-hover:text-red-400">
-                <span>View All {brand.name} Models</span>
-                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              <div class="p-5 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between text-xs font-bold text-slate-300 group-hover:text-red-400 transition-colors">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  <span>{brandVehicles.length || 1} {brandVehicles.length === 1 ? 'Model Available' : 'Models Present'}</span>
+                </span>
+                <span class="text-red-500 font-extrabold group-hover:translate-x-1.5 transition-transform duration-300">
+                  View All Models →
+                </span>
               </div>
             </a>
           );
