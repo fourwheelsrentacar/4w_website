@@ -1,0 +1,234 @@
+---
+import { FLEET_VEHICLES, type Vehicle } from '../data/fleet';
+import VehicleImage from './VehicleImage.astro';
+
+interface Props {
+  vehicles?: Vehicle[];
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  vehicles = FLEET_VEHICLES,
+  title = "Explore Our Premium Fleet",
+  subtitle = "Choose from executive sedans, 4x4 SUVs, and spacious group coasters in Lahore"
+} = Astro.props;
+---
+
+<div class="fleet-slider-container relative py-6 select-none">
+  <!-- Section Title Header if provided -->
+  <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 px-2">
+    <div>
+      <span class="text-[11px] font-black uppercase tracking-widest text-red-500 bg-red-950/60 border border-red-800/60 px-2.5 py-1 rounded-md inline-block mb-2">
+        🚗 4WHEELS Active Fleet
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">{title}</h2>
+      <p class="text-xs sm:text-sm text-slate-400 mt-1 max-w-xl">{subtitle}</p>
+    </div>
+
+    <!-- Navigation Arrows & Controls -->
+    <div class="flex items-center gap-2 mt-4 md:mt-0">
+      <button
+        type="button"
+        class="embla-prev-btn bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700 w-10 h-10 rounded-xl flex items-center justify-center transition-all shadow-md active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+        aria-label="Previous slide"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+      </button>
+
+      <button
+        type="button"
+        class="embla-next-btn bg-red-600 hover:bg-red-700 text-white border border-red-500 w-10 h-10 rounded-xl flex items-center justify-center transition-all shadow-lg shadow-red-600/20 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+        aria-label="Next slide"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Embla Viewport -->
+  <div class="embla overflow-hidden rounded-2xl cursor-grab active:cursor-grabbing" id="fleet-embla-carousel">
+    <div class="embla__container flex gap-6">
+      {vehicles.map((vehicle) => {
+        const isCoaster = vehicle.slug === 'toyota-coaster';
+
+        return (
+          <div class="embla__slide flex-[0_0_88%] sm:flex-[0_0_48%] lg:flex-[0_0_32%] min-w-0">
+            <div class={`vehicle-card bg-slate-900 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-950/30 overflow-hidden flex flex-col justify-between h-full ${
+              isCoaster ? 'border-amber-500/60 ring-1 ring-amber-500/30' : 'border-slate-800'
+            }`}>
+              <div>
+                <!-- Vehicle Visual Stage -->
+                <a href={`/fleet/${vehicle.slug}/`} class="block relative group">
+                  <VehicleImage vehicle={vehicle} showLabel={true} />
+
+                  <!-- Badges Top Bar Overlay -->
+                  <div class="absolute top-3 left-3 flex gap-1.5 flex-wrap z-20">
+                    <span class="bg-slate-900/90 border border-slate-700 text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider backdrop-blur-sm shadow-md">
+                      {vehicle.category}
+                    </span>
+                    {vehicle.engineCc && (
+                      <span class="bg-red-600/90 text-white text-[10px] font-black px-2.5 py-1 rounded-md tracking-wider backdrop-blur-sm shadow-md">
+                        {vehicle.engineCc}
+                      </span>
+                    )}
+                  </div>
+
+                  <div class="absolute top-3 right-3 flex flex-col gap-1.5 items-end z-20">
+                    {vehicle.featured && (
+                      <span class="bg-amber-500 text-slate-950 text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-md">
+                        POPULAR
+                      </span>
+                    )}
+                  </div>
+                </a>
+
+                <!-- Card Content Details -->
+                <div class="p-5 space-y-4">
+                  <div>
+                    <div class="text-[10px] font-bold text-red-500 uppercase tracking-widest">{vehicle.manufacturer}</div>
+                    <a href={`/fleet/${vehicle.slug}/`} class="hover:text-red-400 transition-colors">
+                      <h3 class="text-xl font-extrabold text-white tracking-tight leading-snug">
+                        {vehicle.model}
+                      </h3>
+                    </a>
+                    {vehicle.variant && (
+                      <p class="text-xs font-semibold text-slate-400 mt-0.5">
+                        {vehicle.variant}
+                      </p>
+                    )}
+                  </div>
+
+                  <!-- Technical Specs Grid -->
+                  <div class="grid grid-cols-2 gap-2 text-xs font-medium text-slate-300 bg-slate-950/70 p-3 rounded-xl border border-slate-800">
+                    <div>
+                      <span class="text-[10px] text-slate-500 uppercase font-bold block">Capacity</span>
+                      <span class="text-white font-bold flex items-center gap-1">
+                        👥 {vehicle.seats} Seats
+                      </span>
+                    </div>
+
+                    <div>
+                      <span class="text-[10px] text-slate-500 uppercase font-bold block">Transmission</span>
+                      <span class="text-white font-bold">{vehicle.transmission || 'Automatic'}</span>
+                    </div>
+
+                    <div>
+                      <span class="text-[10px] text-slate-500 uppercase font-bold block">Fuel System</span>
+                      <span class="text-white font-bold">{vehicle.fuelType || 'Petrol'}</span>
+                    </div>
+
+                    {vehicle.fuelEconomyRealWorld && (
+                      <div>
+                        <span class="text-[10px] text-slate-500 uppercase font-bold block">Fuel Economy</span>
+                        <span class="text-emerald-400 font-bold">{vehicle.fuelEconomyRealWorld}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <!-- STRICT CTA COMPLIANCE: BOOK YOUR TRIP & CALL -->
+              <div class="p-5 pt-0 border-t border-slate-800/80 mt-2 space-y-2">
+                <a
+                  href={`/build-your-rental/?vehicle=${vehicle.slug}&brand=${encodeURIComponent(vehicle.manufacturer)}&model=${encodeURIComponent(vehicle.model)}&category=${vehicle.category}`}
+                  class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm py-3 rounded-xl block text-center shadow-lg transition-all flex items-center justify-center gap-2"
+                >
+                  <span>BOOK YOUR TRIP</span>
+                  <span>→</span>
+                </a>
+
+                <a
+                  href="tel:+923216616644"
+                  class="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-2.5 rounded-xl block text-center border border-slate-700 transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <span>📞 CALL: 0321 6616644</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <!-- Pagination Dots Bar -->
+  <div class="embla-dots flex justify-center items-center gap-2 mt-6" id="fleet-embla-dots"></div>
+</div>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+
+  const emblaNode = document.getElementById('fleet-embla-carousel');
+  const prevBtnNode = document.querySelector('.embla-prev-btn');
+  const nextBtnNode = document.querySelector('.embla-next-btn');
+  const dotsNode = document.getElementById('fleet-embla-dots');
+
+  if (emblaNode) {
+    const emblaApi = EmblaCarousel(emblaNode, {
+      loop: true,
+      align: 'start',
+      slidesToScroll: 1,
+    });
+
+    // Generate Dots
+    const scrollSnaps = emblaApi.scrollSnapList();
+    if (dotsNode) {
+      dotsNode.innerHTML = scrollSnaps.map((_, index) => `
+        <button
+          class="embla-dot w-2.5 h-2.5 rounded-full bg-slate-700 transition-all duration-300"
+          type="button"
+          aria-label="Go to slide ${index + 1}"
+        ></button>
+      `).join('');
+    }
+
+    const dotNodes = dotsNode ? Array.from(dotsNode.querySelectorAll('.embla-dot')) : [];
+
+    const setSelectedDot = () => {
+      const selectedIndex = emblaApi.selectedScrollSnap();
+      dotNodes.forEach((dot, index) => {
+        if (index === selectedIndex) {
+          dot.classList.remove('bg-slate-700', 'w-2.5');
+          dot.classList.add('bg-red-500', 'w-7');
+        } else {
+          dot.classList.remove('bg-red-500', 'w-7');
+          dot.classList.add('bg-slate-700', 'w-2.5');
+        }
+      });
+    };
+
+    dotNodes.forEach((dot, index) => {
+      dot.addEventListener('click', () => emblaApi.scrollTo(index));
+    });
+
+    prevBtnNode?.addEventListener('click', () => emblaApi.scrollPrev());
+    nextBtnNode?.addEventListener('click', () => emblaApi.scrollNext());
+
+    emblaApi.on('select', setSelectedDot);
+    emblaApi.on('init', setSelectedDot);
+
+    // Auto-play interval with pause on hover
+    let autoplayTimer: any = null;
+    const startAutoplay = () => {
+      stopAutoplay();
+      autoplayTimer = setInterval(() => {
+        if (emblaApi.canScrollNext()) {
+          emblaApi.scrollNext();
+        } else {
+          emblaApi.scrollTo(0);
+        }
+      }, 4000);
+    };
+
+    const stopAutoplay = () => {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+    };
+
+    emblaNode.addEventListener('mouseenter', stopAutoplay);
+    emblaNode.addEventListener('mouseleave', startAutoplay);
+    emblaNode.addEventListener('touchstart', stopAutoplay);
+
+    startAutoplay();
+  }
+</script>

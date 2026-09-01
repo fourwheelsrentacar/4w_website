@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import FleetSlider from '../components/FleetSlider.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
 import { BUSINESS_INFO } from '../data/business';
@@ -92,6 +93,13 @@ const homepageFaqs = [
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Interactive Fleet Slider Section -->
+  <section class="py-12 bg-slate-950 text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <FleetSlider title="4WHEELS Active Rental Fleet" subtitle="Browse our core vehicles available in Lahore for daily, monthly, airport, and outstation rentals." />
     </div>
   </section>
 

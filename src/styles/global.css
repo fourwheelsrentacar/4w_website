@@ -18,13 +18,99 @@
   }
 }
 
-/* Automotive Micro-interactions & Polish */
+/* Glassmorphism & High-Contrast Surface Utilities */
+.glass-card {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(224, 18, 26, 0.2);
+}
+
+/* Automotive Racing-Red Pulse & Aura Animations */
+@keyframes pulseGlowRed {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(224, 18, 26, 0.35), 0 0 30px rgba(224, 18, 26, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(224, 18, 26, 0.65), 0 0 50px rgba(224, 18, 26, 0.35);
+  }
+}
+
+.pulse-glow-red {
+  animation: pulseGlowRed 3s infinite ease-in-out;
+}
+
+/* Shimmer Highlight Sweep Effect */
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmerSweep 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events-none: none;
+}
+
+/* Vehicle Micro-interactions & Card Hover Elevation */
 .vehicle-card {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+  will-change: transform, box-shadow;
 }
 
 .vehicle-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.005);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(224, 18, 26, 0.2);
+  border-color: rgba(224, 18, 26, 0.5);
+}
+
+.vehicle-stage-img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+}
+
+.vehicle-card:hover .vehicle-stage-img {
+  transform: scale(1.04) translateY(-2px);
+  filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.8));
+}
+
+.btn-interactive {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-interactive:hover {
+  transform: translateY(-1px);
+}
+
+.btn-interactive:active {
+  transform: scale(0.97);
 }
 
 .btn-next, .btn-prev, .filter-cat-btn {
@@ -32,15 +118,38 @@
 }
 
 .btn-next:active, .btn-prev:active {
-  transform: scale(0.98);
+  transform: scale(0.95);
+}
+
+/* Custom Sleek Automotive Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+  border: 1px solid #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-primary);
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .vehicle-card, .btn-next, .btn-prev, .filter-cat-btn {
+  .vehicle-card, .vehicle-stage-img, .btn-next, .btn-prev, .filter-cat-btn, .btn-interactive {
     transition: none !important;
     transform: none !important;
+  }
+  .pulse-glow-red, .shimmer-container::after {
+    animation: none !important;
   }
 }
