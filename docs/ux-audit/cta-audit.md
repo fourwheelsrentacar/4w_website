@@ -1,28 +1,22 @@
-# 4WHEELS Rent a Car — Call, WhatsApp & Commercial CTA Audit
+# 4WHEELS Rent a Car — Commercial CTA Audit Matrix
 
-## Summary
-This document provides a comprehensive audit of all Call (tel:), WhatsApp (wa.me:), and commercial inquiry CTAs across the 4WHEELS platform.
-
-## CTA Verification Matrix
-
-| Page | CTA Text | Target Purpose | Href / Intent | Mobile Action | Desktop Action | Message Context | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Global Header** | Call 0321 6616644 | Voice Phone Call | `tel:+923216616644` | Opens Phone Dialer | Opens Softphone / Tel Protocol | Voice Call | ✅ PASS |
-| **Global Header** | WhatsApp | Support Chat | `https://wa.me/923216616644` | Opens WhatsApp App | Opens WhatsApp Web | "Hi 4WHEELS, I need some assistance." | ✅ PASS |
-| **Global Header** | BOOK YOUR TRIP | Configurator | `/build-your-rental/` | Navigates to Configurator | Navigates to Configurator | Direct Booking Start | ✅ PASS |
-| **Homepage Hero** | 🚗 BOOK YOUR TRIP | Configurator | `/build-your-rental/` | Navigates to Configurator | Navigates to Configurator | Direct Booking Start | ✅ PASS |
-| **Homepage Hero** | 🧭 PLAN MY TRIP | Trip Planner | `/trip-planner/` | Navigates to Trip Planner | Navigates to Trip Planner | Trip Planning | ✅ PASS |
-| **Fleet Catalog** | BOOK YOUR TRIP | Vehicle Configurator | `/build-your-rental/?vehicle=...` | Pre-fills Selected Vehicle | Pre-fills Selected Vehicle | Selected Model Prefill | ✅ PASS |
-| **Fleet Catalog** | 📞 CALL: 0321 6616644 | Voice Call | `tel:+923216616644` | Opens Phone Dialer | Opens Softphone / Tel Protocol | Voice Call | ✅ PASS |
-| **Vehicle Detail** | Book Your Trip | Configurator | `/build-your-rental/?vehicle=...` | Pre-fills Selected Vehicle | Pre-fills Selected Vehicle | Selected Model Prefill | ✅ PASS |
-| **Vehicle Detail** | 📞 Call: 0321 6616644 | Voice Call | `tel:+923216616644` | Opens Phone Dialer | Opens Softphone / Tel Protocol | Voice Call | ✅ PASS |
-| **Configurator (Review)** | 💬 SEND INQUIRY ON WHATSAPP | WhatsApp Inquiry | `https://wa.me/923216616644` | Opens WhatsApp App | Opens WhatsApp Web | Complete Structured Booking Inquiry (Vehicle, Route, Distance, Dates, Passengers, Contact) | ✅ PASS |
-| **Configurator (Summary)** | 📞 Call Customer Care | Voice Call | `tel:+923216616644` | Opens Phone Dialer | Opens Softphone / Tel Protocol | Voice Call | ✅ PASS |
-| **Trip Planner** | 🗺️ View Route on Google Maps | External Directions | `https://www.google.com/maps/dir/...` | Opens Google Maps | Opens Google Maps | Travel Mode Driving | ✅ PASS |
-| **Trip Planner** | 💬 Send Trip Plan to 4WHEELS | WhatsApp Inquiry | `https://wa.me/923216616644` | Opens WhatsApp App | Opens WhatsApp Web | Complete Structured Trip Plan Inquiry | ✅ PASS |
-| **Trip Planner** | 📞 Call Trip Planner | Voice Call | `tel:+923216616644` | Opens Phone Dialer | Opens Softphone / Tel Protocol | Voice Call | ✅ PASS |
-| **Find My Vehicle** | Select & Book | Configurator | `/book/` | Navigates to Configurator | Navigates to Configurator | Booking Flow | ✅ PASS |
-| **Compare Vehicles** | Choose & Configure | Configurator | `/build-your-rental/?brand=...` | Pre-fills Selected Model | Pre-fills Selected Model | Configurator Prefill | ✅ PASS |
-| **Compare Vehicles** | Ask 4WHEELS Which One Is Better | WhatsApp Inquiry | `https://wa.me/923216616644` | Opens WhatsApp App | Opens WhatsApp Web | "Hi 4WHEELS, I am comparing vehicles..." | ✅ PASS |
-| **Global Footer** | 📞 Customer Care Line | Voice Call | `tel:+923216616644` | Opens Phone Dialer | Opens Softphone / Tel Protocol | Voice Call | ✅ PASS |
-| **Global Footer** | 💬 Official WhatsApp | Support Chat | `https://wa.me/923216616644` | Opens WhatsApp App | Opens WhatsApp Web | "Hi 4WHEELS, I need some assistance." | ✅ PASS |
+| Page Path | CTA Text | Type | Destination Href | Expected Behavior | Actual Behavior | Viewport | Status |
+|---|---|---|---|---|---|---|---|
+| `/` | 🚗 BOOK YOUR TRIP | Primary Button | `/booking/` | Opens 7-step visual configurator at Step 1 | Opens Configurator Step 1 | Desktop / Mobile | ✅ PASS |
+| `/` | 🧭 PLAN MY TRIP | Secondary Button | `/trip-planner/` | Opens trip planner & cost estimator | Opens Trip Planner | Desktop / Mobile | ✅ PASS |
+| Header | BOOK YOUR TRIP | Header CTA | `/booking/` | Opens 7-step visual configurator | Opens Configurator | Desktop / Mobile | ✅ PASS |
+| Footer | BOOK YOUR TRIP | Footer CTA | `/booking/` | Opens 7-step visual configurator | Opens Configurator | Desktop / Mobile | ✅ PASS |
+| Mobile Sticky Bar | 🚗 Book Your Trip | Sticky Bar | `/booking/` | Opens 7-step visual configurator | Opens Configurator | Mobile | ✅ PASS |
+| Mobile Sticky Bar | 📞 Call Us | Sticky Bar | `tel:+923216616644` | Triggers voice call to 0321 6616644 | Triggers voice call | Mobile | ✅ PASS |
+| `/fleet/` | BOOK YOUR TRIP | Card CTA | `/booking/?vehicle=...` | Opens configurator with pre-selected vehicle | Opens Configurator at Step 5 | Desktop / Mobile | ✅ PASS |
+| `/fleet/` | CALL 0321 6616644 | Card CTA | `tel:+923216616644` | Triggers voice call to 0321 6616644 | Triggers voice call | Desktop / Mobile | ✅ PASS |
+| `/fleet/[vehicle]/` | Book Your Trip | Primary CTA | `/booking/?vehicle=...` | Pre-selects vehicle and moves to route step | Opens Configurator at Step 5 | Desktop / Mobile | ✅ PASS |
+| `/vehicles/[brand]/[model]/` | Book Your Trip | Primary CTA | `/booking/?vehicle=...` | Pre-selects catalog vehicle and moves to route step | Opens Configurator at Step 5 | Desktop / Mobile | ✅ PASS |
+| `/find-my-vehicle/` | BOOK YOUR TRIP | Result CTA | `/booking/?vehicle=...` | Pre-selects matched vehicle | Opens Configurator at Step 5 | Desktop / Mobile | ✅ PASS |
+| `/compare-vehicles/` | Choose & Configure | Table CTA | `/booking/?brand=...` | Pre-selects brand & model | Opens Configurator at Step 3/5 | Desktop / Mobile | ✅ PASS |
+| `/official/` | 💬 Contact Official WhatsApp | Primary CTA | `https://wa.me/923216616644?text=...` | Opens official WhatsApp chat | Opens WhatsApp chat | Desktop / Mobile | ✅ PASS |
+| `/press/` | Verify Official Details | Advisory CTA | `/official/` | Navigates to official verification hub | Navigates to Verification Hub | Desktop / Mobile | ✅ PASS |
+| `/press/[slug]/` | View Official Verification Hub | Article CTA | `/official/` | Navigates to official verification hub | Navigates to Verification Hub | Desktop / Mobile | ✅ PASS |
+| `/routes/` | Plan This Trip | Route CTA | `/trip-planner/?origin=...` | Opens pre-filled trip planner | Opens Trip Planner | Desktop / Mobile | ✅ PASS |
+| `/routes/[slug]/` | 🚗 BOOK YOUR TRIP | Primary CTA | `/booking/` | Opens 7-step visual configurator | Opens Configurator | Desktop / Mobile | ✅ PASS |
+| `/guides/` | 🚗 Book Your Trip | Article CTA | `/booking/` | Opens 7-step visual configurator | Opens Configurator | Desktop / Mobile | ✅ PASS |

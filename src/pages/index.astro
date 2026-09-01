@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import FleetSlider from '../components/FleetSlider.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
 import { BUSINESS_INFO } from '../data/business';
@@ -51,7 +52,7 @@ const homepageFaqs = [
           </p>
           <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
             <a
-              href="/build-your-rental/"
+              href="/booking/"
               class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-base px-7 py-3.5 rounded-xl transition-all text-center shadow-lg shadow-red-600/20 uppercase tracking-wider"
             >
               🚗 BOOK YOUR TRIP
@@ -78,7 +79,7 @@ const homepageFaqs = [
           </ul>
           <div class="pt-2 flex flex-col gap-2">
             <a
-              href="/build-your-rental/"
+              href="/booking/"
               class="block w-full text-center bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 rounded-lg text-sm transition-colors uppercase"
             >
               Configure Rental
@@ -94,6 +95,9 @@ const homepageFaqs = [
       </div>
     </div>
   </section>
+
+  <!-- Popular Vehicles Embla Slider -->
+  <FleetSlider title="POPULAR 4WHEELS VEHICLES" />
 
   <!-- Compact Discovery Sections -->
   <section class="py-12 bg-slate-950 border-b border-slate-800">
@@ -219,7 +223,7 @@ const homepageFaqs = [
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm font-bold">
         <a
-          href="/build-your-rental/"
+          href="/booking/"
           class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-8 py-3.5 rounded-xl transition-colors uppercase tracking-wider"
         >
           🚗 BOOK YOUR TRIP
@@ -245,7 +249,7 @@ const homepageFaqs = [
       title="Ready to Plan & Book Your Trip?"
       description="Use our booking configurator to select dates and vehicles, and receive direct WhatsApp verification from 4WHEELS Customer Care."
       primaryBtnText="Book Your Trip"
-      primaryBtnHref="/build-your-rental/"
+      primaryBtnHref="/booking/"
     />
   </div>
 </Layout>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://4wheelsrentacar.pk/sitemap-index.xml
+Sitemap: https://www.4wheelspk.com/sitemap-index.xml

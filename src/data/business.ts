@@ -37,7 +37,7 @@ export const BUSINESS_INFO = {
     latitude: 31.4577778,
     longitude: 74.2790833
   },
-  siteUrl: 'https://4wheelsrentacar.pk',
+  siteUrl: 'https://www.4wheelspk.com',
   openingHours: 'Contact via Phone/WhatsApp for bookings',
   primaryServices: [
     { title: 'Self-Drive Cars', href: '/self-drive-car-rental-lahore/' },

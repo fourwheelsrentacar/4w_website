@@ -36,7 +36,7 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/fleet/buses-coasters/`;
         </p>
 
         <div class="mt-8 flex flex-wrap justify-center gap-4">
-          <a href="/build-your-rental/?category=coaster" class="bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg shadow-md transition-colors">
+          <a href="/booking/?category=coaster" class="bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg shadow-md transition-colors">
             Book Group Trip
           </a>
           <a href="tel:+923216616644" class="bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3 rounded-lg border border-white/20 transition-colors">
@@ -95,7 +95,7 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/fleet/buses-coasters/`;
             <!-- STRICT CTA RULE COMPLIANCE: Every fleet card contains ONLY Book Your Trip + Call -->
             <div class="pt-4 border-t border-gray-100 space-y-2">
               <a
-                href={`/build-your-rental/?vehicle=${encodeURIComponent(item.id)}&category=${encodeURIComponent(item.category)}`}
+                href={`/booking/?vehicle=${encodeURIComponent(item.id)}&category=${encodeURIComponent(item.category)}`}
                 class="w-full text-center bg-brand-red hover:bg-red-700 text-white font-extrabold py-3 rounded-xl text-sm block transition-colors shadow-sm"
               >
                 Book Your Trip

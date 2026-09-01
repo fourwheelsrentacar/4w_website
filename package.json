@@ -13,8 +13,13 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^6.0.2",
+    "@floating-ui/dom": "^1.8.0",
+    "@formkit/auto-animate": "^0.10.0",
     "@tailwindcss/vite": "^4.0.0",
     "astro": "^5.1.0",
+    "embla-carousel": "^8.6.0",
+    "motion": "^13.1.1",
+    "photoswipe": "^5.4.4",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.0.0"
   },

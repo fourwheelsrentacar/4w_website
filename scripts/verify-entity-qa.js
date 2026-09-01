@@ -4,7 +4,9 @@ import path from 'path';
 const PROHIBITED_DOMAINS = [
   '4wheels.pk',
   'www.4wheels.pk',
-  '4wheelsrental.pk'
+  '4wheelsrental.pk',
+  '4wheelsrentacar.pk',
+  'www.4wheelsrentacar.pk'
 ];
 
 let errors = [];

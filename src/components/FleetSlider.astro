@@ -1,0 +1,174 @@
+---
+import { FLEET_VEHICLES, type Vehicle } from '../data/fleet';
+import { BUSINESS_INFO } from '../data/business';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  vehicles?: Vehicle[];
+  autoplay?: boolean;
+}
+
+const {
+  title = "POPULAR 4WHEELS VEHICLES",
+  subtitle = "Directly available from 4WHEELS Johar Town headquarters in Lahore",
+  vehicles = FLEET_VEHICLES.slice(0, 8),
+  autoplay = false
+} = Astro.props;
+---
+
+<section class="py-12 bg-slate-900 border-y border-slate-800 text-white overflow-hidden" id="fleet-slider-section">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header & Controls -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-400 text-xs font-extrabold uppercase tracking-wider mb-2">
+          <span>🚗 Verified Core Fleet</span>
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+          {title}
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1">
+          {subtitle}
+        </p>
+      </div>
+
+      <!-- Arrow Controls & Pagination -->
+      <div class="flex items-center gap-3 shrink-0">
+        <button
+          type="button"
+          id="embla-prev"
+          aria-label="Previous Vehicle Slide"
+          class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-red-600 text-white border border-slate-700 flex items-center justify-center font-black text-lg transition-colors shadow-md disabled:opacity-40 cursor-pointer"
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          id="embla-next"
+          aria-label="Next Vehicle Slide"
+          class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-red-600 text-white border border-slate-700 flex items-center justify-center font-black text-lg transition-colors shadow-md disabled:opacity-40 cursor-pointer"
+        >
+          ›
+        </button>
+      </div>
+    </div>
+
+    <!-- Embla Carousel Viewport -->
+    <div class="embla overflow-hidden" id="fleet-embla-viewport">
+      <div class="embla__container flex gap-4 sm:gap-6 py-2">
+        {vehicles.map((v) => (
+          <div class="embla__slide shrink-0 w-[86%] sm:w-[47%] lg:w-[31%] bg-slate-950 border border-slate-800 hover:border-red-500/80 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 shadow-xl group">
+            <div>
+              <!-- Vehicle Image -->
+              <div class="aspect-[16/9] bg-slate-900 rounded-xl overflow-hidden border border-slate-800 p-2 mb-4 relative flex items-center justify-center">
+                <img
+                  src={v.heroImage || '/vehicles/fleet/toyota-corolla/hero.webp'}
+                  alt={`${v.manufacturer} ${v.model} rental Lahore`}
+                  loading="lazy"
+                  class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+                <span class="absolute top-2 left-2 text-[10px] font-extrabold bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded uppercase tracking-wider">
+                  ✓ AVAILABLE
+                </span>
+                <span class="absolute bottom-2 right-2 text-[10px] font-bold bg-slate-950/80 text-slate-300 px-2 py-0.5 rounded border border-slate-800">
+                  {v.yearRange}
+                </span>
+              </div>
+
+              <!-- Specs & Details -->
+              <div class="space-y-2">
+                <span class="text-[10px] font-bold text-red-500 uppercase tracking-wider block">
+                  {v.manufacturer}
+                </span>
+                <h3 class="text-lg font-black text-white group-hover:text-red-400 transition-colors">
+                  {v.manufacturer} {v.model}
+                </h3>
+                <p class="text-xs text-slate-400 line-clamp-2">
+                  {v.headline || v.tagline}
+                </p>
+
+                <!-- Spec Chips -->
+                <div class="flex flex-wrap gap-2 pt-2 text-[11px] font-bold">
+                  <span class="bg-slate-900 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800 flex items-center gap-1">
+                    👥 {v.seatingCapacity} Seats
+                  </span>
+                  <span class="bg-slate-900 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800 flex items-center gap-1">
+                    ⚙️ {v.transmission}
+                  </span>
+                  <span class="bg-slate-900 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800 flex items-center gap-1">
+                    ⛽ {v.fuelType}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- STRICT CTA COMPLIANCE: BOOK YOUR TRIP & CALL ONLY -->
+            <div class="pt-5 border-t border-slate-800/80 mt-4 space-y-2">
+              <a
+                href={`/booking/?vehicle=${v.slug}&brand=${encodeURIComponent(v.manufacturer)}&model=${encodeURIComponent(v.model)}`}
+                class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs py-3 rounded-xl block text-center uppercase tracking-wider shadow-lg transition-colors"
+              >
+                🚗 BOOK YOUR TRIP
+              </a>
+              <a
+                href={BUSINESS_INFO.telLink}
+                class="w-full bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-xs py-2.5 rounded-xl block text-center border border-slate-800 transition-colors"
+              >
+                📞 CALL {BUSINESS_INFO.phoneDisplay}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Dots Pagination Indicator -->
+    <div class="flex justify-center items-center gap-2 mt-6" id="embla-dots"></div>
+
+  </div>
+</section>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+
+  const viewportNode = document.getElementById('fleet-embla-viewport');
+  const prevBtn = document.getElementById('embla-prev');
+  const nextBtn = document.getElementById('embla-next');
+  const dotsContainer = document.getElementById('embla-dots');
+
+  if (viewportNode) {
+    const embla = EmblaCarousel(viewportNode as HTMLElement, {
+      loop: true,
+      align: 'start',
+      skipSnaps: false,
+      dragFree: false
+    });
+
+    const updateDots = () => {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      const snapList = embla.scrollSnapList();
+      const selectedSnap = embla.selectedScrollSnap();
+
+      snapList.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.ariaLabel = `Go to slide ${index + 1}`;
+        dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+          index === selectedSnap ? 'bg-red-600 w-6' : 'bg-slate-700 hover:bg-slate-500'
+        }`;
+        dot.addEventListener('click', () => embla.scrollTo(index));
+        dotsContainer.appendChild(dot);
+      });
+    };
+
+    prevBtn?.addEventListener('click', () => embla.scrollPrev());
+    nextBtn?.addEventListener('click', () => embla.scrollNext());
+
+    embla.on('select', updateDots);
+    embla.on('init', updateDots);
+    updateDots();
+  }
+</script>

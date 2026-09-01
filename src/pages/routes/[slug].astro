@@ -21,7 +21,7 @@ if (!route) {
 
 const pageTitle = `${route.title} | 4WHEELS Pakistan Routes`;
 const pageDescription = `Detailed route breakdown from ${route.origin} to ${route.destination}: ${route.distanceKm} km, driving duration ${route.drivingTimeHours}, fuel estimate, tolls, and recommended rental cars.`;
-const canonicalUrl = `https://4wheelsrentacar.pk/routes/${route.slug}/`;
+const canonicalUrl = `https://www.4wheelspk.com/routes/${route.slug}/`;
 
 const tripPlannerUrl = `/trip-planner/?origin=${encodeURIComponent(route.origin)}&destination=${encodeURIComponent(route.destination)}`;
 const waContextUrl = getContextualWhatsAppUrl({
@@ -72,7 +72,7 @@ const waContextUrl = getContextualWhatsAppUrl({
             <span>🧭 PLAN THIS TRIP</span>
           </a>
           <a
-            href="/build-your-rental/"
+            href="/booking/"
             class="bg-red-600 hover:bg-red-700 text-white font-extrabold px-6 py-3 rounded-xl transition-all shadow-md text-xs sm:text-sm uppercase tracking-wide flex items-center gap-2"
           >
             <span>🚗 BOOK YOUR TRIP</span>
@@ -153,7 +153,7 @@ const waContextUrl = getContextualWhatsAppUrl({
         title={`Ready to Travel ${route.origin} to ${route.destination}?`}
         description="Launch our interactive trip planner or submit a direct WhatsApp inquiry with 4WHEELS Customer Care."
         primaryBtnText="Book Your Trip"
-        primaryBtnHref="/build-your-rental/"
+        primaryBtnHref="/booking/"
       />
 
     </div>
