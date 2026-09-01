@@ -825,7 +825,7 @@ const COLOR_OPTIONS = [
         : `<span class="bg-amber-950 text-amber-300 border border-amber-800 text-[10px] font-black px-2.5 py-0.5 rounded uppercase">⚡ REQUEST THIS MODEL</span>`;
 
       const card = document.createElement('div');
-      card.className = 'model-card bg-slate-950 border border-slate-800 hover:border-red-500 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 transition-all duration-300 group';
+      card.className = 'model-card bg-slate-950 border border-slate-800 hover:border-red-500 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 transition-all duration-300 group cursor-pointer hover:shadow-xl hover:shadow-red-950/30';
       card.setAttribute('data-vehicle-id', v.id);
 
       card.innerHTML = `
@@ -859,26 +859,22 @@ const COLOR_OPTIONS = [
         </div>
 
         <div class="w-full sm:w-auto shrink-0 pt-2 sm:pt-0">
-          <button type="button" class="btn-select-model w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow-md cursor-pointer" data-id="${v.id}">
+          <button type="button" class="btn-select-model w-full sm:w-auto bg-red-600 group-hover:bg-red-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow-md pointer-events-none" data-id="${v.id}">
             VIEW YEARS / SHAPES →
           </button>
         </div>
       `;
 
-      container.appendChild(card);
-    });
-
-    document.querySelectorAll('.btn-select-model').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const vId = btn.getAttribute('data-id');
-        const found = catalog.find((item: any) => item.id === vId);
+      card.addEventListener('click', () => {
+        const found = catalog.find((item: any) => item.id === v.id);
         if (found) {
           selectedVehicleObj = found;
           renderYearShapeOptions();
           showStep(4);
         }
       });
+
+      container.appendChild(card);
     });
   };
 
