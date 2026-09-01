@@ -2,58 +2,83 @@
 import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
 
 const title = "Frequently Asked Questions | 4WHEELS Rent a Car Lahore";
-const description = "Find answers to frequently asked questions about car rental in Lahore with 4WHEELS. Learn about self-drive, driver options, monthly rentals, and airport transfers.";
+const description = "Find answers to frequently asked questions about car rental in Lahore with 4WHEELS. Learn about official domains, self-drive, chauffeur options, monthly rentals, airport transfers, and booking verification.";
 
 const allFaqs = [
   {
-    question: "What is the official 4WHEELS Rent a Car phone number?",
-    answer: "The official voice call and WhatsApp number for 4WHEELS Rent a Car is 0321 6616644 (+92 321 6616644 internationally)."
+    question: "What is the official 4WHEELS website?",
+    answer: "The official production website of 4WHEELS Rent a Car is www.4wheelspk.com. All canonical pages, vehicle specs, and booking configurators derive strictly from this domain."
   },
   {
-    question: "What is the official 4WHEELS WhatsApp number?",
-    answer: "Our official WhatsApp customer care line is +92 321 6616644. Always confirm you are communicating with this number for quotes and bookings."
+    question: "How do I book a car with 4WHEELS?",
+    answer: "You can configure your trip step-by-step using our visual booking configurator at www.4wheelspk.com/booking/. Your prefilled summary is sent directly to 4WHEELS customer care on WhatsApp for immediate confirmation."
   },
   {
-    question: "Where is the official 4WHEELS Lahore office located?",
-    answer: "Our verified physical office is located at Plot number 5, Block F1, Johar Town Phase 1, Lahore, Pakistan."
+    question: "What is the official 4WHEELS phone and WhatsApp number?",
+    answer: "The official voice line and WhatsApp support number for 4WHEELS Rent a Car is 0321 6616644 (+92 321 6616644 internationally)."
   },
   {
-    question: "How can I verify that I am contacting official 4WHEELS?",
-    answer: "Verify that phone/WhatsApp inquiries connect to 0321 6616644, emails originate from 4wheels44@gmail.com, and our official Facebook is facebook.com/4wheelrentacar/. You can also check our /official/ verification page."
+    question: "Where is 4WHEELS located in Lahore?",
+    answer: "Our official head office and primary fleet dispatch hub is located at Plot number 5, Block F1, Johar Town Phase 1, Lahore, Pakistan."
   },
   {
-    question: "Does 4WHEELS have franchise locations?",
-    answer: "Please verify any claimed branch or franchise directly with 4WHEELS customer care at 0321 6616644 before booking or making payment."
+    question: "How can I verify an official 4WHEELS booking?",
+    answer: "Confirm that your booking originated from www.4wheelspk.com/booking/ and was verified directly by official customer care at 0321 6616644 or WhatsApp +92 321 6616644."
   },
   {
-    question: "Can I rent a self-drive car in Lahore?",
-    answer: "Yes, 4WHEELS provides self-drive car rental options in Lahore. Contact us directly via phone or WhatsApp to verify current availability and requirement verification procedures."
+    question: "Does 4WHEELS offer self-drive cars in Lahore?",
+    answer: "Yes, 4WHEELS provides self-drive car rental options in Lahore. Customer identity verification (such as local CNIC and driving license inspection during handover) applies."
   },
   {
-    question: "Can I rent a car with a driver?",
-    answer: "Yes, we offer professional cars with drivers for local city travel, business meetings, family outings, and airport transfers across Lahore."
-  },
-  {
-    question: "Do you offer daily rentals?",
-    answer: "Yes, short-term daily rentals are available depending on vehicle availability for your dates."
-  },
-  {
-    question: "Do you offer monthly rentals?",
-    answer: "Yes, extended long-term monthly rentals can be arranged for residents, corporate stays, or visiting guests."
+    question: "Can I book a car with a driver?",
+    answer: "Yes, professional chauffeur-driven cars are available for local city travel, business meetings, wedding events, and intercity trips across Pakistan."
   },
   {
     question: "Can I book a car for Lahore Airport transfers?",
-    answer: "Yes, we provide direct pickup and drop-off services for Allama Iqbal International Airport Lahore."
+    answer: "Yes, 4WHEELS offers direct pickup and drop-off protocol services for Allama Iqbal International Airport (LHE) Lahore."
   },
   {
-    question: "Do you provide corporate rentals?",
-    answer: "Yes, 4WHEELS offers tailored vehicle arrangements for corporate travel, executive visits, and business projects in Lahore."
+    question: "Can I rent a vehicle for one day or monthly?",
+    answer: "Yes, both short-term daily rentals and long-term monthly vehicle arrangements are available depending on fleet availability."
   },
   {
-    question: "How do I check vehicle availability?",
-    answer: "Call 0321 6616644 or message us on WhatsApp with your required travel dates, duration, and rental preference."
+    question: "Can I request a particular model year or preferred color?",
+    answer: "Yes, our booking engine allows you to select specific generation body shapes and preferred colors (e.g. Super White, Attitude Black). Preferred colors are subject to rental availability while 'Any Available Color' offers the fastest confirmation."
+  },
+  {
+    question: "Are requested vehicle colors guaranteed?",
+    answer: "Preferred color selections are fulfilled whenever available in active inventory. If your exact preferred color is temporarily reserved, customer care will offer the closest available option."
+  },
+  {
+    question: "Can I request a vehicle model not listed in the regular fleet?",
+    answer: "Yes, through our Pakistan Vehicle Request Catalog, you can request specific market models (such as BYD Seal, Haval H6, or Hyundai Sonata) for specialized arrangements."
+  },
+  {
+    question: "Can I book an SUV for northern-area travel?",
+    answer: "Yes, 4x4 SUVs like the Toyota Fortuner and Hilux Revo Rocco are fully equipped for outstation travel, steep gradients, and northern-area tours."
+  },
+  {
+    question: "Can I rent a Coaster or bus for group transport?",
+    answer: "Yes, 4WHEELS operates executive 22-seater Toyota Coasters and 28-to-51 seater tour coaches with experienced drivers for group travel."
+  },
+  {
+    question: "How are intercity route distances calculated?",
+    answer: "Route distances and driving times are calculated using our verified Pakistan route database and official NHA motorway mileage data."
+  },
+  {
+    question: "Do I upload my CNIC or license on the website?",
+    answer: "No, 4WHEELS never requires public digital upload of government ID or license documents on public websites. Verification is conducted securely during physical vehicle handover."
+  },
+  {
+    question: "How can I verify a claimed physical branch?",
+    answer: "4WHEELS operates its primary head office exclusively in Johar Town Phase 1, Lahore. Any other claimed branch must be verified via our Official Verification Hub or customer care line at 0321 6616644."
+  },
+  {
+    question: "What should I do if I see another similar-named website?",
+    answer: "Other properties may use similar '4 Wheels' naming. Please verify all bookings, domain URLs, and payment requests through www.4wheelspk.com or official customer care."
   }
 ];
 ---
@@ -63,11 +88,14 @@ const allFaqs = [
   <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
+        <span class="bg-red-600 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
+          Customer Support & FAQ
+        </span>
         <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
           Frequently Asked Questions
         </h1>
         <p class="text-lg text-slate-300 leading-relaxed">
-          Clear answers to common questions about car rental services with 4WHEELS in Lahore.
+          Clear, direct answers to common questions about vehicle rentals, official domains, chauffeur services, and booking verification with 4WHEELS in Lahore.
         </p>
       </div>
     </div>
@@ -81,8 +109,10 @@ const allFaqs = [
   <!-- Final CTA -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
     <CTASection
-      heading="Have More Questions?"
-      subheading="Contact 4WHEELS directly at 0321 6616644 or via WhatsApp to get immediate assistance."
+      title="Have More Questions?"
+      description="Contact official 4WHEELS Customer Care directly at 0321 6616644 or via WhatsApp to get immediate assistance."
+      primaryBtnText="Book Your Trip"
+      primaryBtnHref="/booking/"
     />
   </div>
 </Layout>

@@ -2,9 +2,9 @@ export async function notifyIndexNow(urls: string[], apiKey: string): Promise<bo
   if (!urls || urls.length === 0) return false;
 
   const payload = {
-    host: '4wheelsrentacar.pk',
+    host: 'www.4wheelspk.com',
     key: apiKey,
-    keyLocation: `https://4wheelsrentacar.pk/${apiKey}.txt`,
+    keyLocation: `https://www.4wheelspk.com/${apiKey}.txt`,
     urlList: urls
   };
 

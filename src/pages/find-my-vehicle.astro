@@ -127,10 +127,10 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/find-my-vehicle/`;
                     View Specs
                   </a>
                   <a
-                    href={`/book/`}
-                    class="flex-1 text-center text-xs font-bold bg-brand-red hover:bg-red-700 text-white py-2 rounded-lg transition-colors"
+                    href={`/booking/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}`}
+                    class="flex-1 text-center text-xs font-bold bg-brand-red hover:bg-red-700 text-white py-2 rounded-lg transition-colors uppercase tracking-wider"
                   >
-                    Select & Book
+                    BOOK YOUR TRIP
                   </a>
                 </div>
               </div>

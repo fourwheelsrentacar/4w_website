@@ -26,19 +26,19 @@ const articleSchema = {
   "author": {
     "@type": "Organization",
     "name": "4WHEELS Rent a Car",
-    "url": "https://4wheelsrentacar.pk"
+    "url": "https://www.4wheelspk.com"
   },
   "publisher": {
     "@type": "Organization",
     "name": "4WHEELS Rent a Car",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://4wheelsrentacar.pk/images/logo.png"
+      "url": "https://www.4wheelspk.com/images/logo.png"
     }
   },
   "datePublished": guide.datePublished,
   "dateModified": guide.dateModified,
-  "mainEntityOfPage": `https://4wheelsrentacar.pk/guides/${guide.slug}/`
+  "mainEntityOfPage": `https://www.4wheelspk.com/guides/${guide.slug}/`
 };
 ---
 
@@ -46,7 +46,7 @@ const articleSchema = {
   <SEOHead
     title={`${guide.title} | 4WHEELS Knowledge Hub`}
     description={guide.excerpt}
-    canonicalUrl={`https://4wheelsrentacar.pk/guides/${guide.slug}/`}
+    canonicalUrl={`https://www.4wheelspk.com/guides/${guide.slug}/`}
   />
 
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
@@ -167,7 +167,7 @@ const articleSchema = {
         </div>
         <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
           <a
-            href="/build-your-rental/"
+            href="/booking/"
             class="bg-red-600 hover:bg-red-700 text-white font-extrabold px-6 py-3 rounded-xl transition-all shadow-md text-xs sm:text-sm text-center uppercase tracking-wide"
           >
             🚗 Book Your Trip

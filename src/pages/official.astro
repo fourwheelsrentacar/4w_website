@@ -3,10 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import SEOHead from '../components/SEOHead.astro';
 import CTASection from '../components/CTASection.astro';
 import { BUSINESS_INFO } from '../data/business';
+import { PRESS_RELEASES } from '../data/press';
 import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
-const pageTitle = "Official 4WHEELS Rent a Car | Serving Lahore Since 2008";
-const pageDescription = "Verify the genuine official 4WHEELS Rent a Car business identity, contact details, Johar Town office address, website domain, and payment instructions.";
+const pageTitle = "Official Brand Verification Hub | 4WHEELS Rent a Car Lahore";
+const pageDescription = "Verify the genuine official 4WHEELS Rent a Car business identity, official website domain (www.4wheelspk.com), Johar Town office address, customer care line, and payment instructions.";
 
 const mapsSearchUrl = BUSINESS_INFO.mapsSearchUrl;
 const mapsDirectionsUrl = BUSINESS_INFO.mapsDirectionsUrl;
@@ -15,6 +16,8 @@ const waUrl = getContextualWhatsAppUrl({
   pageTitle: 'Official Brand Verification Hub',
   canonicalUrl: `${BUSINESS_INFO.siteUrl}/official/`,
 });
+
+const advisories = PRESS_RELEASES.filter(p => p.category === 'Customer Advisory' || p.category === 'Brand Verification Notice' || p.category === 'Official Statement');
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonicalPath="/official/">
@@ -22,241 +25,203 @@ const waUrl = getContextualWhatsAppUrl({
     slot="seo"
     title={pageTitle}
     description={pageDescription}
-    canonicalPath="/official/"
+    canonicalUrl={`${BUSINESS_INFO.siteUrl}/official/`}
   />
 
   <!-- Hero Section -->
   <section class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
     <div class="max-w-4xl mx-auto text-center">
       <div class="inline-block bg-red-600 text-white font-extrabold text-xs uppercase px-3 py-1 rounded tracking-wider mb-4">
-        Official Brand Identity
+        Official Brand Verification Hub
       </div>
       <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-4 text-white">
         Official 4WHEELS Rent a Car
       </h1>
       <p class="text-lg sm:text-xl text-red-400 font-semibold mb-6">
-        {BUSINESS_INFO.trustBadge} — {BUSINESS_INFO.trustWording}
+        Serving Lahore Since 2008
       </p>
       <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-        Ensure you are dealing with the genuine 4WHEELS Rent a Car business in Lahore. For all bookings, rate quotations, and vehicle reservations, use only the verified contact details on this official hub.
+        Before sending payment or confirming a rental, customers can verify the website, telephone number, booking details or representative through official 4WHEELS customer care.
       </p>
     </div>
   </section>
 
-  <!-- Verified Details Grid -->
-  <section class="py-12 bg-slate-50 text-slate-800">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Main Verification Grid -->
+  <section class="py-12 bg-slate-950 text-slate-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
-      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 mb-10">
-        <h2 class="text-2xl font-bold text-slate-900 mb-6 pb-3 border-b border-slate-200 flex items-center gap-2">
-          <span class="text-red-600">✓</span> Verified Official Business Identity
+      <!-- Official Details Card -->
+      <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl">
+        <h2 class="text-2xl font-black text-white mb-6 pb-3 border-b border-slate-800 flex items-center gap-2">
+          <span class="text-red-500">✓</span> Authoritative Official Channels
         </h2>
 
-        <div class="space-y-4 text-sm sm:text-base">
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
-            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official Business Name</span>
-            <span class="sm:col-span-2 font-bold text-slate-900">{BUSINESS_INFO.name}</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Website</span>
+            <a href="https://www.4wheelspk.com/" class="text-red-400 font-extrabold text-base hover:underline break-all">
+              https://www.4wheelspk.com/
+            </a>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
-            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Approved Brand Slogan</span>
-            <span class="sm:col-span-2 font-semibold text-slate-800">{BUSINESS_INFO.trustBadge}</span>
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Booking Portal</span>
+            <a href="/booking/" class="text-white font-extrabold text-base hover:underline break-all">
+              https://www.4wheelspk.com/booking/
+            </a>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
-            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Verified Official Phone</span>
-            <span class="sm:col-span-2">
-              <a href={BUSINESS_INFO.telLink} class="text-red-600 font-bold hover:underline">{BUSINESS_INFO.phoneDisplay}</a>
-              <span class="text-xs text-slate-500 block sm:inline sm:ml-2">({BUSINESS_INFO.phoneInternational})</span>
-            </span>
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Fleet Directory</span>
+            <a href="/fleet/" class="text-white font-extrabold text-base hover:underline break-all">
+              https://www.4wheelspk.com/fleet/
+            </a>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
-            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official WhatsApp</span>
-            <span class="sm:col-span-2">
-              <a href={waUrl} target="_blank" rel="noopener noreferrer" class="text-emerald-600 font-bold hover:underline">{BUSINESS_INFO.phoneInternational}</a>
-            </span>
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Phone & Voice</span>
+            <a href="tel:+923216616644" class="text-red-400 font-extrabold text-base hover:underline">
+              0321 6616644
+            </a>
+            <span class="text-slate-400 text-xs block">(International: +92 321 6616644)</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
-            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official Email</span>
-            <span class="sm:col-span-2">
-              <a href={BUSINESS_INFO.mailtoLink} class="text-slate-900 font-bold hover:underline">{BUSINESS_INFO.email}</a>
-            </span>
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official WhatsApp</span>
+            <a href={waUrl} target="_blank" rel="noopener noreferrer" class="text-emerald-400 font-extrabold text-base hover:underline">
+              +92 321 6616644
+            </a>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
-            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official Website</span>
-            <span class="sm:col-span-2 font-mono font-bold text-red-600">
-              <a href={BUSINESS_INFO.siteUrl} class="hover:underline">{BUSINESS_INFO.siteUrl}</a>
-            </span>
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Email</span>
+            <a href="mailto:4wheels44@gmail.com" class="text-white font-extrabold text-base hover:underline">
+              4wheels44@gmail.com
+            </a>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
-            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official Head Office</span>
-            <span class="sm:col-span-2 font-medium text-slate-800">{BUSINESS_INFO.address.fullAddress}</span>
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 sm:col-span-2">
+            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Physical Head Office</span>
+            <p class="text-white font-extrabold text-sm">
+              5, F1, Block F1, Johar Town Phase 1, Lahore, Pakistan
+            </p>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3 border-b border-slate-100">
-            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official Locations</span>
-            <span class="sm:col-span-2 text-slate-800">
-              <strong>Johar Town Phase 1, Lahore</strong> (Head Office & Fleet Dispatch Hub)
-            </span>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-3">
-            <span class="font-bold text-slate-500 uppercase text-xs tracking-wider">Official Facebook</span>
-            <span class="sm:col-span-2">
-              <a href={BUSINESS_INFO.facebookUrl} target="_blank" rel="noopener noreferrer" class="text-blue-600 font-bold hover:underline break-all">
-                facebook.com/4wheelrentacar/
-              </a>
-            </span>
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 sm:col-span-2">
+            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Facebook Page</span>
+            <a href="https://www.facebook.com/4wheelrentacar/" target="_blank" rel="noopener noreferrer" class="text-blue-400 font-extrabold text-xs hover:underline break-all">
+              https://www.facebook.com/4wheelrentacar/
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- Google Maps Entity & Location Section -->
-      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 mb-10">
-        <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
-          📍 Google Maps Location & Office Verification
-        </h3>
-        <p class="text-xs sm:text-sm text-slate-600 mb-4">
-          Official head office and primary fleet dispatch hub located in Johar Town Phase 1, Lahore, Pakistan.
-        </p>
+      <!-- Verification UX Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- Main Road Location Highlight -->
-        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 mb-6 flex items-start gap-3">
-          <span class="text-xl shrink-0">🛣️</span>
-          <div class="text-xs text-amber-900 leading-snug">
-            <strong class="font-bold text-amber-950 block text-xs uppercase tracking-wider mb-0.5">Prime Main Road Accessibility</strong>
-            Conveniently situated directly on the main road for quick driving access, hassle-free vehicle handovers, and customer parking.
-          </div>
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-xl">🌐</div>
+          <h3 class="text-base font-black text-white">VERIFY OUR WEBSITE</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Check your browser address bar to ensure you are visiting <strong>www.4wheelspk.com</strong>. All canonical sitemaps, vehicle specs, and booking forms originate strictly from this domain.
+          </p>
         </div>
 
-        <div class="flex flex-wrap gap-3 mb-6">
-          <a
-            href={mapsSearchUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors flex items-center gap-1.5"
-          >
-            🗺️ VIEW ON GOOGLE MAPS
-          </a>
-          <a
-            href={mapsDirectionsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors flex items-center gap-1.5"
-          >
-            🧭 GET DIRECTIONS
-          </a>
-          <a
-            href={BUSINESS_INFO.telLink}
-            class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors flex items-center gap-1.5"
-          >
-            📞 CALL
-          </a>
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-xl">📞</div>
+          <h3 class="text-base font-black text-white">VERIFY OUR PHONE / WHATSAPP</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            All voice calls and official WhatsApp messages originate exclusively from <strong>0321 6616644</strong> (+92 321 6616644). Never transfer deposits to messages from unverified numbers.
+          </p>
         </div>
 
-        <!-- Google Reviews Block -->
-        <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-50 p-4 rounded-xl">
-          <div>
-            <h4 class="text-sm font-bold text-slate-900">Customer Ratings & Reviews</h4>
-            <p class="text-xs text-slate-600">See our latest Google rating and customer reviews on Google Maps.</p>
-          </div>
-          <a
-            href={googleReviewsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs px-4 py-2 rounded-lg border border-slate-300 transition-colors shrink-0"
-          >
-            VIEW GOOGLE REVIEWS
-          </a>
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-xl">📍</div>
+          <h3 class="text-base font-black text-white">VERIFY OUR LOCATION</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Our official headquarters and primary vehicle dispatch hub is situated at Plot number 5, Block F1, Johar Town Phase 1, Lahore. Any other claimed physical location should be verified with customer care.
+          </p>
         </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-xl">📋</div>
+          <h3 class="text-base font-black text-white">VERIFY A BOOKING</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Confirm that your booking was configured through <a href="/booking/" class="text-red-400 font-bold hover:underline">/booking/</a> or directly confirmed by 4WHEELS Customer Care at 0321 6616644.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-xl">👔</div>
+          <h3 class="text-base font-black text-white">VERIFY A REPRESENTATIVE</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            All chauffeur assignments and corporate account representatives are issued directly from our Johar Town headquarters.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-xl">💳</div>
+          <h3 class="text-base font-black text-white">VERIFY A PAYMENT REQUEST</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Always verify bank account details and booking payment requests via voice call or official WhatsApp (0321 6616644) before completing bank transfers.
+          </p>
+        </div>
+
       </div>
 
-      <!-- Verification Protocols Card -->
-      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 mb-10">
-        <h3 class="text-xl font-bold text-slate-900 mb-6 pb-2 border-b border-slate-200">
-          How to Verify Transactions, Payment Instructions & Claimed Branches
+      <!-- Similar-Name Notice & Brand Protection Block -->
+      <div class="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-2xl space-y-4">
+        <h3 class="text-lg font-black text-white flex items-center gap-2">
+          <span>🏛️ SIMILAR-NAME BUSINESSES & BRAND PROTECTION</span>
         </h3>
-
-        <div class="space-y-6 text-sm">
-          <div>
-            <h4 class="font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <span class="bg-red-100 text-red-600 rounded-full w-5 h-5 flex items-center justify-center text-xs">1</span>
-              How to Verify a Booking
-            </h4>
-            <p class="text-slate-700 text-xs sm:text-sm leading-relaxed">
-              Confirm that your rental request was placed via our official website (<a href="/build-your-rental/" class="text-red-600 font-bold hover:underline">/build-your-rental/</a>) or directly through official phone (<strong>0321 6616644</strong>) or WhatsApp (<strong>+92 321 6616644</strong>).
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <span class="bg-red-100 text-red-600 rounded-full w-5 h-5 flex items-center justify-center text-xs">2</span>
-              How to Verify Payment Instructions
-            </h4>
-            <p class="text-slate-700 text-xs sm:text-sm leading-relaxed">
-              Please verify booking and payment instructions directly with official 4WHEELS customer care at <strong>0321 6616644</strong> before making any payment or advance deposit.
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <span class="bg-red-100 text-red-600 rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
-              How to Verify a Claimed Branch
-            </h4>
-            <p class="text-slate-700 text-xs sm:text-sm leading-relaxed">
-              4WHEELS Rent a Car operates its official head office exclusively at Johar Town Phase 1, Lahore. Any entity claiming a physical branch in another city must be confirmed via <strong>0321 6616644</strong>.
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <span class="bg-red-100 text-red-600 rounded-full w-5 h-5 flex items-center justify-center text-xs">4</span>
-              How to Verify a Claimed Franchise or Representative
-            </h4>
-            <p class="text-slate-700 text-xs sm:text-sm leading-relaxed">
-              All official driver assignments, corporate vehicle dispatching, and representative authorizations are issued directly through our Johar Town headquarters.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Brand Clarification Disclaimer -->
-      <div class="bg-slate-100 border border-slate-300 p-6 rounded-2xl text-slate-800 mb-10">
-        <h3 class="text-base font-bold text-slate-900 mb-2 flex items-center gap-2">
-          🏛️ Brand Clarification & Similar Business Name Disclaimer
-        </h3>
-        <p class="text-xs sm:text-sm leading-relaxed text-slate-700 mb-3">
-          Other businesses and digital properties in Pakistan or online may use similar '4 Wheels', '4Wheels', or '4 Wheel Rent a Car' naming. Similar naming does not establish affiliation with 4WHEELS Rent a Car.
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Other businesses and online properties may use similar "4 Wheels", "4Wheels" or "4 Wheel Rent a Car" naming. Similar naming does not establish affiliation with 4WHEELS Rent a Car.
         </p>
-        <p class="text-xs sm:text-sm font-semibold text-slate-900">
-          Please verify any claimed branch, franchise, representative, website or payment instruction directly with official 4WHEELS Rent a Car customer care before completing a transaction.
+        <p class="text-xs sm:text-sm text-slate-200 font-bold bg-slate-950 p-4 rounded-xl border border-slate-800 leading-relaxed">
+          Customers should verify any website, branch, representative or payment instruction through www.4wheelspk.com or official customer care at 0321 6616644.
         </p>
       </div>
 
-      <!-- Customer Safety Reminder -->
-      <div class="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-2xl text-slate-800">
-        <h3 class="text-lg font-bold text-amber-900 mb-2 flex items-center gap-2">
-          🛡️ Customer Safety & Document Privacy Reminder
-        </h3>
-        <p class="text-xs sm:text-sm leading-relaxed text-slate-700 mb-2">
-          4WHEELS Rent a Car never requires public digital upload of government ID (CNIC), driving license, or passport documents on public websites.
-        </p>
-        <p class="text-xs sm:text-sm font-semibold text-amber-950">
-          All document verification is conducted securely and directly through official customer care channels during vehicle handover.
-        </p>
+      <!-- Latest Customer Advisories Section -->
+      <div class="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-2xl space-y-6">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+          <h3 class="text-lg font-black text-white uppercase tracking-wider">
+            📢 LATEST CUSTOMER ADVISORIES
+          </h3>
+          <a href="/press/" class="text-xs font-bold text-red-400 hover:underline">View Press Centre →</a>
+        </div>
+
+        <div class="space-y-4">
+          {advisories.map(adv => (
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1.5">
+              <div class="flex items-center justify-between text-[11px] text-slate-400">
+                <span class="bg-red-950 text-red-400 border border-red-800 px-2 py-0.5 rounded font-bold uppercase">{adv.category}</span>
+                <span>{adv.datePublished}</span>
+              </div>
+              <h4 class="text-sm sm:text-base font-black text-white hover:text-red-400 transition-colors">
+                <a href={`/press/${adv.slug}/`}>{adv.title}</a>
+              </h4>
+              <p class="text-xs text-slate-300 leading-relaxed line-clamp-2">
+                {adv.summary}
+              </p>
+              <div class="pt-2">
+                <a href={`/press/${adv.slug}/`} class="text-xs font-bold text-red-400 hover:underline inline-flex items-center gap-1">
+                  <span>Read Official Advisory</span>
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
     </div>
   </section>
 
   <CTASection
-    heading="Need Immediate Vehicle Assistance?"
-    subheading="Connect directly with official 4WHEELS customer care in Johar Town, Lahore for rental quotes and availability."
-    primaryButtonText="💬 Contact Official WhatsApp"
-    primaryButtonHref={waUrl}
+    title="Need Immediate Verification or Assistance?"
+    description="Connect directly with official 4WHEELS customer care in Johar Town, Lahore for rental quotes, availability, and branch verification."
+    primaryBtnText="💬 Contact Official WhatsApp"
+    primaryBtnHref={waUrl}
   />
 </Layout>

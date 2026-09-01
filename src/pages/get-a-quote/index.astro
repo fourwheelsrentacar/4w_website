@@ -1,10 +1,27 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+export function GET({ request }: { request: Request }) {
+  const url = new URL(request.url);
+  return Response.redirect(`${url.origin}/booking/${url.search}`, 301);
+}
+
+return Astro.redirect(`/booking/${Astro.url.search}`, 301);
 ---
 
-<Layout title="Get a Quote - 4WHEELS Rent a Car Lahore" description="Redirecting to 4WHEELS rental quote builder for car rental quotations in Lahore.">
-  <meta http-equiv="refresh" content="0;url=/build-your-rental/" />
-  <script>
-    window.location.href = "/build-your-rental/";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content={`0;url=/booking/${Astro.url.search}`} />
+  <link rel="canonical" href="https://www.4wheelspk.com/booking/" />
+  <title>Redirecting to 4WHEELS Booking...</title>
+  <script is:inline>
+    window.location.replace('/booking/' + window.location.search);
   </script>
-</Layout>
+</head>
+<body class="bg-slate-950 text-white flex items-center justify-center min-h-screen font-sans">
+  <div class="text-center p-6">
+    <p class="text-sm font-bold text-slate-300">Redirecting to official 4WHEELS Booking Configurator...</p>
+    <a href="/booking/" class="text-xs text-red-400 font-bold hover:underline mt-2 inline-block">Click here if not redirected automatically</a>
+  </div>
+</body>
+</html>

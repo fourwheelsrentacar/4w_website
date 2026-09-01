@@ -171,7 +171,7 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/compare-vehicles/`;
       // Actions row
       html += '<tr class="bg-gray-100"><td class="p-3 border border-gray-200 font-bold text-gray-700">Configure Action</td>';
       selected.forEach(v => {
-        const configUrl = '/build-your-rental/?brand=' + encodeURIComponent(v.brand) + '&model=' + encodeURIComponent(v.model) + '&transmission=' + encodeURIComponent(v.transmission) + '&category=' + encodeURIComponent(v.bodyType.toLowerCase());
+        const configUrl = '/booking/?brand=' + encodeURIComponent(v.brand) + '&model=' + encodeURIComponent(v.model) + '&transmission=' + encodeURIComponent(v.transmission) + '&category=' + encodeURIComponent(v.bodyType.toLowerCase());
         html += '<td class="p-3 border border-gray-200 text-center"><a href="' + configUrl + '" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold px-3.5 py-2 rounded text-xs transition-colors shadow-sm">Choose & Configure</a></td>';
       });
       html += '</tr></tbody></table>';
