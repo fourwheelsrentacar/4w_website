@@ -1,11 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { FLEET_VEHICLES } from '../../data/fleet';
+import { PAKISTAN_BRANDS } from '../../data/brands';
+import { PAKISTAN_VEHICLE_CATALOG } from '../../data/pakistanVehicles';
 import { FUEL_DISCLAIMER_TEXT } from '../../data/rates';
 import VehicleImage from '../../components/VehicleImage.astro';
 
-const title = "4WHEELS Vehicle Fleet Configurator - Executive Cars, SUVs & Buses in Lahore";
-const description = "Explore and configure 4WHEELS Rent a Car vehicle fleet in Lahore. Compare sedans, 4x4 SUVs, luxury cars, HiAce vans, and 22-seat Toyota Coaster executive buses.";
+const title = "4WHEELS Vehicle Fleet Directory - Executive Cars, SUVs & Buses by Brand";
+const description = "Explore 4WHEELS Rent a Car vehicle fleet in Lahore by brand. Browse Toyota, Honda, Kia, Hyundai, BYD, Suzuki, Changan, Audi, and more. Select a brand to view all models, seating, and luggage capacities.";
 const canonicalPath = "/fleet/";
 
 const categories = [
@@ -28,19 +30,85 @@ const transmissions = ['All', 'Automatic', 'Manual'];
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
       <span class="inline-block bg-red-600 text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
-        Automotive Configurator Catalog
+        Automotive Fleet & Brand Directory
       </span>
       <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-3">
-        4WHEELS Vehicle Fleet Portfolio
+        4WHEELS Fleet & Vehicle Catalog
       </h1>
       <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-6">
-        Precision engineering meets luxury rental mobility. Compare verified engine displacement, passenger/luggage capacities, real-world fuel economy, and rental modes.
+        Select an official automobile brand below to explore all available rental models, seating diagrams, luggage fit specifications, and colors.
       </p>
 
       <div class="flex flex-wrap justify-center gap-4 text-xs font-bold text-slate-300">
         <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">✅ Self Drive Available</span>
         <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">✅ Professional Chauffeur Fleet</span>
-        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">✅ Verified Fleet Specifications</span>
+        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">✅ 21 Verified Pakistan Brands</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BROWSE BY BRAND FIRST SECTION -->
+  <section class="py-12 bg-slate-950 text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="border-b border-slate-800 pb-4 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-extrabold text-red-500 uppercase tracking-widest block mb-1">Step 1 — Choose a Brand</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Explore Fleet by Brand ({PAKISTAN_BRANDS.length} Brands)</h2>
+        </div>
+        <span class="text-xs font-bold text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+          Click any brand to see all present models
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {PAKISTAN_BRANDS.map(brand => {
+          const brandVehicles = PAKISTAN_VEHICLE_CATALOG.filter(v => v.brandSlug.toLowerCase() === brand.slug.toLowerCase());
+          const sampleCar = brandVehicles[0] || FLEET_VEHICLES.find(v => v.manufacturerSlug === brand.slug);
+
+          return (
+            <a
+              href={`/vehicles/${brand.slug}/`}
+              class="bg-slate-900 rounded-2xl border border-slate-800 hover:border-red-600/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden flex flex-col justify-between group"
+            >
+              <div>
+                <!-- Brand Sample Car Visual Stage -->
+                <div class="relative bg-slate-950 overflow-hidden">
+                  {sampleCar ? (
+                    <VehicleImage vehicle={sampleCar} showLabel={false} className="h-44 group-hover:scale-105 transition-transform duration-300" />
+                  ) : (
+                    <div class="h-44 flex items-center justify-center bg-slate-900 text-slate-500 text-xs font-bold">
+                      {brand.name} Vehicle Fleet
+                    </div>
+                  )}
+
+                  <div class="absolute top-3 left-3 bg-slate-950/90 border border-slate-800 text-slate-300 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider backdrop-blur-sm">
+                    {brand.country}
+                  </div>
+                </div>
+
+                <!-- Brand Card Body -->
+                <div class="p-5 space-y-2">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-black text-white group-hover:text-red-500 transition-colors">
+                      {brand.name}
+                    </h3>
+                    <span class="text-xs font-bold text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">
+                      {brandVehicles.length || 1} {brandVehicles.length === 1 ? 'Model' : 'Models'}
+                    </span>
+                  </div>
+                  <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                    {brand.description || `Browse ${brand.name} models available through 4WHEELS Rent a Car Lahore.`}
+                  </p>
+                </div>
+              </div>
+
+              <div class="p-5 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between text-xs font-bold text-red-500 group-hover:text-red-400">
+                <span>View All {brand.name} Models</span>
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>
