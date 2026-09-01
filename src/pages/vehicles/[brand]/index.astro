@@ -3,136 +3,300 @@ import SEOHead from '../../../components/SEOHead.astro';
 import HeaderComp from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import CTASection from '../../../components/CTASection.astro';
+import VehicleImage from '../../../components/VehicleImage.astro';
 import { BUSINESS_INFO } from '../../../data/business';
+import { PAKISTAN_BRANDS, getBrandBySlug } from '../../../data/brands';
 import { PAKISTAN_VEHICLE_CATALOG, getCatalogVehiclesByBrand } from '../../../data/pakistanVehicles';
 
 export function getStaticPaths() {
-  const brands = Array.from(new Set(PAKISTAN_VEHICLE_CATALOG.map(v => v.brandSlug)));
-  return brands.map(brandSlug => ({
-    params: { brand: brandSlug }
+  return PAKISTAN_BRANDS.map(b => ({
+    params: { brand: b.slug }
   }));
 }
 
 const { brand } = Astro.params;
-const brandVehicles = getCatalogVehiclesByBrand(brand || '');
+const brandMeta = getBrandBySlug(brand || '');
 
-if (!brandVehicles || brandVehicles.length === 0) {
+if (!brandMeta) {
   return Astro.redirect('/vehicles/');
 }
 
-const brandName = brandVehicles[0].brand;
-const manufacturerUrl = brandVehicles[0].manufacturerUrl;
-const canonicalUrl = `${BUSINESS_INFO.siteUrl}/vehicles/${brand}/`;
+const brandVehicles = getCatalogVehiclesByBrand(brandMeta.slug);
+const confirmedFleet = brandVehicles.filter(v => v.isFleetConfirmed);
+const requestCatalog = brandVehicles.filter(v => !v.isFleetConfirmed);
+
+const canonicalUrl = `${BUSINESS_INFO.siteUrl}/vehicles/${brandMeta.slug}/`;
+
+const categories = Array.from(new Set(brandVehicles.map(v => v.category)));
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": `${BUSINESS_INFO.siteUrl}/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Vehicles",
+      "item": `${BUSINESS_INFO.siteUrl}/vehicles/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": brandMeta.name,
+      "item": canonicalUrl
+    }
+  ]
+};
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <SEOHead
-    title={`${brandName} Rental Cars & Pakistan Catalog | 4WHEELS Lahore`}
-    description={`Explore official ${brandName} vehicle models in Pakistan and 4WHEELS rental options in Lahore. View detailed specs, fuel tank capacity, seating, and WhatsApp booking.`}
+    title={`${brandMeta.name} Vehicles in Pakistan | Specs & Rental Requests | 4WHEELS`}
+    description={`Explore official ${brandMeta.name} models sold in Pakistan (${confirmedFleet.length} core fleet available in Lahore, ${requestCatalog.length} request models). Specs, real photos, and WhatsApp booking.`}
     canonicalUrl={canonicalUrl}
   />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+<body class="bg-slate-950 text-white font-sans antialiased min-h-screen flex flex-col">
   <HeaderComp />
 
-  <main>
-    <!-- Breadcrumbs -->
-    <nav class="bg-white border-b border-gray-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-gray-600">
+  <main class="flex-grow">
+    <!-- Breadcrumb Navigation -->
+    <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400">
       <div class="max-w-7xl mx-auto flex items-center gap-2">
-        <a href="/" class="hover:text-brand-red">Home</a>
+        <a href="/" class="hover:text-red-500 transition-colors">Home</a>
         <span>/</span>
-        <a href="/vehicles/" class="hover:text-brand-red">Vehicles</a>
+        <a href="/vehicles/" class="hover:text-red-500 transition-colors">Vehicles</a>
         <span>/</span>
-        <span class="font-bold text-gray-900">{brandName}</span>
+        <span class="font-bold text-white">{brandMeta.name}</span>
       </div>
     </nav>
 
-    <!-- Brand Header -->
-    <section class="bg-gradient-to-r from-gray-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-red bg-brand-red/20 border border-brand-red/30 px-3 py-1 rounded-full inline-block mb-2">
-            Manufacturer Catalog
-          </span>
-          <h1 class="text-3xl sm:text-4xl font-extrabold">{brandName} Vehicles in Pakistan</h1>
-          <p class="text-gray-300 text-sm sm:text-base mt-2 max-w-2xl">
-            Official vehicle lineup for {brandName} in Pakistan. Compare seating, boot capacity, fuel efficiency, and request rental options in Lahore through 4WHEELS.
+    <!-- Brand Header Section -->
+    <section class="bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <div class="space-y-3 max-w-3xl">
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-black uppercase tracking-widest text-red-500 bg-red-950/80 border border-red-800/80 px-3 py-1 rounded-full">
+              {brandMeta.country} Automotive
+            </span>
+            <span class="text-xs font-bold text-slate-400">
+              Verified: {brandMeta.lastVerified}
+            </span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+            {brandMeta.name} Vehicles in Pakistan
+          </h1>
+
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            {brandMeta.description || `Explore ${brandMeta.name} models available in Pakistan. Compare technical specifications, seating, boot space, and submit rental requests through 4WHEELS Rent a Car Lahore.`}
           </p>
+
+          <div class="flex flex-wrap items-center gap-2 pt-2">
+            <span class="text-xs text-slate-400 font-semibold">Categories:</span>
+            {brandMeta.categories.map(cat => (
+              <span class="bg-slate-800 text-slate-300 text-xs font-bold px-2.5 py-1 rounded-md border border-slate-700 uppercase">
+                {cat}
+              </span>
+            ))}
+          </div>
         </div>
 
-        <div class="bg-white/10 backdrop-blur border border-white/20 p-4 rounded-xl text-xs flex flex-col gap-2">
-          <span class="text-gray-300">Official Manufacturer Site:</span>
-          <a
-            href={manufacturerUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-white font-bold hover:underline flex items-center gap-1 text-sm"
-          >
-            Visit Official {brandName} Web Page ↗
-          </a>
+        <!-- Distributor Box -->
+        <div class="bg-slate-900/90 border border-slate-800 p-5 rounded-2xl text-xs space-y-3 min-w-[280px] shadow-xl">
+          <div class="border-b border-slate-800 pb-2">
+            <span class="text-slate-400 font-medium block">Official Distributor / Assembly:</span>
+            <span class="font-extrabold text-white text-sm">{brandMeta.distributor || `${brandMeta.name} Pakistan`}</span>
+          </div>
+
+          <div class="pt-1">
+            <a
+              href={brandMeta.officialPakistanSource}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-red-400 font-bold text-xs px-4 py-2.5 rounded-xl border border-slate-700 transition-colors w-full justify-center"
+            >
+              <span>Visit Official {brandMeta.name} Website</span>
+              <span>↗</span>
+            </a>
+          </div>
+
+          <p class="text-[10px] text-slate-500 italic text-center leading-tight">
+            Independent rental service. Trademarks belong to official distributors.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Vehicles List -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Available {brandName} Models</h2>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {brandVehicles.map(car => (
-          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow p-5">
-            <div class="flex items-center justify-between mb-2">
-              <span class={`text-xs font-bold px-2 py-0.5 rounded ${
-                car.isFleetConfirmed
-                  ? 'bg-green-50 text-green-700 border border-green-200'
-                  : 'bg-blue-50 text-blue-700 border border-blue-200'
-              }`}>
-                {car.isFleetConfirmed ? '4WHEELS Core Fleet' : 'Request This Model'}
-              </span>
-              <span class="text-xs text-gray-500 font-medium">{car.bodyType}</span>
-            </div>
-
-            <h3 class="text-xl font-bold text-gray-900">{car.brand} {car.model}</h3>
-            <p class="text-xs text-gray-600 mb-3">{car.variant}</p>
-            <p class="text-xs text-gray-700 line-clamp-2 mb-4">{car.tagline}</p>
-
-            <div class="bg-gray-50 p-3 rounded-lg border border-gray-100 text-xs space-y-1 mb-4">
-              <div class="flex justify-between">
-                <span class="text-gray-500">Powertrain:</span>
-                <span class="font-bold">{car.fuelType} ({car.engine || 'Electric'})</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-500">{car.fuelType === 'Electric' ? 'Battery / Range:' : 'Fuel Tank:'}</span>
-                <span class="font-bold">
-                  {car.fuelType === 'Electric' ? `${car.batteryCapacity} | ${car.electricRange}` : car.fuelTankCapacity}
-                </span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-500">Seating Capacity:</span>
-                <span class="font-bold">Up to {car.maxPassengers} occupants</span>
-              </div>
-            </div>
-
-            <div class="flex gap-2">
-              <a
-                href={`/vehicles/${car.brandSlug}/${car.slug}/`}
-                class="flex-1 text-center text-xs font-bold bg-gray-100 hover:bg-gray-200 text-gray-800 py-2.5 rounded-lg transition-colors"
-              >
-                Full Specs & Details
-              </a>
-              <a
-                href={`https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20would%20like%20to%20check%20rental%20availability%20for%20${car.brand}%20${car.model}.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex-1 text-center text-xs font-bold bg-green-600 hover:bg-green-700 text-white py-2.5 rounded-lg transition-colors"
-              >
-                Inquire WhatsApp
-              </a>
-            </div>
+    <!-- Section 1: Confirmed 4WHEELS Core Fleet Vehicles -->
+    {confirmedFleet.length > 0 && (
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="border-b border-slate-800 pb-4 mb-6">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2.5 py-1 rounded">
+              AVAILABLE THROUGH 4WHEELS
+            </span>
           </div>
-        ))}
+          <h2 class="text-2xl sm:text-3xl font-black text-white mt-2">
+            Confirmed 4WHEELS Fleet Units ({confirmedFleet.length})
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Physical vehicles maintained in 4WHEELS active inventory in Lahore with verified photos and immediate booking options.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {confirmedFleet.map(car => (
+            <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all shadow-xl flex flex-col justify-between">
+              <div>
+                <VehicleImage vehicle={car} loading="eager" showLabel={true} className="h-52" />
+
+                <div class="p-5 space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-black uppercase tracking-wider text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">
+                      ✓ AVAILABLE THROUGH 4WHEELS
+                    </span>
+                    <span class="text-xs font-bold text-slate-400">{car.bodyType}</span>
+                  </div>
+
+                  <h3 class="text-xl font-black text-white">{car.brand} {car.model}</h3>
+                  <p class="text-xs font-semibold text-slate-400">{car.variant}</p>
+                  <p class="text-xs text-slate-300 line-clamp-2">{car.tagline}</p>
+
+                  <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800/80 text-xs space-y-1.5">
+                    <div class="flex justify-between">
+                      <span class="text-slate-400">Powertrain:</span>
+                      <span class="font-bold text-white">{car.fuelType} ({car.engine || 'Verified Engine'})</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-slate-400">Passengers / Luggage:</span>
+                      <span class="font-bold text-white">Up to {car.maxPassengers} Occupants | {car.bootCapacity || 'Trunk'}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-5 pt-0 grid grid-cols-2 gap-2">
+                <a
+                  href={`/build-your-rental/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
+                  class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs py-3 rounded-xl text-center transition-colors shadow-md"
+                >
+                  Book Your Trip
+                </a>
+                <a
+                  href="tel:+923216616644"
+                  class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-3 rounded-xl text-center border border-slate-700 transition-colors"
+                >
+                  📞 Call
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Section 2: Pakistan Request Catalog Models -->
+    {requestCatalog.length > 0 && (
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="border-b border-slate-800 pb-4 mb-6">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-sky-500"></span>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-sky-400 bg-sky-950/80 border border-sky-800/80 px-2.5 py-1 rounded">
+              OTHER PAKISTAN MODELS YOU CAN REQUEST
+            </span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mt-2">
+            {brandMeta.name} Pakistan Request Catalog ({requestCatalog.length})
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Officially introduced models in Pakistan. Select any car below to request customized rental availability through 4WHEELS.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {requestCatalog.map(car => (
+            <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all shadow-xl flex flex-col justify-between">
+              <div>
+                <VehicleImage vehicle={car} loading="lazy" showLabel={true} className="h-52" />
+
+                <div class="p-5 space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-black uppercase tracking-wider text-sky-400 bg-sky-950 border border-sky-800 px-2 py-0.5 rounded">
+                      REQUEST THIS MODEL
+                    </span>
+                    <span class="text-xs font-bold text-slate-400">{car.bodyType}</span>
+                  </div>
+
+                  <h3 class="text-xl font-black text-white">{car.brand} {car.model}</h3>
+                  <p class="text-xs font-semibold text-slate-400">{car.variant}</p>
+                  <p class="text-xs text-slate-300 line-clamp-2">{car.tagline}</p>
+
+                  <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800/80 text-xs space-y-1.5">
+                    <div class="flex justify-between">
+                      <span class="text-slate-400">Powertrain:</span>
+                      <span class="font-bold text-white">{car.fuelType}</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-slate-400">{car.fuelType === 'Electric' ? 'Battery / Range:' : 'Fuel Tank / Spec:'}</span>
+                      <span class="font-bold text-emerald-400">
+                        {car.fuelType === 'Electric' ? `${car.batteryCapacity} | ${car.electricRange}` : car.fuelTankCapacity || car.engine}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-5 pt-0 grid grid-cols-2 gap-2">
+                <a
+                  href={`/vehicles/${car.brandSlug}/${car.slug}/`}
+                  class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-3 rounded-xl text-center border border-slate-700 transition-colors"
+                >
+                  View Specs
+                </a>
+                <a
+                  href={`/build-your-rental/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
+                  class="bg-sky-600 hover:bg-sky-700 text-white font-extrabold text-xs py-3 rounded-xl text-center transition-colors shadow-md"
+                >
+                  Request Model
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- FAQ Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 space-y-6">
+        <h2 class="text-2xl font-black text-white">Frequently Asked Questions — {brandMeta.name} Rentals</h2>
+
+        <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-300">
+          <div class="space-y-2">
+            <h3 class="font-bold text-white">Are all {brandMeta.name} models available for immediate rental in Lahore?</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Vehicles marked as <strong class="text-emerald-400">AVAILABLE THROUGH 4WHEELS</strong> belong to our active core fleet in Lahore. Models marked as <strong class="text-sky-400">REQUEST THIS MODEL</strong> are part of the official Pakistan catalog and can be arranged upon advance inquiry.
+            </p>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="font-bold text-white">Can I rent {brandMeta.name} vehicles for northern area tours and long trips?</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Yes, 4WHEELS provides intercity and northern travel options across Pakistan with experienced drivers, full highway toll estimation, and well-maintained vehicles.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
