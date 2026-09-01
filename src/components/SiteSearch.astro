@@ -10,7 +10,7 @@
       <input
         type="text"
         id="site-search-input"
-        placeholder="Search vehicles, routes, guides, locations, services..."
+        placeholder="Search vehicles, brands, routes, guides, locations, services..."
         class="flex-1 bg-transparent text-white placeholder-slate-400 focus:outline-none text-base sm:text-lg font-medium"
         autocomplete="off"
       />
@@ -28,10 +28,16 @@
     <div id="search-results-container" class="p-4 max-h-[60vh] overflow-y-auto space-y-6">
       <!-- Default Quick Links -->
       <div id="search-quick-links">
-        <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Popular Searches</p>
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Popular Searches & Brands</p>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
-          <a href="/fleet/toyota-fortuner/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
-            🚗 Toyota Fortuner
+          <a href="/vehicles/toyota/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+            🚗 Toyota Brand Page
+          </a>
+          <a href="/vehicles/byd/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+            ⚡ BYD EV Vehicles
+          </a>
+          <a href="/vehicles/kia/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+            🚘 Kia Vehicles & Carnival
           </a>
           <a href="/routes/lahore-to-islamabad/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
             🛣️ Lahore to Islamabad
@@ -42,12 +48,6 @@
           <a href="/self-drive-car-rental-lahore/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
             🔑 Self Drive Lahore
           </a>
-          <a href="/fleet/buses-coasters/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
-            🚌 Coaster Rental
-          </a>
-          <a href="/locations/lahore/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
-            📍 Lahore Hub
-          </a>
         </div>
       </div>
 
@@ -57,7 +57,7 @@
 
     <!-- Search Footer -->
     <div class="px-4 py-2.5 bg-slate-950 border-t border-slate-800 text-xs text-slate-400 flex justify-between items-center">
-      <span>Search 4WHEELS Fleet & Travel Guides</span>
+      <span>Search 4WHEELS Fleet, Brands & Travel Guides</span>
       <span class="hidden sm:inline">Press <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300">ESC</kbd> to exit</span>
     </div>
   </div>
@@ -67,6 +67,21 @@
   import { trackEvent } from '../utils/analytics';
 
   const searchableIndex = [
+    // Vehicle Brands
+    { title: 'Toyota Pakistan Brand Page', type: 'Brands', url: '/vehicles/toyota/', tags: 'toyota corolla yaris fortuner revo prado coaster indus' },
+    { title: 'Honda Pakistan Brand Page', type: 'Brands', url: '/vehicles/honda/', tags: 'honda civic city hrv atlas' },
+    { title: 'Kia Pakistan Brand Page', type: 'Brands', url: '/vehicles/kia/', tags: 'kia sportage carnival sorento lucky' },
+    { title: 'BYD Pakistan EV Brand Page', type: 'Brands', url: '/vehicles/byd/', tags: 'byd atto 3 seal sealion 7 electric mega' },
+    { title: 'Hyundai Pakistan Brand Page', type: 'Brands', url: '/vehicles/hyundai/', tags: 'hyundai elantra tucson santa fe nishat' },
+    { title: 'Haval GWM Brand Page', type: 'Brands', url: '/vehicles/haval/', tags: 'haval h6 jolion sazgar hybrid' },
+    { title: 'Changan Pakistan Brand Page', type: 'Brands', url: '/vehicles/changan/', tags: 'changan oshan x7 alsvin karvaan master' },
+    { title: 'Deepal EV Brand Page', type: 'Brands', url: '/vehicles/deepal/', tags: 'deepal s07 l07 electric changan' },
+    { title: 'MG Motors Brand Page', type: 'Brands', url: '/vehicles/mg/', tags: 'mg hs zs ev cyberster' },
+    { title: 'Jetour Brand Page', type: 'Brands', url: '/vehicles/jetour/', tags: 'jetour t2 x70 dashing' },
+    { title: 'OMODA Brand Page', type: 'Brands', url: '/vehicles/omoda/', tags: 'omoda e5 chery' },
+    { title: 'JAECOO Brand Page', type: 'Brands', url: '/vehicles/jaecoo/', tags: 'jaecoo j7 chery' },
+    { title: 'Suzuki Pakistan Brand Page', type: 'Brands', url: '/vehicles/suzuki/', tags: 'suzuki alto swift pak suzuki' },
+
     // Vehicles
     { title: 'Toyota Fortuner', type: 'Vehicles', url: '/fleet/toyota-fortuner/', tags: 'suv 4x4 fortuner luxury automatic petrol diesel' },
     { title: 'Toyota Corolla', type: 'Vehicles', url: '/fleet/toyota-corolla/', tags: 'sedan corolla automatic petrol' },
@@ -77,6 +92,11 @@
     { title: 'Toyota Yaris', type: 'Vehicles', url: '/fleet/toyota-yaris/', tags: 'sedan yaris budget automatic' },
     { title: 'Toyota Hiace', type: 'Vehicles', url: '/fleet/toyota-hiace/', tags: 'van hiace group grand cabin' },
     { title: 'Audi A6', type: 'Vehicles', url: '/fleet/audi-a6/', tags: 'luxury sedan audi wedding executive' },
+    { title: 'Kia Carnival VIP', type: 'Vehicles', url: '/fleet/kia-carnival/', tags: 'mpv van kia carnival vip 11 seater' },
+    { title: 'BYD Atto 3', type: 'Vehicles', url: '/vehicles/byd/byd-atto-3/', tags: 'byd atto 3 ev electric' },
+    { title: 'BYD Seal', type: 'Vehicles', url: '/vehicles/byd/byd-seal/', tags: 'byd seal ev electric sedan' },
+    { title: 'BYD Sealion 7', type: 'Vehicles', url: '/vehicles/byd/byd-sealion-7/', tags: 'byd sealion 7 ev electric suv' },
+
     // Services
     { title: 'Self Drive Car Rental Lahore', type: 'Services', url: '/self-drive-car-rental-lahore/', tags: 'self drive without driver rental' },
     { title: 'Car With Driver Lahore', type: 'Services', url: '/car-with-driver-lahore/', tags: 'chauffeur with driver rental' },
@@ -84,17 +104,20 @@
     { title: 'Monthly Car Rental', type: 'Services', url: '/monthly-car-rental-lahore/', tags: 'monthly long term subscription' },
     { title: 'Corporate Car Rental', type: 'Services', url: '/corporate-car-rental-lahore/', tags: 'business corporate executive fleet' },
     { title: 'Wedding Car Rental', type: 'Services', url: '/wedding-car-rental-lahore/', tags: 'wedding bride groom event transport' },
+
     // Tools
     { title: 'Trip Planner & Budget Estimator', type: 'Tools', url: '/trip-planner/', tags: 'calculator estimate budget fuel toll cost' },
     { title: 'Build Your Rental Inquiry', type: 'Tools', url: '/build-your-rental/', tags: 'book quote availability price reservation' },
     { title: 'Find My Vehicle Fit', type: 'Tools', url: '/find-my-vehicle/', tags: 'vehicle fit luggage passenger matching' },
     { title: 'Compare Vehicles', type: 'Tools', url: '/compare-vehicles/', tags: 'compare specs fuel engine seats' },
+
     // Routes
     { title: 'Lahore to Islamabad Route', type: 'Routes', url: '/routes/lahore-to-islamabad/', tags: 'm2 motorway distance travel budget' },
     { title: 'Lahore to Murree Route', type: 'Routes', url: '/routes/lahore-to-murree/', tags: 'murree northern travel hill station' },
     { title: 'Lahore to Faisalabad Route', type: 'Routes', url: '/routes/lahore-to-faisalabad/', tags: 'm3 motorway travel' },
     { title: 'Lahore to Multan Route', type: 'Routes', url: '/routes/lahore-to-multan/', tags: 'm4 motorway South Punjab' },
     { title: 'Lahore to Sialkot Route', type: 'Routes', url: '/routes/lahore-to-sialkot/', tags: 'm11 motorway travel' },
+
     // Knowledge Hub & Guides
     { title: '4WHEELS Knowledge Hub', type: 'Guides', url: '/guides/', tags: 'articles guides rules tips information' },
     { title: 'How to Rent a Car in Lahore Guide', type: 'Guides', url: '/guides/', tags: 'rental basics guide requirements process' },
@@ -180,7 +203,7 @@
           dynamicResults.innerHTML = `
             <div class="text-center py-8 text-slate-400">
               <p class="text-base font-semibold">No results found for "${query}"</p>
-              <p class="text-xs text-slate-500 mt-1">Try searching for Fortuner, Islamabad, Self Drive, or Trip Planner.</p>
+              <p class="text-xs text-slate-500 mt-1">Try searching for Fortuner, BYD, Kia, Islamabad, Self Drive, or Trip Planner.</p>
             </div>
           `;
           return;

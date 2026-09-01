@@ -3,275 +3,258 @@ import SEOHead from '../../components/SEOHead.astro';
 import HeaderComp from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import CTASection from '../../components/CTASection.astro';
+import VehicleImage from '../../components/VehicleImage.astro';
 import { BUSINESS_INFO } from '../../data/business';
+import { PAKISTAN_BRANDS } from '../../data/brands';
 import { PAKISTAN_VEHICLE_CATALOG } from '../../data/pakistanVehicles';
 
 const canonicalUrl = `${BUSINESS_INFO.siteUrl}/vehicles/`;
 
-const brands = Array.from(new Set(PAKISTAN_VEHICLE_CATALOG.map(v => v.brand))).map(b => {
-  const sample = PAKISTAN_VEHICLE_CATALOG.find(v => v.brand === b);
-  return {
-    name: b,
-    slug: sample?.brandSlug || b.toLowerCase(),
-    count: PAKISTAN_VEHICLE_CATALOG.filter(v => v.brand === b).length,
-    officialUrl: sample?.manufacturerUrl || '#'
-  };
-});
-
-const categories = [
-  { slug: 'sedan', name: 'Sedans', icon: '🚗' },
-  { slug: 'suv', name: 'SUVs & 4x4', icon: '🚙' },
-  { slug: 'hatchback', name: 'Hatchbacks', icon: '🚘' },
-  { slug: 'crossover', name: 'Crossovers', icon: '🚐' },
-  { slug: 'luxury', name: 'Luxury & VIP', icon: '👑' },
-  { slug: 'ev', name: 'Electric Vehicles (EV)', icon: '⚡' },
-  { slug: 'hybrid', name: 'Hybrids & PHEV', icon: '🔋' },
-  { slug: 'pickup', name: 'Pickups & 4x4', icon: '🛻' },
-  { slug: 'van', name: 'Passenger Vans', icon: '🚐' },
-  { slug: 'coaster', name: 'Coasters & Mini Buses', icon: '🚌' }
-];
-
 const confirmedFleet = PAKISTAN_VEHICLE_CATALOG.filter(v => v.isFleetConfirmed);
 const catalogVehicles = PAKISTAN_VEHICLE_CATALOG.filter(v => !v.isFleetConfirmed);
+
+const directoryBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": `${BUSINESS_INFO.siteUrl}/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Vehicles Directory",
+      "item": canonicalUrl
+    }
+  ]
+};
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <SEOHead
-    title="Pakistan Vehicle Catalog & 4WHEELS Rental Fleet | Lahore Car Rental"
-    description="Explore Pakistan's official vehicle catalog alongside 4WHEELS confirmed rental fleet. Browse Toyota, Honda, Hyundai, BYD, MG, Deepal, Haval & request your preferred car in Lahore."
+    title="Pakistan Vehicle Directory & Brand Catalog | 4WHEELS Rent a Car"
+    description="Explore Pakistan's complete automobile directory across 21 verified brands (Toyota, Honda, Kia, Hyundai, BYD, Haval, Deepal, MG, etc.). Compare specs and request rental cars in Lahore."
     canonicalUrl={canonicalUrl}
   />
+  <script type="application/ld+json" set:html={JSON.stringify(directoryBreadcrumb)} />
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+<body class="bg-slate-950 text-white font-sans antialiased min-h-screen flex flex-col">
   <HeaderComp />
 
-  <main>
-    <!-- Hero Header -->
-    <section class="bg-gradient-to-r from-slate-900 via-zinc-900 to-slate-900 text-white py-14 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-7xl mx-auto text-center">
-        <span class="bg-brand-red/20 text-brand-red border border-brand-red/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider inline-block mb-3">
-          Vehicle Discovery & Rental Planning
+  <main class="flex-grow">
+    <!-- Breadcrumbs -->
+    <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400">
+      <div class="max-w-7xl mx-auto flex items-center gap-2">
+        <a href="/" class="hover:text-red-500 transition-colors">Home</a>
+        <span>/</span>
+        <span class="font-bold text-white">Vehicles Directory</span>
+      </div>
+    </nav>
+
+    <!-- Directory Hero Header -->
+    <section class="bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto text-center space-y-4">
+        <span class="text-xs font-black uppercase tracking-widest text-red-500 bg-red-950/80 border border-red-800/80 px-3.5 py-1.5 rounded-full inline-block">
+          Official Pakistan Vehicle Directory
         </span>
-        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
-          Pakistan Vehicle Catalog & <span class="text-brand-red">4WHEELS Fleet</span>
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          Explore Pakistan Vehicle Brands & <span class="text-red-500">Rental Catalog</span>
         </h1>
-        <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Browse officially launched vehicles in Pakistan or choose from confirmed 4WHEELS core fleet units available in Lahore for self-drive or chauffeur-driven rentals.
+        <p class="text-slate-300 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+          Browse active automotive manufacturers in Pakistan. Select a brand below to view available 4WHEELS core fleet vehicles alongside request-on-demand Pakistan catalog models.
         </p>
 
-        <div class="mt-8 flex flex-wrap justify-center gap-4">
-          <a href="/find-my-vehicle/" class="bg-brand-red hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold shadow-md transition-all flex items-center gap-2">
-            🧭 Find My Vehicle (Trip Planner)
-          </a>
-          <a href="/compare-vehicles/" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3 rounded-lg font-bold transition-all flex items-center gap-2">
-            📊 Compare Vehicles
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Distinction Notice Card -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-10">
-      <div class="bg-white rounded-xl shadow-md border border-gray-200 p-6 grid md:grid-cols-2 gap-6">
-        <div class="flex items-start gap-4 p-4 rounded-lg bg-green-50 border border-green-200">
-          <div class="text-3xl">✅</div>
-          <div>
-            <h2 class="font-bold text-green-900 text-lg">4WHEELS Fleet</h2>
-            <p class="text-xs text-green-800 mt-1">
-              Vehicles directly confirmed in our active inventory with verified photos and immediate availability checks in Lahore.
-            </p>
-            <span class="inline-block mt-2 text-xs font-bold text-green-700 bg-green-100 px-2 py-0.5 rounded">
-              Label: Check Current Availability
-            </span>
-          </div>
-        </div>
-
-        <div class="flex items-start gap-4 p-4 rounded-lg bg-blue-50 border border-blue-200">
-          <div class="text-3xl">📋</div>
-          <div>
-            <h2 class="font-bold text-blue-900 text-lg">Pakistan Vehicle Catalog</h2>
-            <p class="text-xs text-blue-800 mt-1">
-              Official vehicles sold/launched in Pakistan. You can request any model, and 4WHEELS will verify availability for your dates.
-            </p>
-            <span class="inline-block mt-2 text-xs font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded">
-              Label: Request This Model
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Browse By Brand -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="text-center mb-8">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Browse Official Pakistan Brands</h2>
-        <p class="text-gray-600 text-sm mt-1">Select a manufacturer to explore official lineups, specs, and rental request options.</p>
-      </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-        {brands.map(brand => (
+        <div class="pt-4 flex flex-wrap justify-center gap-3">
           <a
-            href={`/vehicles/${brand.slug}/`}
-            class="bg-white hover:bg-gray-50 border border-gray-200 hover:border-brand-red rounded-xl p-4 text-center transition-all shadow-sm hover:shadow-md group"
+            href="/build-your-rental/"
+            class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl transition-all shadow-lg flex items-center gap-2"
           >
-            <div class="text-xl font-black text-gray-900 group-hover:text-brand-red transition-colors">
-              {brand.name}
-            </div>
-            <div class="text-xs text-gray-500 mt-1">
-              {brand.count} {brand.count === 1 ? 'Model' : 'Models'}
-            </div>
-            <span class="text-[10px] text-brand-red font-semibold mt-2 inline-block group-hover:underline">
-              View Brand Lineup →
-            </span>
+            🚘 Build Your Rental Configurator
           </a>
-        ))}
+          <a
+            href="/find-my-vehicle/"
+            class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs px-5 py-3 rounded-xl border border-slate-700 transition-colors flex items-center gap-2"
+          >
+            🧭 Find My Trip Fit Vehicle
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- Confirmed 4WHEELS Fleet Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-gray-200 pb-4 mb-6">
+    <!-- EXPLORE BY BRAND GRID -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="border-b border-slate-800 pb-4 mb-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-2">
         <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-100 px-2.5 py-1 rounded">
-            Physical Inventory
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-2">4WHEELS Core Fleet Vehicles</h2>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Browse By Brand ({PAKISTAN_BRANDS.length})</h2>
+          <p class="text-xs text-slate-400 mt-1">Select a brand landing page to explore dedicated models, specs, and rental request options.</p>
         </div>
-        <a href="/fleet/" class="text-sm font-bold text-brand-red hover:underline mt-2 md:mt-0">
-          View Dedicated Fleet Page & Gallery →
+        <span class="text-xs font-bold text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+          21 Active Pakistan Brands
+        </span>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {PAKISTAN_BRANDS.map(brand => {
+          const brandModelCount = PAKISTAN_VEHICLE_CATALOG.filter(v => v.brandSlug.toLowerCase() === brand.slug.toLowerCase()).length;
+          return (
+            <a
+              href={`/vehicles/${brand.slug}/`}
+              class="bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-red-600/80 rounded-2xl p-5 text-center transition-all shadow-md group flex flex-col justify-between"
+            >
+              <div>
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-1">{brand.country}</span>
+                <h3 class="text-lg sm:text-xl font-black text-white group-hover:text-red-500 transition-colors">
+                  {brand.name}
+                </h3>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                <span class="text-slate-400 font-medium">{brandModelCount} {brandModelCount === 1 ? 'Model' : 'Models'}</span>
+                <span class="text-red-500 font-extrabold group-hover:translate-x-0.5 transition-transform">→</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- ACTUAL 4WHEELS FLEET HIGHLIGHTS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="border-b border-slate-800 pb-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2.5 py-1 rounded">
+            PHYSICAL LAHORE INVENTORY
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mt-2">
+            Confirmed 4WHEELS Core Fleet Vehicles
+          </h2>
+        </div>
+        <a href="/fleet/" class="text-xs font-bold text-red-500 hover:underline">
+          View Dedicated Fleet Gallery →
         </a>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {confirmedFleet.map(car => (
-          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
-            <div class="p-5">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-green-700 bg-green-50 border border-green-200 px-2 py-0.5 rounded">
-                  4WHEELS Fleet
-                </span>
-                <span class="text-xs font-semibold text-gray-500">{car.bodyType}</span>
-              </div>
-              <h3 class="text-xl font-bold text-gray-900">{car.brand} {car.model}</h3>
-              <p class="text-xs text-gray-600 mt-0.5">{car.variant}</p>
+          <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all shadow-xl flex flex-col justify-between">
+            <div>
+              <VehicleImage vehicle={car} loading="lazy" showLabel={true} className="h-48" />
 
-              <!-- Spec Chips -->
-              <div class="grid grid-cols-2 gap-2 mt-4 text-xs bg-gray-50 p-3 rounded-lg border border-gray-100">
-                <div>👥 <strong>Passengers:</strong> Up to {car.maxPassengers}</div>
-                <div>⚙️ <strong>Trans:</strong> {car.transmission}</div>
-                <div>
-                  {car.fuelType === 'Electric' ? '🔋' : '⛽'}
-                  <strong>{car.fuelType === 'Electric' ? 'Battery:' : 'Tank:'}</strong>
-                  {car.fuelType === 'Electric' ? car.batteryCapacity : car.fuelTankCapacity}
+              <div class="p-5 space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-black uppercase tracking-wider text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">
+                    ✓ AVAILABLE THROUGH 4WHEELS
+                  </span>
+                  <span class="text-xs font-bold text-slate-400">{car.bodyType}</span>
                 </div>
-                <div>🧳 <strong>Boot:</strong> {car.bootCapacity}</div>
-              </div>
 
-              <!-- Seating Visualizer -->
-              <div class="mt-3 text-xs text-gray-700 flex items-center justify-between">
-                <span>Seats:</span>
-                <span class="text-sm">{'👤 '.repeat(car.seats)}</span>
-              </div>
+                <h3 class="text-lg font-black text-white">{car.brand} {car.model}</h3>
+                <p class="text-xs text-slate-400">{car.variant}</p>
 
-              <div class="mt-5 flex items-center justify-between gap-2">
-                <a
-                  href={`/vehicles/${car.brandSlug}/${car.slug}/`}
-                  class="flex-1 text-center text-xs font-bold text-gray-800 bg-gray-100 hover:bg-gray-200 py-2.5 rounded-lg transition-colors"
-                >
-                  Specs & Details
-                </a>
-                <a
-                  href={`https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20would%20like%20to%20check%20current%20availability%20for%20${car.brand}%20${car.model}.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex-1 text-center text-xs font-bold text-white bg-green-600 hover:bg-green-700 py-2.5 rounded-lg transition-colors"
-                >
-                  Check Availability
-                </a>
+                <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800/80 text-xs space-y-1">
+                  <div class="flex justify-between">
+                    <span class="text-slate-400">Powertrain:</span>
+                    <span class="font-bold text-white">{car.fuelType} ({car.engine || 'Spec'})</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-400">Max Capacity:</span>
+                    <span class="font-bold text-white">Up to {car.maxPassengers} Occupants</span>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            <div class="p-5 pt-0 grid grid-cols-2 gap-2">
+              <a
+                href={`/vehicles/${car.brandSlug}/${car.slug}/`}
+                class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-2.5 rounded-xl text-center border border-slate-700 transition-colors"
+              >
+                Specs & Details
+              </a>
+              <a
+                href={`/build-your-rental/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
+                class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs py-2.5 rounded-xl text-center transition-colors shadow-md"
+              >
+                Book Your Trip
+              </a>
             </div>
           </div>
         ))}
       </div>
     </section>
 
-    <!-- Pakistan Vehicle Catalog Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="border-b border-gray-200 pb-4 mb-6">
-        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-100 px-2.5 py-1 rounded">
-          Pakistan Market Lineups
+    <!-- PAKISTAN REQUEST CATALOG HIGHLIGHTS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="border-b border-slate-800 pb-4 mb-6">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-sky-400 bg-sky-950/80 border border-sky-800/80 px-2.5 py-1 rounded">
+          PAKISTAN MARKET REQUEST CATALOG
         </span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-2">Pakistan Vehicle Catalog (Request On-Demand)</h2>
-        <p class="text-sm text-gray-600 mt-1">
-          Officially launched models in Pakistan. You can request any model below and 4WHEELS will arrange vehicle availability.
+        <h2 class="text-2xl sm:text-3xl font-black text-white mt-2">
+          Request Catalog Models ({catalogVehicles.length})
+        </h2>
+        <p class="text-xs text-slate-400 mt-1">
+          Officially introduced models in Pakistan. Choose any model below to request customized availability through 4WHEELS.
         </p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {catalogVehicles.map(car => (
-          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
-            <div class="p-5">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">
-                  Request This Model
-                </span>
-                <span class="text-xs font-semibold text-gray-500">{car.bodyType}</span>
-              </div>
-              <h3 class="text-xl font-bold text-gray-900">{car.brand} {car.model}</h3>
-              <p class="text-xs text-gray-600 mt-0.5">{car.variant}</p>
+          <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all shadow-xl flex flex-col justify-between">
+            <div>
+              <VehicleImage vehicle={car} loading="lazy" showLabel={true} className="h-48" />
 
-              <!-- Spec Chips -->
-              <div class="grid grid-cols-2 gap-2 mt-4 text-xs bg-gray-50 p-3 rounded-lg border border-gray-100">
-                <div>👥 <strong>Passengers:</strong> Up to {car.maxPassengers}</div>
-                <div>⚙️ <strong>Powertrain:</strong> {car.fuelType}</div>
-                <div>
-                  {car.fuelType === 'Electric' ? '🔋' : '⛽'}
-                  <strong>Spec:</strong>
-                  {car.fuelType === 'Electric' ? car.batteryCapacity : car.fuelTankCapacity}
+              <div class="p-5 space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-black uppercase tracking-wider text-sky-400 bg-sky-950 border border-sky-800 px-2 py-0.5 rounded">
+                    REQUEST THIS MODEL
+                  </span>
+                  <span class="text-xs font-bold text-slate-400">{car.bodyType}</span>
                 </div>
-                <div>📏 <strong>Clearance:</strong> {car.groundClearance}</div>
-              </div>
 
-              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
-                <a
-                  href={car.manufacturerUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:text-brand-red flex items-center gap-1 underline"
-                >
-                  Official Manufacturer Site ↗
-                </a>
-                <span>Verified: {car.verifiedDate}</span>
-              </div>
+                <h3 class="text-lg font-black text-white">{car.brand} {car.model}</h3>
+                <p class="text-xs text-slate-400">{car.variant}</p>
 
-              <div class="mt-4 flex items-center justify-between gap-2">
-                <a
-                  href={`/vehicles/${car.brandSlug}/${car.slug}/`}
-                  class="flex-1 text-center text-xs font-bold text-gray-800 bg-gray-100 hover:bg-gray-200 py-2.5 rounded-lg transition-colors"
-                >
-                  View Details
-                </a>
-                <a
-                  href={`https://wa.me/923216616644?text=Hi%204WHEELS%2C%20I%20would%20like%20to%20request%20availability%20information%20for%20${car.brand}%20${car.model}.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex-1 text-center text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 py-2.5 rounded-lg transition-colors"
-                >
-                  Request Model
-                </a>
+                <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800/80 text-xs space-y-1">
+                  <div class="flex justify-between">
+                    <span class="text-slate-400">Powertrain:</span>
+                    <span class="font-bold text-white">{car.fuelType}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-400">Range / Tank:</span>
+                    <span class="font-bold text-emerald-400">{car.electricRange || car.fuelTankCapacity || car.engine}</span>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            <div class="p-5 pt-0 grid grid-cols-2 gap-2">
+              <a
+                href={`/vehicles/${car.brandSlug}/${car.slug}/`}
+                class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-2.5 rounded-xl text-center border border-slate-700 transition-colors"
+              >
+                View Specs
+              </a>
+              <a
+                href={`/build-your-rental/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
+                class="bg-sky-600 hover:bg-sky-700 text-white font-extrabold text-xs py-2.5 rounded-xl text-center transition-colors shadow-md"
+              >
+                Request Model
+              </a>
             </div>
           </div>
         ))}
       </div>
     </section>
 
-    <!-- Disclaimer Section -->
+    <!-- TRADEMARK NOTICE -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div class="bg-gray-100 rounded-lg p-4 text-xs text-gray-600 border border-gray-200">
-        <strong class="text-gray-900">Trademark & Catalog Notice:</strong> Vehicle manufacturer trademarks, logos, and model designations belong to their respective owners. 4WHEELS Rent a Car is an independent rental provider in Lahore. Listing models in the Pakistan Vehicle Catalog does not imply dealership affiliation or physical ownership of every catalog model.
+      <div class="bg-slate-900/80 rounded-2xl p-5 text-xs text-slate-400 border border-slate-800 leading-relaxed">
+        <strong class="text-white">Trademark & Technical Reference Notice:</strong> Automotive manufacturer names, logos, and model designations are used strictly for vehicle identification and technical reference. 4WHEELS Rent a Car is an independent rental operator. Listing catalog models does not imply authorized dealership status or physical ownership of every catalog vehicle.
       </div>
     </section>
 
