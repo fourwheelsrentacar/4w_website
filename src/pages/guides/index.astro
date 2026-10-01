@@ -7,15 +7,13 @@ import { GUIDE_ARTICLES, GUIDE_CATEGORIES } from '../../data/guides';
 
 const featuredGuide = GUIDE_ARTICLES[0];
 const recentGuides = GUIDE_ARTICLES.slice(1);
+
+const title = "Knowledge Hub & Rental Guides | 4WHEELS Rent a Car Lahore";
+const description = "Explore 4WHEELS guides on renting a car in Lahore, vehicle choices, fuel estimates, motorway tolls, and Pakistan road trip budget planning.";
+const canonicalPath = "/guides/";
 ---
 
-<Layout title="Knowledge Hub & Rental Guides | 4WHEELS Rent a Car Lahore">
-  <SEOHead
-    title="Knowledge Hub & Rental Guides | 4WHEELS Rent a Car Lahore"
-    description="Explore 4WHEELS guides on renting a car in Lahore, vehicle choices, fuel estimates, motorway tolls, and Pakistan road trip budget planning."
-    canonicalUrl="https://www.4wheelspk.com/guides/"
-  />
-
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
   <main class="bg-slate-950 text-slate-100 min-h-screen pb-16">
     <!-- Hero Section -->
     <section class="bg-slate-900 border-b border-slate-800 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">

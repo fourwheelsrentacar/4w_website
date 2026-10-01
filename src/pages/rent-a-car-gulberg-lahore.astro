@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
+
+const title = "Rent a Car Gulberg Lahore | Corporate & Executive Car Rental | 4WHEELS";
+const description = "Rent a car in Gulberg Lahore (Gulberg II, III, Main Blvd & MM Alam Rd). Executive sedans, corporate monthly leasing, and self drive cars. Fast vehicle delivery in Gulberg.";
+const canonicalPath = "/rent-a-car-gulberg-lahore/";
+
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'location',
+  pageTitle: 'Rent a Car Gulberg Lahore',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+});
+
+const gulbergFaqs = [
+  {
+    question: "Do you offer corporate car rental services in Gulberg Lahore?",
+    answer: "Yes, 4WHEELS specializes in corporate fleet leasing, executive chauffeur transport, and monthly vehicle rentals for multinational corporations, consulting firms, and banks located along Main Boulevard Gulberg, MM Alam Road, and Kalma Chowk."
+  },
+  {
+    question: "Can I get a rental car delivered to my hotel or office in Gulberg?",
+    answer: "Yes, we provide instant vehicle drop-off to all major hotels in Gulberg (including Pearl Continental, Avari Xpress, Indigo Hotel, and Park Lane) as well as commercial towers across Gulberg II and Gulberg III."
+  },
+  {
+    question: "Are daily self-drive cars available in Gulberg?",
+    answer: "Yes, eligible drivers with valid CNIC and driving licenses can book daily self-drive sedans (such as Toyota Yaris, Honda City, or Suzuki Swift) with flexible pickup and return arrangements."
+  },
+  {
+    question: "How long does it take for a car to reach Gulberg from your hub?",
+    answer: "Our head office is in Johar Town Phase 1, just 15 to 20 minutes away via Canal Bank Road or Khayaban-e-Jinnah. We dispatch vehicles quickly upon WhatsApp booking confirmation."
+  },
+  {
+    question: "Can I rent luxury vehicles for executive protocol in Gulberg?",
+    answer: "Yes, our executive fleet includes the Audi A6, Toyota Fortuner Sigma 4, Toyota Prado, and Toyota Grand Cabin vans for corporate delegations, VIP guests, and official meetings."
+  }
+];
+
+const gulbergSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRental",
+  "name": "4WHEELS Rent a Car Gulberg Lahore",
+  "url": `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+  "telephone": "+923216616644",
+  "priceRange": "$$",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Gulberg, Lahore"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": BUSINESS_INFO.address.street,
+    "addressLocality": "Johar Town / Gulberg",
+    "addressRegion": "Punjab",
+    "postalCode": "54660",
+    "addressCountry": "Pakistan"
+  }
+};
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <script type="application/ld+json" set:html={JSON.stringify(gulbergSchema)} />
+
+  <!-- Hero Section -->
+  <section class="bg-slate-900 text-white py-12 md:py-20 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-950/80 border border-blue-800 text-blue-400 text-xs font-semibold">
+            📍 Gulberg II, III, MM Alam & Main Blvd
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-700/60 text-emerald-400 text-xs font-bold">
+            ⚡ Live Quote &bull; WhatsApp Reply in ~5 Mins
+          </span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+          Rent a Car in <span class="text-red-500">Gulberg Lahore</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
+          Premium corporate leasing, executive sedans, and flexible self-drive car rentals in the business center of Lahore. Serving Liberty Market, MM Alam Road, Main Boulevard, and Kalma Chowk.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="/booking/?location=gulberg-lahore"
+            class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-xl transition-all shadow-lg shadow-red-600/20 uppercase tracking-wider"
+          >
+            🚗 BOOK GULBERG RENTAL
+          </a>
+          <a
+            href={waUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl transition-all shadow-lg flex items-center gap-2"
+          >
+            <span>💬 WhatsApp Live Quote</span>
+          </a>
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-sm sm:text-base px-5 py-3.5 rounded-xl transition-colors"
+          >
+            📞 0321 6616644
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Vehicles for Gulberg -->
+  <section class="py-12 bg-slate-950 text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-black mb-3">Executive & Corporate Fleet in Gulberg</h2>
+        <p class="text-slate-400 text-sm">
+          Clean, late-model vehicles suited for executive meetings, hotel guests, and professional business travel.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 hover:border-red-600/60 transition-colors">
+          <div class="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">Corporate Executive Sedan</div>
+          <h3 class="text-xl font-bold text-white mb-2">Toyota Yaris ATIV X</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+            Compact luxury, excellent fuel economy, and effortless navigation through Gulberg and Lahore city traffic.
+          </p>
+          <div class="flex justify-between items-center text-xs pt-3 border-t border-slate-800">
+            <span class="text-emerald-400 font-bold">From PKR 6,500/day</span>
+            <a href="/fleet/toyota-yaris/" class="text-red-400 hover:underline font-bold">View Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 hover:border-red-600/60 transition-colors">
+          <div class="text-xs font-bold text-red-400 uppercase tracking-wider mb-2">Business Class Sedan</div>
+          <h3 class="text-xl font-bold text-white mb-2">Honda Civic 11th Gen</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+            Prestigious executive styling for C-suite movement, official business meetings, and client protocol.
+          </p>
+          <div class="flex justify-between items-center text-xs pt-3 border-t border-slate-800">
+            <span class="text-emerald-400 font-bold">From PKR 9,500/day</span>
+            <a href="/fleet/honda-civic/" class="text-red-400 hover:underline font-bold">View Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 hover:border-red-600/60 transition-colors">
+          <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">VIP Delegation Transport</div>
+          <h3 class="text-xl font-bold text-white mb-2">Toyota HiAce Grand Cabin</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+            13-seater executive passenger van for corporate teams, hotel transfers, conference shuttles, and airport protocol.
+          </p>
+          <div class="flex justify-between items-center text-xs pt-3 border-t border-slate-800">
+            <span class="text-emerald-400 font-bold">From PKR 14,000/day</span>
+            <a href="/fleet/toyota-hiace/" class="text-red-400 hover:underline font-bold">View Specs &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Landmark Coverage -->
+  <section class="py-12 bg-white text-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">Gulberg Service Areas & Landmarks</h2>
+        <p class="text-slate-600 text-sm">Direct vehicle dispatch and pickup across all sectors of Gulberg:</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-semibold text-slate-700">
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Main Boulevard Gulberg</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 MM Alam Road Restaurants</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Liberty Market & Roundabout</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Kalma Chowk & Ferozepur Rd</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Gulberg II & III Commercial</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Jail Road & Siddiq Trade Centre</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Pearl Continental & Avari Hotels</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Ghalib Market & Kasuri Road</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-12">
+    <FAQ items={gulbergFaqs} title="Frequently Asked Questions - Gulberg Lahore Car Rental" />
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Need a Car in Gulberg Lahore?"
+      subheading="Get in touch on WhatsApp or call. Our team will verify rates and deliver your vehicle directly to your Gulberg office or hotel in ~20 minutes."
+      ctaType="general"
+      pageTitle="Gulberg Lahore Rental"
+    />
+  </div>
+</Layout>

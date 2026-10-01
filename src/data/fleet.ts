@@ -82,11 +82,13 @@ export interface Vehicle {
   source: string;
   sourceDate: string;
   verificationNotes: string;
+  startingPricePkr?: number;
 }
 
 export const FLEET_VEHICLES: Vehicle[] = [
   {
     id: 'toyota-corolla-gli-altis',
+    startingPricePkr: 7500,
     slug: 'toyota-corolla',
     manufacturer: 'Toyota',
     model: 'Corolla',
@@ -159,6 +161,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
   },
   {
     id: 'honda-civic-oriell-rs',
+    startingPricePkr: 9500,
     slug: 'honda-civic',
     manufacturer: 'Honda',
     model: 'Civic',
@@ -231,6 +234,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
   },
   {
     id: 'toyota-fortuner-sigma4',
+    startingPricePkr: 18000,
     slug: 'toyota-fortuner',
     manufacturer: 'Toyota',
     model: 'Fortuner',
@@ -303,6 +307,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
   },
   {
     id: 'toyota-revo-rocco',
+    startingPricePkr: 16000,
     slug: 'toyota-revo',
     manufacturer: 'Toyota',
     model: 'Hilux Revo',
@@ -375,6 +380,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
   },
   {
     id: 'suzuki-alto-vxr-vxl',
+    startingPricePkr: 3800,
     slug: 'suzuki-alto',
     manufacturer: 'Suzuki',
     model: 'Alto',
@@ -447,6 +453,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
   },
   {
     id: 'toyota-yaris-ativ',
+    startingPricePkr: 6500,
     slug: 'toyota-yaris',
     manufacturer: 'Toyota',
     model: 'Yaris',
@@ -519,6 +526,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
   },
   {
     id: 'toyota-hiace-grand-cabin',
+    startingPricePkr: 14000,
     slug: 'toyota-hiace',
     manufacturer: 'Toyota',
     model: 'HiAce',
@@ -591,6 +599,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
   },
   {
     id: 'toyota-coaster-saloon',
+    startingPricePkr: 18000,
     slug: 'toyota-coaster',
     manufacturer: 'Toyota',
     model: 'Coaster',
@@ -663,6 +672,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
   },
   {
     id: 'audi-a6-luxury-sedan',
+    startingPricePkr: 35000,
     slug: 'audi-a6',
     manufacturer: 'Audi',
     model: 'A6',
@@ -735,6 +745,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
   },
   {
     id: 'kia-sportage-awd',
+    startingPricePkr: 11000,
     slug: 'kia-sportage',
     manufacturer: 'Kia',
     model: 'Sportage (Older QL Shape)',
@@ -807,6 +818,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
   },
   {
     id: 'kia-grand-carnival-vip',
+    startingPricePkr: 22000,
     slug: 'kia-carnival',
     manufacturer: 'Kia',
     model: 'Grand Carnival',

@@ -10,7 +10,24 @@ export interface Props {
 }
 
 const { title = 'Frequently Asked Questions', items } = Astro.props;
+
+const faqSchema = items && items.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": items.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+} : null;
 ---
+
+{faqSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+)}
 
 <section class="py-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 my-8 shadow-sm">
   <div class="max-w-4xl mx-auto">

@@ -4,15 +4,12 @@ import SEOHead from '../../components/SEOHead.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTASection from '../../components/CTASection.astro';
 import { PAKISTAN_ROUTES } from '../../data/routes';
+const title = "Pakistan Popular Travel Routes | 4WHEELS Rent a Car";
+const description = "Explore popular intercity routes from Lahore to Islamabad, Murree, Faisalabad, Multan, and Sialkot with distance, fuel estimates, tolls, and recommended rental cars.";
+const canonicalPath = "/routes/";
 ---
 
-<Layout title="Pakistan Popular Travel Routes | 4WHEELS Rent a Car">
-  <SEOHead
-    title="Pakistan Popular Travel Routes | 4WHEELS Rent a Car"
-    description="Explore popular intercity routes from Lahore to Islamabad, Murree, Faisalabad, Multan, and Sialkot with distance, fuel estimates, tolls, and recommended rental cars."
-    canonicalUrl="https://www.4wheelspk.com/routes/"
-  />
-
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
   <main class="bg-slate-950 text-slate-100 min-h-screen pb-16">
     <!-- Hero Header -->
     <section class="bg-slate-900 border-b border-slate-800 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">

@@ -2,28 +2,34 @@
 import { BUSINESS_INFO } from '../data/business';
 import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
+const pathname = Astro.url ? Astro.url.pathname : '';
+const isBookingFlow = pathname.startsWith('/booking') || pathname.startsWith('/build-your-rental');
+
 const currentUrl = Astro.url ? Astro.url.href : BUSINESS_INFO.siteUrl;
 const whatsappLink = getContextualWhatsAppUrl({
   canonicalUrl: currentUrl,
-  pageTitle: 'Mobile Support',
+  pageTitle: 'Customer Care',
 });
 ---
 
-<div class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900 border-t border-slate-800 p-2 sm:hidden shadow-2xl">
-  <div class="grid grid-cols-2 gap-2">
-    <a
-      href={BUSINESS_INFO.telLink}
-      class="bg-red-600 active:bg-red-700 text-white font-bold py-2.5 rounded-lg text-center text-sm flex items-center justify-center gap-1.5 shadow-md"
-    >
-      <span>📞 Call Now</span>
-    </a>
-    <a
-      href={whatsappLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="bg-emerald-600 active:bg-emerald-700 text-white font-bold py-2.5 rounded-lg text-center text-sm flex items-center justify-center gap-1.5 shadow-md"
-    >
-      <span>💬 WhatsApp</span>
-    </a>
+{!isBookingFlow && (
+  <div class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 p-2 sm:hidden shadow-2xl">
+    <div class="grid grid-cols-2 gap-2">
+      <a
+        href={BUSINESS_INFO.telLink}
+        class="bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white font-bold py-2.5 rounded-lg text-center text-xs flex items-center justify-center gap-1.5 shadow-md border border-slate-700"
+      >
+        <span>📞 Call 0321 6616644</span>
+      </a>
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-extrabold py-2.5 rounded-lg text-center text-xs flex items-center justify-center gap-1.5 shadow-md"
+      >
+        <span>💬 WhatsApp (Reply ~5m)</span>
+      </a>
+    </div>
   </div>
-</div>
+)}
+

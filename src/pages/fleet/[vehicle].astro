@@ -28,6 +28,68 @@ const isCoaster = vehicle.slug === 'toyota-coaster';
 ---
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <!-- Vehicle & Breadcrumb JSON-LD Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.4wheelspk.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Fleet",
+            "item": "https://www.4wheelspk.com/fleet/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": `${vehicle.manufacturer} ${vehicle.model}`,
+            "item": `https://www.4wheelspk.com/fleet/${vehicle.slug}/`
+          }
+        ]
+      },
+      {
+        "@type": "Car",
+        "@id": `https://www.4wheelspk.com/fleet/${vehicle.slug}/#vehicle`,
+        "name": `${vehicle.manufacturer} ${vehicle.model}`,
+        "description": vehicle.description,
+        "vehicleConfiguration": vehicle.variant || undefined,
+        "modelDate": vehicle.modelYear ? String(vehicle.modelYear) : undefined,
+        "numberOfDoors": 4,
+        "seatingCapacity": vehicle.seats || undefined,
+        "fuelType": vehicle.fuelType || undefined,
+        "vehicleTransmission": vehicle.transmission || undefined,
+        ...(vehicle.startingPricePkr ? {
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "PKR",
+            "price": vehicle.startingPricePkr,
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": vehicle.startingPricePkr,
+              "priceCurrency": "PKR",
+              "unitCode": "DAY"
+            },
+            "availability": "https://schema.org/InStock",
+            "seller": {
+              "@type": "AutoRental",
+              "name": "4WHEELS Rent a Car Lahore",
+              "telephone": "+923216616644",
+              "url": "https://www.4wheelspk.com"
+            }
+          }
+        } : {})
+      }
+    ]
+  })} />
+
   <!-- Breadcrumb -->
   <nav class="bg-slate-900 border-b border-slate-800 py-3 text-xs font-semibold text-slate-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2">
@@ -162,7 +224,7 @@ const isCoaster = vehicle.slug === 'toyota-coaster';
 
         <!-- Right Column: Verification Specs & Primary CTAs -->
         <div class="lg:col-span-5">
-          <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sticky top-24 space-y-6 shadow-xl">
+          <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sticky top-24 space-y-5 shadow-xl">
 
             <div>
               <span class="text-[10px] font-black uppercase tracking-widest text-red-500">{vehicle.manufacturer}</span>
@@ -172,6 +234,30 @@ const isCoaster = vehicle.slug === 'toyota-coaster';
               {vehicle.variant && (
                 <p class="text-xs font-bold text-slate-400 mt-1">{vehicle.variant}</p>
               )}
+            </div>
+
+            {vehicle.startingPricePkr && (
+              <div class="bg-gradient-to-r from-red-950/40 to-slate-900 border border-red-500/30 rounded-xl p-3.5 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] uppercase font-bold text-red-400 tracking-wider block">Indicative Daily Rate</span>
+                  <div class="text-xl font-black text-white">
+                    From PKR {vehicle.startingPricePkr.toLocaleString()}
+                    <span class="text-xs font-normal text-slate-400"> / day</span>
+                  </div>
+                </div>
+                <span class="bg-emerald-500/15 text-emerald-400 text-[11px] font-bold px-2.5 py-1 rounded-md border border-emerald-500/30 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  Verified Rate
+                </span>
+              </div>
+            )}
+
+            <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-3 flex items-center gap-2.5 text-xs text-slate-300">
+              <span class="text-emerald-400 text-base">⚡</span>
+              <div>
+                <span class="font-bold text-white block">Fast WhatsApp Quotation</span>
+                <span class="text-[11px] text-slate-400">Guaranteed initial response within ~5 minutes</span>
+              </div>
             </div>
 
             <!-- Detailed Specifications Grid -->

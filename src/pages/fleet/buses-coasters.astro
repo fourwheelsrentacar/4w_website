@@ -1,27 +1,16 @@
 ---
-import SEOHead from '../../components/SEOHead.astro';
-import HeaderComp from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import Layout from '../../layouts/Layout.astro';
 import CTASection from '../../components/CTASection.astro';
 import { BUSINESS_INFO } from '../../data/business';
 import { GROUP_TRANSPORT_VEHICLES } from '../../data/groupTransport';
 
-const canonicalUrl = `${BUSINESS_INFO.siteUrl}/fleet/buses-coasters/`;
+const title = "Buses, Coasters & Group Transport Lahore | 4WHEELS";
+const description = "Rent Toyota Coaster, HiAce Grand Cabin, and group transport buses in Lahore. Ideal for weddings, corporate events, university trips, and outstation tours.";
+const canonicalPath = "/fleet/buses-coasters/";
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <SEOHead
-    title="Buses, Coasters & Group Transport Lahore | 4WHEELS"
-    description="Rent Toyota Coaster, HiAce Grand Cabin, and group transport buses in Lahore. Ideal for weddings, corporate events, university trips, and outstation tours."
-    canonicalUrl={canonicalUrl}
-  />
-</head>
-<body class="bg-gray-50 text-gray-900 font-sans antialiased">
-  <HeaderComp />
-
-  <main>
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <div>
     <!-- Hero Header -->
     <section class="bg-gradient-to-r from-slate-900 via-gray-900 to-slate-900 text-white py-14 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto text-center">
@@ -113,8 +102,5 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/fleet/buses-coasters/`;
     </section>
 
     <CTASection />
-  </main>
-
-  <Footer />
-</body>
-</html>
+  </div>
+</Layout>

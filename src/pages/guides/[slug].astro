@@ -40,15 +40,13 @@ const articleSchema = {
   "dateModified": guide.dateModified,
   "mainEntityOfPage": `https://www.4wheelspk.com/guides/${guide.slug}/`
 };
+
+const title = `${guide.title} | 4WHEELS Knowledge Hub`;
+const description = guide.excerpt;
+const canonicalPath = `/guides/${guide.slug}/`;
 ---
 
-<Layout title={`${guide.title} | 4WHEELS Knowledge Hub`}>
-  <SEOHead
-    title={`${guide.title} | 4WHEELS Knowledge Hub`}
-    description={guide.excerpt}
-    canonicalUrl={`https://www.4wheelspk.com/guides/${guide.slug}/`}
-  />
-
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 
   <main class="bg-slate-950 text-slate-100 min-h-screen pb-16">

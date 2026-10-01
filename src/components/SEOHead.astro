@@ -5,6 +5,7 @@ export interface Props {
   title: string;
   description: string;
   canonicalPath?: string;
+  canonicalUrl?: string;
   ogImage?: string;
 }
 
@@ -12,18 +13,29 @@ const {
   title,
   description,
   canonicalPath = '',
+  canonicalUrl = '',
   ogImage = '/images/og-default.jpg',
 } = Astro.props;
 
 const siteUrl = BUSINESS_INFO.siteUrl;
 // Ensure canonical URL has trailing slash if path is provided
 const cleanPath = canonicalPath ? (canonicalPath.endsWith('/') ? canonicalPath : `${canonicalPath}/`) : '';
-const canonicalURL = new URL(cleanPath, siteUrl).href;
+const canonicalURL = canonicalUrl || new URL(cleanPath, siteUrl).href;
 const ogImageURL = new URL(ogImage, siteUrl).href;
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Google tag (gtag.js) -->
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-CQDNLE6CRS"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CQDNLE6CRS');
+</script>
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />

@@ -5,21 +5,29 @@ import BusinessSchema from '../components/BusinessSchema.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ContactActions from '../components/ContactActions.astro';
+import { BUSINESS_INFO } from '../data/business';
 
 export interface Props {
   title: string;
-  description: string;
+  description?: string;
   canonicalPath?: string;
+  canonicalUrl?: string;
   ogImage?: string;
 }
 
-const { title, description, canonicalPath, ogImage } = Astro.props;
+const {
+  title,
+  description = 'Rent a car in Lahore with 4WHEELS. Self-drive and with-driver car rental services in Lahore since 2008. Daily, monthly, airport and corporate rentals.',
+  canonicalPath,
+  canonicalUrl,
+  ogImage
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <SEOHead title={title} description={description} canonicalPath={canonicalPath} ogImage={ogImage} />
+    <SEOHead title={title} description={description} canonicalPath={canonicalPath} canonicalUrl={canonicalUrl} ogImage={ogImage} />
     <BusinessSchema />
   </head>
   <body class="min-h-screen flex flex-col bg-slate-50 text-slate-800 antialiased">

@@ -64,7 +64,67 @@ export const PAKISTAN_LOCATIONS: LocationRecord[] = [
       }
     ],
     approxDistanceKmFromLahore: 0,
-    lastReviewed: '2025-02-01'
+    lastReviewed: '2026-02-01'
+  },
+  {
+    city: 'DHA, Lahore',
+    slug: 'dha-lahore',
+    province: 'Punjab',
+    classification: 'SERVICE AREA',
+    published: true,
+    isMainHub: false,
+    airport: 'Allama Iqbal International Airport (LHE)',
+    serviceOverview: 'Doorstep vehicle delivery and chauffeur services across all phases of Defence Housing Authority (DHA Phases 1–9), Y Block, H Block, and DHA Raya.',
+    commonRoutes: ['DHA to Lahore Airport', 'DHA to Gulberg', 'DHA to Islamabad M2'],
+    vehicleTypesAvailable: ['SUV', 'Sedan', 'Luxury', 'Van'],
+    faqs: [
+      {
+        question: 'Do you deliver cars directly to DHA Lahore?',
+        answer: 'Yes, we provide direct doorstep delivery across Phase 1 to Phase 8 in DHA Lahore in 30 to 45 minutes.'
+      }
+    ],
+    approxDistanceKmFromLahore: 12,
+    lastReviewed: '2026-09-30'
+  },
+  {
+    city: 'Gulberg, Lahore',
+    slug: 'gulberg-lahore',
+    province: 'Punjab',
+    classification: 'SERVICE AREA',
+    published: true,
+    isMainHub: false,
+    airport: 'Allama Iqbal International Airport (LHE)',
+    serviceOverview: 'Corporate leasing and executive sedans serving Main Boulevard Gulberg, MM Alam Road, Liberty Market, Kalma Chowk, and business hotels.',
+    commonRoutes: ['Gulberg to Lahore Airport', 'Gulberg to Johar Town', 'Gulberg to Islamabad M2'],
+    vehicleTypesAvailable: ['Sedan', 'Luxury', 'SUV', 'Van'],
+    faqs: [
+      {
+        question: 'Are executive corporate cars available in Gulberg?',
+        answer: 'Yes, late-model executive sedans and SUVs with professional drivers are available for corporate and hotel guests.'
+      }
+    ],
+    approxDistanceKmFromLahore: 10,
+    lastReviewed: '2026-09-30'
+  },
+  {
+    city: 'Bahria Town, Lahore',
+    slug: 'bahria-town-lahore',
+    province: 'Punjab',
+    classification: 'SERVICE AREA',
+    published: true,
+    isMainHub: false,
+    airport: 'Allama Iqbal International Airport (LHE)',
+    serviceOverview: 'Doorstep family sedans, hatchbacks, and 24/7 airport transfers via Ring Road SL-3 serving Bahria Town Sectors A through F and Safari Villas.',
+    commonRoutes: ['Bahria Town to Lahore Airport Ring Road', 'Bahria Town to Johar Town', 'Bahria Town to Islamabad M2'],
+    vehicleTypesAvailable: ['Hatchback', 'Sedan', 'SUV'],
+    faqs: [
+      {
+        question: 'How fast can I get a car in Bahria Town?',
+        answer: 'Vehicles are dispatched via Ring Road and delivered to your doorstep in Bahria Town in ~30 minutes.'
+      }
+    ],
+    approxDistanceKmFromLahore: 20,
+    lastReviewed: '2026-09-30'
   },
   {
     city: 'Islamabad',

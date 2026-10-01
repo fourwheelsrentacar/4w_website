@@ -26,10 +26,10 @@ const {
   primaryButtonText,
 } = Astro.props;
 
-let whatsappText = '💬 WhatsApp to Inquire';
-if (ctaType === 'price') whatsappText = '💬 WhatsApp for Latest Price';
-if (ctaType === 'trip') whatsappText = '💬 WhatsApp for Trip Information';
-if (ctaType === 'general') whatsappText = '💬 WhatsApp to Book';
+let whatsappText = '💬 WhatsApp for Live Quote (Reply ~5 Mins)';
+if (ctaType === 'price') whatsappText = '💬 WhatsApp for Instant Quote (Reply ~5 Mins)';
+if (ctaType === 'trip') whatsappText = '💬 WhatsApp for Trip Quote (Reply ~5 Mins)';
+if (ctaType === 'general') whatsappText = '💬 WhatsApp to Book (Reply ~5 Mins)';
 if (primaryButtonText) whatsappText = primaryButtonText;
 
 const currentUrl = Astro.url ? Astro.url.href : BUSINESS_INFO.siteUrl;
@@ -45,8 +45,13 @@ const whatsappLink = primaryButtonHref || getContextualWhatsAppUrl({
 
 <section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12 md:py-16 px-4 rounded-2xl my-8 text-center max-w-7xl mx-auto shadow-xl border border-slate-700/50">
   <div class="max-w-3xl mx-auto space-y-6">
-    <div class="inline-block bg-slate-800 text-red-400 text-xs font-semibold px-3 py-1 rounded-full border border-slate-700">
-      {BUSINESS_INFO.trustBadge}
+    <div class="flex flex-wrap items-center justify-center gap-2">
+      <span class="inline-block bg-slate-800 text-red-400 text-xs font-semibold px-3 py-1 rounded-full border border-slate-700">
+        {BUSINESS_INFO.trustBadge}
+      </span>
+      <span class="inline-flex items-center gap-1.5 bg-emerald-950/90 text-emerald-400 border border-emerald-700/60 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+        ⚡ Live Quotation &bull; Reply Within 5 Minutes
+      </span>
     </div>
     <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
       {heading}

@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
+
+const title = "Rent a Car DHA Lahore | Self Drive & Chauffeur Service | 4WHEELS";
+const description = "Premium rent a car in DHA Lahore (Phases 1 to 9). Self drive & chauffeur driven luxury sedans, Toyota Fortuner, Prado, and wedding cars. Fast doorstep delivery across Defence Lahore.";
+const canonicalPath = "/rent-a-car-dha-lahore/";
+
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'location',
+  pageTitle: 'Rent a Car DHA Lahore',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+});
+
+const dhaFaqs = [
+  {
+    question: "Do you deliver rental cars directly to DHA Lahore?",
+    answer: "Yes, 4WHEELS provides direct doorstep vehicle delivery and pickup across all sectors of DHA Lahore, including Phase 1, Phase 2, Phase 3 (Y Block), Phase 4, Phase 5, Phase 6, Phase 7, Phase 8 (Ex-Park View), and Phase 9 Prism."
+  },
+  {
+    question: "What vehicles are most popular for DHA residents?",
+    answer: "Our most requested vehicles in DHA Lahore include the Toyota Fortuner 2.8L Sigma 4, Toyota Land Cruiser Prado, Honda Civic RS Turbo, Toyota Corolla Grande, and executive sedans like the Audi A6 for business travel and wedding motorcades."
+  },
+  {
+    question: "Can I rent a self-drive car in DHA Lahore?",
+    answer: "Yes, self-drive rentals are available for DHA residents upon verification of CNIC/Passport, a valid driving license, and standard security deposit. Vehicle inspection and handover are done seamlessly at your doorstep."
+  },
+  {
+    question: "How fast can I get a car delivered to DHA Lahore?",
+    answer: "Thanks to the Lahore Ring Road connection directly from our Johar Town hub, vehicle dispatch to DHA Phase 1 through 8 typically takes 30 to 45 minutes upon booking confirmation."
+  },
+  {
+    question: "Do you offer airport transfer services from DHA Lahore to Allama Iqbal Airport?",
+    answer: "Yes, we provide 24/7 dedicated airport drop-off and pickup services between DHA Lahore and Allama Iqbal International Airport (LHE), which is directly adjacent to DHA Phase 8."
+  }
+];
+
+const dhaSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRental",
+  "name": "4WHEELS Rent a Car DHA Lahore",
+  "url": `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+  "telephone": "+923216616644",
+  "priceRange": "$$",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Defence Housing Authority (DHA), Lahore"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": BUSINESS_INFO.address.street,
+    "addressLocality": "Johar Town / DHA",
+    "addressRegion": "Punjab",
+    "postalCode": "54792",
+    "addressCountry": "Pakistan"
+  }
+};
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <script type="application/ld+json" set:html={JSON.stringify(dhaSchema)} />
+
+  <!-- Hero Section -->
+  <section class="bg-slate-900 text-white py-12 md:py-20 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-400 text-xs font-semibold">
+            📍 Serving All DHA Phases (1–9)
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-700/60 text-emerald-400 text-xs font-bold">
+            ⚡ Live Quote &bull; WhatsApp Reply in ~5 Mins
+          </span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+          Rent a Car in <span class="text-red-500">DHA Lahore</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
+          Premium vehicle rental in Defence Housing Authority Lahore. Choose self-drive or executive chauffeur service with doorstep delivery across Phase 1 to Phase 8, Y Block, H Block, and DHA Raya.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="/booking/?location=dha-lahore"
+            class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-xl transition-all shadow-lg shadow-red-600/20 uppercase tracking-wider"
+          >
+            🚗 BOOK DHA RENTAL
+          </a>
+          <a
+            href={waUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl transition-all shadow-lg flex items-center gap-2"
+          >
+            <span>💬 WhatsApp Live Quote</span>
+          </a>
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-sm sm:text-base px-5 py-3.5 rounded-xl transition-colors"
+          >
+            📞 0321 6616644
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Vehicles for DHA Section -->
+  <section class="py-12 bg-slate-950 text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-black mb-3">Popular Rental Vehicles in DHA Lahore</h2>
+        <p class="text-slate-400 text-sm">
+          Well-maintained fleet available for self-drive, executive travel, wedding functions, and airport protocol.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 hover:border-red-600/60 transition-colors">
+          <div class="text-xs font-bold text-red-400 uppercase tracking-wider mb-2">Executive Luxury SUV</div>
+          <h3 class="text-xl font-bold text-white mb-2">Toyota Fortuner Sigma 4</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+            Ideal for family road trips, VIP protocol, and outstation travel. 7-seater luxury with automatic transmission and 4x4 capability.
+          </p>
+          <div class="flex justify-between items-center text-xs pt-3 border-t border-slate-800">
+            <span class="text-emerald-400 font-bold">From PKR 18,000/day</span>
+            <a href="/fleet/toyota-fortuner/" class="text-red-400 hover:underline font-bold">View Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 hover:border-red-600/60 transition-colors">
+          <div class="text-xs font-bold text-red-400 uppercase tracking-wider mb-2">Business Executive Sedan</div>
+          <h3 class="text-xl font-bold text-white mb-2">Honda Civic RS / Oriel</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+            Sleek styling and executive comfort for city errands, corporate meetings in DHA Raya, and daily commute.
+          </p>
+          <div class="flex justify-between items-center text-xs pt-3 border-t border-slate-800">
+            <span class="text-emerald-400 font-bold">From PKR 9,500/day</span>
+            <a href="/fleet/honda-civic/" class="text-red-400 hover:underline font-bold">View Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 hover:border-red-600/60 transition-colors">
+          <div class="text-xs font-bold text-red-400 uppercase tracking-wider mb-2">Everyday Family Sedan</div>
+          <h3 class="text-xl font-bold text-white mb-2">Toyota Corolla Altis Grande</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+            Pakistan's trusted sedan for effortless daily city driving, fuel efficiency, and comfortable airport pickup.
+          </p>
+          <div class="flex justify-between items-center text-xs pt-3 border-t border-slate-800">
+            <span class="text-emerald-400 font-bold">From PKR 7,500/day</span>
+            <a href="/fleet/toyota-corolla/" class="text-red-400 hover:underline font-bold">View Specs &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Matrix -->
+  <section class="py-12 bg-white text-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">DHA Lahore Delivery Locations</h2>
+        <p class="text-slate-600 text-sm">Doorstep vehicle delivery and pickup available across all major commercial and residential hubs:</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-semibold text-slate-700">
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 DHA Phase 1 & 2 (Commercial)</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 DHA Phase 3 & 4 (Y/H Block)</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 DHA Phase 5 (Civic Centre)</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 DHA Phase 6 (Main Blvd & Raya)</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 DHA Phase 7 (Commercial Area)</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 DHA Phase 8 (Airport Road)</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 DHA Phase 9 Prism</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Allama Iqbal Airport Transfers</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-12">
+    <FAQ items={dhaFaqs} title="Frequently Asked Questions - DHA Lahore Car Rental" />
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Book Your Car in DHA Lahore Today"
+      subheading="Contact 4WHEELS customer care via WhatsApp or phone. We will verify availability and dispatch your vehicle to DHA Lahore in ~30-45 minutes."
+      ctaType="general"
+      pageTitle="DHA Lahore Rental"
+    />
+  </div>
+</Layout>

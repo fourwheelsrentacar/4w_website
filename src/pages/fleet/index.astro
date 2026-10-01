@@ -299,8 +299,14 @@ const transmissions = ['All', 'Automatic', 'Manual'];
                 </div>
               </div>
 
-              <!-- STRICT CTA RULE COMPLIANCE: ONLY BOOK YOUR TRIP AND CALL -->
+              <!-- Pricing & Action Buttons -->
               <div class="p-5 pt-0 border-t border-slate-800/80 mt-2 space-y-2">
+                {vehicle.startingPricePkr && (
+                  <div class="flex items-center justify-between py-1.5 px-3 rounded-lg bg-emerald-950/40 border border-emerald-900/50 text-xs">
+                    <span class="text-slate-400 font-medium">Daily Rental From:</span>
+                    <span class="text-emerald-400 font-black text-sm">PKR {vehicle.startingPricePkr.toLocaleString()}<span class="text-[10px] text-slate-400 font-normal">/day</span></span>
+                  </div>
+                )}
                 <a
                   href={`/booking/?vehicle=${vehicle.slug}&brand=${encodeURIComponent(vehicle.manufacturer)}&model=${encodeURIComponent(vehicle.model)}&category=${vehicle.category}`}
                   class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm py-3 rounded-xl block text-center shadow-lg transition-all flex items-center justify-center gap-2"
@@ -407,4 +413,22 @@ const transmissions = ['All', 'Automatic', 'Manual'];
   transSelect?.addEventListener('change', applyFilters);
   modeSelect?.addEventListener('change', applyFilters);
   capacitySelect?.addEventListener('change', applyFilters);
+
+  // Auto-apply category filter from URL query params (e.g. /fleet/?category=sedan)
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestedCat = urlParams.get('category') || urlParams.get('cat');
+  if (requestedCat) {
+    const targetCat = requestedCat.toLowerCase();
+    const matchingBtn = document.querySelector(`.filter-cat-btn[data-cat="${targetCat}"]`);
+    if (matchingBtn) {
+      activeCat = targetCat;
+      catButtons.forEach(b => {
+        b.classList.remove('bg-red-600', 'text-white', 'border-red-500', 'shadow-md', 'scale-105');
+        b.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-700');
+      });
+      matchingBtn.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
+      matchingBtn.classList.add('bg-red-600', 'text-white', 'border-red-500', 'shadow-md', 'scale-105');
+      applyFilters();
+    }
+  }
 </script>

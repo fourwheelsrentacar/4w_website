@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { BUSINESS_INFO } from '../data/business';
+import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
+
+const title = "Rent a Car Bahria Town Lahore | Self Drive & Driver | 4WHEELS";
+const description = "Reliable car rental in Bahria Town Lahore (Sectors A through F, Safari Villas). Self drive cars, airport transfers via Ring Road, and family SUVs delivered to your door.";
+const canonicalPath = "/rent-a-car-bahria-town-lahore/";
+
+const waUrl = getContextualWhatsAppUrl({
+  pageType: 'location',
+  pageTitle: 'Rent a Car Bahria Town Lahore',
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+});
+
+const bahriaFaqs = [
+  {
+    question: "Do you deliver cars to all sectors of Bahria Town Lahore?",
+    answer: "Yes, 4WHEELS provides doorstep delivery across all sectors of Bahria Town Lahore, including Sector A, B, C, D, E, and F, as well as Safari Villas, Jasmine Block, and Golf View Residencia."
+  },
+  {
+    question: "How do you handle airport drop-offs from Bahria Town Lahore?",
+    answer: "With the Lahore Ring Road Southern Loop (SL-3) connection, traveling from Bahria Town to Allama Iqbal International Airport (LHE) takes approximately 30 minutes without city traffic. We offer guaranteed on-time airport transfer pickups 24/7."
+  },
+  {
+    question: "What vehicles are available for self-drive in Bahria Town?",
+    answer: "We offer fuel-efficient hatchbacks (Suzuki Alto, Cultus), compact sedans (Toyota Yaris, Honda City), executive sedans (Corolla Grande, Civic), and 7-seater SUVs (Toyota Fortuner) for self-drive upon document verification."
+  },
+  {
+    question: "Can I book a car with a driver for full-day city travel?",
+    answer: "Yes, chauffeur-driven vehicles are available for 12-hour or 24-hour slots. Our professional drivers are punctual, polite, and familiar with both Lahore city routes and outstation highways."
+  },
+  {
+    question: "What are the payment and deposit options for Bahria Town residents?",
+    answer: "We accept bank transfers, online payment, and cash upon vehicle handover. For self-drive rentals, a refundable security deposit is returned immediately upon vehicle inspection."
+  }
+];
+
+const bahriaSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRental",
+  "name": "4WHEELS Rent a Car Bahria Town Lahore",
+  "url": `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+  "telephone": "+923216616644",
+  "priceRange": "$$",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Bahria Town, Lahore"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": BUSINESS_INFO.address.street,
+    "addressLocality": "Johar Town / Bahria Town",
+    "addressRegion": "Punjab",
+    "postalCode": "53720",
+    "addressCountry": "Pakistan"
+  }
+};
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <script type="application/ld+json" set:html={JSON.stringify(bahriaSchema)} />
+
+  <!-- Hero Section -->
+  <section class="bg-slate-900 text-white py-12 md:py-20 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800 text-emerald-400 text-xs font-semibold">
+            📍 Sectors A, B, C, D, E & F &bull; Safari Villas
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-700/60 text-emerald-400 text-xs font-bold">
+            ⚡ Live Quote &bull; WhatsApp Reply in ~5 Mins
+          </span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+          Rent a Car in <span class="text-red-500">Bahria Town Lahore</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
+          Doorstep car rental service for residents and visitors in Bahria Town Lahore. Self-drive and chauffeur-driven cars for daily commute, wedding functions, and fast airport transfers via Ring Road.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="/booking/?location=bahria-town-lahore"
+            class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-xl transition-all shadow-lg shadow-red-600/20 uppercase tracking-wider"
+          >
+            🚗 BOOK BAHRIA RENTAL
+          </a>
+          <a
+            href={waUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl transition-all shadow-lg flex items-center gap-2"
+          >
+            <span>💬 WhatsApp Live Quote</span>
+          </a>
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-sm sm:text-base px-5 py-3.5 rounded-xl transition-colors"
+          >
+            📞 0321 6616644
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Vehicles for Bahria Town -->
+  <section class="py-12 bg-slate-950 text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-black mb-3">Popular Fleet for Bahria Town Residents</h2>
+        <p class="text-slate-400 text-sm">
+          Vehicles available for self-drive, family road trips, and 24/7 airport transfers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 hover:border-red-600/60 transition-colors">
+          <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">Budget City Runabout</div>
+          <h3 class="text-xl font-bold text-white mb-2">Suzuki Alto VXL AGS</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+            Outstanding fuel economy for local errands within Bahria Town, shopping trips, and affordable daily commutes.
+          </p>
+          <div class="flex justify-between items-center text-xs pt-3 border-t border-slate-800">
+            <span class="text-emerald-400 font-bold">From PKR 3,800/day</span>
+            <a href="/fleet/suzuki-alto/" class="text-red-400 hover:underline font-bold">View Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 hover:border-red-600/60 transition-colors">
+          <div class="text-xs font-bold text-red-400 uppercase tracking-wider mb-2">Comfortable Family Sedan</div>
+          <h3 class="text-xl font-bold text-white mb-2">Toyota Corolla Altis</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+            Smooth ride with spacious boot capacity for airport luggage and long-distance outstation travel to Islamabad.
+          </p>
+          <div class="flex justify-between items-center text-xs pt-3 border-t border-slate-800">
+            <span class="text-emerald-400 font-bold">From PKR 7,500/day</span>
+            <a href="/fleet/toyota-corolla/" class="text-red-400 hover:underline font-bold">View Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 hover:border-red-600/60 transition-colors">
+          <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Family & Group SUV</div>
+          <h3 class="text-xl font-bold text-white mb-2">Kia Sportage AWD</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+            Modern compact SUV combining high ground clearance, panoramic comfort, and family seating.
+          </p>
+          <div class="flex justify-between items-center text-xs pt-3 border-t border-slate-800">
+            <span class="text-emerald-400 font-bold">From PKR 11,000/day</span>
+            <a href="/fleet/kia-sportage/" class="text-red-400 hover:underline font-bold">View Specs &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Landmark Coverage -->
+  <section class="py-12 bg-white text-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">Bahria Town Landmarks & Sectors Covered</h2>
+        <p class="text-slate-600 text-sm">Doorstep delivery to all blocks and nearby developments:</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-semibold text-slate-700">
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Grand Jamia Mosque Area</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Eiffel Tower & Sector Tulip</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Safari Villas I & II</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Jasmine & Rose Blocks</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Sector C Commercial Zone</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Ring Road SL-3 Interchange</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Golf View Residencia</div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">📍 Sukh Chayn & Lake City Link</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-12">
+    <FAQ items={bahriaFaqs} title="Frequently Asked Questions - Bahria Town Lahore Car Rental" />
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Book Your Car in Bahria Town Lahore"
+      subheading="WhatsApp or call our 24/7 team. Your vehicle will be dispatched via Ring Road and delivered to your doorstep in Bahria Town."
+      ctaType="general"
+      pageTitle="Bahria Town Lahore Rental"
+    />
+  </div>
+</Layout>

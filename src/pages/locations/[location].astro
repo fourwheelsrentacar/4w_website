@@ -21,7 +21,7 @@ if (!loc) {
 
 const pageTitle = `Rent a Car in ${loc.city} | 4WHEELS Vehicle Rental`;
 const pageDescription = `${loc.classification} - Vehicle rental service for ${loc.city}, ${loc.province}. ${loc.serviceOverview} Book sedans, SUVs, and vans with 4WHEELS on WhatsApp.`;
-const canonicalUrl = `https://www.4wheelspk.com/locations/${loc.slug}/`;
+const canonicalPath = `/locations/${loc.slug}/`;
 
 const locationSchema = {
   "@context": "https://schema.org",
@@ -37,13 +37,7 @@ const locationSchema = {
 };
 ---
 
-<Layout title={pageTitle}>
-  <SEOHead
-    title={pageTitle}
-    description={pageDescription}
-    canonicalUrl={canonicalUrl}
-  />
-
+<Layout title={pageTitle} description={pageDescription} canonicalPath={canonicalPath}>
   <script type="application/ld+json" set:html={JSON.stringify(locationSchema)} />
 
   <main class="bg-slate-950 text-slate-100 min-h-screen pb-16">

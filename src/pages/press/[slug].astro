@@ -55,12 +55,6 @@ const articleSchema = {
 ---
 
 <Layout title={`${release.title} | 4WHEELS Press`} description={release.summary} canonicalPath={`/press/${release.slug}/`}>
-  <SEOHead
-    slot="seo"
-    title={`${release.title} | 4WHEELS Press`}
-    description={release.summary}
-    canonicalPath={`/press/${release.slug}/`}
-  />
 
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 

@@ -21,7 +21,8 @@ if (!route) {
 
 const pageTitle = `${route.title} | 4WHEELS Pakistan Routes`;
 const pageDescription = `Detailed route breakdown from ${route.origin} to ${route.destination}: ${route.distanceKm} km, driving duration ${route.drivingTimeHours}, fuel estimate, tolls, and recommended rental cars.`;
-const canonicalUrl = `https://www.4wheelspk.com/routes/${route.slug}/`;
+const canonicalPath = `/routes/${route.slug}/`;
+const canonicalUrl = `https://www.4wheelspk.com${canonicalPath}`;
 
 const tripPlannerUrl = `/trip-planner/?origin=${encodeURIComponent(route.origin)}&destination=${encodeURIComponent(route.destination)}`;
 const waContextUrl = getContextualWhatsAppUrl({
@@ -31,13 +32,7 @@ const waContextUrl = getContextualWhatsAppUrl({
 });
 ---
 
-<Layout title={pageTitle}>
-  <SEOHead
-    title={pageTitle}
-    description={pageDescription}
-    canonicalUrl={canonicalUrl}
-  />
-
+<Layout title={pageTitle} description={pageDescription} canonicalPath={canonicalPath}>
   <main class="bg-slate-950 text-slate-100 min-h-screen pb-16">
     <!-- Breadcrumbs -->
     <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">

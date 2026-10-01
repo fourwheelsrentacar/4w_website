@@ -6,6 +6,8 @@ export const BUSINESS_INFO = {
   establishedYear: '2008',
   trustBadge: 'Serving Lahore Since 2008',
   trustWording: 'An established Pakistani vehicle-rental brand serving Lahore since 2008.',
+  responseGuarantee: 'Live Quotation on WhatsApp — Initial reply within 5 minutes',
+  responseBadge: '⚡ Reply in ~5 Minutes',
   email: '4wheels44@gmail.com',
   mailtoLink: 'mailto:4wheels44@gmail.com',
   phoneDisplay: '0321 6616644',

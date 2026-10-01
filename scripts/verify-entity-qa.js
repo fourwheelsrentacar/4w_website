@@ -20,6 +20,7 @@ function checkFile(filePath) {
   }
 
   // Check 2: Strict prohibition of prohibited domains in code files and critical metadata
+  const normalizedPath = filePath.replace(/\\/g, '/');
   const lines = content.split('\n');
   lines.forEach((line, index) => {
     const lineNum = index + 1;
@@ -27,10 +28,10 @@ function checkFile(filePath) {
 
     for (const domain of PROHIBITED_DOMAINS) {
       if (lowerLine.includes(domain)) {
-        const isApprovedDoc = filePath.startsWith('docs/') || filePath.startsWith('scripts/');
+        const isApprovedDoc = normalizedPath.startsWith('docs/') || normalizedPath.startsWith('scripts/');
         const isApprovedClarification = isApprovedDoc ||
-                                        filePath === 'src/data/press.ts' ||
-                                        filePath === 'src/pages/official.astro';
+                                        normalizedPath === 'src/data/press.ts' ||
+                                        normalizedPath === 'src/pages/official.astro';
 
         // Unapproved code file containing prohibited domain
         if (!isApprovedClarification) {
