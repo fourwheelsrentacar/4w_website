@@ -196,7 +196,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Legendary off-road luxury 7-seater SUV for high-profile journeys.',
     description: 'Toyota Land Cruiser Prado provides unmatched off-road capability, supreme suspension dampening, and executive 7-seater comfort.',
-    heroPhoto: '/vehicles/fleet/toyota-fortuner/hero.webp',
+    heroPhoto: '/vehicles/catalog/toyota/prado.webp',
     customerLabel: '150 Series / 250 Series Shape'
   },
   {
@@ -229,7 +229,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Ultimate VVIP 4x4 flagship SUV with twin-turbo performance and regal luxury.',
     description: 'The peak of automotive prestige in Pakistan, Land Cruiser 300 delivers commanding road presence and luxury.',
-    heroPhoto: '/vehicles/fleet/toyota-fortuner/hero.webp',
+    heroPhoto: '/vehicles/catalog/toyota/lc300.webp',
     customerLabel: '300 Series Flagship Shape'
   },
 
@@ -297,7 +297,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Practical city sedan with class-leading 510L luggage trunk and smooth i-VTEC engine.',
     description: 'Highly economical sedan rental choice with wide rear seating legroom and massive boot capacity.',
-    heroPhoto: '/vehicles/fleet/honda-city/hero.webp',
+    heroPhoto: '/vehicles/catalog/honda/city.webp',
     customerLabel: '2021–2026 6th Gen Shape'
   },
   {
@@ -602,7 +602,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Retro-futuristic pure electric hatchback officially distributed by Sazgar GWM in Pakistan.',
     description: 'ORA 03 brings distinct retro styling, leather interior, and 310km electric range for eco-conscious city commutes.',
-    heroPhoto: '/vehicles/catalog/changan/alsvin.webp',
+    heroPhoto: '/vehicles/catalog/ora/ora03.webp',
     customerLabel: '2024–2026 Current EV Shape'
   },
 
@@ -637,7 +637,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Flagship 342hp 7-seater hybrid luxury off-road SUV by GWM Sazgar.',
     description: 'Tank 500 combines Land Cruiser-rivaling off-road mechanical lockers with massage seating and Nappa leather luxury.',
-    heroPhoto: '/vehicles/fleet/toyota-fortuner/hero.webp',
+    heroPhoto: '/vehicles/catalog/tank/tank500.webp',
     customerLabel: '2024–2026 Flagship 500 Shape'
   },
 
@@ -707,7 +707,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Rugged boxy 4WD luxury SUV with intelligent off-road terrain modes.',
     description: 'Jetour T2 offers robust off-road capability, futuristic square styling, and high ground clearance.',
-    heroPhoto: '/vehicles/fleet/toyota-fortuner/hero.webp',
+    heroPhoto: '/vehicles/catalog/jetour/t2.webp',
     customerLabel: '2024–2026 T2 Shape'
   },
 
@@ -742,7 +742,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Futuristic crossover EV with Sony sound system and fast DC charging.',
     description: 'OMODA E5 features sleek aerodynamic styling, 430km electric range, and ultra-quiet electric drive.',
-    heroPhoto: '/vehicles/fleet/byd-atto3/hero.webp',
+    heroPhoto: '/vehicles/catalog/omoda/e5.webp',
     customerLabel: '2024–2026 OMODA E5 Shape'
   },
 
@@ -777,7 +777,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Premium hybrid off-road SUV engineered for refined luxury and tough terrain.',
     description: 'JAECOO J7 delivers Super Hybrid System performance, 14.8-inch portrait screen, and off-road drive modes.',
-    heroPhoto: '/vehicles/fleet/kia-sportage/older-ql.webp',
+    heroPhoto: '/vehicles/catalog/jaecoo/j7.webp',
     customerLabel: '2024–2026 J7 Shape'
   },
 
@@ -812,7 +812,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Practical 442km range electric executive sedan introduced by GAC Pakistan.',
     description: 'AION ES brings comfortable rear legroom, durable battery tech, and quiet zero-emission driving.',
-    heroPhoto: '/vehicles/fleet/byd-seal/hero.webp',
+    heroPhoto: '/vehicles/catalog/aion/es.webp',
     customerLabel: '2024–2026 ES Shape'
   },
 
@@ -847,7 +847,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'High-end electric SUV featuring rear gull-wing doors and 600km range.',
     description: 'HYPTEC HT is GAC’s flagship electric luxury SUV with rear gull-wing doors and Nappa leather lounge.',
-    heroPhoto: '/vehicles/fleet/byd-seal/hero.webp',
+    heroPhoto: '/vehicles/catalog/hyptec/ht.webp',
     customerLabel: '2024–2026 Gull-Wing EV Shape'
   },
 
@@ -882,7 +882,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Affordable 200km range urban electric mini hatchback locally assembled by Dewan Motors.',
     description: 'Honri i200 provides compact city parking ease and low running costs in urban traffic.',
-    heroPhoto: '/vehicles/fleet/suzuki-alto/hero.webp',
+    heroPhoto: '/vehicles/catalog/honri/i200.webp',
     customerLabel: '2024–2026 i200 Shape'
   },
 
@@ -1257,7 +1257,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: '50-seater luxury intercity coach for large corporate, tour, and wedding delegations.',
     description: 'Heavy commercial luxury coach featuring reclining seats, central air conditioning, public address system, and large luggage bays.',
-    heroPhoto: '/vehicles/fleet/toyota-coaster/hero.webp',
+    heroPhoto: '/vehicles/catalog/yutong/bus.webp',
     customerLabel: '50-Seater Grand Coach'
   },
   {
@@ -1290,7 +1290,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Standard 45-seater intercity express coach for reliable group mobility across Pakistan.',
     description: 'Proven commercial intercity passenger bus engineered for long distance motorway travel with heavy luggage capacity.',
-    heroPhoto: '/vehicles/fleet/toyota-coaster/hero.webp',
+    heroPhoto: '/vehicles/catalog/daewoo/bus.webp',
     customerLabel: '45-Seater Express Coach'
   }
 ];

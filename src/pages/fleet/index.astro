@@ -63,7 +63,13 @@ const transmissions = ['All', 'Automatic', 'Manual'];
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {PAKISTAN_BRANDS.map(brand => {
           const brandVehicles = PAKISTAN_VEHICLE_CATALOG.filter(v => v.brandSlug.toLowerCase() === brand.slug.toLowerCase());
-          const sampleCar = brandVehicles[0] || FLEET_VEHICLES.find(v => v.manufacturerSlug === brand.slug);
+          let sampleCar = brandVehicles[0];
+          if (brand.slug === 'changan') {
+            sampleCar = brandVehicles.find(v => v.slug === 'changan-karvaan') || brandVehicles[0];
+          }
+          if (!sampleCar) {
+            sampleCar = FLEET_VEHICLES.find(v => v.manufacturer.toLowerCase() === brand.name.toLowerCase()) as any;
+          }
 
           return (
             <a
