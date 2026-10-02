@@ -34,7 +34,12 @@ const localBusinessSchema = {
   "logo": `${BUSINESS_INFO.siteUrl}/favicon.svg`,
   "telephone": "+923216616644",
   "email": BUSINESS_INFO.email,
-  "image": `${BUSINESS_INFO.siteUrl}/images/og-default.jpg`,
+  "image": [
+    `${BUSINESS_INFO.siteUrl}/images/office/4wheels-hq-billboard-wide.webp`,
+    `${BUSINESS_INFO.siteUrl}/images/office/4wheels-hq-front-showroom.webp`,
+    `${BUSINESS_INFO.siteUrl}/images/office/4wheels-fleet-lineup-civics-fortuner.webp`
+  ],
+  "hasMap": BUSINESS_INFO.mapsDirectionsUrl,
   "sameAs": [
     BUSINESS_INFO.facebookUrl
   ],
@@ -55,9 +60,13 @@ const localBusinessSchema = {
     {
       "@type": "City",
       "name": "Lahore"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Punjab, Pakistan"
     }
   ],
-  "priceRange": "$$"
+  "priceRange": "PKR 3,800 - PKR 65,000"
 };
 
 const schemaData = [organizationSchema, localBusinessSchema];

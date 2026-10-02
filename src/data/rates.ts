@@ -174,3 +174,11 @@ export const HOTEL_PLANNING_BANDS: Record<string, HotelBand> = {
 export const FUEL_DISCLAIMER_TEXT = "Actual fuel consumption may vary according to traffic, route, passenger/load weight, AC usage, driving style and vehicle condition.";
 
 export const ESTIMATE_DISCLAIMER_TEXT = "Planning estimate only. Final rental prices, fuel usage, tolls, hotel prices and other expenses may vary.";
+
+export const FUEL_PRICE_POLICY = {
+  shortDisclaimer: "Approximate base rate. In Pakistan, petrol and diesel rates fluctuate regularly — text us on WhatsApp for your latest exact guaranteed rate.",
+  detailedNotice: "Petrol and fuel prices in Pakistan are revised frequently by OGRA. Because of fuel market changes, displayed rental rates are indicative starting figures. Text 4WHEELS Customer Care on WhatsApp (+92 321 6616644) for your instant, locked-in exact quotation for today's trip.",
+  badgeLabel: "Approx. Base Rate • Subject to Fuel Fluctuation",
+  whatsAppCta: "Text on WhatsApp for Exact Rate"
+};
+

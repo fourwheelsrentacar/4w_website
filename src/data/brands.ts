@@ -330,6 +330,21 @@ export const PAKISTAN_BRANDS: Brand[] = [
     vehicleCount: 1,
     description: 'Heavy commercial luxury bus provider for intercity passenger transport in Pakistan.',
     featured: true
+  },
+  {
+    id: 'mitsubishi',
+    name: 'Mitsubishi',
+    displayName: 'Mitsubishi Motors Pakistan',
+    slug: 'mitsubishi',
+    country: 'Japan',
+    distributor: 'Universal Motors / Direct Fleet',
+    officialPakistanSource: 'https://www.mitsubishi-motors.com',
+    activePakistan: true,
+    lastVerified: '2026-10-02',
+    categories: ['suv'],
+    vehicleCount: 1,
+    description: 'Renowned Japanese 4x4 engineering featuring the legendary Mitsubishi Pajero Super Exceed 4x4 for northern tours, rugged terrain, and executive transport.',
+    featured: true
   }
 ];
 

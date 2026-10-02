@@ -37,15 +37,119 @@ const canonicalPath = "/rent-a-car-johar-town-lahore/";
   </section>
 
   <section class="py-12 bg-white">
-    <div class="max-w-4xl mx-auto px-4 space-y-8">
-      <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl">
-        <h2 class="text-xl font-bold text-slate-900 mb-2">Branch Address & Directions</h2>
-        <p class="text-sm text-slate-700 leading-relaxed mb-4">
+    <div class="max-w-5xl mx-auto px-4 space-y-10">
+      <!-- Address & Map Card -->
+      <div class="bg-slate-50 border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-5 mb-5">
+          <div>
+            <span class="text-xs font-bold text-red-600 uppercase tracking-widest block mb-1">Johar Town Main Hub</span>
+            <h2 class="text-2xl font-black text-slate-900">Branch Address & Head Office</h2>
+          </div>
+          <a
+            href={BUSINESS_INFO.mapsDirectionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors inline-flex items-center gap-2 self-start"
+          >
+            <span>🗺️ Open in Google Maps</span>
+          </a>
+        </div>
+        <p class="text-base text-slate-800 font-semibold mb-2">
           📍 {BUSINESS_INFO.address.fullAddress}
         </p>
-        <p class="text-xs text-slate-500">
-          Serving Johar Town Phase 1, Phase 2, Wapda Town, PIA Society, Faisal Town, Model Town, and Garden Town with fast vehicle dispatch.
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Conveniently accessible via Khayaban-e-Firdousi, Canal Bank Road, and Maulana Shaukat Ali Road. Serving Johar Town Phase 1, Phase 2, Wapda Town, PIA Society, Faisal Town, Model Town, and Garden Town with immediate same-day vehicle dispatch.
         </p>
+      </div>
+
+      <!-- Real On-Site Photos -->
+      <div>
+        <div class="text-center max-w-2xl mx-auto mb-6">
+          <span class="text-xs font-bold text-red-600 uppercase tracking-widest block mb-1">100% Verified Presence</span>
+          <h3 class="text-2xl font-black text-slate-900">Live Photos of Our Johar Town Branch</h3>
+          <p class="text-xs text-slate-500 mt-1">Our physical facility, official billboard, and active yard vehicles in Phase 1.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+            <img
+              src="/images/office/4wheels-hq-billboard-wide.webp"
+              alt="4WHEELS Rent a Car Johar Town Billboard 0321-6616644"
+              class="w-full aspect-[4/3] object-cover"
+              loading="lazy"
+            />
+            <div class="p-3 bg-white text-xs">
+              <p class="font-bold text-slate-900">Main Boulevard Signboard</p>
+              <p class="text-[11px] text-slate-500">Official billboard on Main Boulevard</p>
+            </div>
+          </div>
+
+          <div class="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+            <img
+              src="/images/office/4wheels-fleet-lineup-civics-fortuner.webp"
+              alt="4WHEELS Fleet Yard Civics and Fortuner"
+              class="w-full aspect-[4/3] object-cover"
+              loading="lazy"
+            />
+            <div class="p-3 bg-white text-xs">
+              <p class="font-bold text-slate-900">Civics & Fortuners in Yard</p>
+              <p class="text-[11px] text-slate-500">Ready for instant local dispatch</p>
+            </div>
+          </div>
+
+          <div class="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+            <img
+              src="/images/office/4wheels-office-entrance-prado-civic.webp"
+              alt="4WHEELS Office Entrance with Prado"
+              class="w-full aspect-[4/3] object-cover"
+              loading="lazy"
+            />
+            <div class="p-3 bg-white text-xs">
+              <p class="font-bold text-slate-900">Customer Reception Desk</p>
+              <p class="text-[11px] text-slate-500">Visit in person or call ahead</p>
+            </div>
+          </div>
+
+          <div class="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+            <img
+              src="/images/office/4wheels-fleet-yard-yaris-sportage-pajero.webp"
+              alt="4WHEELS Fleet Yard Yaris Sportage Pajero"
+              class="w-full aspect-[4/3] object-cover"
+              loading="lazy"
+            />
+            <div class="p-3 bg-white text-xs">
+              <p class="font-bold text-slate-900">SUVs & Sedans Lineup</p>
+              <p class="text-[11px] text-slate-500">Toyota Yaris, Sportage & Pajero</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fuel Rate Notice Card -->
+      <div class="bg-amber-50 border border-amber-200 p-5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="text-xs">
+          <span class="font-black text-amber-900 uppercase tracking-wide block">⛽ Petrol & Fuel Price Volatility Notice</span>
+          <p class="text-amber-800 mt-1 leading-relaxed">
+            Due to frequent fuel price changes in Pakistan, base rental rates vary slightly. Message Johar Town Customer Care on WhatsApp for today's locked-in rate for your trip.
+          </p>
+        </div>
+        <a
+          href={waUrl}
+          target="_blank"
+          class="shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors whitespace-nowrap"
+        >
+          💬 WhatsApp Locked Quote
+        </a>
+      </div>
+
+      <!-- Quick Action CTAs -->
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+        <a href="/booking/" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm px-8 py-3.5 rounded-xl text-center shadow-lg transition-colors uppercase">
+          🚗 Book Your Rental Vehicle
+        </a>
+        <a href="/fleet/" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm px-7 py-3.5 rounded-xl text-center transition-colors">
+          Browse All Fleet Cars →
+        </a>
       </div>
     </div>
   </section>

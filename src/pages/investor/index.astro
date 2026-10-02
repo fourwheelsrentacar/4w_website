@@ -1,0 +1,21 @@
+---
+export function GET({ request }: { request: Request }) {
+  const url = new URL(request.url);
+  return Response.redirect(`${url.origin}/attach-your-car/${url.search}`, 301);
+}
+
+return Astro.redirect(`/attach-your-car/${Astro.url.search}`, 301);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting to Investor Car Attachment Portal</title>
+  <link rel="canonical" href="https://www.4wheelspk.com/attach-your-car/">
+  <meta http-equiv="refresh" content="0;url=/attach-your-car/">
+</head>
+<body>
+  <p>Redirecting to <a href="/attach-your-car/">4WHEELS Car Attachment & Investor Program</a>...</p>
+</body>
+</html>

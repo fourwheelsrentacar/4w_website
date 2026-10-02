@@ -52,6 +52,7 @@ export const BUSINESS_INFO = {
     { title: 'Wedding Cars', href: '/wedding-car-rental-lahore/' },
     { title: 'Event Transport', href: '/event-transport-lahore/' },
     { title: 'Outstation Travel', href: '/outstation-car-rental-lahore/' },
-    { title: 'Tour Operator Transport', href: '/tour-operator-transport-pakistan/' }
+    { title: 'Tour Operator Transport', href: '/tour-operator-transport-pakistan/' },
+    { title: 'Attach Your Car & Earn', href: '/attach-your-car/' }
   ]
 };

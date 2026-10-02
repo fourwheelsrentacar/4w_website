@@ -176,6 +176,11 @@ export const DEDICATED_COLOR_IMAGES: Record<string, Record<string, string>> = {
   },
   'toyota-coaster': {
     'Executive Saloon (White/Gold)': '/vehicles/fleet/toyota-coaster/hero.webp',
+  },
+  'mitsubishi-pajero': {
+    'Metallic Silver': '/vehicles/catalog/mitsubishi/pajero.webp',
+    'Attitude Black': '/vehicles/catalog/mitsubishi/pajero.webp',
+    'Pearl White': '/vehicles/catalog/mitsubishi/pajero.webp',
   }
 };
 
@@ -188,6 +193,7 @@ const BASE_STARTING_RATES: Record<string, number> = {
   'toyota-revo': 16000,
   'toyota-prado': 28000,
   'toyota-lc300': 65000,
+  'mitsubishi-pajero': 24000,
   'toyota-hiace': 14000,
   'toyota-coaster': 22000,
   'suzuki-alto': 3800,

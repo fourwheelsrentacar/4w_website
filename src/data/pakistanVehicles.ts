@@ -1292,6 +1292,40 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     description: 'Proven commercial intercity passenger bus engineered for long distance motorway travel with heavy luggage capacity.',
     heroPhoto: '/vehicles/catalog/daewoo/bus.webp',
     customerLabel: '45-Seater Express Coach'
+  },
+  // --- MITSUBISHI ---
+  {
+    id: 'mitsubishi-pajero-gls',
+    slug: 'mitsubishi-pajero',
+    brand: 'Mitsubishi',
+    brandSlug: 'mitsubishi',
+    model: 'Pajero',
+    variant: 'Super Exceed 3.2L Di-D 4x4',
+    modelYear: '2020-2026',
+    bodyType: 'SUV',
+    category: 'suv',
+    status: '4WHEELS Core Fleet',
+    seats: 7,
+    maxPassengers: 6,
+    transmission: 'Automatic',
+    fuelType: 'Diesel',
+    engine: '3.2L Common Rail Turbo Diesel (Super Select 4WD)',
+    fuelTankCapacity: '88 Litres',
+    batteryCapacity: null,
+    electricRange: null,
+    bootCapacity: '660 Litres',
+    groundClearance: '225 mm',
+    colors: ['Metallic Silver', 'Attitude Black', 'Pearl White'],
+    suitableUse: ['Northern Mountain Tours', 'Rough Terrain & Off-Road', 'Executive Protocol', 'Family Safari'],
+    manufacturerUrl: 'https://www.mitsubishi-motors.com',
+    brochureUrl: null,
+    sourceUrl: 'https://www.4wheelspk.com',
+    verifiedDate: '2026-10-02',
+    isFleetConfirmed: true,
+    tagline: 'Iconic heavy-duty Japanese 4x4 SUV with Super Select 4WD for extreme northern tours and executive safety.',
+    description: 'The Mitsubishi Pajero Super Exceed features genuine dual-range 4WD, robust ladder-frame chassis, 7-passenger leather seating, and supreme reliability on both motorways and northern mountain trails.',
+    heroPhoto: '/vehicles/catalog/mitsubishi/pajero.webp',
+    customerLabel: 'Super Exceed 4x4 Shape'
   }
 ];
 

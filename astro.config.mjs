@@ -14,7 +14,8 @@ export default defineConfig({
     '/book': '/booking/',
     '/reserve': '/booking/',
     '/reservation': '/booking/',
-    '/get-a-quote': '/booking/'
+    '/get-a-quote': '/booking/',
+    '/investor': '/attach-your-car/'
   },
   integrations: [sitemap(), tailwind()],
 });

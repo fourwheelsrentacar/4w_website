@@ -105,6 +105,7 @@ const businessMegaMenu = {
         { name: 'Corporate Car Rental', href: '/corporate-car-rental-lahore/' },
         { name: 'Monthly Business Rental', href: '/monthly-car-rental-lahore/' },
         { name: 'Executive Transport', href: '/business-car-rental-lahore/' },
+        { name: 'Attach Your Car (Earn Money)', href: '/attach-your-car/' },
       ]
     },
     {
@@ -378,7 +379,17 @@ const exploreMegaMenu = {
       </nav>
 
       <!-- Desktop Header CTAs & Search -->
-      <div class="hidden lg:flex items-center space-x-3">
+      <div class="hidden lg:flex items-center space-x-2.5">
+        <!-- Attach Your Car Investor CTA -->
+        <a
+          href="/attach-your-car/"
+          class={`text-xs font-bold px-3 py-2 rounded-lg transition-colors border border-emerald-500/40 whitespace-nowrap ${
+            currentPath.startsWith('/attach-your-car') ? 'bg-emerald-600 text-white' : 'text-emerald-400 hover:bg-slate-800 hover:text-emerald-300'
+          }`}
+        >
+          🤝 Attach Your Car
+        </a>
+
         <!-- Site Search Icon Button -->
         <button
           type="button"
@@ -392,7 +403,7 @@ const exploreMegaMenu = {
         <!-- Dominant Commercial CTA -->
         <a
           href="/booking/"
-          class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-extrabold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-red-600/20 active:scale-95 uppercase tracking-wide"
+          class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-extrabold px-4 sm:px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-red-600/20 active:scale-95 uppercase tracking-wide whitespace-nowrap"
         >
           BOOK YOUR TRIP
         </a>
@@ -453,12 +464,18 @@ const exploreMegaMenu = {
         </div>
 
         <!-- Primary Drawer CTA -->
-        <div class="p-4 border-b border-slate-800 bg-slate-900/50">
+        <div class="p-4 border-b border-slate-800 bg-slate-900/50 space-y-2.5">
           <a
             href="/booking/"
             class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-black py-3 px-4 rounded-xl block transition-all shadow-md text-sm uppercase tracking-wide"
           >
             🚗 BOOK YOUR TRIP
+          </a>
+          <a
+            href="/attach-your-car/"
+            class="w-full text-center bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2.5 px-4 rounded-xl block transition-all shadow-md text-xs uppercase tracking-wide"
+          >
+            🤝 ATTACH YOUR CAR & EARN
           </a>
         </div>
 

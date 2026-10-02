@@ -1,0 +1,759 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { BUSINESS_INFO } from '../../data/business';
+
+const pageTitle = "Attach Your Car & Earn Monthly Passive Income in Lahore | 4WHEELS Investor Relations";
+const pageDescription = "Monetize your vehicle with 4WHEELS Rent a Car Lahore. Earn PKR 60,000 to 350,000+ monthly passive rental income. Dedicated investment programs for resident car owners and Overseas Pakistanis in UAE, UK, Saudi Arabia, USA, Canada, and Qatar with 24/7 tracker surveillance, corporate clients, and legal contracts.";
+const canonicalPath = "/attach-your-car/";
+
+const OVERSEAS_COUNTRIES = [
+  { flag: '🇦🇪', name: 'United Arab Emirates', hubs: 'Dubai, Abu Dhabi, Sharjah', expatCount: '1.7M+ Pakistanis' },
+  { flag: '🇸🇦', name: 'Saudi Arabia (KSA)', hubs: 'Riyadh, Jeddah, Dammam, Khobar', expatCount: '2.5M+ Pakistanis' },
+  { flag: '🇬🇧', name: 'United Kingdom', hubs: 'London, Birmingham, Manchester, Bradford', expatCount: '1.6M+ Pakistanis' },
+  { flag: '🇺🇸', name: 'United States', hubs: 'Texas (Houston/Dallas), New York, California, Chicago', expatCount: '600k+ Pakistanis' },
+  { flag: '🇨🇦', name: 'Canada', hubs: 'Toronto, Mississauga, Calgary, Edmonton', expatCount: '350k+ Pakistanis' },
+  { flag: '🇶🇦', name: 'Qatar', hubs: 'Doha, Al Wakrah, Al Rayyan', expatCount: '260k+ Pakistanis' },
+  { flag: '🇴🇲', name: 'Oman', hubs: 'Muscat, Salalah, Sohar', expatCount: '280k+ Pakistanis' },
+  { flag: '🇦🇺', name: 'Australia', hubs: 'Sydney, Melbourne, Brisbane, Perth', expatCount: '120k+ Pakistanis' },
+  { flag: '🇰🇼', name: 'Kuwait & Bahrain', hubs: 'Kuwait City, Manama', expatCount: '200k+ Pakistanis' },
+  { flag: '🇪🇺', name: 'European Union', hubs: 'Germany (Frankfurt), Italy (Milan), Spain (Barcelona)', expatCount: '400k+ Pakistanis' }
+];
+
+const VEHICLE_CATEGORIES = [
+  { id: 'economy_sedan', name: 'Economy Sedan (Yaris, City, Alsvin, Swift)', minMonthly: 60000, maxMonthly: 85000, avg: 72000 },
+  { id: 'executive_sedan', name: 'Executive Sedan (Corolla Altis, Civic, Elantra)', minMonthly: 95000, maxMonthly: 145000, avg: 120000 },
+  { id: 'suv_crossover', name: 'Crossover / Compact SUV (Sportage, Tucson, Oshan X7, Haval H6)', minMonthly: 125000, maxMonthly: 185000, avg: 155000 },
+  { id: 'heavy_suv', name: 'Heavy 4x4 / 7-Seater (Fortuner Legender, Pajero, Carnival)', minMonthly: 180000, maxMonthly: 260000, avg: 220000 },
+  { id: 'flagship_vip', name: 'Flagship Luxury (Land Cruiser Prado, LC300, Audi A6)', minMonthly: 260000, maxMonthly: 380000, avg: 310000 },
+  { id: 'commercial_van', name: 'Passenger Van / Coaster (HiAce Grand Cabin, Coaster)', minMonthly: 140000, maxMonthly: 260000, avg: 200000 }
+];
+
+const INVESTOR_FAQS = [
+  {
+    q: "How does the 4WHEELS Car Attachment program work?",
+    a: "You lease your personal or commercially registered vehicle to 4WHEELS under a legally binding, notarized lease agreement. We handle customer vetting, corporate allocations, 24/7 tracker surveillance, and regular servicing. In return, you receive a guaranteed fixed monthly rental payout deposited directly into your bank account by the 5th of each month."
+  },
+  {
+    q: "I am an Overseas Pakistani living abroad. How do I manage and monitor my car?",
+    a: "We have a dedicated concierge desk for Overseas Pakistanis in the UAE, UK, Saudi Arabia, USA, Canada, Qatar, and Australia. You receive real-time mobile app credentials for your car's satellite tracker to view live GPS location, speed, and ignition status 24/7 from your phone anywhere in the world. Monthly earnings are remitted directly to your Roshan Digital Account (RDA) or local Pakistani bank account (HBL, Meezan, MCB, UBL, Alfalah, etc.)."
+  },
+  {
+    q: "Who drives my vehicle? Are customers verified?",
+    a: "4WHEELS strictly leases attached vehicles to verified corporate executives, multinational staff, diplomatic delegations, registered tour operators, and vetted wedding families. Every renter is subjected to strict biometric verification, CNIC/passport checks, valid driving license confirmation, and security deposit screening. We do not permit unauthorized or rough usage."
+  },
+  {
+    q: "What happens regarding maintenance, oil changes, and wear-and-tear?",
+    a: "Routine periodic maintenance (engine oil, oil filter, air filter, brake inspection, fluid top-ups) is supervised and executed by 4WHEELS at certified service centers in Lahore. Detailed maintenance logs and receipts are digitally maintained and shared with you. Your vehicle is washed and sanitized after every trip."
+  },
+  {
+    q: "Can I use my vehicle when I visit Lahore on annual leave?",
+    a: "Yes! Overseas Pakistanis and local investors can request personal use of their attached vehicle when visiting Lahore with 7 to 14 days prior notice. We will hold the vehicle from external bookings for your private family use during your stay."
+  },
+  {
+    q: "What documents are required to attach a car?",
+    a: "Original Smart Card or Vehicle Registration Book, verified token tax clearance up to the current fiscal year, vehicle owner's valid CNIC or NICOP, two passport-sized photographs, and signed biometric verification transfer/lease authority."
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalPath={canonicalPath}>
+  <!-- Hero Section -->
+  <section class="bg-slate-900 text-white py-12 md:py-20 border-b border-slate-800 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-700/80 text-emerald-400 text-xs font-bold">
+            <span>💼 4WHEELS Fleet Partnership & Investor Portal</span>
+            <span class="text-slate-500">•</span>
+            <span>Serving Lahore Since 2008</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+            Attach Your Car & Earn <span class="text-emerald-400">PKR 60,000 – 350,000+</span> Monthly Passive Income
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+            Don't leave your vehicle parked depreciating in a garage. Partner with Lahore's premier rental fleet. Guaranteed monthly bank payouts, 24/7 real-time satellite GPS tracking, certified corporate clientele, and comprehensive legal protection.
+          </p>
+
+          <!-- Key Guarantees Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs pt-2">
+            <div class="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
+              <span class="text-emerald-400 font-black block text-sm">24/7 GPS</span>
+              <span class="text-slate-300 text-[11px]">Live Global App Tracking</span>
+            </div>
+            <div class="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
+              <span class="text-emerald-400 font-black block text-sm">Monthly Rent</span>
+              <span class="text-slate-300 text-[11px]">Paid by 5th of Each Month</span>
+            </div>
+            <div class="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
+              <span class="text-emerald-400 font-black block text-sm">Vetted Clients</span>
+              <span class="text-slate-300 text-[11px]">Corporate & Executives Only</span>
+            </div>
+            <div class="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
+              <span class="text-emerald-400 font-black block text-sm">Legal Contract</span>
+              <span class="text-slate-300 text-[11px]">Notarized Stamp Agreement</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <a
+              href="#attach-form-section"
+              class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base px-8 py-4 rounded-xl transition-all text-center shadow-xl shadow-emerald-600/30 uppercase tracking-wider"
+            >
+              🤝 Attach Your Car Now
+            </a>
+            <a
+              href="#calculator-section"
+              class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-base px-6 py-4 rounded-xl transition-all text-center"
+            >
+              🧮 Calculate Your Earnings
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Valuation Snapshot Card -->
+        <div class="lg:col-span-5 bg-slate-800/90 border border-slate-700 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-700 pb-3">
+            <div>
+              <span class="text-xs font-bold text-red-400 uppercase tracking-wider block">Indicative Yield</span>
+              <h3 class="text-lg font-black text-white">Monthly Rental Payout Rates</h3>
+            </div>
+            <span class="bg-emerald-950 text-emerald-400 border border-emerald-800 text-[10px] font-black px-2.5 py-1 rounded-full uppercase">
+              2026 Updated
+            </span>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+              <div>
+                <p class="font-bold text-white">Toyota Corolla / Civic / Elantra</p>
+                <p class="text-[11px] text-slate-400">Executive 1.6L - 1.8L Sedan</p>
+              </div>
+              <span class="text-emerald-400 font-black text-sm">PKR 95k – 145k/mo</span>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+              <div>
+                <p class="font-bold text-white">Toyota Yaris / Honda City / Alsvin</p>
+                <p class="text-[11px] text-slate-400">Compact Fuel-Efficient Sedan</p>
+              </div>
+              <span class="text-emerald-400 font-black text-sm">PKR 60k – 85k/mo</span>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+              <div>
+                <p class="font-bold text-white">Kia Sportage / Tucson / Oshan X7</p>
+                <p class="text-[11px] text-slate-400">Popular Crossover & SUV</p>
+              </div>
+              <span class="text-emerald-400 font-black text-sm">PKR 125k – 185k/mo</span>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+              <div>
+                <p class="font-bold text-white">Toyota Fortuner Legender / Pajero</p>
+                <p class="text-[11px] text-slate-400">Heavy 7-Seater 4x4 SUV</p>
+              </div>
+              <span class="text-emerald-400 font-black text-sm">PKR 180k – 260k/mo</span>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+              <div>
+                <p class="font-bold text-white">Land Cruiser Prado / LC300 / Audi</p>
+                <p class="text-[11px] text-slate-400">VIP Diplomatic & Protocol Fleet</p>
+              </div>
+              <span class="text-emerald-400 font-black text-sm">PKR 260k – 380k+/mo</span>
+            </div>
+          </div>
+
+          <div class="bg-amber-950/40 border border-amber-500/30 rounded-xl p-3 text-[11px] text-amber-200">
+            💡 <em>Note: Actual monthly rent depends on vehicle condition, mileage, color, model year, and maintenance terms.</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERSEAS PAKISTANIS SPECIAL INVESTMENT PROGRAM -->
+  <section class="py-14 bg-slate-950 text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div class="max-w-3xl mx-auto text-center space-y-3">
+        <span class="inline-block bg-emerald-600 text-white text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-widest shadow-md">
+          Overseas Pakistanis Dedicated Program
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          Live Abroad? Put Your Car in Pakistan to Work
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Hundreds of thousands of Overseas Pakistanis maintain parked cars at home in Lahore that lose value under covers or face battery drain. Our dedicated diaspora program turns your car into a high-yielding, hands-free investment.
+        </p>
+      </div>
+
+      <!-- Key Expat Countries Grid -->
+      <div>
+        <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 text-center mb-6">
+          Serving Overseas Pakistani Investors Across Key Global Hubs:
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          {OVERSEAS_COUNTRIES.map(c => (
+            <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 text-center space-y-1 hover:border-emerald-500/60 transition-colors">
+              <span class="text-2xl block">{c.flag}</span>
+              <p class="font-black text-white text-xs">{c.name}</p>
+              <p class="text-[10px] text-emerald-400 font-semibold">{c.hubs}</p>
+              <p class="text-[9px] text-slate-500">{c.expatCount}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- 4 Pillars of Expat Asset Management -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3 shadow-lg">
+          <div class="text-3xl">📱</div>
+          <h4 class="text-base font-black text-white">Live App Tracking from Abroad</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Monitor your car 24/7 on Google Maps right from your smartphone in Dubai, London, New York, or Riyadh. Instant speed alerts, geofencing, and trip logs.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3 shadow-lg">
+          <div class="text-3xl">🏦</div>
+          <h4 class="text-base font-black text-white">Direct Roshan Digital Account (RDA)</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Your monthly rental profits are transferred automatically on the 5th of each month directly to your Roshan Digital Account or local Pakistani bank account.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3 shadow-lg">
+          <div class="text-3xl">🔧</div>
+          <h4 class="text-base font-black text-white">Complete Maintenance Care</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            4WHEELS handles all routine servicing: oil changes, brake pads, tire pressure, AC tune-ups, and interior steam detailing. Your vehicle stays showroom fresh.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3 shadow-lg">
+          <div class="text-3xl">✈️</div>
+          <h4 class="text-base font-black text-white">Personal Vacation Use</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Visiting Pakistan for holidays or weddings? Notify our concierge 10 days in advance, and your car will be fully washed, detailed, and waiting for you at Lahore Airport!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE MONTHLY EARNINGS CALCULATOR -->
+  <section class="py-14 bg-slate-900 text-white border-b border-slate-800" id="calculator-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="text-center space-y-2">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest block">Interactive ROI Tool</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white">Monthly Passive Income Calculator</h2>
+        <p class="text-xs sm:text-sm text-slate-300">
+          Estimate your exact monthly payout and projected annual earnings based on vehicle model and year.
+        </p>
+      </div>
+
+      <div class="bg-slate-950 rounded-3xl border border-slate-800 p-6 sm:p-10 shadow-2xl space-y-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="calc-category" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+              Vehicle Category & Model
+            </label>
+            <select
+              id="calc-category"
+              class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3.5 text-sm font-bold text-white focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+            >
+              {VEHICLE_CATEGORIES.map(c => (
+                <option value={c.id} data-min={c.minMonthly} data-max={c.maxMonthly} data-avg={c.avg}>
+                  {c.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label for="calc-year" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+              Model Year (Condition Multiplier)
+            </label>
+            <select
+              id="calc-year"
+              class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3.5 text-sm font-bold text-white focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+            >
+              <option value="1.08">2025 – 2026 (Brand New / Showroom Condition)</option>
+              <option value="1.00" selected>2023 – 2024 (Excellent Low Mileage)</option>
+              <option value="0.94">2021 – 2022 (Clean Well Maintained)</option>
+              <option value="0.88">2019 – 2020 (Good Daily Driver Condition)</option>
+              <option value="0.82">2017 – 2018 (Average Commercial Health)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Calculated Payout Display -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800 text-center">
+          <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 space-y-1">
+            <span class="text-[11px] text-slate-400 font-bold uppercase tracking-wider block">Estimated Monthly Payout</span>
+            <span id="calc-monthly-display" class="text-2xl sm:text-3xl font-black text-emerald-400 block">
+              PKR 72,000
+            </span>
+            <span class="text-[10px] text-slate-500">Transferred by 5th of each month</span>
+          </div>
+
+          <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 space-y-1">
+            <span class="text-[11px] text-slate-400 font-bold uppercase tracking-wider block">Projected Annual Yield</span>
+            <span id="calc-annual-display" class="text-2xl sm:text-3xl font-black text-white block">
+              PKR 864,000
+            </span>
+            <span class="text-[10px] text-slate-500">12 months continuous leasing</span>
+          </div>
+
+          <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 space-y-1">
+            <span class="text-[11px] text-slate-400 font-bold uppercase tracking-wider block">Fuel & Driver Arrangement</span>
+            <span class="text-2xl sm:text-3xl font-black text-amber-400 block">
+              100% Covered
+            </span>
+            <span class="text-[10px] text-slate-500">Zero driver or petrol costs to owner</span>
+          </div>
+        </div>
+
+        <div class="flex justify-center pt-2">
+          <a
+            href="#attach-form-section"
+            class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm px-8 py-3.5 rounded-xl transition-colors shadow-lg uppercase tracking-wider"
+          >
+            Submit This Vehicle for Evaluation →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP-BY-STEP ONBOARDING PROCESS -->
+  <section class="py-14 bg-slate-950 text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold text-red-500 uppercase tracking-widest block">Seamless 4-Step Process</span>
+        <h2 class="text-3xl font-black text-white">How Onboarding Works</h2>
+        <p class="text-xs sm:text-sm text-slate-400">
+          From submission to your first passive monthly bank transfer in under 48 hours.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3 relative">
+          <span class="w-8 h-8 rounded-full bg-red-600 text-white font-black text-sm flex items-center justify-center">1</span>
+          <h4 class="text-base font-bold text-white">Submit Vehicle Details</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Fill the online submission form below or send pictures, model year, and mileage via WhatsApp to 0321-6616644.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3 relative">
+          <span class="w-8 h-8 rounded-full bg-red-600 text-white font-black text-sm flex items-center justify-center">2</span>
+          <h4 class="text-base font-bold text-white">HQ Physical Inspection</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Bring your vehicle to our Johar Town Phase 1 headquarters for a 200-point physical check, paint inspection, and document verification.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3 relative">
+          <span class="w-8 h-8 rounded-full bg-red-600 text-white font-black text-sm flex items-center justify-center">3</span>
+          <h4 class="text-base font-bold text-white">Tracker & Agreement</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            We install tamper-proof satellite tracking and execute a legal notarized lease agreement specifying your agreed monthly rent.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3 relative">
+          <span class="w-8 h-8 rounded-full bg-emerald-600 text-white font-black text-sm flex items-center justify-center">4</span>
+          <h4 class="text-base font-bold text-white">Monthly Passive Income</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Your car joins our active executive fleet. Guaranteed rental payouts are deposited directly to your bank account every single month.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERIFIED OFFICE & YARD SHOWCASE -->
+  <section class="py-12 bg-slate-900 text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest block">Physical Ground Presence</span>
+        <h3 class="text-2xl sm:text-3xl font-black text-white">Our Johar Town Fleet Yard & Showroom</h3>
+        <p class="text-xs sm:text-sm text-slate-300">
+          Your car will be parked, maintained, and dispatched from our secure, monitored facility on Main Boulevard, Phase 1, Johar Town, Lahore.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-md">
+          <img
+            src="/images/office/4wheels-hq-billboard-wide.webp"
+            alt="4WHEELS Johar Town Head Office Billboard 0321-6616644"
+            class="w-full aspect-[4/3] object-cover"
+            loading="lazy"
+          />
+          <div class="p-3 text-xs">
+            <p class="font-bold text-white">Johar Town HQ Billboard</p>
+            <p class="text-[11px] text-slate-400">Main Boulevard official office front</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-md">
+          <img
+            src="/images/office/4wheels-fleet-lineup-civics-fortuner.webp"
+            alt="4WHEELS Fleet Yard Civics and Fortuner Legender"
+            class="w-full aspect-[4/3] object-cover"
+            loading="lazy"
+          />
+          <div class="p-3 text-xs">
+            <p class="font-bold text-white">Active Executive Yard</p>
+            <p class="text-[11px] text-slate-400">White Civics & Fortuner fleet</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-md">
+          <img
+            src="/images/office/4wheels-office-entrance-prado-civic.webp"
+            alt="4WHEELS Customer Reception Entrance with Prado"
+            class="w-full aspect-[4/3] object-cover"
+            loading="lazy"
+          />
+          <div class="p-3 text-xs">
+            <p class="font-bold text-white">Customer Reception Desk</p>
+            <p class="text-[11px] text-slate-400">Walk-in inspection & onboarding desk</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-md">
+          <img
+            src="/images/office/4wheels-fleet-yard-yaris-sportage-pajero.webp"
+            alt="4WHEELS Fleet Yard Yaris Sportage Pajero"
+            class="w-full aspect-[4/3] object-cover"
+            loading="lazy"
+          />
+          <div class="p-3 text-xs">
+            <p class="font-bold text-white">Monitored Parking Yard</p>
+            <p class="text-[11px] text-slate-400">24/7 security guard & CCTV coverage</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAR ATTACHMENT ONBOARDING FORM -->
+  <section class="py-14 bg-slate-950 text-white border-b border-slate-800" id="attach-form-section">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="text-center space-y-2">
+        <span class="inline-block bg-emerald-600 text-white text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-md">
+          Start Earning Today
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white">Attach Your Vehicle Form</h2>
+        <p class="text-xs sm:text-sm text-slate-300">
+          Submit your vehicle details below. Our fleet onboarding team will review specifications and respond with an exact guaranteed monthly rental quote within 15 minutes.
+        </p>
+      </div>
+
+      <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-10 shadow-2xl">
+        <form id="car-attachment-form" class="space-y-5">
+          <!-- Car Details -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="car-make-model" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                Vehicle Make & Model <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="car-make-model"
+                required
+                placeholder="e.g. Toyota Corolla Altis 1.8 / Civic Oriel"
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3.5 text-sm text-white font-semibold focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label for="car-year" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                Model Year <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="car-year"
+                required
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3.5 text-sm text-white font-semibold focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+              >
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024" selected>2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label for="car-color" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                Exterior Color <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="car-color"
+                required
+                placeholder="White, Black, Silver..."
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-sm text-white focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label for="car-mileage" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                Current Odometer (km)
+              </label>
+              <input
+                type="text"
+                id="car-mileage"
+                placeholder="e.g. 25,000 km"
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-sm text-white focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label for="car-city" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                Registration City <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="car-city"
+                required
+                placeholder="Lahore, Islamabad, etc."
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-sm text-white focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <!-- Owner Profile -->
+          <div class="border-t border-slate-800 pt-4 space-y-4">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-400 block">Owner Contact & Residency</span>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="owner-name" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                  Owner Full Name <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="owner-name"
+                  required
+                  placeholder="e.g. Tariq Mehmood"
+                  class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3.5 text-sm text-white font-semibold focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label for="owner-status" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                  Residency Status <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="owner-status"
+                  class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3.5 text-sm text-white font-semibold focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                >
+                  <option value="Resident Pakistani (Lahore / Punjab)">Resident Pakistani (Lahore / Punjab)</option>
+                  <option value="Overseas Pakistani (UAE / Dubai / Abu Dhabi)">Overseas Pakistani (UAE / Dubai / Abu Dhabi)</option>
+                  <option value="Overseas Pakistani (Saudi Arabia / KSA)">Overseas Pakistani (Saudi Arabia / KSA)</option>
+                  <option value="Overseas Pakistani (United Kingdom / UK)">Overseas Pakistani (United Kingdom / UK)</option>
+                  <option value="Overseas Pakistani (USA / North America)">Overseas Pakistani (USA / North America)</option>
+                  <option value="Overseas Pakistani (Canada)">Overseas Pakistani (Canada)</option>
+                  <option value="Overseas Pakistani (Qatar / Gulf)">Overseas Pakistani (Qatar / Gulf)</option>
+                  <option value="Overseas Pakistani (Australia)">Overseas Pakistani (Australia)</option>
+                  <option value="Overseas Pakistani (Europe)">Overseas Pakistani (Europe)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="owner-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                  WhatsApp Number (with Country Code) <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="owner-phone"
+                  required
+                  placeholder="+92 3XX XXXXXXX or +971 5X XXXXXXX"
+                  class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3.5 text-sm text-white font-semibold focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label for="expected-rent" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                  Expected Monthly Rent (PKR)
+                </label>
+                <input
+                  type="text"
+                  id="expected-rent"
+                  placeholder="e.g. 110,000"
+                  class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3.5 text-sm text-white font-semibold focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="owner-notes" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                Additional Comments / Special Requests
+              </label>
+              <textarea
+                id="owner-notes"
+                rows="2"
+                placeholder="Mention any existing tracker, insurance coverage, or preferred start date..."
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button
+              type="submit"
+              class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black text-base py-4 rounded-xl shadow-xl shadow-emerald-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
+            >
+              <span>💬 SUBMIT & SEND DETAILS ON WHATSAPP (+92 321 6616644)</span>
+            </button>
+            <p class="text-[11px] text-slate-400 text-center mt-2">
+              Instant response guaranteed by 4WHEELS Fleet Director on WhatsApp within 15 minutes.
+            </p>
+          </div>
+        </form>
+
+        <div id="form-success-banner" class="hidden mt-4 p-4 rounded-xl bg-emerald-950/80 border border-emerald-700 text-emerald-300 text-xs text-center space-y-1">
+          <p class="font-bold text-sm">✓ Application Prepared Successfully!</p>
+          <p>Opening WhatsApp to send your vehicle attachment details to 4WHEELS management...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQS SECTION -->
+  <section class="py-14 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+    <div class="text-center space-y-2">
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Investor & Partner Frequently Asked Questions</h2>
+      <p class="text-xs sm:text-sm text-slate-600">Everything you need to know about leasing your car to 4WHEELS Rent a Car.</p>
+    </div>
+
+    <div class="space-y-4">
+      {INVESTOR_FAQS.map(faq => (
+        <details class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm group">
+          <summary class="font-extrabold text-sm sm:text-base text-slate-900 cursor-pointer list-none flex items-center justify-between">
+            <span>{faq.q}</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+            {faq.a}
+          </p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- FINAL CTA SECTION -->
+  <section class="py-12 bg-slate-900 text-white border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 text-center space-y-5">
+      <h3 class="text-2xl sm:text-3xl font-black">
+        Ready to Turn Your Car Into Monthly Cash Flow?
+      </h3>
+      <p class="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto">
+        Speak directly with our Fleet Acquisition Manager at our Johar Town office or initiate an inquiry via WhatsApp right now.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4 text-sm font-bold pt-2">
+        <a
+          href="https://wa.me/923216616644?text=Assalam%20o%20Alaikum%204WHEELS%20Management,%20I%20am%20interested%20in%20attaching%20my%20car%20for%20monthly%20rental%20income."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3.5 rounded-xl transition-colors shadow-lg flex items-center justify-center gap-2"
+        >
+          <span>💬 Chat with Fleet Manager on WhatsApp</span>
+        </a>
+        <a
+          href="tel:+923216616644"
+          class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-6 py-3.5 rounded-xl transition-colors"
+        >
+          📞 Call 0321 6616644
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Calculator Dynamic Logic
+  const catSelect = document.getElementById('calc-category') as HTMLSelectElement;
+  const yearSelect = document.getElementById('calc-year') as HTMLSelectElement;
+  const monthlyDisplay = document.getElementById('calc-monthly-display');
+  const annualDisplay = document.getElementById('calc-annual-display');
+
+  const updateCalculator = () => {
+    if (!catSelect || !yearSelect) return;
+    const selectedOpt = catSelect.options[catSelect.selectedIndex];
+    const avgMonthly = parseFloat(selectedOpt.getAttribute('data-avg') || '75000');
+    const multiplier = parseFloat(yearSelect.value || '1.0');
+
+    const calculatedMonthly = Math.round((avgMonthly * multiplier) / 1000) * 1000;
+    const calculatedAnnual = calculatedMonthly * 12;
+
+    if (monthlyDisplay) {
+      monthlyDisplay.textContent = `PKR ${calculatedMonthly.toLocaleString()}`;
+    }
+    if (annualDisplay) {
+      annualDisplay.textContent = `PKR ${calculatedAnnual.toLocaleString()}`;
+    }
+  };
+
+  catSelect?.addEventListener('change', updateCalculator);
+  yearSelect?.addEventListener('change', updateCalculator);
+
+  // Form Submission & WhatsApp Deep-link Dispatch
+  const form = document.getElementById('car-attachment-form') as HTMLFormElement;
+  const successBanner = document.getElementById('form-success-banner');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const carMakeModel = (document.getElementById('car-make-model') as HTMLInputElement)?.value || '';
+    const carYear = (document.getElementById('car-year') as HTMLSelectElement)?.value || '2024';
+    const carColor = (document.getElementById('car-color') as HTMLInputElement)?.value || '';
+    const carMileage = (document.getElementById('car-mileage') as HTMLInputElement)?.value || 'N/A';
+    const carCity = (document.getElementById('car-city') as HTMLInputElement)?.value || 'Lahore';
+
+    const ownerName = (document.getElementById('owner-name') as HTMLInputElement)?.value || '';
+    const ownerStatus = (document.getElementById('owner-status') as HTMLSelectElement)?.value || 'Resident';
+    const ownerPhone = (document.getElementById('owner-phone') as HTMLInputElement)?.value || '';
+    const expectedRent = (document.getElementById('expected-rent') as HTMLInputElement)?.value || 'Market Standard';
+    const ownerNotes = (document.getElementById('owner-notes') as HTMLTextAreaElement)?.value || '';
+
+    const message =
+      'Assalam o Alaikum 4WHEELS Management,\n' +
+      'I want to attach my vehicle to your rental fleet for monthly passive income.\n\n' +
+      '🚗 VEHICLE DETAILS\n' +
+      `• Make & Model: ${carMakeModel}\n` +
+      `• Model Year: ${carYear}\n` +
+      `• Exterior Color: ${carColor}\n` +
+      `• Mileage: ${carMileage}\n` +
+      `• Registration City: ${carCity}\n\n` +
+      '👤 OWNER INFORMATION\n' +
+      `• Name: ${ownerName}\n` +
+      `• Residency Status: ${ownerStatus}\n` +
+      `• WhatsApp / Phone: ${ownerPhone}\n` +
+      `• Expected Monthly Rent: PKR ${expectedRent}\n` +
+      (ownerNotes ? `• Additional Notes: ${ownerNotes}\n` : '') +
+      '\nPlease confirm inspection timing at your Johar Town office and monthly contract terms.';
+
+    if (successBanner) {
+      successBanner.classList.remove('hidden');
+    }
+
+    const waUrl = `https://wa.me/923216616644?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank');
+  });
+</script>
