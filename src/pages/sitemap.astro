@@ -1,0 +1,243 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import { getPublishedLocations } from '../data/locations';
+import { PAKISTAN_ROUTES } from '../data/routes';
+import { PAKISTAN_BRANDS } from '../data/brands';
+import { PAKISTAN_VEHICLE_CATALOG } from '../data/pakistanVehicles';
+import { BUSINESS_INFO } from '../data/business';
+
+const title = "HTML Sitemap & Complete Directory | 4WHEELS Rent a Car";
+const description = "Comprehensive sitemap directory of 4WHEELS Rent a Car Pakistan. Browse all rental services, Lahore neighborhood hubs, intercity routes, and vehicle models.";
+const canonicalPath = "/sitemap/";
+
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Sitemap', path: canonicalPath }
+];
+
+const locations = getPublishedLocations();
+const routes = PAKISTAN_ROUTES;
+const brands = PAKISTAN_BRANDS;
+
+const mainPages = [
+  { name: 'Home', path: '/' },
+  { name: 'About 4WHEELS', path: '/about/' },
+  { name: 'Online Booking Configurator', path: '/booking/' },
+  { name: 'Fleet Portfolio', path: '/fleet/' },
+  { name: 'Official Verification Hub', path: '/official/' },
+  { name: 'Verified Locations', path: '/locations/official/' },
+  { name: 'Attach Your Car & Earn (Investor)', path: '/attach-your-car/' },
+  { name: 'Trip Planner & Budget Estimator', path: '/trip-planner/' },
+  { name: 'Vehicle Comparison Tool', path: '/compare-vehicles/' },
+  { name: 'Find My Vehicle (Trip Fit)', path: '/find-my-vehicle/' },
+  { name: 'Contact & Showroom Directions', path: '/contact/' },
+  { name: 'Customer Support', path: '/rental-support/' },
+  { name: 'Rental Terms & Conditions', path: '/rental-terms/' },
+  { name: 'Frequently Asked Questions', path: '/faq/' },
+  { name: 'Press & Media Center', path: '/press/' },
+  { name: 'Knowledge Guides Hub', path: '/guides/' },
+];
+
+const servicePages = [
+  { name: 'Rent a Car Lahore (Main Hub)', path: '/rent-a-car-lahore/' },
+  { name: 'Self Drive Car Rental Lahore', path: '/self-drive-car-rental-lahore/' },
+  { name: 'Car With Driver Lahore', path: '/car-with-driver-lahore/' },
+  { name: 'Daily Car Rental Lahore', path: '/daily-car-rental-lahore/' },
+  { name: 'Monthly Car Rental Lahore', path: '/monthly-car-rental-lahore/' },
+  { name: 'Lahore Airport Car Rental', path: '/lahore-airport-car-rental/' },
+  { name: 'Wedding Car Rental Lahore', path: '/wedding-car-rental-lahore/' },
+  { name: 'Corporate Car Rental Lahore', path: '/corporate-car-rental-lahore/' },
+  { name: 'Corporate Staff Pick & Drop', path: '/corporate-staff-pick-drop-lahore/' },
+  { name: 'Business Executive Car Rental', path: '/business-car-rental-lahore/' },
+  { name: 'Event Transport Services', path: '/event-transport-lahore/' },
+  { name: 'Outstation Car Rental', path: '/outstation-car-rental-lahore/' },
+  { name: 'Tour Operator Transport Pakistan', path: '/tour-operator-transport-pakistan/' },
+  { name: 'Buses & Coasters Fleet', path: '/fleet/buses-coasters/' },
+];
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <BreadcrumbSchema items={breadcrumbItems} />
+
+  <!-- Hero Header -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="bg-red-600 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
+          Complete Site Directory
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
+          4WHEELS Website Sitemap
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+          Quickly navigate all pages, rental services, Lahore neighborhood pickup points, intercity motorway routes, and 40+ vehicle models.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-3 text-xs">
+          <a
+            href="/sitemap-index.xml"
+            target="_blank"
+            class="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 px-3.5 py-1.5 rounded-lg transition-colors font-mono"
+          >
+            <span>📄 XML Sitemap Index</span>
+          </a>
+          <a
+            href="/sitemap-0.xml"
+            target="_blank"
+            class="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 px-3.5 py-1.5 rounded-lg transition-colors font-mono"
+          >
+            <span>🗺️ Google Search Console XML</span>
+          </a>
+          <a
+            href="/robots.txt"
+            target="_blank"
+            class="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 px-3.5 py-1.5 rounded-lg transition-colors font-mono"
+          >
+            <span>🤖 robots.txt</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sitemap Directory Grid -->
+  <section class="py-12 bg-white text-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+      <!-- Row 1: Core Pages & Services -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Main Pages -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8">
+          <h2 class="text-xl font-black text-slate-900 mb-4 pb-2 border-b border-slate-200 flex items-center gap-2">
+            <span>🌐</span> Core Website Pages
+          </h2>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            {mainPages.map(page => (
+              <li>
+                <a href={page.path} class="text-slate-700 hover:text-red-600 font-medium transition-colors block py-1">
+                  • {page.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Specialized Services -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8">
+          <h2 class="text-xl font-black text-slate-900 mb-4 pb-2 border-b border-slate-200 flex items-center gap-2">
+            <span>🚗</span> Rental Services & Solutions
+          </h2>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            {servicePages.map(page => (
+              <li>
+                <a href={page.path} class="text-slate-700 hover:text-red-600 font-medium transition-colors block py-1">
+                  • {page.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Row 2: Locations & Intercity Routes -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Locations & Local Hubs -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+            <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
+              <span>📍</span> Service Locations & Hubs
+            </h2>
+            <a href="/locations/" class="text-xs font-bold text-red-600 hover:underline">View All Locations →</a>
+          </div>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <li>
+              <a href="/rent-a-car-johar-town-lahore/" class="text-slate-900 hover:text-red-600 font-bold block py-1">
+                ⭐ Johar Town, Lahore (Head Office)
+              </a>
+            </li>
+            <li>
+              <a href="/rent-a-car-dha-lahore/" class="text-slate-900 hover:text-red-600 font-bold block py-1">
+                ⭐ DHA Lahore (Phases 1–9)
+              </a>
+            </li>
+            <li>
+              <a href="/rent-a-car-gulberg-lahore/" class="text-slate-900 hover:text-red-600 font-bold block py-1">
+                ⭐ Gulberg, Lahore (MM Alam)
+              </a>
+            </li>
+            <li>
+              <a href="/rent-a-car-bahria-town-lahore/" class="text-slate-900 hover:text-red-600 font-bold block py-1">
+                ⭐ Bahria Town, Lahore
+              </a>
+            </li>
+            {locations.map(loc => (
+              <li>
+                <a href={`/locations/${loc.slug}/`} class="text-slate-700 hover:text-red-600 font-medium transition-colors block py-1">
+                  • {loc.city} ({loc.province})
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Intercity Routes -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+            <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
+              <span>🛣️</span> Verified Intercity Routes
+            </h2>
+            <a href="/routes/" class="text-xs font-bold text-red-600 hover:underline">View All Routes →</a>
+          </div>
+          <ul class="space-y-2 text-xs">
+            {routes.map(r => (
+              <li class="flex items-center justify-between border-b border-slate-100 pb-2 last:border-0">
+                <a href={`/routes/${r.slug}/`} class="text-slate-800 hover:text-red-600 font-medium transition-colors">
+                  • {r.title}
+                </a>
+                <span class="text-slate-500 font-mono text-[11px]">{r.distanceKm} km &bull; {r.motorway}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Row 3: Vehicle Brands & Pakistan Catalog -->
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8">
+        <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+          <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
+            <span>🚘</span> Vehicle Fleet Catalog ({PAKISTAN_VEHICLE_CATALOG.length} Models across {brands.length} Brands)
+          </h2>
+          <a href="/vehicles/" class="text-xs font-bold text-red-600 hover:underline">Full Vehicle Index →</a>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-6">
+          {brands.map(b => (
+            <a
+              href={`/vehicles/${b.slug}/`}
+              class="bg-white p-2.5 rounded-xl border border-slate-200 text-center hover:border-red-500 hover:shadow-sm transition-all"
+            >
+              <p class="font-extrabold text-slate-900 text-xs">{b.name}</p>
+              <p class="text-[10px] text-slate-500">{b.country}</p>
+            </a>
+          ))}
+        </div>
+
+        <div class="border-t border-slate-200 pt-4">
+          <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">All Catalog Models (Specifications & Rates):</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+            {PAKISTAN_VEHICLE_CATALOG.map(v => (
+              <a
+                href={`/vehicles/${v.brandSlug}/${v.slug}/`}
+                class="text-slate-700 hover:text-red-600 py-1 truncate"
+                title={`${v.brand} ${v.model}`}
+              >
+                • {v.brand} {v.model} ({v.bodyType})
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>
