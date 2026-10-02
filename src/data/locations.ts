@@ -217,9 +217,22 @@ export const PAKISTAN_LOCATIONS: LocationRecord[] = [
     serviceOverview: 'South Punjab commercial hub connected via M-4 Motorway.',
     commonRoutes: ['Lahore to Multan M4'],
     vehicleTypesAvailable: ['Sedan', 'SUV', 'Coaster'],
-    faqs: [],
+    faqs: [
+      {
+        question: 'How far is Multan from Lahore and what is the driving route?',
+        answer: 'Multan is approximately 345 km from Lahore via the M-4 / M-3 Motorway network, with a typical driving time of 4 to 4.5 hours. 4WHEELS provides chauffeur-driven executive sedans, Fortuner SUVs, and commercial vans with experienced motorway drivers.'
+      },
+      {
+        question: 'Can I hire a car with a driver for a same-day or multi-day trip to Multan?',
+        answer: 'Yes, we cater to both same-day business visits and multi-day family trips. Driver overnight allowances and fuel arrangements are confirmed upfront with zero hidden charges.'
+      },
+      {
+        question: 'Which vehicles are recommended for Lahore to Multan travel?',
+        answer: 'Toyota Corolla Altis, Honda Civic, Toyota Fortuner, and HiAce Grand Cabin are most requested for comfortable motorway cruising and generous luggage capacity.'
+      }
+    ],
     approxDistanceKmFromLahore: 345,
-    lastReviewed: '2025-02-01'
+    lastReviewed: '2026-10-02'
   },
   {
     city: 'Sialkot',
@@ -232,9 +245,22 @@ export const PAKISTAN_LOCATIONS: LocationRecord[] = [
     serviceOverview: 'Export hub connected via M-11 Motorway (approx 1.5 hours travel). Ideal for corporate business travel and airport pick & drop.',
     commonRoutes: ['Lahore to Sialkot M11'],
     vehicleTypesAvailable: ['Sedan', 'SUV'],
-    faqs: [],
+    faqs: [
+      {
+        question: 'How fast can I travel from Lahore to Sialkot via the M-11 Motorway?',
+        answer: 'Travel time via the Lahore-Sialkot Motorway (M-11) is only about 1 hour and 15 to 30 minutes (approx. 130 km). It is one of our most popular corporate routes for business executives, exporters, and industrial visits.'
+      },
+      {
+        question: 'Do you offer airport pick and drop for Sialkot International Airport (SKT)?',
+        answer: 'Yes, 4WHEELS provides dedicated airport transfers between Lahore and Sialkot International Airport (SKT), with 24/7 flight tracking and doorstep pickup.'
+      },
+      {
+        question: 'Are round-trip same-day corporate rentals available for Sialkot?',
+        answer: 'Yes, executive sedans (such as Civic, Grande, or Audi A6) can be reserved for same-day round-trip business itineraries covering Sambrial, Daska, and Sialkot Export Processing Zone.'
+      }
+    ],
     approxDistanceKmFromLahore: 130,
-    lastReviewed: '2025-02-01'
+    lastReviewed: '2026-10-02'
   },
   {
     city: 'Peshawar',
@@ -247,9 +273,22 @@ export const PAKISTAN_LOCATIONS: LocationRecord[] = [
     serviceOverview: 'Capital of KP connected via M-2 and M-1 Motorways from Lahore.',
     commonRoutes: ['Lahore to Peshawar M2/M1'],
     vehicleTypesAvailable: ['Sedan', 'SUV', 'Coaster'],
-    faqs: [],
+    faqs: [
+      {
+        question: 'Can I book a car with driver from Lahore to Peshawar?',
+        answer: 'Yes, 4WHEELS arranges intercity chauffeur services from Lahore to Peshawar via the M-2 and M-1 Motorways (approx. 510 km, ~6 hours). Our professional drivers are well-versed in motorway navigation and rest stops.'
+      },
+      {
+        question: 'Can we book a Coaster or Grand Cabin for a group delegation to Peshawar?',
+        answer: 'Yes, executive 22-seater Toyota Coasters and 13-seater Grand Cabins are regularly chartered for corporate delegations, NGOs, and family groups traveling to Peshawar.'
+      },
+      {
+        question: 'Are motorway toll taxes and driver meal/stay allowances included in outstation quotes?',
+        answer: 'Motorway tolls and driver outstation night allowances are clearly itemized in your locked WhatsApp quotation before dispatch.'
+      }
+    ],
     approxDistanceKmFromLahore: 510,
-    lastReviewed: '2025-02-01'
+    lastReviewed: '2026-10-02'
   },
   {
     city: 'Abbottabad',
@@ -262,9 +301,22 @@ export const PAKISTAN_LOCATIONS: LocationRecord[] = [
     serviceOverview: 'Gateway to Hazara region and Hazara Motorway (M-15). Popular road trip destination.',
     commonRoutes: ['Lahore to Abbottabad'],
     vehicleTypesAvailable: ['SUV', 'Sedan', 'Coaster'],
-    faqs: [],
+    faqs: [
+      {
+        question: 'How do I rent a car from Lahore to Abbottabad?',
+        answer: 'You can book an outstation chauffeur-driven vehicle via WhatsApp (+92 321 6616644). The trip takes approximately 5.5 to 6 hours (460 km) via the M-2 and Hazara Motorway (M-15).'
+      },
+      {
+        question: 'Which car is suitable for family travel to Abbottabad and PMA Kakul?',
+        answer: 'Toyota Fortuner, Kia Sportage, and Toyota Corolla Grande are highly recommended for the gentle incline and spacious family seating.'
+      },
+      {
+        question: 'Is self-drive allowed from Lahore to Abbottabad?',
+        answer: 'Self-drive rentals for outstation journeys require advance document verification and security deposit clearance at our Johar Town office.'
+      }
+    ],
     approxDistanceKmFromLahore: 460,
-    lastReviewed: '2025-02-01'
+    lastReviewed: '2026-10-02'
   },
   {
     city: 'Nathia Gali',
@@ -277,9 +329,22 @@ export const PAKISTAN_LOCATIONS: LocationRecord[] = [
     serviceOverview: 'Scenic Galyat hill station accessed via Abbottabad or Murree.',
     commonRoutes: ['Lahore to Nathia Gali'],
     vehicleTypesAvailable: ['SUV'],
-    faqs: [],
+    faqs: [
+      {
+        question: 'Can I rent a car from Lahore to Nathia Gali and Galyat?',
+        answer: 'Yes, 4WHEELS provides specialized mountain tour rentals from Lahore to Nathia Gali, Murree, and Ayubia with skilled mountain drivers.'
+      },
+      {
+        question: 'Which vehicle type is recommended for steep hill stations like Nathia Gali?',
+        answer: 'High ground clearance 4x4 SUVs such as the Toyota Fortuner Sigma 4, Toyota Prado, and Mitsubishi Pajero are strongly recommended for steep mountain gradients and varying weather conditions.'
+      },
+      {
+        question: 'Can the car stay with us for multiple days in Nathia Gali?',
+        answer: 'Yes, multi-day mountain retreat bookings are available. The driver and vehicle remain with you throughout the tour for local sightseeing.'
+      }
+    ],
     approxDistanceKmFromLahore: 470,
-    lastReviewed: '2025-02-01'
+    lastReviewed: '2026-10-02'
   },
   {
     city: 'Swat',
@@ -292,9 +357,46 @@ export const PAKISTAN_LOCATIONS: LocationRecord[] = [
     serviceOverview: 'Valley tourist destination accessed via Swat Expressway (M-16).',
     commonRoutes: ['Lahore to Swat'],
     vehicleTypesAvailable: ['SUV', 'Coaster'],
-    faqs: [],
+    faqs: [
+      {
+        question: 'What is the best route and vehicle for traveling from Lahore to Swat Valley?',
+        answer: 'Travel from Lahore to Swat (approx. 590 km, ~7.5 hours) proceeds via M-2 Motorway, M-1, M-16 (Swat Expressway) to Chakdara and Mingora. Toyota Fortuner 4x4, Prado, or HiAce Grand Cabin are ideal for passenger comfort and mountain terrain.'
+      },
+      {
+        question: 'Do 4WHEELS drivers travel to Kalam, Malam Jabba, and upper Swat?',
+        answer: 'Yes, our experienced drivers regularly navigate tourist routes to Mingora, Malam Jabba ski resort, and Kalam valley.'
+      },
+      {
+        question: 'How can I get an exact quote for a 3-day or 5-day Swat tour?',
+        answer: 'Message us on WhatsApp (+92 321 6616644) with your passenger count, travel dates, and desired itinerary to receive an exact fixed quote within 5 minutes.'
+      }
+    ],
     approxDistanceKmFromLahore: 590,
-    lastReviewed: '2025-02-01'
+    lastReviewed: '2026-10-02'
+  },
+  {
+    city: 'Model Town, Lahore',
+    slug: 'model-town-lahore',
+    province: 'Punjab',
+    classification: 'SERVICE AREA',
+    published: true,
+    isMainHub: false,
+    airport: 'Allama Iqbal International Airport (LHE)',
+    serviceOverview: 'Executive car rental and family vehicle doorstep delivery across Model Town Blocks A through K, Model Town Link Road, and surrounding residential areas.',
+    commonRoutes: ['Model Town to Lahore Airport', 'Model Town to Johar Town', 'Model Town to Islamabad M2'],
+    vehicleTypesAvailable: ['Sedan', 'SUV', 'Hatchback', 'Luxury'],
+    faqs: [
+      {
+        question: 'How quickly can a rental car be delivered to Model Town Lahore?',
+        answer: 'From our Johar Town Phase 1 hub, delivery to Model Town Blocks A through K takes only 15 to 25 minutes upon WhatsApp booking confirmation.'
+      },
+      {
+        question: 'Are self-drive and chauffeur-driven cars available in Model Town?',
+        answer: 'Yes, both self-drive vehicles and professional chauffeur services are available for daily, weekly, or monthly rental.'
+      }
+    ],
+    approxDistanceKmFromLahore: 6,
+    lastReviewed: '2026-10-02'
   }
 ];
 

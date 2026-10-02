@@ -2,16 +2,47 @@
 import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { BUSINESS_INFO } from '../data/business';
 import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Lahore Airport Car Rental | Pickup & Drop-Off | 4WHEELS";
+const canonicalPath = "/lahore-airport-car-rental/";
 const waUrl = getContextualWhatsAppUrl({
   pageType: 'service',
   pageTitle: 'Lahore Airport Car Rental',
-  canonicalUrl: `${BUSINESS_INFO.siteUrl}/lahore-airport-car-rental/`,
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
 });
 const description = "Book reliable airport car rental in Lahore with 4WHEELS. Pickup and drop-off services for Allama Iqbal International Airport with self-drive and driver options.";
+
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Rent a Car Lahore', path: '/rent-a-car-lahore/' },
+  { name: 'Airport Car Rental', path: canonicalPath }
+];
+
+const airportSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRental",
+  "name": "4WHEELS Lahore Airport Car Rental",
+  "url": `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+  "telephone": "+923216616644",
+  "priceRange": "PKR 3,800 - PKR 65,000",
+  "currenciesAccepted": "PKR",
+  "paymentAccepted": "Cash, Bank Transfer, Online Payment",
+  "description": "24/7 dedicated flight arrival pickup and departure drop-off services for Allama Iqbal International Airport Lahore (LHE).",
+  "areaServed": {
+    "@type": "Airport",
+    "name": "Allama Iqbal International Airport",
+    "iataCode": "LHE",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lahore",
+      "addressRegion": "Punjab",
+      "addressCountry": "PK"
+    }
+  }
+};
 
 const faqs = [
   {
@@ -29,7 +60,9 @@ const faqs = [
 ];
 ---
 
-<Layout title={title} description={description} canonicalPath="/lahore-airport-car-rental/">
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <script type="application/ld+json" set:html={JSON.stringify(airportSchema)} />
+  <BreadcrumbSchema items={breadcrumbItems} />
   <!-- Header Banner -->
   <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { BUSINESS_INFO } from '../data/business';
 import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
@@ -11,9 +13,64 @@ const waUrl = getContextualWhatsAppUrl({
 });
 const description = "Rent a car in Johar Town Phase 1, Lahore. Located at Plot number 5, Block F1. Self drive and chauffeur driven sedans, SUVs, and vans near Doctor Hospital, Emporium Mall, and Johar Town.";
 const canonicalPath = "/rent-a-car-johar-town-lahore/";
+
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Rent a Car Lahore', path: '/rent-a-car-lahore/' },
+  { name: 'Johar Town Lahore', path: canonicalPath }
+];
+
+const joharFaqs = [
+  {
+    question: "Where is the physical 4WHEELS office located in Johar Town?",
+    answer: "Our office and fleet yard is located at Plot number 5, Block F1, Johar Town Phase 1, Lahore. Look for our official roadside billboard '4 WHEELS RENT A CAR 0321-6616644'."
+  },
+  {
+    question: "Can I inspect the vehicles in person before renting?",
+    answer: "Yes, you are welcome to visit our Johar Town showroom to inspect all sedans, SUVs, and luxury 4x4s in person before finalizing your rental."
+  },
+  {
+    question: "Do you offer self-drive rentals from the Johar Town office?",
+    answer: "Yes, self-drive rentals can be picked up directly from our Johar Town office upon standard CNIC and driving license verification."
+  },
+  {
+    question: "How close is your Johar Town office to Emporium Mall and Doctor Hospital?",
+    answer: "We are situated in Phase 1 Johar Town, approximately 3 to 5 minutes from Doctor Hospital and Emporium Mall, with rapid access to Canal Bank Road and Khayaban-e-Firdousi."
+  }
+];
+
+const joharSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRental",
+  "name": "4WHEELS Rent a Car Johar Town Head Office",
+  "url": `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+  "telephone": "+923216616644",
+  "priceRange": "PKR 3,800 - PKR 65,000",
+  "currenciesAccepted": "PKR",
+  "paymentAccepted": "Cash, Bank Transfer, Online Payment",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Johar Town Phase 1 & 2, Lahore"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": BUSINESS_INFO.address.street,
+    "addressLocality": "Johar Town Phase 1, Lahore",
+    "addressRegion": "Punjab",
+    "postalCode": "54792",
+    "addressCountry": "Pakistan"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": BUSINESS_INFO.geo.latitude,
+    "longitude": BUSINESS_INFO.geo.longitude
+  }
+};
 ---
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <script type="application/ld+json" set:html={JSON.stringify(joharSchema)} />
+  <BreadcrumbSchema items={breadcrumbItems} />
   <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
@@ -141,6 +198,9 @@ const canonicalPath = "/rent-a-car-johar-town-lahore/";
           💬 WhatsApp Locked Quote
         </a>
       </div>
+
+      <!-- FAQ Section -->
+      <FAQ items={joharFaqs} title="Frequently Asked Questions - Johar Town Head Office" />
 
       <!-- Quick Action CTAs -->
       <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">

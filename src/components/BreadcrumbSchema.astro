@@ -1,0 +1,33 @@
+---
+import { BUSINESS_INFO } from '../data/business';
+
+export interface BreadcrumbItem {
+  name: string;
+  path: string;
+}
+
+export interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const siteUrl = BUSINESS_INFO.siteUrl;
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => {
+    const cleanPath = item.path.startsWith('/') ? item.path : `/${item.path}`;
+    const url = item.path === '/' ? `${siteUrl}/` : new URL(cleanPath, siteUrl).href;
+    return {
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": url
+    };
+  })
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

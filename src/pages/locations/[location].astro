@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import SEOHead from '../../components/SEOHead.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTASection from '../../components/CTASection.astro';
+import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
 import { getPublishedLocations, getLocationBySlug } from '../../data/locations';
 import { BUSINESS_INFO } from '../../data/business';
 
@@ -23,22 +24,50 @@ const pageTitle = `Rent a Car in ${loc.city} | 4WHEELS Vehicle Rental`;
 const pageDescription = `${loc.classification} - Vehicle rental service for ${loc.city}, ${loc.province}. ${loc.serviceOverview} Book sedans, SUVs, and vans with 4WHEELS on WhatsApp.`;
 const canonicalPath = `/locations/${loc.slug}/`;
 
-const locationSchema = {
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Locations', path: '/locations/' },
+  { name: loc.city, path: canonicalPath }
+];
+
+const serviceSchema = {
   "@context": "https://schema.org",
-  "@type": "Place",
-  "name": `${loc.city} Vehicle Service`,
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": loc.city,
-    "addressRegion": loc.province,
-    "addressCountry": "PK"
+  "@type": "AutoRental",
+  "name": `4WHEELS Rent a Car ${loc.city}`,
+  "url": `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+  "telephone": "+923216616644",
+  "priceRange": "PKR 3,800 - PKR 65,000",
+  "currenciesAccepted": "PKR",
+  "paymentAccepted": "Cash, Bank Transfer, Online Payment",
+  "description": loc.serviceOverview,
+  "provider": {
+    "@type": "AutoRental",
+    "name": BUSINESS_INFO.name,
+    "telephone": "+923216616644",
+    "url": BUSINESS_INFO.siteUrl,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": BUSINESS_INFO.address.street,
+      "addressLocality": "Johar Town Phase 1, Lahore",
+      "addressRegion": "Punjab",
+      "postalCode": "54792",
+      "addressCountry": "PK"
+    }
   },
-  "description": loc.serviceOverview
+  "areaServed": {
+    "@type": "City",
+    "name": loc.city,
+    "containedInPlace": {
+      "@type": "AdministrativeArea",
+      "name": loc.province
+    }
+  }
 };
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonicalPath={canonicalPath}>
-  <script type="application/ld+json" set:html={JSON.stringify(locationSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <BreadcrumbSchema items={breadcrumbItems} />
 
   <main class="bg-slate-950 text-slate-100 min-h-screen pb-16">
     <!-- Breadcrumbs -->

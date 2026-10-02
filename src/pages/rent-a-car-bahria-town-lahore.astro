@@ -3,12 +3,19 @@ import Layout from '../layouts/Layout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { BUSINESS_INFO } from '../data/business';
 import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Rent a Car Bahria Town Lahore | Self Drive & Driver | 4WHEELS";
 const description = "Reliable car rental in Bahria Town Lahore (Sectors A through F, Safari Villas). Self drive cars, airport transfers via Ring Road, and family SUVs delivered to your door.";
 const canonicalPath = "/rent-a-car-bahria-town-lahore/";
+
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Rent a Car Lahore', path: '/rent-a-car-lahore/' },
+  { name: 'Bahria Town Lahore', path: canonicalPath }
+];
 
 const waUrl = getContextualWhatsAppUrl({
   pageType: 'location',
@@ -63,6 +70,7 @@ const bahriaSchema = {
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
   <script type="application/ld+json" set:html={JSON.stringify(bahriaSchema)} />
+  <BreadcrumbSchema items={breadcrumbItems} />
 
   <!-- Hero Section -->
   <section class="bg-slate-900 text-white py-12 md:py-20 border-b border-slate-800">

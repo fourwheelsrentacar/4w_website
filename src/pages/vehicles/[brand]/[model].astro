@@ -6,9 +6,11 @@ import CTASection from '../../../components/CTASection.astro';
 import { BUSINESS_INFO } from '../../../data/business';
 import { PAKISTAN_VEHICLE_CATALOG, getCatalogVehicleBySlug } from '../../../data/pakistanVehicles';
 import { FUEL_DISCLAIMER_TEXT } from '../../../data/rates';
-import { getColorHex, DEDICATED_COLOR_IMAGES } from '../../../data/unifiedFleet';
+import { getColorHex, DEDICATED_COLOR_IMAGES, BASE_STARTING_RATES } from '../../../data/unifiedFleet';
 import VehicleImage from '../../../components/VehicleImage.astro';
 import VehicleSeatingDiagram from '../../../components/VehicleSeatingDiagram.astro';
+
+import BreadcrumbSchema from '../../../components/BreadcrumbSchema.astro';
 
 export function getStaticPaths() {
   return PAKISTAN_VEHICLE_CATALOG.map(v => ({
@@ -24,6 +26,45 @@ if (!car) {
 }
 
 const canonicalUrl = `${BUSINESS_INFO.siteUrl}/vehicles/${car.brandSlug}/${car.slug}/`;
+
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Fleet', path: '/fleet/' },
+  { name: car.brand, path: `/vehicles/${car.brandSlug}/` },
+  { name: `${car.brand} ${car.model}`, path: `/vehicles/${car.brandSlug}/${car.slug}/` }
+];
+
+const vehicleDailyPrice = BASE_STARTING_RATES[car.slug] || 12000;
+const vehicleHeroPhoto = car.heroPhoto || `/vehicles/catalog/${car.brandSlug}/${car.slug.replace(car.brandSlug + '-', '')}.webp`;
+
+const vehicleSchema = {
+  "@context": "https://schema.org",
+  "@type": ["Vehicle", "Product"],
+  "name": `${car.brand} ${car.model} Rental Lahore`,
+  "image": new URL(vehicleHeroPhoto, BUSINESS_INFO.siteUrl).href,
+  "description": `${car.brand} ${car.model} (${car.variant || 'Standard'}) available for rent in Lahore with 4WHEELS. Seating for ${car.seats} passengers.`,
+  "brand": {
+    "@type": "Brand",
+    "name": car.brand
+  },
+  "model": car.model,
+  "vehicleConfiguration": car.variant || 'Standard',
+  "seatingCapacity": car.seats,
+  "vehicleTransmission": car.transmission,
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "PKR",
+    "price": vehicleDailyPrice,
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "AutoRental",
+      "name": BUSINESS_INFO.name,
+      "telephone": "+923216616644",
+      "url": BUSINESS_INFO.siteUrl
+    }
+  }
+};
 ---
 
 <!DOCTYPE html>
@@ -34,6 +75,8 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/vehicles/${car.brandSlug}/${car.s
     description={`Official specifications for ${car.brand} ${car.model} (${car.variant}). Check seats, fuel tank/battery capacity, luggage boot space, and book your rental in Lahore.`}
     canonicalUrl={canonicalUrl}
   />
+  <script type="application/ld+json" set:html={JSON.stringify(vehicleSchema)} />
+  <BreadcrumbSchema items={breadcrumbItems} />
 </head>
 <body class="bg-slate-950 text-white font-sans antialiased">
   <HeaderComp />

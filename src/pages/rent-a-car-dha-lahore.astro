@@ -3,12 +3,19 @@ import Layout from '../layouts/Layout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { BUSINESS_INFO } from '../data/business';
 import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
 const title = "Rent a Car DHA Lahore | Self Drive & Chauffeur Service | 4WHEELS";
 const description = "Premium rent a car in DHA Lahore (Phases 1 to 9). Self drive & chauffeur driven luxury sedans, Toyota Fortuner, Prado, and wedding cars. Fast doorstep delivery across Defence Lahore.";
 const canonicalPath = "/rent-a-car-dha-lahore/";
+
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Rent a Car Lahore', path: '/rent-a-car-lahore/' },
+  { name: 'DHA Lahore', path: canonicalPath }
+];
 
 const waUrl = getContextualWhatsAppUrl({
   pageType: 'location',
@@ -63,6 +70,7 @@ const dhaSchema = {
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
   <script type="application/ld+json" set:html={JSON.stringify(dhaSchema)} />
+  <BreadcrumbSchema items={breadcrumbItems} />
 
   <!-- Hero Section -->
   <section class="bg-slate-900 text-white py-12 md:py-20 border-b border-slate-800">

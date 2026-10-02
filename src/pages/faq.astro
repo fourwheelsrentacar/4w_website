@@ -2,10 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { BUSINESS_INFO } from '../data/business';
 
 const title = "Frequently Asked Questions | 4WHEELS Rent a Car Lahore";
 const description = "Find answers to frequently asked questions about car rental in Lahore with 4WHEELS. Learn about official domains, self-drive, chauffeur options, monthly rentals, airport transfers, and booking verification.";
+const canonicalPath = "/faq/";
+
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'FAQ', path: canonicalPath }
+];
 
 const allFaqs = [
   {
@@ -83,7 +90,8 @@ const allFaqs = [
 ];
 ---
 
-<Layout title={title} description={description} canonicalPath="/faq/">
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <BreadcrumbSchema items={breadcrumbItems} />
   <!-- Header Banner -->
   <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

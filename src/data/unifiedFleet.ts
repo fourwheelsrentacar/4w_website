@@ -184,7 +184,7 @@ export const DEDICATED_COLOR_IMAGES: Record<string, Record<string, string>> = {
   }
 };
 
-const BASE_STARTING_RATES: Record<string, number> = {
+export const BASE_STARTING_RATES: Record<string, number> = {
   'toyota-corolla': 7500,
   'toyota-yaris': 6000,
   'honda-civic': 11000,

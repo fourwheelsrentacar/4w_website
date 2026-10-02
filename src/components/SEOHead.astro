@@ -39,6 +39,15 @@ const ogImageURL = new URL(ogImage, siteUrl).href;
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="author" content="4WHEELS Rent a Car" />
+<meta name="format-detection" content="telephone=yes" />
+
+<!-- Geo-Targeting & Local SEO -->
+<meta name="geo.region" content="PK-PB" />
+<meta name="geo.placename" content="Lahore, Punjab, Pakistan" />
+<meta name="geo.position" content="31.4578;74.2791" />
+<meta name="ICBM" content="31.4578, 74.2791" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
@@ -47,6 +56,7 @@ const ogImageURL = new URL(ogImage, siteUrl).href;
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImageURL} />
 <meta property="og:site_name" content={BUSINESS_INFO.name} />
+<meta property="og:locale" content="en_PK" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
