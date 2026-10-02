@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { FLEET_VEHICLES, getVehicleBySlug } from '../../data/fleet';
 import { BUSINESS_INFO } from '../../data/business';
 import { FUEL_DISCLAIMER_TEXT } from '../../data/rates';
+import { getColorHex, DEDICATED_COLOR_IMAGES } from '../../data/unifiedFleet';
 import VehicleImage from '../../components/VehicleImage.astro';
 import VehicleSeatingDiagram from '../../components/VehicleSeatingDiagram.astro';
 import InteractiveCoasterMap from '../../components/InteractiveCoasterMap.astro';
@@ -153,6 +154,58 @@ const isCoaster = vehicle.slug === 'toyota-coaster';
             });
             lightbox.init();
           </script>
+
+          <!-- INTERACTIVE COLOR VARIANTS SELECTOR -->
+          {vehicle.colors && vehicle.colors.length > 0 && (
+            <div class="bg-slate-900 rounded-2xl border border-slate-800 p-5 space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-extrabold text-white flex items-center gap-1.5">
+                    <span>🎨</span>
+                    <span>Official Color Palette</span>
+                  </span>
+                  <span class="text-xs text-slate-400">({vehicle.colors.length} Verified Colors)</span>
+                </div>
+                <span class="text-xs font-bold text-red-400" id="detail-active-color-name">
+                  Selected: {vehicle.colors[0]}
+                </span>
+              </div>
+
+              <div class="flex flex-wrap gap-2.5 pt-1" id="detail-color-swatches">
+                {vehicle.colors.map((c, idx) => {
+                  const { hex, border } = getColorHex(c);
+                  const dedicatedImg = DEDICATED_COLOR_IMAGES[vehicle.slug]?.[c];
+                  return (
+                    <button
+                      type="button"
+                      class={`detail-color-btn flex items-center gap-2 px-3 py-2 rounded-xl border text-xs font-bold transition-all ${
+                        idx === 0
+                          ? 'bg-slate-800 border-red-500 text-white ring-2 ring-red-500/80 shadow-md'
+                          : 'bg-slate-950/80 border-slate-700/80 text-slate-300 hover:border-slate-600 hover:text-white'
+                      }`}
+                      data-color-name={c}
+                      data-color-image={dedicatedImg || ''}
+                    >
+                      <span
+                        class="w-4 h-4 rounded-full border shrink-0 shadow-sm"
+                        style={`background-color: ${hex}; border-color: ${border || '#64748b'};`}
+                      ></span>
+                      <span>{c}</span>
+                      {dedicatedImg && (
+                        <span class="text-[9px] bg-red-600 text-white px-1.5 py-0.2 rounded font-extrabold uppercase">
+                          Photo
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <p class="text-[11px] text-slate-500 italic">
+                Click any color to preview dedicated showroom photography (where available) and automatically tag your booking quote.
+              </p>
+            </div>
+          )}
 
           <!-- PASSENGERS & LUGGAGE DIAGRAM (Part B Visual System) -->
           {isCoaster ? (
@@ -332,7 +385,8 @@ const isCoaster = vehicle.slug === 'toyota-coaster';
             <!-- PRIMARY CTAs -->
             <div class="space-y-3 pt-2">
               <a
-                href={`/booking/?vehicle=${vehicle.slug}&brand=${encodeURIComponent(vehicle.manufacturer)}&model=${encodeURIComponent(vehicle.model)}&category=${vehicle.category}`}
+                id="detail-book-cta"
+                href={`/booking/?vehicle=${vehicle.slug}&brand=${encodeURIComponent(vehicle.manufacturer)}&model=${encodeURIComponent(vehicle.model)}&category=${vehicle.category}&color=${encodeURIComponent(vehicle.colors?.[0] || 'Standard')}`}
                 class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-base py-4 rounded-xl text-center block shadow-lg transition-all"
               >
                 Book Your Trip
@@ -358,4 +412,53 @@ const isCoaster = vehicle.slug === 'toyota-coaster';
       </div>
     </div>
   </section>
+
+  <script>
+    const colorButtons = document.querySelectorAll('.detail-color-btn');
+    const colorLabel = document.getElementById('detail-active-color-name');
+    const bookCta = document.getElementById('detail-book-cta') as HTMLAnchorElement;
+    const stageLink = document.querySelector('#vehicle-pswp-gallery > a') as HTMLAnchorElement;
+    const stageImg = document.querySelector('#vehicle-pswp-gallery img') as HTMLImageElement;
+
+    colorButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const colorName = btn.getAttribute('data-color-name') || '';
+        const colorImg = btn.getAttribute('data-color-image') || '';
+
+        // 1. Update button styling
+        colorButtons.forEach(b => {
+          b.classList.remove('bg-slate-800', 'border-red-500', 'text-white', 'ring-2', 'ring-red-500/80', 'shadow-md');
+          b.classList.add('bg-slate-950/80', 'border-slate-700/80', 'text-slate-300');
+        });
+        btn.classList.remove('bg-slate-950/80', 'border-slate-700/80', 'text-slate-300');
+        btn.classList.add('bg-slate-800', 'border-red-500', 'text-white', 'ring-2', 'ring-red-500/80', 'shadow-md');
+
+        // 2. Update color label
+        if (colorLabel) {
+          colorLabel.textContent = `Selected: ${colorName}`;
+        }
+
+        // 3. Update main hero image if dedicated color photo exists
+        if (stageImg && colorImg) {
+          stageImg.style.opacity = '0.5';
+          setTimeout(() => {
+            stageImg.src = colorImg;
+            stageImg.style.opacity = '1';
+            if (stageLink) stageLink.href = colorImg;
+          }, 150);
+        }
+
+        // 4. Update booking link
+        if (bookCta) {
+          try {
+            const url = new URL(bookCta.href, window.location.origin);
+            url.searchParams.set('color', colorName);
+            bookCta.href = url.pathname + url.search;
+          } catch (e) {
+            bookCta.href = bookCta.href.replace(/&color=[^&]*/, '') + `&color=${encodeURIComponent(colorName)}`;
+          }
+        }
+      });
+    });
+  </script>
 </Layout>

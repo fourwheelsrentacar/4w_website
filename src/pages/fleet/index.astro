@@ -1,27 +1,29 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { FLEET_VEHICLES } from '../../data/fleet';
 import { PAKISTAN_BRANDS } from '../../data/brands';
-import { PAKISTAN_VEHICLE_CATALOG } from '../../data/pakistanVehicles';
+import { ALL_FLEET_VEHICLES, type UnifiedVehicle } from '../../data/unifiedFleet';
 import { FUEL_DISCLAIMER_TEXT } from '../../data/rates';
-import VehicleImage from '../../components/VehicleImage.astro';
 
-const title = "4WHEELS Vehicle Fleet Directory - Executive Cars, SUVs & Buses by Brand";
-const description = "Explore 4WHEELS Rent a Car vehicle fleet in Lahore by brand. Browse Toyota, Honda, Kia, Hyundai, BYD, Suzuki, Changan, Audi, and more. Select a brand to view all models, seating, and luggage capacities.";
+const title = "4WHEELS Vehicle Fleet Directory - All 39 Executive Cars, SUVs & Buses in Pakistan";
+const description = "Explore 4WHEELS Rent a Car complete vehicle fleet in Lahore. Browse all 39 models across 21 brands including Toyota, Honda, Kia, Hyundai, BYD, Haval, Suzuki, Changan, Audi, and luxury buses. Filter by color, fuel, seats, and book online.";
 const canonicalPath = "/fleet/";
 
 const categories = [
-  { key: 'all', label: 'All Fleet' },
+  { key: 'all', label: 'All Fleet (39)' },
+  { key: 'core', label: '4WHEELS Core Fleet' },
   { key: 'sedan', label: 'Sedans' },
   { key: 'suv', label: 'SUVs & 4x4' },
+  { key: 'crossover', label: 'Crossovers' },
+  { key: 'ev', label: 'Electric & Hybrid' },
   { key: 'hatchback', label: 'Hatchbacks' },
-  { key: 'van', label: 'Vans (13-Seater)' },
-  { key: 'coaster', label: 'Coasters & Buses' },
-  { key: 'luxury', label: 'Luxury Cars' }
+  { key: 'van', label: 'Vans & MPVs' },
+  { key: 'bus', label: 'Coasters & Buses' },
+  { key: 'luxury', label: 'Luxury VIP' }
 ];
 
-const fuelTypes = ['All', 'Petrol', 'Diesel', 'Hybrid', 'Electric'];
-const transmissions = ['All', 'Automatic', 'Manual'];
+const fuelTypes = ['All', 'Petrol', 'Diesel', 'Hybrid', 'Electric', 'PHEV'];
+const transmissions = ['All', 'Automatic', 'Manual', 'Dual / CVT'];
+const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
 ---
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
@@ -30,88 +32,59 @@ const transmissions = ['All', 'Automatic', 'Manual'];
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
       <span class="inline-block bg-red-600 text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
-        Automotive Fleet & Brand Directory
+        Pakistan's Premier Automotive Rental Directory
       </span>
       <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-3">
-        4WHEELS Fleet & Vehicle Catalog
+        4WHEELS Fleet & All Vehicle Models
       </h1>
-      <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-6">
-        Select an official automobile brand below to explore all available rental models, seating diagrams, luggage fit specifications, and colors.
+      <p class="text-slate-300 text-sm md:text-base max-w-3xl mx-auto leading-relaxed mb-6">
+        Browse our comprehensive lineup of 39 verified executive sedans, luxury SUVs, hybrid crossovers, electric vehicles, and group coaches. Select your preferred color, transmission, and seating layout with guaranteed transparent pricing.
       </p>
 
-      <div class="flex flex-wrap justify-center gap-4 text-xs font-bold text-slate-300">
-        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">✅ Self Drive Available</span>
-        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">✅ Professional Chauffeur Fleet</span>
-        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">✅ 21 Verified Pakistan Brands</span>
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4 text-xs font-bold text-slate-300">
+        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+          ⚡ <strong class="text-white">39 Models</strong> Available
+        </span>
+        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+          🚗 <strong class="text-white">21 Official Brands</strong>
+        </span>
+        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+          🎨 <strong class="text-white">Multi-Color Variants</strong>
+        </span>
+        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+          ✅ <strong class="text-white">Self Drive & Chauffeur</strong>
+        </span>
       </div>
     </div>
   </section>
 
-  <!-- BROWSE BY BRAND FIRST SECTION -->
-  <section class="py-12 bg-slate-950 text-white border-b border-slate-800">
+  <!-- STEP 1: BROWSE BY BRAND ACCORDION/GRID -->
+  <section class="py-10 bg-slate-950 text-white border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="border-b border-slate-800 pb-4 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="border-b border-slate-800 pb-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <span class="text-xs font-extrabold text-red-500 uppercase tracking-widest block mb-1">Step 1 — Choose a Brand</span>
-          <h2 class="text-2xl sm:text-3xl font-black text-white">Explore Fleet by Brand ({PAKISTAN_BRANDS.length} Brands)</h2>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Explore by Brand ({PAKISTAN_BRANDS.length} Brands in Pakistan)</h2>
         </div>
-        <span class="text-xs font-bold text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
-          Click any brand to see all present models
-        </span>
+        <a href="#fleet-catalog-section" class="text-xs font-bold text-slate-400 hover:text-white bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 transition-colors">
+          ↓ Skip to All 39 Models Grid
+        </a>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
         {PAKISTAN_BRANDS.map(brand => {
-          const brandVehicles = PAKISTAN_VEHICLE_CATALOG.filter(v => v.brandSlug.toLowerCase() === brand.slug.toLowerCase());
-          let sampleCar = brandVehicles[0];
-          if (brand.slug === 'changan') {
-            sampleCar = brandVehicles.find(v => v.slug === 'changan-karvaan') || brandVehicles[0];
-          }
-          if (!sampleCar) {
-            sampleCar = FLEET_VEHICLES.find(v => v.manufacturer.toLowerCase() === brand.name.toLowerCase()) as any;
-          }
-
+          const brandVehicles = ALL_FLEET_VEHICLES.filter(v => v.brandSlug.toLowerCase() === brand.slug.toLowerCase());
           return (
             <a
               href={`/vehicles/${brand.slug}/`}
-              class="bg-slate-900 rounded-2xl border border-slate-800 hover:border-red-600/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden flex flex-col justify-between group"
+              class="bg-slate-900/90 hover:bg-slate-850 rounded-xl p-3 border border-slate-800 hover:border-red-600/80 transition-all text-center flex flex-col items-center justify-center group hover:-translate-y-0.5 hover:shadow-lg"
             >
-              <div>
-                <!-- Brand Sample Car Visual Stage -->
-                <div class="relative bg-slate-950 overflow-hidden">
-                  {sampleCar ? (
-                    <VehicleImage vehicle={sampleCar} showLabel={false} className="h-44 group-hover:scale-105 transition-transform duration-300" />
-                  ) : (
-                    <div class="h-44 flex items-center justify-center bg-slate-900 text-slate-500 text-xs font-bold">
-                      {brand.name} Vehicle Fleet
-                    </div>
-                  )}
-
-                  <div class="absolute top-3 left-3 bg-slate-950/90 border border-slate-800 text-slate-300 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider backdrop-blur-sm">
-                    {brand.country}
-                  </div>
-                </div>
-
-                <!-- Brand Card Body -->
-                <div class="p-5 space-y-2">
-                  <div class="flex items-center justify-between">
-                    <h3 class="text-xl font-black text-white group-hover:text-red-500 transition-colors">
-                      {brand.name}
-                    </h3>
-                    <span class="text-xs font-bold text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">
-                      {brandVehicles.length || 1} {brandVehicles.length === 1 ? 'Model' : 'Models'}
-                    </span>
-                  </div>
-                  <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                    {brand.description || `Browse ${brand.name} models available through 4WHEELS Rent a Car Lahore.`}
-                  </p>
-                </div>
-              </div>
-
-              <div class="p-5 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between text-xs font-bold text-red-500 group-hover:text-red-400">
-                <span>View All {brand.name} Models</span>
-                <span class="group-hover:translate-x-1 transition-transform">→</span>
-              </div>
+              <span class="text-xs font-extrabold text-white group-hover:text-red-400 transition-colors block">
+                {brand.name}
+              </span>
+              <span class="text-[10px] text-slate-400 mt-0.5 block">
+                {brandVehicles.length} {brandVehicles.length === 1 ? 'Model' : 'Models'}
+              </span>
             </a>
           );
         })}
@@ -119,17 +92,44 @@ const transmissions = ['All', 'Automatic', 'Manual'];
     </div>
   </section>
 
-  <!-- Interactive Filter Bar & Grid -->
-  <section class="py-10 bg-slate-950 text-white min-h-screen">
+  <!-- STEP 2: MASTER CONFIGURATOR & ALL 39 VEHICLES GRID -->
+  <section class="py-10 bg-slate-950 text-white min-h-screen" id="fleet-catalog-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <!-- Filter Configurator Dashboard -->
-      <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800 shadow-xl mb-10 space-y-4">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-          <h2 class="text-xs font-extrabold text-slate-400 uppercase tracking-wider flex items-center gap-2">
-            <span>⚡ Configurator Filters</span>
-          </h2>
-          <span class="text-xs text-slate-500" id="vehicle-count-display">{FLEET_VEHICLES.length} Vehicles Displayed</span>
+      <!-- Interactive Configurator Control Center -->
+      <div class="bg-slate-900 rounded-2xl p-5 md:p-6 border border-slate-800 shadow-2xl mb-10 space-y-5">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-slate-800 pb-4 gap-3">
+          <div>
+            <span class="text-xs font-extrabold text-red-500 uppercase tracking-widest block mb-0.5">Step 2 — Filter & Configure</span>
+            <h2 class="text-xl md:text-2xl font-black text-white flex items-center gap-2">
+              <span>All 39 Vehicle Models & Color Options</span>
+            </h2>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-bold bg-slate-800 text-emerald-400 px-3 py-1.5 rounded-lg border border-slate-700" id="vehicle-count-display">
+              39 of 39 Vehicles Displayed
+            </span>
+            <button
+              type="button"
+              id="reset-filters-btn"
+              class="text-xs text-slate-400 hover:text-white underline hidden"
+            >
+              Reset Filters
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Instant Search Bar -->
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
+            🔍
+          </span>
+          <input
+            type="text"
+            id="fleet-search-input"
+            placeholder="Search 39 models, brands, colors, or features (e.g., Prado, Fortuner, BYD Seal, Haval, White, Black, Hybrid, 7-seater)..."
+            class="w-full bg-slate-950 border border-slate-700 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all font-medium"
+          />
         </div>
 
         <!-- Category Filter Pills -->
@@ -137,7 +137,7 @@ const transmissions = ['All', 'Automatic', 'Manual'];
           {categories.map(cat => (
             <button
               type="button"
-              class={`filter-cat-btn text-xs font-bold px-4 py-2 rounded-xl transition-all duration-200 border ${
+              class={`filter-cat-btn text-xs font-bold px-3.5 py-2 rounded-xl transition-all duration-200 border ${
                 cat.key === 'all'
                   ? 'bg-red-600 text-white border-red-500 shadow-md scale-105'
                   : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-750 hover:text-white'
@@ -149,109 +149,172 @@ const transmissions = ['All', 'Automatic', 'Manual'];
           ))}
         </div>
 
-        <!-- Secondary Specs Filters -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 pt-2 text-xs">
+        <!-- Secondary Specs & Attributes Filters Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 pt-2 text-xs">
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Fuel Type</label>
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Brand</label>
+            <select id="filter-brand" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white font-semibold focus:ring-1 focus:ring-red-500 focus:outline-none">
+              {brandsList.map(b => <option value={b}>{b === 'All' ? 'All Brands (21)' : b}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Fuel / Powertrain</label>
             <select id="filter-fuel" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white font-semibold focus:ring-1 focus:ring-red-500 focus:outline-none">
-              {fuelTypes.map(f => <option value={f}>{f}</option>)}
+              {fuelTypes.map(f => <option value={f}>{f === 'All' ? 'All Fuel Types' : f}</option>)}
             </select>
           </div>
 
           <div>
             <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Transmission</label>
             <select id="filter-transmission" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white font-semibold focus:ring-1 focus:ring-red-500 focus:outline-none">
-              {transmissions.map(t => <option value={t}>{t}</option>)}
+              {transmissions.map(t => <option value={t}>{t === 'All' ? 'All Transmissions' : t}</option>)}
             </select>
           </div>
 
           <div>
             <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Rental Mode</label>
             <select id="filter-mode" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white font-semibold focus:ring-1 focus:ring-red-500 focus:outline-none">
-              <option value="All">All Modes</option>
-              <option value="Self Drive">Self Drive</option>
-              <option value="With Driver">With Driver</option>
+              <option value="All">All Rental Modes</option>
+              <option value="Self Drive">Self Drive Available</option>
+              <option value="With Driver">With Chauffeur Only</option>
             </select>
           </div>
 
           <div>
             <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Passenger Capacity</label>
             <select id="filter-capacity" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white font-semibold focus:ring-1 focus:ring-red-500 focus:outline-none">
-              <option value="All">Any Capacity</option>
-              <option value="4">Up to 4 Occupants</option>
-              <option value="5">5 Passengers</option>
-              <option value="7">7 Occupants (SUV)</option>
-              <option value="13">13+ Group Transport</option>
+              <option value="All">Any Seating Capacity</option>
+              <option value="4">4-5 Seats (Sedan / Hatch)</option>
+              <option value="7">7 Seats (SUV / MPV)</option>
+              <option value="13">11-14 Seats (Van)</option>
+              <option value="22">22-50 Seats (Bus / Coaster)</option>
             </select>
           </div>
         </div>
       </div>
 
-      <!-- Vehicle Card Grid -->
+      <!-- MASTER VEHICLE CARDS GRID (ALL 39 VEHICLES) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="fleet-grid">
-        {FLEET_VEHICLES.map(vehicle => {
-          const isCoaster = vehicle.slug === 'toyota-coaster';
+        {ALL_FLEET_VEHICLES.map((vehicle, index) => {
+          const isCoaster = vehicle.slug.includes('coaster') || vehicle.slug.includes('bus');
+          const defaultColor = vehicle.colors[0]?.name || 'Standard';
 
           return (
             <div
-              class={`vehicle-card bg-slate-900 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-950/30 overflow-hidden flex flex-col justify-between relative cursor-pointer ${
-                isCoaster ? 'border-amber-500/60 ring-1 ring-amber-500/30' : 'border-slate-800 hover:border-red-600/80'
+              class={`vehicle-card bg-slate-900 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-950/30 overflow-hidden flex flex-col justify-between relative ${
+                vehicle.isCoreFleet ? 'border-slate-800 hover:border-red-600/80 ring-0' : 'border-slate-800/80 hover:border-indigo-500/80'
               }`}
+              data-id={vehicle.id}
+              data-slug={vehicle.slug}
+              data-brand={vehicle.brand}
+              data-brand-slug={vehicle.brandSlug}
+              data-model={vehicle.model}
+              data-variant={vehicle.variant}
               data-category={vehicle.category}
-              data-fuel={vehicle.fuelType || 'Petrol'}
-              data-transmission={vehicle.transmission || 'Automatic'}
+              data-is-core={vehicle.isCoreFleet ? 'true' : 'false'}
+              data-fuel={vehicle.fuelType}
+              data-transmission={vehicle.transmission}
               data-selfdrive={vehicle.selfDrive ? 'true' : 'false'}
               data-withdriver={vehicle.withDriver ? 'true' : 'false'}
-              data-seats={vehicle.seats || 5}
-              onclick={`if (!event.target.closest('a')) window.location.href='/fleet/${vehicle.slug}/'`}
+              data-seats={vehicle.seats}
+              data-price={vehicle.startingPricePkr}
+              data-colors={vehicle.colors.map(c => c.name).join(',')}
             >
               <div>
-                <!-- Vehicle Stage using Reusable VehicleImage -->
-                <a href={`/fleet/${vehicle.slug}/`} class="block relative group">
-                  <VehicleImage vehicle={vehicle} showLabel={true} />
+                <!-- Vehicle Image Stage with Color Photo Switcher -->
+                <div class="relative bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 border-b border-slate-800/80 aspect-[16/9] flex items-center justify-center p-3 overflow-hidden group">
+                  <!-- Stage Floor Shadow -->
+                  <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[75%] h-3.5 bg-black/70 blur-md rounded-full pointer-events-none"></div>
 
-                  <!-- Badges Top Bar Overlay -->
-                  <div class="absolute top-3 left-3 flex gap-1.5 flex-wrap z-20">
-                    <span class="bg-slate-900/90 border border-slate-700 text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider backdrop-blur-sm shadow-md">
+                  <a href={vehicle.detailUrl} class="w-full h-full flex items-center justify-center">
+                    <img
+                      src={vehicle.heroImage}
+                      alt={`${vehicle.brand} ${vehicle.model} ${vehicle.variant} - 4WHEELS Rent a Car Lahore`}
+                      loading={index < 6 ? 'eager' : 'lazy'}
+                      class="vehicle-main-img w-[88%] max-h-[85%] object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.65)] transition-all duration-300 group-hover:scale-[1.03]"
+                      data-default-src={vehicle.heroImage}
+                    />
+                  </a>
+
+                  <!-- Top Left Badges -->
+                  <div class="absolute top-3 left-3 flex gap-1.5 flex-wrap z-20 pointer-events-none">
+                    <span class="bg-slate-950/90 border border-slate-700 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider backdrop-blur-sm shadow-md">
                       {vehicle.category}
                     </span>
                     {vehicle.engineCc && (
-                      <span class="bg-red-600/90 text-white text-[10px] font-black px-2.5 py-1 rounded-md tracking-wider backdrop-blur-sm shadow-md">
+                      <span class="bg-red-600/90 text-white text-[10px] font-black px-2 py-0.5 rounded tracking-wider backdrop-blur-sm shadow-md">
                         {vehicle.engineCc}
                       </span>
                     )}
                   </div>
 
-                  <div class="absolute top-3 right-3 flex flex-col gap-1.5 items-end z-20">
-                    {vehicle.featured && (
-                      <span class="bg-amber-500 text-slate-950 text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-md">
-                        POPULAR
+                  <!-- Top Right Dispatch Badge -->
+                  <div class="absolute top-3 right-3 flex flex-col gap-1 items-end z-20 pointer-events-none">
+                    {vehicle.isCoreFleet ? (
+                      <span class="bg-emerald-500 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded uppercase tracking-wider shadow-md flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-950 animate-ping"></span>
+                        Active Core Fleet
+                      </span>
+                    ) : (
+                      <span class="bg-indigo-950 text-indigo-300 border border-indigo-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider backdrop-blur-sm shadow-md">
+                        Catalog Model
                       </span>
                     )}
                   </div>
 
-                  {isCoaster && (
-                    <div class="absolute top-10 right-3 bg-amber-500/90 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded text-center uppercase tracking-wider z-20 shadow-md">
-                      Customized 22-Seat Executive
-                    </div>
-                  )}
-                </a>
+                  <!-- Quick Zoom/Click Tip -->
+                  <div class="absolute bottom-1 right-2 z-20 pointer-events-none text-[9px] text-slate-500 bg-slate-950/80 px-1.5 py-0.5 rounded">
+                    Tap to view details
+                  </div>
+                </div>
 
-                <!-- Card Content Details -->
+                <!-- Card Body & Color Selector -->
                 <div class="p-5 space-y-4">
-                  <!-- Title & Variant Hierarchy -->
+                  <!-- Title Hierarchy -->
                   <div>
-                    <div class="text-[10px] font-bold text-red-500 uppercase tracking-widest">{vehicle.manufacturer}</div>
-                    <a href={`/fleet/${vehicle.slug}/`} class="hover:text-red-400 transition-colors">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[10px] font-bold text-red-500 uppercase tracking-widest">{vehicle.brand}</span>
+                      <span class="text-[10px] font-semibold text-slate-400">{vehicle.modelYear}</span>
+                    </div>
+                    <a href={vehicle.detailUrl} class="hover:text-red-400 transition-colors block">
                       <h3 class="text-xl font-extrabold text-white tracking-tight leading-snug">
                         {vehicle.model}
                       </h3>
                     </a>
-                    {vehicle.variant && (
-                      <p class="text-xs font-semibold text-slate-400 mt-0.5">
-                        {vehicle.variant}
-                      </p>
-                    )}
+                    <p class="text-xs font-medium text-slate-400 mt-0.5 line-clamp-1">
+                      {vehicle.variant}
+                    </p>
+                  </div>
+
+                  <!-- INTERACTIVE COLOR SWATCHES SELECTOR -->
+                  <div class="bg-slate-950/80 border border-slate-800/90 rounded-xl p-2.5 space-y-1.5">
+                    <div class="flex items-center justify-between text-[11px]">
+                      <span class="text-slate-400 font-bold uppercase tracking-wider text-[9px]">Verified Colors:</span>
+                      <span class="text-white font-bold truncate max-w-[170px] color-indicator-label">
+                        {defaultColor}
+                      </span>
+                    </div>
+
+                    <div class="flex items-center gap-1.5 flex-wrap color-swatches-container">
+                      {vehicle.colors.map((c, cIdx) => (
+                        <button
+                          type="button"
+                          class={`color-swatch-btn w-6 h-6 rounded-full border transition-all duration-200 relative group/swatch ${
+                            cIdx === 0
+                              ? 'ring-2 ring-red-500 ring-offset-2 ring-offset-slate-900 scale-110'
+                              : 'hover:scale-110 opacity-80 hover:opacity-100'
+                          }`}
+                          style={`background-color: ${c.hex}; border-color: ${c.border || '#475569'};`}
+                          data-color-name={c.name}
+                          data-color-image={c.imageUrl || vehicle.heroImage}
+                          title={c.name}
+                          aria-label={`Select ${c.name} color for ${vehicle.brand} ${vehicle.model}`}
+                        >
+                          <span class="sr-only">{c.name}</span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
 
                   <!-- Technical Specs Grid -->
@@ -266,40 +329,19 @@ const transmissions = ['All', 'Automatic', 'Manual'];
                     <div>
                       <span class="text-[10px] text-slate-500 uppercase font-bold block">Luggage</span>
                       <span class="text-white font-bold flex items-center gap-1">
-                        🧳 {vehicle.luggage ? `Approx. ${vehicle.luggage} Bags` : 'Flexible'}
+                        🧳 {typeof vehicle.luggage === 'number' ? `${vehicle.luggage} Bags` : vehicle.luggage}
                       </span>
                     </div>
 
                     <div>
                       <span class="text-[10px] text-slate-500 uppercase font-bold block">Transmission</span>
-                      <span class="text-white font-bold">{vehicle.transmission || 'Automatic'}</span>
+                      <span class="text-white font-bold truncate block">{vehicle.transmission}</span>
                     </div>
 
                     <div>
-                      <span class="text-[10px] text-slate-500 uppercase font-bold block">Fuel System</span>
-                      <span class="text-white font-bold">{vehicle.fuelType || 'Petrol'}</span>
+                      <span class="text-[10px] text-slate-500 uppercase font-bold block">Powertrain</span>
+                      <span class="text-white font-bold truncate block">{vehicle.fuelType}</span>
                     </div>
-
-                    {vehicle.fuelTankCapacity && (
-                      <div>
-                        <span class="text-[10px] text-slate-500 uppercase font-bold block">Fuel Tank</span>
-                        <span class="text-white font-semibold">⛽ {vehicle.fuelTankCapacity}</span>
-                      </div>
-                    )}
-
-                    {vehicle.batteryCapacity && (
-                      <div>
-                        <span class="text-[10px] text-slate-500 uppercase font-bold block">Battery</span>
-                        <span class="text-white font-semibold">🔋 {vehicle.batteryCapacity}</span>
-                      </div>
-                    )}
-
-                    {vehicle.fuelEconomyRealWorld && (
-                      <div class="col-span-2 pt-1 border-t border-slate-800">
-                        <span class="text-[10px] text-slate-500 uppercase font-bold block">Approx. Fuel Economy</span>
-                        <span class="text-emerald-400 font-bold">{vehicle.fuelEconomyRealWorld}</span>
-                      </div>
-                    )}
                   </div>
 
                 </div>
@@ -307,37 +349,67 @@ const transmissions = ['All', 'Automatic', 'Manual'];
 
               <!-- Pricing & Action Buttons -->
               <div class="p-5 pt-0 border-t border-slate-800/80 mt-2 space-y-2">
-                {vehicle.startingPricePkr && (
-                  <div class="flex items-center justify-between py-1.5 px-3 rounded-lg bg-emerald-950/40 border border-emerald-900/50 text-xs">
-                    <span class="text-slate-400 font-medium">Daily Rental From:</span>
-                    <span class="text-emerald-400 font-black text-sm">PKR {vehicle.startingPricePkr.toLocaleString()}<span class="text-[10px] text-slate-400 font-normal">/day</span></span>
-                  </div>
-                )}
+                <!-- Starting Rate Badge -->
+                <div class="flex items-center justify-between py-1.5 px-3 rounded-lg bg-emerald-950/40 border border-emerald-900/50 text-xs">
+                  <span class="text-slate-400 font-medium">Daily Rental From:</span>
+                  <span class="text-emerald-400 font-black text-sm">
+                    PKR {vehicle.startingPricePkr.toLocaleString()}<span class="text-[10px] text-slate-400 font-normal">/day</span>
+                  </span>
+                </div>
+
+                <!-- Book Your Trip CTA with Dynamic Color Query Param -->
                 <a
-                  href={`/booking/?vehicle=${vehicle.slug}&brand=${encodeURIComponent(vehicle.manufacturer)}&model=${encodeURIComponent(vehicle.model)}&category=${vehicle.category}`}
-                  class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm py-3 rounded-xl block text-center shadow-lg transition-all flex items-center justify-center gap-2"
+                  href={`${vehicle.bookingUrl}&color=${encodeURIComponent(defaultColor)}`}
+                  class="vehicle-booking-cta w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm py-3 rounded-xl block text-center shadow-lg transition-all flex items-center justify-center gap-2 group-hover:shadow-red-600/30"
                 >
                   <span>BOOK YOUR TRIP</span>
                   <span>→</span>
                 </a>
 
-                <a
-                  href="tel:+923216616644"
-                  class="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-2.5 rounded-xl block text-center border border-slate-700 transition-colors flex items-center justify-center gap-1.5"
-                >
-                  <span>📞 CALL: 0321 6616644</span>
-                </a>
+                <div class="grid grid-cols-2 gap-2">
+                  <a
+                    href={vehicle.detailUrl}
+                    class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-2 rounded-xl text-center border border-slate-700 transition-colors block"
+                  >
+                    Specifications
+                  </a>
+
+                  <a
+                    href="tel:+923216616644"
+                    class="bg-slate-800 hover:bg-slate-750 text-emerald-400 font-bold text-xs py-2 rounded-xl text-center border border-slate-700 transition-colors block"
+                  >
+                    📞 0321 6616644
+                  </a>
+                </div>
               </div>
             </div>
           );
         })}
       </div>
 
-      <!-- Fuel Disclaimer -->
-      <div class="mt-12 bg-slate-900 border border-slate-800 rounded-2xl p-4 text-center text-slate-400 text-xs leading-relaxed max-w-3xl mx-auto">
-        <p class="font-semibold text-slate-300 mb-1">ℹ️ Automotive Fuel Economy Disclaimer:</p>
+      <!-- No Results State -->
+      <div id="no-results-message" class="hidden text-center py-16 bg-slate-900 rounded-2xl border border-slate-800 max-w-xl mx-auto my-8 p-8 space-y-4">
+        <div class="text-4xl">🔍</div>
+        <h3 class="text-xl font-bold text-white">No Vehicles Match Your Filter</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Try adjusting your search keywords, clear category pills, or reset the fuel/capacity filters to browse all 39 models.
+        </p>
+        <button
+          type="button"
+          id="clear-all-filters-btn"
+          class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-md transition-all inline-block"
+        >
+          Reset All Filters
+        </button>
+      </div>
+
+      <!-- Fuel & Verification Disclaimer -->
+      <div class="mt-14 bg-slate-900 border border-slate-800 rounded-2xl p-5 text-center text-slate-400 text-xs leading-relaxed max-w-4xl mx-auto space-y-2">
+        <p class="font-bold text-slate-200">ℹ️ 4WHEELS Verified Fleet & Vehicle Catalog Policy:</p>
         <p>{FUEL_DISCLAIMER_TEXT}</p>
-        <p class="text-[11px] text-slate-500 mt-1">Illustrative vehicle visuals shown. Actual rental vehicle color and trim details may vary based on verified fleet inventory.</p>
+        <p class="text-[11px] text-slate-500">
+          All 39 vehicles represent Pakistan market offerings available through 4WHEELS Rent a Car. Core active fleet units are available for immediate same-day dispatch. Catalog request models are arranged upon confirmation. Color availability is subject to active fleet scheduling.
+        </p>
       </div>
 
     </div>
@@ -345,17 +417,25 @@ const transmissions = ['All', 'Automatic', 'Manual'];
 </Layout>
 
 <script>
+  // Elements
   const catButtons = document.querySelectorAll('.filter-cat-btn');
+  const searchInput = document.getElementById('fleet-search-input') as HTMLInputElement;
+  const brandSelect = document.getElementById('filter-brand') as HTMLSelectElement;
   const fuelSelect = document.getElementById('filter-fuel') as HTMLSelectElement;
   const transSelect = document.getElementById('filter-transmission') as HTMLSelectElement;
   const modeSelect = document.getElementById('filter-mode') as HTMLSelectElement;
   const capacitySelect = document.getElementById('filter-capacity') as HTMLSelectElement;
   const vehicleCards = document.querySelectorAll('.vehicle-card');
   const countDisplay = document.getElementById('vehicle-count-display');
+  const noResultsMsg = document.getElementById('no-results-message');
+  const resetBtn = document.getElementById('reset-filters-btn');
+  const clearAllBtn = document.getElementById('clear-all-filters-btn');
 
   let activeCat = 'all';
 
   const applyFilters = () => {
+    const query = (searchInput?.value || '').trim().toLowerCase();
+    const selectedBrand = brandSelect?.value || 'All';
     const selectedFuel = fuelSelect?.value || 'All';
     const selectedTrans = transSelect?.value || 'All';
     const selectedMode = modeSelect?.value || 'All';
@@ -364,28 +444,58 @@ const transmissions = ['All', 'Automatic', 'Manual'];
     let visibleCount = 0;
 
     vehicleCards.forEach(card => {
+      const cardBrand = card.getAttribute('data-brand') || '';
+      const cardModel = card.getAttribute('data-model') || '';
+      const cardVariant = card.getAttribute('data-variant') || '';
       const cardCat = card.getAttribute('data-category') || '';
+      const cardIsCore = card.getAttribute('data-is-core') === 'true';
       const cardFuel = card.getAttribute('data-fuel') || '';
       const cardTrans = card.getAttribute('data-transmission') || '';
       const cardSelfDrive = card.getAttribute('data-selfdrive') === 'true';
       const cardWithDriver = card.getAttribute('data-withdriver') === 'true';
       const cardSeats = parseInt(card.getAttribute('data-seats') || '5', 10);
+      const cardColors = card.getAttribute('data-colors') || '';
 
-      const matchesCat = activeCat === 'all' || cardCat === activeCat;
-      const matchesFuel = selectedFuel === 'All' || cardFuel.toLowerCase() === selectedFuel.toLowerCase();
+      // 1. Text Search Filter (Model, Brand, Variant, Colors, Category)
+      const searchableText = `${cardBrand} ${cardModel} ${cardVariant} ${cardCat} ${cardFuel} ${cardColors}`.toLowerCase();
+      const matchesQuery = !query || searchableText.includes(query);
+
+      // 2. Category Filter
+      let matchesCat = true;
+      if (activeCat === 'core') {
+        matchesCat = cardIsCore;
+      } else if (activeCat === 'ev') {
+        matchesCat = ['ev', 'hybrid', 'phev'].includes(cardCat) || cardFuel.toLowerCase().includes('electric') || cardFuel.toLowerCase().includes('hybrid');
+      } else if (activeCat === 'bus') {
+        matchesCat = ['bus', 'coaster'].includes(cardCat);
+      } else if (activeCat === 'luxury') {
+        matchesCat = cardCat === 'luxury' || parseInt(card.getAttribute('data-price') || '0', 10) >= 25000;
+      } else if (activeCat !== 'all') {
+        matchesCat = cardCat === activeCat;
+      }
+
+      // 3. Brand Dropdown
+      const matchesBrand = selectedBrand === 'All' || cardBrand.toLowerCase() === selectedBrand.toLowerCase();
+
+      // 4. Fuel Dropdown
+      const matchesFuel = selectedFuel === 'All' || cardFuel.toLowerCase().includes(selectedFuel.toLowerCase());
+
+      // 5. Transmission Dropdown
       const matchesTrans = selectedTrans === 'All' || cardTrans.toLowerCase().includes(selectedTrans.toLowerCase());
 
+      // 6. Rental Mode Dropdown
       let matchesMode = true;
       if (selectedMode === 'Self Drive') matchesMode = cardSelfDrive;
       if (selectedMode === 'With Driver') matchesMode = cardWithDriver;
 
+      // 7. Capacity Dropdown
       let matchesCapacity = true;
-      if (selectedCapacity === '4') matchesCapacity = cardSeats <= 4;
-      if (selectedCapacity === '5') matchesCapacity = cardSeats === 5;
+      if (selectedCapacity === '4') matchesCapacity = cardSeats <= 5;
       if (selectedCapacity === '7') matchesCapacity = cardSeats === 7;
-      if (selectedCapacity === '13') matchesCapacity = cardSeats >= 13;
+      if (selectedCapacity === '13') matchesCapacity = cardSeats >= 10 && cardSeats <= 15;
+      if (selectedCapacity === '22') matchesCapacity = cardSeats >= 20;
 
-      if (matchesCat && matchesFuel && matchesTrans && matchesMode && matchesCapacity) {
+      if (matchesQuery && matchesCat && matchesBrand && matchesFuel && matchesTrans && matchesMode && matchesCapacity) {
         (card as HTMLElement).style.display = 'flex';
         visibleCount++;
       } else {
@@ -393,11 +503,57 @@ const transmissions = ['All', 'Automatic', 'Manual'];
       }
     });
 
+    // Update Counter
     if (countDisplay) {
-      countDisplay.textContent = `${visibleCount} Vehicle${visibleCount === 1 ? '' : 's'} Displayed`;
+      countDisplay.textContent = `${visibleCount} of ${vehicleCards.length} Vehicles Displayed`;
+    }
+
+    // Toggle No Results Message
+    if (noResultsMsg) {
+      if (visibleCount === 0) {
+        noResultsMsg.classList.remove('hidden');
+      } else {
+        noResultsMsg.classList.add('hidden');
+      }
+    }
+
+    // Toggle Reset Button Visibility
+    const isFiltered = query !== '' || activeCat !== 'all' || selectedBrand !== 'All' || selectedFuel !== 'All' || selectedTrans !== 'All' || selectedMode !== 'All' || selectedCapacity !== 'All';
+    if (resetBtn) {
+      if (isFiltered) {
+        resetBtn.classList.remove('hidden');
+      } else {
+        resetBtn.classList.add('hidden');
+      }
     }
   };
 
+  // Reset Filters Function
+  const resetAllFilters = () => {
+    activeCat = 'all';
+    if (searchInput) searchInput.value = '';
+    if (brandSelect) brandSelect.value = 'All';
+    if (fuelSelect) fuelSelect.value = 'All';
+    if (transSelect) transSelect.value = 'All';
+    if (modeSelect) modeSelect.value = 'All';
+    if (capacitySelect) capacitySelect.value = 'All';
+
+    catButtons.forEach(b => {
+      b.classList.remove('bg-red-600', 'text-white', 'border-red-500', 'shadow-md', 'scale-105');
+      b.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-700');
+      if (b.getAttribute('data-cat') === 'all') {
+        b.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
+        b.classList.add('bg-red-600', 'text-white', 'border-red-500', 'shadow-md', 'scale-105');
+      }
+    });
+
+    applyFilters();
+  };
+
+  resetBtn?.addEventListener('click', resetAllFilters);
+  clearAllBtn?.addEventListener('click', resetAllFilters);
+
+  // Category Pill Buttons Event Listeners
   catButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const cat = btn.getAttribute('data-cat') || 'all';
@@ -415,14 +571,71 @@ const transmissions = ['All', 'Automatic', 'Manual'];
     });
   });
 
+  // Event Listeners for Input & Select Controls
+  searchInput?.addEventListener('input', applyFilters);
+  brandSelect?.addEventListener('change', applyFilters);
   fuelSelect?.addEventListener('change', applyFilters);
   transSelect?.addEventListener('change', applyFilters);
   modeSelect?.addEventListener('change', applyFilters);
   capacitySelect?.addEventListener('change', applyFilters);
 
-  // Auto-apply category filter from URL query params (e.g. /fleet/?category=sedan)
+  // INTERACTIVE COLOR SWATCH PICKER LOGIC
+  document.querySelectorAll('.vehicle-card').forEach(card => {
+    const swatches = card.querySelectorAll('.color-swatch-btn');
+    const label = card.querySelector('.color-indicator-label');
+    const mainImg = card.querySelector('.vehicle-main-img') as HTMLImageElement;
+    const cta = card.querySelector('.vehicle-booking-cta') as HTMLAnchorElement;
+
+    swatches.forEach(swatch => {
+      swatch.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const colorName = swatch.getAttribute('data-color-name') || '';
+        const colorImg = swatch.getAttribute('data-color-image') || '';
+
+        // 1. Update Active Ring Styling
+        swatches.forEach(s => {
+          s.classList.remove('ring-2', 'ring-red-500', 'ring-offset-2', 'ring-offset-slate-900', 'scale-110');
+          s.classList.add('opacity-80');
+        });
+        swatch.classList.remove('opacity-80');
+        swatch.classList.add('ring-2', 'ring-red-500', 'ring-offset-2', 'ring-offset-slate-900', 'scale-110');
+
+        // 2. Update Color Name Display
+        if (label) {
+          label.textContent = colorName;
+        }
+
+        // 3. Update Vehicle Image if Dedicated Color Picture Exists
+        if (mainImg && colorImg) {
+          mainImg.style.opacity = '0.5';
+          setTimeout(() => {
+            mainImg.src = colorImg;
+            mainImg.style.opacity = '1';
+          }, 150);
+        }
+
+        // 4. Update Booking URL with Selected Color
+        if (cta) {
+          try {
+            const currentUrl = new URL(cta.href, window.location.origin);
+            currentUrl.searchParams.set('color', colorName);
+            cta.href = currentUrl.pathname + currentUrl.search;
+          } catch (err) {
+            // fallback simple replace
+            cta.href = cta.href.replace(/&color=[^&]*/, '') + `&color=${encodeURIComponent(colorName)}`;
+          }
+        }
+      });
+    });
+  });
+
+  // Auto-apply filters from URL Query (e.g. /fleet/?category=suv or /fleet/?brand=toyota)
   const urlParams = new URLSearchParams(window.location.search);
   const requestedCat = urlParams.get('category') || urlParams.get('cat');
+  const requestedBrand = urlParams.get('brand');
+
   if (requestedCat) {
     const targetCat = requestedCat.toLowerCase();
     const matchingBtn = document.querySelector(`.filter-cat-btn[data-cat="${targetCat}"]`);
@@ -434,7 +647,12 @@ const transmissions = ['All', 'Automatic', 'Manual'];
       });
       matchingBtn.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
       matchingBtn.classList.add('bg-red-600', 'text-white', 'border-red-500', 'shadow-md', 'scale-105');
-      applyFilters();
     }
   }
+
+  if (requestedBrand && brandSelect) {
+    brandSelect.value = requestedBrand;
+  }
+
+  applyFilters();
 </script>
