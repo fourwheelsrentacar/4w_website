@@ -17,5 +17,37 @@ export default defineConfig({
     '/get-a-quote': '/booking/',
     '/investor': '/attach-your-car/'
   },
-  integrations: [sitemap(), tailwind()],
+  integrations: [
+    sitemap({
+      serialize(item) {
+        const url = item.url;
+        if (url === 'https://www.4wheelspk.com/') {
+          item.changefreq = 'daily';
+          item.priority = 1.0;
+        } else if (
+          url.includes('/booking/') ||
+          url.includes('/fleet/') ||
+          url.includes('/rent-a-car-') ||
+          url.includes('/attach-your-car/')
+        ) {
+          item.changefreq = 'daily';
+          item.priority = 0.9;
+        } else if (
+          url.includes('/vehicles/') ||
+          url.includes('/locations/') ||
+          url.includes('/routes/') ||
+          url.includes('/official/')
+        ) {
+          item.changefreq = 'weekly';
+          item.priority = 0.8;
+        } else {
+          item.changefreq = 'weekly';
+          item.priority = 0.7;
+        }
+        item.lastmod = new Date();
+        return item;
+      }
+    }),
+    tailwind()
+  ],
 });
