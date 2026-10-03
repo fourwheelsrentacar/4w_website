@@ -1,57 +1,272 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { BUSINESS_INFO } from '../data/business';
 import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
-const title = "Wedding Car Rental Lahore - Luxury Cars & Guest Transport | 4WHEELS";
+const canonicalPath = "/wedding-car-rental-lahore/";
+const title = "Wedding Car Rental Lahore | Luxury Groom Cars & Baraat Protocol Fleet | 4WHEELS";
+const description = "Hire luxury wedding cars in Lahore with 4WHEELS. Audi A6, Land Cruiser Prado, Fortuner Legender, Honda Civic RS, and Toyota Coasters for Baraat, Walima, and Mehndi guest shuttles. Decorated vehicles and uniformed chauffeurs.";
+
 const waUrl = getContextualWhatsAppUrl({
   pageType: 'service',
   pageTitle: 'Wedding Car Rental Lahore',
-  canonicalUrl: `${BUSINESS_INFO.siteUrl}/wedding-car-rental-lahore/`,
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
 });
-const description = "Book luxury wedding cars, groom cars, and guest transport coasters in Lahore with 4WHEELS. Audi A6, Fortuner, Civic, Corolla, and Toyota Coaster mini-buses.";
-const canonicalPath = "/wedding-car-rental-lahore/";
+
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Rent a Car Lahore', path: '/rent-a-car-lahore/' },
+  { name: 'Wedding Car Rental', path: canonicalPath }
+];
+
+const weddingSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRental",
+  "name": "4WHEELS Luxury Wedding Car Rental Lahore",
+  "url": `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+  "telephone": "+923216616644",
+  "priceRange": "PKR 12,000 - PKR 85,000",
+  "currenciesAccepted": "PKR",
+  "paymentAccepted": "Cash, Bank Transfer, Online Payment",
+  "description": "Executive groom luxury cars, decorated wedding sedans, Baraat SUV protocol convoys, and 29-seater guest transport coasters for weddings across Lahore.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": BUSINESS_INFO.address.street,
+    "addressLocality": BUSINESS_INFO.address.city,
+    "addressRegion": BUSINESS_INFO.address.region,
+    "postalCode": BUSINESS_INFO.address.postalCode,
+    "addressCountry": "PK"
+  }
+};
+
+const WEDDING_PACKAGES = [
+  {
+    title: "VIP Groom & Bridal Luxury",
+    tagline: "Unforgettable Grand Entrance",
+    cars: "Audi A6, Land Cruiser Prado TX, Mercedes Benz, Honda Civic RS (White/Black)",
+    dailyRate: "PKR 18,000 – 45,000",
+    features: [
+      "Spotless mirror-finish deep detailing",
+      "Uniformed, English & Urdu speaking chauffeur",
+      "Fresh floral decoration coordination assistance",
+      "Punctual arrival 30 mins before photoshoot / departure"
+    ],
+    highlight: "Most Popular for Barat"
+  },
+  {
+    title: "Baraat Protocol SUV Convoy",
+    tagline: "Commanding Family & VIP Escort",
+    cars: "Toyota Fortuner Legender, Hilux Revo 4x4, Prado TX/TZ Motorcade",
+    dailyRate: "PKR 25,000 – 60,000",
+    features: [
+      "Matched multi-vehicle convoy for groom's family",
+      "Synchronized motorcade driving protocol",
+      "Spacious legroom for traditional sherwanis & dresses",
+      "Intercity venue transfers (Lahore, Gujranwala, Sialkot, Faisalabad)"
+    ],
+    highlight: "High Impact"
+  },
+  {
+    title: "Guest & Family Coaster Shuttle",
+    tagline: "Safe, Coordinated Group Transport",
+    cars: "Toyota Coaster Saloon (22-29 Seats) & HiAce Grand Cabin (13 Seats)",
+    dailyRate: "PKR 15,000 – 26,000",
+    features: [
+      "Chilled dual air conditioning for festive guest comfort",
+      "Luggage space for wedding gifts (Bari / Dahej) & suitcases",
+      "Pickup from Lahore Airport or hotel directly to marquee/hall",
+      "Dedicated multi-point drop for elderly relatives"
+    ],
+    highlight: "Essential for Big Families"
+  },
+  {
+    title: "Complete 3-Day Wedding Fleet Bundle",
+    tagline: "Mehndi + Baraat + Walima Master Package",
+    cars: "Custom combo: 1 Luxury Sedan + 1 Protocol SUV + 1 Guest Coaster",
+    dailyRate: "Custom Discounted Bundle",
+    features: [
+      "Dedicated fleet coordinator assigned for your family",
+      "Priority standby backup vehicle on standby in Lahore",
+      "Significant bundle discount across 3 days",
+      "Hassle-free billing with transparent fuel arrangements"
+    ],
+    highlight: "All-in-One Peace of Mind"
+  }
+];
+
+const faqs = [
+  {
+    question: "Do you provide car flower decoration for weddings?",
+    answer: "Yes, 4WHEELS can coordinate with premier floral artists in Lahore for fresh rose, orchid, and ribbon decorations, or deliver the vehicle early to your preferred florist in Gulberg, DHA, or Johar Town."
+  },
+  {
+    question: "How far in advance should we reserve wedding cars?",
+    answer: "During Lahore's peak wedding season (October through March), prime luxury models like Audi A6, Land Cruiser Prado, and Fortuner book out quickly. We recommend reserving your wedding fleet at least 7 to 14 days in advance."
+  },
+  {
+    question: "Are wedding chauffeurs appropriately dressed for formal events?",
+    answer: "Yes, absolutely. All 4WHEELS wedding chauffeurs wear clean, formal uniforms and adhere to high standards of courtesy, discretion, and punctuality."
+  },
+  {
+    question: "Can we rent wedding cars for intercity Baraats (e.g. Lahore to Faisalabad or Sialkot)?",
+    answer: "Yes, we regularly provide luxury groom sedans, Fortuner convoys, and guest coasters for intercity Baraat processions across Punjab, complete with motorway toll planning and return scheduling."
+  }
+];
 ---
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
-  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
-        Wedding & Event Fleet
+  <script type="application/ld+json" set:html={JSON.stringify(weddingSchema)} />
+  <BreadcrumbSchema items={breadcrumbItems} />
+
+  <!-- Breadcrumbs -->
+  <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+    <div class="max-w-7xl mx-auto flex items-center space-x-2">
+      <a href="/" class="hover:text-white">Home</a>
+      <span>›</span>
+      <a href="/rent-a-car-lahore/" class="hover:text-white">Rent a Car Lahore</a>
+      <span>›</span>
+      <span class="text-slate-200 font-semibold truncate">Wedding Car Rental</span>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <span class="bg-red-600 text-white text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-3 inline-block shadow-md">
+        💍 Premier Wedding & Event Mobility
       </span>
-      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
         Wedding Car Rental in Lahore
       </h1>
-      <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-6">
-        Make your special day seamless and memorable. From executive groom sedans and decorated luxury cars to multi-vehicle guest transport coasters and venue shuttles.
+      <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-6">
+        Elevate your wedding celebration with Lahore's finest automotive fleet. From executive groom sedans and decorated bridal rides to VIP Baraat SUV convoys and 29-seater guest transport coasters.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={waUrl} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
-          💬 Check Wedding Fleet Availability
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-xl transition-all shadow-lg text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2"
+        >
+          <span>💬 Check Wedding Dates & Availability on WhatsApp</span>
+        </a>
+        <a
+          href={BUSINESS_INFO.telLink}
+          class="bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-700 text-xs sm:text-sm flex items-center gap-2"
+        >
+          <span>📞 Wedding Hotline: {BUSINESS_INFO.phoneDisplay}</span>
         </a>
       </div>
     </div>
   </section>
 
-  <section class="py-12 bg-slate-50">
-    <div class="max-w-5xl mx-auto px-4 space-y-10">
-      <div>
-        <h2 class="text-2xl font-bold text-slate-900 mb-4">Wedding Fleet Solutions</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-          <div class="bg-white p-6 rounded-xl border border-slate-200">
-            <h3 class="font-bold text-slate-900 text-base mb-1">🚘 Groom & Bridal Cars</h3>
-            <p class="text-slate-600">Sleek executive sedans including Honda Civic, Toyota Corolla Grandi, and Audi A6 luxury options with professional chauffeurs.</p>
+  <!-- Wedding Fleet Packages Grid -->
+  <section class="py-14 bg-slate-950 text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest block mb-1">Tailored for Baraat, Walima & Mehndi</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-white">4WHEELS Wedding Rental Packages</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          Designed to take the stress out of wedding transport logistics in Lahore.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {WEDDING_PACKAGES.map(pkg => (
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4 hover:border-red-600/60 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div>
+                  <span class="text-xs font-bold text-red-400 uppercase tracking-wider block">{pkg.tagline}</span>
+                  <h3 class="text-xl font-black text-white mt-0.5">{pkg.title}</h3>
+                </div>
+                <span class="bg-slate-800 text-amber-300 text-[11px] font-bold px-2.5 py-1 rounded-full border border-slate-700">
+                  {pkg.highlight}
+                </span>
+              </div>
+
+              <div class="mt-4 mb-3">
+                <span class="text-[11px] text-slate-400 uppercase tracking-wider block">Featured Vehicles:</span>
+                <p class="text-sm font-semibold text-slate-200">{pkg.cars}</p>
+              </div>
+
+              <div class="mb-4">
+                <span class="text-[11px] text-slate-400 uppercase tracking-wider block">Estimated Daily Rate:</span>
+                <p class="text-lg font-black text-emerald-400">{pkg.dailyRate}</p>
+              </div>
+
+              <ul class="space-y-2 text-xs text-slate-300">
+                {pkg.features.map(feat => (
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 font-bold">✓</span>
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="pt-4 border-t border-slate-800">
+              <a
+                href={`https://wa.me/923216616644?text=Hi%204WHEELS,%20I%20am%20interested%20in%20the%20wedding%20package:%20${encodeURIComponent(pkg.title)}.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full text-center bg-red-600 hover:bg-red-500 text-white font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition-colors shadow-md"
+              >
+                Inquire This Package on WhatsApp
+              </a>
+            </div>
           </div>
-          <div class="bg-white p-6 rounded-xl border border-slate-200">
-            <h3 class="font-bold text-slate-900 text-base mb-1">🚙 Family Motorcade SUVs</h3>
-            <p class="text-slate-600">Commanding Toyota Fortuner SUVs for family processions, VIP guests, and baraat transport.</p>
-          </div>
-          <div class="bg-white p-6 rounded-xl border border-slate-200">
-            <h3 class="font-bold text-slate-900 text-base mb-1">🚌 Guest Coasters & Vans</h3>
-            <p class="text-slate-600">22-29 seater Toyota Coaster buses and 13-seater HiAce vans to transport guests safely between venue, hotel, and home.</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
+
+  <!-- Popular Wedding Venues We Serve -->
+  <section class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest block mb-1">Coverage Across Lahore</span>
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Serving Top Wedding Venues in Lahore</h2>
+      <p class="text-slate-600 text-xs sm:text-sm mt-1">
+        Punctual drop-off and pickup across all major marquees and 5-star hotel banquet halls.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-semibold text-slate-700 text-center">
+      <div class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm">
+        <span class="text-lg block mb-1">🏨</span>
+        <span>PC Hotel & Avari Hotel</span>
+      </div>
+      <div class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm">
+        <span class="text-lg block mb-1">🏰</span>
+        <span>Royal Palm Golf & Country Club</span>
+      </div>
+      <div class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm">
+        <span class="text-lg block mb-1">🌿</span>
+        <span>DHA Phase 5 & 6 Raya Banquet</span>
+      </div>
+      <div class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm">
+        <span class="text-lg block mb-1">✨</span>
+        <span>Lake City & Bahria Town Marquees</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+    <FAQ items={faqs} />
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Lock In Your Wedding Fleet Dates Early"
+      subheading="Contact 4WHEELS on WhatsApp to secure prime luxury models and protocol escorts for your special day."
+      pageType="service"
+      pageTitle="Wedding Car Rental Lahore"
+    />
+  </div>
 </Layout>

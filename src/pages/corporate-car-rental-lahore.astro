@@ -2,147 +2,224 @@
 import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { BUSINESS_INFO } from '../data/business';
 import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
-const title = "Corporate Car Rental Lahore | Business Travel Solutions | 4WHEELS";
+const canonicalPath = "/corporate-car-rental-lahore/";
+const title = "Corporate Car Rental Lahore | B2B Fleet Leasing & Tax Invoicing | 4WHEELS";
+const description = "Premier corporate car rental and fleet leasing in Lahore by 4WHEELS. NTN & PRA tax-compliant invoicing, vetted executive chauffeurs, 24/7 backup vehicle SLA, and tailored monthly business mobility.";
+
 const waUrl = getContextualWhatsAppUrl({
   pageType: 'corporate',
   pageTitle: 'Corporate Car Rental Lahore',
-  canonicalUrl: `${BUSINESS_INFO.siteUrl}/corporate-car-rental-lahore/`,
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
 });
-const description = "Corporate car rental services in Lahore by 4WHEELS. Tailored vehicle arrangements for business travel, executive visitors, project teams, and monthly corporate needs.";
+
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Rent a Car Lahore', path: '/rent-a-car-lahore/' },
+  { name: 'Corporate Car Rental', path: canonicalPath }
+];
+
+const corporateSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRental",
+  "name": "4WHEELS Corporate Car Rental & Fleet Leasing Lahore",
+  "url": `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+  "telephone": "+923216616644",
+  "priceRange": "PKR 75,000 - PKR 450,000 / month",
+  "currenciesAccepted": "PKR",
+  "paymentAccepted": "Bank Transfer, Company Cheque, Corporate PO",
+  "description": "Enterprise-grade car rental, monthly leasing, executive chauffeur transport, and employee shuttles for corporations and multinationals in Lahore.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": BUSINESS_INFO.address.street,
+    "addressLocality": BUSINESS_INFO.address.city,
+    "addressRegion": BUSINESS_INFO.address.region,
+    "postalCode": BUSINESS_INFO.address.postalCode,
+    "addressCountry": "PK"
+  }
+};
+
+const CORPORATE_PILLARS = [
+  {
+    icon: "📄",
+    title: "100% Tax Compliant (FBR & PRA)",
+    desc: "Complete documentation with registered NTN, Sales Tax invoices, and standard Withholding Tax compliance for seamless corporate expense auditing."
+  },
+  {
+    icon: "👨‍💼",
+    title: "Vetted Executive Chauffeurs",
+    desc: "Police-cleared, background-verified professional drivers with English & Urdu proficiency, corporate dress code, and non-smoking protocol."
+  },
+  {
+    icon: "⏱️",
+    title: "Guaranteed Replacement SLA",
+    desc: "In the unlikely event of mechanical maintenance or an accident, a comparable backup vehicle is dispatched within 45 to 60 minutes anywhere in Lahore."
+  },
+  {
+    icon: "📊",
+    title: "Detailed Fuel & Mileage Logs",
+    desc: "Monthly digital reporting of vehicle kilometer logs, motorway toll slips, and fuel consumption to streamline your accounting department's reconciliation."
+  }
+];
+
+const CORPORATE_FLEET_TIERS = [
+  {
+    tier: "C-Suite & Executive Board",
+    models: "Toyota Land Cruiser Prado, Fortuner Legender, Audi A6, Honda Civic RS",
+    useCase: "CEO movement, VIP international delegates, Board meetings, diplomatic visits.",
+    billing: "Daily, Weekly or Dedicated Monthly"
+  },
+  {
+    tier: "Management & Sales Teams",
+    models: "Toyota Yaris AT, Honda City 1.2/1.5, Toyota Corolla Altis",
+    useCase: "Daily client meetings, field audits, vendor inspections across Lahore & Punjab.",
+    billing: "Flexible Long-Term Monthly Lease"
+  },
+  {
+    tier: "Industrial & Project Sites",
+    models: "Toyota Hilux Revo 4x4 Double Cabin, Isuzu D-Max",
+    useCase: "Sundar Industrial Estate, Kot Lakhpat, plant operations, construction supervision.",
+    billing: "Project-Based or Annual Contracts"
+  },
+  {
+    tier: "Staff Pick & Drop Logistics",
+    models: "Toyota HiAce Grand Cabin (13 seats), Toyota Coaster Saloon (29 seats)",
+    useCase: "Safe, punctual morning and evening employee commuting on fixed Lahore routes.",
+    billing: "Dedicated Monthly Shift Contract"
+  }
+];
 
 const faqs = [
   {
-    question: "How do I set up a corporate rental with 4WHEELS?",
-    answer: "Contact 4WHEELS directly via phone or WhatsApp with your company's travel schedule, required vehicle types, and duration to discuss customized corporate arrangements."
+    question: "Do you provide official tax invoices for corporate accounting?",
+    answer: "Yes, 4WHEELS is a registered business entity providing formal tax-compliant invoices with NTN and PRA sales tax details, accommodating corporate withholding tax deductions as per Pakistani fiscal laws."
   },
   {
-    question: "Are chauffeur-driven options available for visiting executives?",
-    answer: "Yes, we provide professional chauffeur-driven cars suited for corporate executives, international delegates, and business meetings in Lahore."
+    question: "How quickly can you replace a vehicle if it requires servicing?",
+    answer: "Under our Corporate Service Level Agreement (SLA), if a leased or rented vehicle requires scheduled servicing or encounters unexpected maintenance, an immediate replacement vehicle from the same or higher category is dispatched within 45 to 60 minutes in Lahore."
   },
   {
-    question: "Can 4WHEELS support short-term and long-term corporate projects?",
-    answer: "Yes, we accommodate daily event travel, multi-week project travel, and long-term monthly corporate rentals."
+    question: "Can we hire vehicles for visiting international business delegations?",
+    answer: "Yes, we specialize in protocol chauffeur services for foreign delegates, including 24/7 airport meet & greet with welcome name placards, English-speaking chauffeurs, and luxury executive sedans or SUVs."
+  },
+  {
+    question: "What payment terms are available for corporate accounts?",
+    answer: "For verified corporate clients with approved credit agreements and formal Purchase Orders (PO), we offer weekly and monthly invoicing cycles payable via crossed company cheque or online corporate bank transfer."
   }
 ];
 ---
 
-<Layout title={title} description={description} canonicalPath="/corporate-car-rental-lahore/">
-  <!-- Header Banner -->
-  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <div class="inline-block bg-red-900/60 border border-red-700 text-red-300 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-          Business Mobility Solutions
-        </div>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-          Corporate Car Rental in Lahore
-        </h1>
-        <p class="text-lg text-slate-300 leading-relaxed mb-6">
-          Dependable vehicle transportation solutions for corporate executives, visiting clients, project teams, and daily business operations across Lahore.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a
-            href={BUSINESS_INFO.telLink}
-            class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
-          >
-            📞 Call {BUSINESS_INFO.phoneDisplay}
-          </a>
-          <a
-            href={waUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
-          >
-            💬 Corporate Inquiry
-          </a>
-        </div>
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <script type="application/ld+json" set:html={JSON.stringify(corporateSchema)} />
+  <BreadcrumbSchema items={breadcrumbItems} />
+
+  <!-- Breadcrumbs -->
+  <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+    <div class="max-w-7xl mx-auto flex items-center space-x-2">
+      <a href="/" class="hover:text-white">Home</a>
+      <span>›</span>
+      <a href="/rent-a-car-lahore/" class="hover:text-white">Rent a Car Lahore</a>
+      <span>›</span>
+      <span class="text-slate-200 font-semibold truncate">Corporate Car Rental</span>
+    </div>
+  </nav>
+
+  <!-- Hero Header -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-400 text-xs font-bold uppercase tracking-wider mb-3">
+        <span>🏢 Enterprise Mobility & Fleet Management</span>
+        <span class="text-slate-500">•</span>
+        <span>Lahore Corporate Hubs</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Corporate Car Rental & Fleet Leasing in Lahore
+      </h1>
+      <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-6">
+        Streamlined B2B mobility for multinationals, corporate executives, visiting delegations, and project teams. Tax-compliant NTN invoicing, dedicated account management, and guaranteed backup replacement SLAs.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-xl transition-all shadow-lg text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2"
+        >
+          <span>💬 Request Corporate Proposal on WhatsApp</span>
+        </a>
+        <a
+          href="mailto:4wheels44@gmail.com?subject=Corporate%20Fleet%20RFP%20Inquiry%20-%20Lahore"
+          class="bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-700 text-xs sm:text-sm flex items-center gap-2"
+        >
+          <span>✉️ Email Corporate Desk: 4wheels44@gmail.com</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Service Details Content -->
-  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <div class="lg:col-span-8 space-y-8 text-slate-700 leading-relaxed">
-        <div>
-          <h2 class="text-2xl font-bold text-slate-900 mb-4">Professional Business Travel Support</h2>
-          <p class="mb-4">
-            Reliable mobility is essential for smooth corporate operations. 4WHEELS Rent a Car provides flexible, corporate-focused car rental services designed to meet the high standards of business executives, project managers, and visiting delegates in Lahore.
-          </p>
-          <p>
-            From airport pickups for visiting clients to daily commuting for project teams, we deliver punctual, professional vehicle services.
-          </p>
-        </div>
+  <!-- Corporate Pillars Grid -->
+  <section class="py-14 bg-slate-950 text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest block mb-1">Corporate Standards</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-white">Why Leading Companies Partner with 4WHEELS</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          Eliminate vehicle depreciation, driver payroll headaches, and fleet maintenance overhead.
+        </p>
+      </div>
 
-        <div>
-          <h2 class="text-2xl font-bold text-slate-900 mb-4">Corporate Rental Use Cases</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="p-5 bg-white border border-slate-200 rounded-xl">
-              <h3 class="font-bold text-slate-900 mb-1">💼 Executive Transportation</h3>
-              <p class="text-slate-600 text-sm">Chauffeur-driven vehicles for executive travel, meeting schedules, and corporate events.</p>
-            </div>
-            <div class="p-5 bg-white border border-slate-200 rounded-xl">
-              <h3 class="font-bold text-slate-900 mb-1">🛫 Guest & Airport Transfers</h3>
-              <p class="text-slate-600 text-sm">Punctual arrival and departure transfers at Lahore Airport for corporate guests.</p>
-            </div>
-            <div class="p-5 bg-white border border-slate-200 rounded-xl">
-              <h3 class="font-bold text-slate-900 mb-1">🏗️ Project Mobility</h3>
-              <p class="text-slate-600 text-sm">Flexible weekly or monthly vehicle allocations for project teams based in Lahore.</p>
-            </div>
-            <div class="p-5 bg-white border border-slate-200 rounded-xl">
-              <h3 class="font-bold text-slate-900 mb-1">📅 Long-Term Corporate Rental</h3>
-              <p class="text-slate-600 text-sm">Monthly rental terms customized to your organization's business calendar.</p>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {CORPORATE_PILLARS.map(item => (
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
+            <span class="text-3xl">{item.icon}</span>
+            <h3 class="font-bold text-white text-base">{item.title}</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">{item.desc}</p>
           </div>
-        </div>
-
-        <div>
-          <h2 class="text-2xl font-bold text-slate-900 mb-4">Discuss Corporate Requirements</h2>
-          <p class="mb-4">
-            To discuss corporate rental terms, fleet availability, or customized long-term agreements, contact 4WHEELS directly.
-          </p>
-        </div>
+        ))}
       </div>
+    </div>
+  </section>
 
-      <!-- Sidebar -->
-      <div class="lg:col-span-4 space-y-6">
-        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800 space-y-4">
-          <h3 class="text-xl font-bold border-b border-slate-800 pb-3">Corporate Inquiry</h3>
-          <p class="text-sm text-slate-300">
-            Reach out to 4WHEELS to arrange vehicle transportation for your company.
-          </p>
-          <a
-            href={BUSINESS_INFO.telLink}
-            class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
-          >
-            📞 Call 0321 6616644
-          </a>
-          <a
-            href={waUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
-          >
-            💬 WhatsApp Corporate Desk
-          </a>
+  <!-- Corporate Fleet Tiers -->
+  <section class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest block mb-1">Custom Vehicle Solutions</span>
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Corporate Fleet Allocation Tiers</h2>
+      <p class="text-slate-600 text-xs sm:text-sm mt-1">
+        From C-Suite executive luxury to high-volume daily staff pick-and-drop shuttles.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {CORPORATE_FLEET_TIERS.map(tier => (
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-3 hover:border-slate-400 transition-colors">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+            <h3 class="font-bold text-slate-900 text-base">{tier.tier}</h3>
+            <span class="text-[11px] font-bold bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-full">
+              {tier.billing}
+            </span>
+          </div>
+          <p class="text-xs font-semibold text-red-600">{tier.models}</p>
+          <p class="text-xs text-slate-600 leading-relaxed">{tier.useCase}</p>
         </div>
-      </div>
+      ))}
     </div>
   </section>
 
   <!-- FAQ Section -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
     <FAQ items={faqs} />
   </div>
 
   <!-- Final CTA -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
     <CTASection
-      heading="Need Corporate Transportation in Lahore?"
-      subheading="Contact 4WHEELS to discuss corporate car rental arrangements and availability."
+      heading="Transform Your Corporate Fleet Operations in Lahore"
+      subheading="Get a customized B2B quotation tailored to your organization's exact vehicle and driver requirements."
       pageType="corporate"
       pageTitle="Corporate Car Rental Lahore"
     />

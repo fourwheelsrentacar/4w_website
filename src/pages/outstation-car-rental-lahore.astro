@@ -1,55 +1,342 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { BUSINESS_INFO } from '../data/business';
 import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
-const title = "Outstation Car Rental Lahore - Intercity & Northern Trips | 4WHEELS";
+const canonicalPath = "/outstation-car-rental-lahore/";
+const title = "Outstation Car Rental Lahore | Intercity Drop-Off Rates & Motorway Tolls | 4WHEELS";
+const description = "Hire chauffeur-driven outstation cars from Lahore to Islamabad, Sialkot, Faisalabad, Multan, Murree, and Northern Areas. Transparent one-way drop rates, motorway toll breakdown, and professional motorway-experienced drivers.";
+
 const waUrl = getContextualWhatsAppUrl({
   pageType: 'service',
   pageTitle: 'Outstation Car Rental Lahore',
-  canonicalUrl: `${BUSINESS_INFO.siteUrl}/outstation-car-rental-lahore/`,
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
 });
-const description = "Rent a car for outstation travel from Lahore to Islamabad, Murree, Faisalabad, Multan, or Northern Areas. Chauffeur driven SUVs, sedans, HiAce vans, and Toyota Coasters.";
-const canonicalPath = "/outstation-car-rental-lahore/";
+
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Rent a Car Lahore', path: '/rent-a-car-lahore/' },
+  { name: 'Outstation Car Rental', path: canonicalPath }
+];
+
+const outstationSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRental",
+  "name": "4WHEELS Outstation & Intercity Car Rental Lahore",
+  "url": `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+  "telephone": "+923216616644",
+  "priceRange": "PKR 14,000 - PKR 85,000",
+  "currenciesAccepted": "PKR",
+  "paymentAccepted": "Cash, Bank Transfer, Online Payment",
+  "description": "Long-distance intercity chauffeur-driven car rentals connecting Lahore to all major cities across Punjab, KPK, Islamabad, and Northern Pakistan via modern motorways.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": BUSINESS_INFO.address.street,
+    "addressLocality": BUSINESS_INFO.address.city,
+    "addressRegion": BUSINESS_INFO.address.region,
+    "postalCode": BUSINESS_INFO.address.postalCode,
+    "addressCountry": "PK"
+  }
+};
+
+const INTERCITY_ROUTES = [
+  {
+    destination: "Islamabad / Rawalpindi",
+    motorway: "M-2 Motorway",
+    distanceKm: 375,
+    driveTime: "~4.5 hrs",
+    approxTolls: "PKR 1,100",
+    sedanRate: "PKR 32,000 – 38,000",
+    suvRate: "PKR 48,000 – 60,000",
+    vanRate: "PKR 45,000 – 55,000",
+    routeSlug: "lahore-to-islamabad"
+  },
+  {
+    destination: "Sialkot / Sambrial Airport",
+    motorway: "M-11 Motorway",
+    distanceKm: 103,
+    driveTime: "~1.2 hrs",
+    approxTolls: "PKR 400",
+    sedanRate: "PKR 16,000 – 19,000",
+    suvRate: "PKR 28,000 – 35,000",
+    vanRate: "PKR 26,000 – 32,000",
+    routeSlug: "lahore-to-sialkot"
+  },
+  {
+    destination: "Faisalabad Industrial Hub",
+    motorway: "M-3 Motorway",
+    distanceKm: 180,
+    driveTime: "~2.0 hrs",
+    approxTolls: "PKR 950",
+    sedanRate: "PKR 20,000 – 24,000",
+    suvRate: "PKR 34,000 – 42,000",
+    vanRate: "PKR 32,000 – 38,000",
+    routeSlug: "lahore-to-faisalabad"
+  },
+  {
+    destination: "Multan / Southern Punjab",
+    motorway: "M-4 Motorway",
+    distanceKm: 345,
+    driveTime: "~3.8 hrs",
+    approxTolls: "PKR 950",
+    sedanRate: "PKR 30,000 – 36,000",
+    suvRate: "PKR 48,000 – 58,000",
+    vanRate: "PKR 44,000 – 52,000",
+    routeSlug: "lahore-to-multan"
+  },
+  {
+    destination: "Gujranwala City",
+    motorway: "GT Road / Sialkot Bypass",
+    distanceKm: 75,
+    driveTime: "~1.2 hrs",
+    approxTolls: "PKR 150",
+    sedanRate: "PKR 14,000 – 17,000",
+    suvRate: "PKR 24,000 – 30,000",
+    vanRate: "PKR 22,000 – 28,000",
+    routeSlug: "lahore-to-gujranwala"
+  },
+  {
+    destination: "Murree Hills & Bhurban",
+    motorway: "M-2 + Murree Expressway",
+    distanceKm: 435,
+    driveTime: "~5.5 hrs",
+    approxTolls: "PKR 1,350",
+    sedanRate: "PKR 38,000 – 45,000",
+    suvRate: "PKR 55,000 – 68,000",
+    vanRate: "PKR 52,000 – 62,000",
+    routeSlug: "lahore-to-murree"
+  },
+  {
+    destination: "Peshawar / KPK Hub",
+    motorway: "M-2 + M-1 Motorway",
+    distanceKm: 490,
+    driveTime: "~5.5 hrs",
+    approxTolls: "PKR 1,550",
+    sedanRate: "PKR 45,000 – 52,000",
+    suvRate: "PKR 65,000 – 80,000",
+    vanRate: "PKR 60,000 – 72,000",
+    routeSlug: "lahore-to-peshawar"
+  },
+  {
+    destination: "Abbottabad & Hazara Corridor",
+    motorway: "M-2 + M-15 Hazara Exp",
+    distanceKm: 460,
+    driveTime: "~5.8 hrs",
+    approxTolls: "PKR 1,600",
+    sedanRate: "PKR 42,000 – 50,000",
+    suvRate: "PKR 62,000 – 75,000",
+    vanRate: "PKR 58,000 – 70,000",
+    routeSlug: "lahore-to-abbottabad"
+  },
+  {
+    destination: "Swat Valley / Kalam / Malam Jabba",
+    motorway: "M-2 + M-1 + M-16 Swat Exp",
+    distanceKm: 530,
+    driveTime: "~6.5 hrs",
+    approxTolls: "PKR 1,800",
+    sedanRate: "PKR 50,000 – 60,000",
+    suvRate: "PKR 75,000 – 95,000",
+    vanRate: "PKR 70,000 – 85,000",
+    routeSlug: "lahore-to-swat"
+  },
+  {
+    destination: "Bahawalpur Historical City",
+    motorway: "M-4 + N-5 Highway",
+    distanceKm: 420,
+    driveTime: "~5.0 hrs",
+    approxTolls: "PKR 1,200",
+    sedanRate: "PKR 38,000 – 46,000",
+    suvRate: "PKR 58,000 – 70,000",
+    vanRate: "PKR 54,000 – 65,000",
+    routeSlug: "lahore-to-bahawalpur"
+  }
+];
+
+const faqs = [
+  {
+    question: "How are outstation one-way drop rates calculated?",
+    answer: "Outstation one-way drop rates cover vehicle hire, fuel for both the outward and return leg, motorway toll taxes, and driver allowance. Contact 4WHEELS on WhatsApp with your exact pickup spot and date for a guaranteed locked-in all-inclusive quote."
+  },
+  {
+    question: "Who pays for Motorway toll taxes and driver meals during outstation travel?",
+    answer: "On all-inclusive fixed drop quotes, motorway tolls and fuel are fully included. For round-trip day rentals or multi-day tours, the customer typically covers actual fuel and motorway tolls en route, while a modest standard driver daily allowance (food/overnight accommodation) is added transparently to the invoice."
+  },
+  {
+    question: "Are your drivers trained for high-altitude mountain driving?",
+    answer: "Yes. For hill station trips such as Murree, Nathia Gali, Swat, Naran, and Gilgit-Baltistan, we dispatch specially certified 4x4 drivers experienced in high-altitude steep gradients, brake temperature management, and adverse weather conditions."
+  },
+  {
+    question: "Can I book an outstation trip on short notice?",
+    answer: "Yes, we maintain standby vehicles and drivers in Johar Town, Lahore. For major cities like Islamabad, Sialkot, and Faisalabad, vehicles can typically be dispatched within 60 to 90 minutes of WhatsApp confirmation."
+  }
+];
 ---
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
-  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
-        Intercity & Long-Distance Travel
-      </span>
-      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+  <script type="application/ld+json" set:html={JSON.stringify(outstationSchema)} />
+  <BreadcrumbSchema items={breadcrumbItems} />
+
+  <!-- Breadcrumbs -->
+  <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+    <div class="max-w-7xl mx-auto flex items-center space-x-2">
+      <a href="/" class="hover:text-white">Home</a>
+      <span>›</span>
+      <a href="/rent-a-car-lahore/" class="hover:text-white">Rent a Car Lahore</a>
+      <span>›</span>
+      <span class="text-slate-200 font-semibold truncate">Outstation Car Rental</span>
+    </div>
+  </nav>
+
+  <!-- Hero Header -->
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-400 text-xs font-bold uppercase tracking-wider mb-3">
+        <span>🛣️ Motorway & Intercity Network</span>
+        <span class="text-slate-500">•</span>
+        <span>24/7 Dispatch Across Pakistan</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
         Outstation Car Rental from Lahore
       </h1>
-      <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-6">
-        Comfortable, long-distance intercity travel from Lahore to Islamabad, Rawalpindi, Faisalabad, Multan, Peshawar, Murree, and Northern Pakistan.
+      <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-6">
+        Seamless, long-distance intercity transportation from Lahore across M-2, M-3, M-4, M-11, and M-15 motorways. Professional chauffeurs, all-inclusive toll estimates, and verified executive sedans, 4x4 SUVs, and Grand Cabin passenger vans.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={waUrl} target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md">
-          💬 Get Latest Trip Quote on WhatsApp
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-xl transition-all shadow-lg text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2"
+        >
+          <span>💬 Get Instant Outstation Quote on WhatsApp</span>
+        </a>
+        <a
+          href="/routes/"
+          class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-700 text-xs sm:text-sm flex items-center gap-2"
+        >
+          <span>🗺️ View All 22 Pakistan Routes</span>
         </a>
       </div>
     </div>
   </section>
 
-  <section class="py-12 bg-slate-50">
-    <div class="max-w-5xl mx-auto px-4 space-y-8">
-      <h2 class="text-2xl font-bold text-slate-900">Popular Outstation Routes</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <h3 class="font-bold text-slate-900 text-base mb-1">Lahore ⇄ Islamabad / Rawalpindi</h3>
-          <p class="text-slate-600">Smooth M2 Motorway journeys in executive sedans or Hilux Revo 4x4s.</p>
+  <!-- Competitor Dominator: 10-Route Intercity Drop Matrix -->
+  <section class="py-14 bg-slate-950 text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest block mb-1">Official Intercity Rate Card</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Lahore Intercity Fixed Drop-Off Rates</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">
+            Approximate all-inclusive drop rates including vehicle, fuel, driver, and motorway toll taxes.
+          </p>
         </div>
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <h3 class="font-bold text-slate-900 text-base mb-1">Lahore ⇄ Murree & Northern Hills</h3>
-          <p class="text-slate-600">Mountain-proven Fortuner 4x4s and Toyota HiAce vans for family holiday trips.</p>
+        <div class="text-xs bg-slate-900 border border-slate-800 rounded-xl p-3 text-slate-300 max-w-md">
+          <strong class="text-amber-400">💡 Pricing Note:</strong> Rates reflect typical market guidelines. Petrol price adjustments and peak holiday dates may alter exact spot quotes.
         </div>
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <h3 class="font-bold text-slate-900 text-base mb-1">Lahore ⇄ Faisalabad / Multan</h3>
-          <p class="text-slate-600">Fast business travel along M3 / M4 motorway corridors with experienced drivers.</p>
-        </div>
+      </div>
+
+      <div class="overflow-x-auto bg-slate-900 border border-slate-800 rounded-2xl shadow-xl">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-slate-950 text-slate-300 text-xs uppercase font-black border-b border-slate-800">
+            <tr>
+              <th class="py-3.5 px-4 sm:px-6">Destination</th>
+              <th class="py-3.5 px-4">Route & Drive Time</th>
+              <th class="py-3.5 px-4">Motorway Tolls</th>
+              <th class="py-3.5 px-4">Sedan (Yaris/City)</th>
+              <th class="py-3.5 px-4">SUV / 4x4 (Sportage/Fortuner)</th>
+              <th class="py-3.5 px-4">Van (HiAce Grand Cabin)</th>
+              <th class="py-3.5 px-4 sm:px-6 text-right">Quick Book</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 text-slate-300">
+            {INTERCITY_ROUTES.map(item => (
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-4 px-4 sm:px-6 font-bold text-white">
+                  <a href={`/routes/${item.routeSlug}/`} class="hover:text-red-400 transition-colors">
+                    {item.destination} →
+                  </a>
+                  <span class="block text-[11px] text-slate-400 font-normal">{item.distanceKm} km</span>
+                </td>
+                <td class="py-4 px-4">
+                  <span class="text-slate-200 font-semibold">{item.motorway}</span>
+                  <span class="block text-[11px] text-emerald-400">{item.driveTime}</span>
+                </td>
+                <td class="py-4 px-4 text-slate-400">{item.approxTolls}</td>
+                <td class="py-4 px-4 font-bold text-amber-400">{item.sedanRate}</td>
+                <td class="py-4 px-4 font-bold text-red-400">{item.suvRate}</td>
+                <td class="py-4 px-4 font-bold text-blue-400">{item.vanRate}</td>
+                <td class="py-4 px-4 sm:px-6 text-right">
+                  <a
+                    href={`https://wa.me/923216616644?text=Hi%204WHEELS,%20I%20want%20to%20book%20an%20outstation%20trip%20from%20Lahore%20to%20${encodeURIComponent(item.destination)}.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs px-3 py-1.5 rounded-lg transition-colors shadow-sm whitespace-nowrap"
+                  >
+                    💬 Book
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
+
+  <!-- Service Pillars: Outstation Standards -->
+  <section class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest block mb-1">Safety First Mobility</span>
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Why Travel Outstation with 4WHEELS?</h2>
+      <p class="text-slate-600 text-xs sm:text-sm mt-1">
+        Motorway travel requires reliability, trained reflexes, and well-maintained machinery.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-3">
+        <span class="text-3xl">🛣️</span>
+        <h3 class="text-base font-bold text-slate-900">Motorway-Certified Drivers</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Our chauffeurs hold valid commercial LTV/HTV licenses, have clean motorway track records, and strictly observe 120 km/h speed regulations and lane discipline.
+        </p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-3">
+        <span class="text-3xl">🧰</span>
+        <h3 class="text-base font-bold text-slate-900">Pre-Trip Mechanical Audit</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Before embarking on any outstation journey, tires, brake pads, coolant, engine fluids, and spare tires are inspected to ensure 0% risk of highway breakdowns.
+        </p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-3">
+        <span class="text-3xl">🛰️</span>
+        <h3 class="text-base font-bold text-slate-900">Active Satellite Tracking</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Every vehicle is monitored in real-time by our central dispatch control room in Johar Town, allowing family members to travel with complete peace of mind.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+    <FAQ items={faqs} />
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <CTASection
+      heading="Planning an Intercity Journey from Lahore?"
+      subheading="Contact 4WHEELS on WhatsApp with your destination for instant locked pricing and vehicle confirmation."
+      pageType="service"
+      pageTitle="Outstation Car Rental Lahore"
+    />
+  </div>
 </Layout>

@@ -2,167 +2,383 @@
 import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { BUSINESS_INFO } from '../data/business';
 import { getContextualWhatsAppUrl } from '../utils/whatsappContext';
 
-const title = "Self Drive Car Rental Lahore | Flexible Rentals | 4WHEELS";
+const canonicalPath = "/self-drive-car-rental-lahore/";
+const title = "Self Drive Car Rental Lahore | Documents, Security Deposit & Rates | 4WHEELS";
+const description = "Rent a self-drive car in Lahore without hassle. Clear document requirements for local residents & Overseas Pakistanis (no local guarantor needed). 100% refundable security deposit & 4K pre-inspection video walkaround.";
+
 const waUrl = getContextualWhatsAppUrl({
   pageType: 'service',
   pageTitle: 'Self Drive Car Rental Lahore',
-  canonicalUrl: `${BUSINESS_INFO.siteUrl}/self-drive-car-rental-lahore/`,
+  canonicalUrl: `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
 });
-const description = "Rent a self-drive car in Lahore with 4WHEELS. Independent vehicle rental options for daily, weekly, and monthly trips. Call or WhatsApp to check availability.";
+
+const breadcrumbItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Rent a Car Lahore', path: '/rent-a-car-lahore/' },
+  { name: 'Self Drive Car Rental', path: canonicalPath }
+];
+
+const selfDriveSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRental",
+  "name": "4WHEELS Self Drive Car Rental Lahore",
+  "url": `${BUSINESS_INFO.siteUrl}${canonicalPath}`,
+  "telephone": "+923216616644",
+  "priceRange": "PKR 4,000 - PKR 45,000 / day",
+  "currenciesAccepted": "PKR",
+  "paymentAccepted": "Cash, Bank Transfer, Raast, Credit Card",
+  "description": "Premium self-drive vehicle rentals in Lahore. Dedicated fast-track verification for Overseas Pakistanis and transparent pre-inspection video guarantee.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": BUSINESS_INFO.address.street,
+    "addressLocality": BUSINESS_INFO.address.city,
+    "addressRegion": BUSINESS_INFO.address.region,
+    "postalCode": BUSINESS_INFO.address.postalCode,
+    "addressCountry": "PK"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": BUSINESS_INFO.geo.latitude,
+    "longitude": BUSINESS_INFO.geo.longitude
+  }
+};
 
 const faqs = [
   {
-    question: "How do I rent a self-drive car in Lahore?",
-    answer: "Contact 4WHEELS directly via phone or WhatsApp with your travel dates and vehicle preferences. Our team will verify current availability and confirm rental details."
+    question: "What documents are required for self-drive car rental in Lahore?",
+    answer: "For Pakistani residents: Original CNIC copy, valid Pakistani Driving License, proof of Lahore residential address (utility bill or tenancy copy), and a refundable security deposit. For Overseas Pakistanis: Original Passport / NICOP, valid International Driving Permit or country license, and flight return ticket — no local guarantor is required."
   },
   {
-    question: "What documents are required for self-drive car rental?",
-    answer: "Contact 4WHEELS to confirm current rental requirements, verification procedures, and vehicle availability."
+    question: "Can Overseas Pakistanis rent a self-drive car without a local guarantor?",
+    answer: "Yes! 4WHEELS offers Fast-Track Overseas Clearance for expats visiting from the UK, UAE, Saudi Arabia, USA, Canada, Qatar, and Australia. By providing your passport, foreign/international driving license, and flight ticket, you can rent a vehicle without needing a local third-party guarantor."
   },
   {
-    question: "Are self-drive cars available for daily and monthly use?",
-    answer: "Yes, depending on current fleet availability, self-drive vehicles can be rented for daily trips, weekend getaways, or long-term monthly arrangements."
+    question: "How does the refundable security deposit work?",
+    answer: "A refundable security deposit is held during the rental tenure (varying by vehicle tier, from PKR 25,000 for hatchbacks to PKR 80,000+ for luxury SUVs). Upon safe return of the vehicle and a quick 5-minute physical walkaround inspection, your deposit is refunded immediately on the spot via cash or instant bank transfer."
+  },
+  {
+    question: "How do you prevent disputes over existing scratches or dents?",
+    answer: "We enforce the 4WHEELS Digital Pre-Rental Protocol: before handing over keys, our team conducts a continuous 4K video walkaround of the entire car with you, recording fuel levels, odometer reading, and any existing minor scratches. A copy of this video is timestamped and sent straight to your WhatsApp before you drive off."
+  },
+  {
+    question: "What is your fuel policy for self-drive rentals?",
+    answer: "We operate on a standard 'Same-to-Same' fuel policy: the vehicle is handed over with a recorded fuel level (e.g. half tank or full tank), and you return it at the same level. If returned lower, the difference is simply adjusted at official OGRA petrol station rates."
   }
 ];
 ---
 
-<Layout title={title} description={description} canonicalPath="/self-drive-car-rental-lahore/">
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <script type="application/ld+json" set:html={JSON.stringify(selfDriveSchema)} />
+  <BreadcrumbSchema items={breadcrumbItems} />
+
+  <!-- Breadcrumbs -->
+  <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+    <div class="max-w-7xl mx-auto flex items-center space-x-2">
+      <a href="/" class="hover:text-white">Home</a>
+      <span>›</span>
+      <a href="/rent-a-car-lahore/" class="hover:text-white">Rent a Car Lahore</a>
+      <span>›</span>
+      <span class="text-slate-200 font-semibold truncate">Self Drive Car Rental</span>
+    </div>
+  </nav>
+
   <!-- Header Banner -->
-  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <div class="inline-block bg-red-900/60 border border-red-700 text-red-300 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-          Independent Vehicle Travel
+  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl space-y-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="bg-red-600 text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
+            Total Independence & Privacy
+          </span>
+          <span class="bg-emerald-950/90 border border-emerald-700/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full">
+            ⚡ Overseas Fast-Track Verification (No Local Guarantor)
+          </span>
         </div>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
           Self Drive Car Rental in Lahore
         </h1>
-        <p class="text-lg text-slate-300 leading-relaxed mb-6">
-          Enjoy total freedom and privacy on Lahore roads with self-drive rental options from 4WHEELS. Contact us to verify current vehicle availability.
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+          Experience total freedom across Lahore and Punjab on your own schedule. Transparent requirements, digital pre-inspection video recording to eliminate disputes, and 100% on-the-spot refundable security deposit.
         </p>
-        <div class="flex flex-wrap gap-4">
-          <a
-            href={BUSINESS_INFO.telLink}
-            class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
-          >
-            📞 Call {BUSINESS_INFO.phoneDisplay}
-          </a>
+        <div class="flex flex-wrap gap-4 pt-2">
           <a
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+            class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm uppercase tracking-wide"
           >
-            💬 WhatsApp for Availability
+            <span>💬 Check Self-Drive Availability on WhatsApp</span>
+          </a>
+          <a
+            href={BUSINESS_INFO.telLink}
+            class="bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-700 text-sm flex items-center gap-2"
+          >
+            <span>📞 Call Direct: {BUSINESS_INFO.phoneDisplay}</span>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Service Details Content -->
-  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <div class="lg:col-span-8 space-y-8 text-slate-700 leading-relaxed">
-        <div>
-          <h2 class="text-2xl font-bold text-slate-900 mb-4">Independent Driving in Lahore</h2>
-          <p class="mb-4">
-            For drivers who value privacy, flexibility, and personal control over their schedule, self-drive car rentals offer the ideal solution. Whether you are visiting Lahore for family occasions, business errands, or daily personal commute, driving your own rental vehicle gives you complete independence.
-          </p>
-          <p>
-            4WHEELS Rent a Car provides reliable self-drive vehicles out of Johar Town Phase 1, serving local residents and visitors across Lahore.
+  <!-- Competitor Differentiator: 4WHEELS 5-Point Trust Charter -->
+  <section class="py-12 bg-slate-950 border-b border-slate-800 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-extrabold text-red-500 uppercase tracking-widest block mb-1">Zero Friction • Zero Disputes</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-white">The 4WHEELS 5-Point Self-Drive Charter</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-2">
+          Why drivers choose 4WHEELS over ordinary roadside rental shops in Lahore.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+          <span class="text-3xl">📹</span>
+          <h3 class="font-bold text-white text-sm">4K Digital Video Inspection</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Continuous walkaround video filmed with you before handover and sent to your WhatsApp. Never worry about existing scratches.
           </p>
         </div>
-
-        <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl space-y-2">
-          <h3 class="font-bold text-amber-900 text-base">Rental Requirements & Policies</h3>
-          <p class="text-sm text-amber-800">
-            Contact 4WHEELS to confirm current rental requirements, documentation, deposit policies, and vehicle availability prior to booking.
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+          <span class="text-3xl">💵</span>
+          <h3 class="font-bold text-white text-sm">Instant Deposit Refund</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            No 30-day waiting delays. Your refundable security deposit is refunded on the spot upon car return inspection.
           </p>
         </div>
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+          <span class="text-3xl">✈️</span>
+          <h3 class="font-bold text-white text-sm">Overseas Fast-Track</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Visiting from UK, UAE, USA, or Canada? Show your passport, foreign license, and return flight. No local guarantor needed.
+          </p>
+        </div>
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+          <span class="text-3xl">🛠️</span>
+          <h3 class="font-bold text-white text-sm">24/7 Breakdown Backup</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Immediate replacement vehicle dispatched anywhere in Lahore or along Motorway corridors in the event of mechanical trouble.
+          </p>
+        </div>
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+          <span class="text-3xl">✨</span>
+          <h3 class="font-bold text-white text-sm">Sanitized & AC Serviced</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Deep-cleaned interior, perfumed AC vents, and 18-point mechanical checks completed before every dispatch.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div>
-          <h2 class="text-2xl font-bold text-slate-900 mb-4">Suitable Use Cases for Self Drive Rentals</h2>
-          <ul class="space-y-3">
-            <li class="flex items-start gap-3">
-              <span class="text-red-600 font-bold">✓</span>
-              <div>
-                <strong>Daily City Errands:</strong> Travel between Johar Town, Gulberg, Model Town, and DHA without waiting for taxis.
-              </div>
+  <!-- Clear 3-Tier Document Checklist -->
+  <section class="py-14 bg-slate-900 text-slate-100 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest block mb-1">Transparent Rental Requirements</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-white">What Documents Do You Need to Rent?</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-2">
+          Simple, transparent verification tiers based on your residency status.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Tier 1: Pakistani Residents -->
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <span class="font-black text-white text-base">🇵🇰 Pakistani Residents</span>
+            <span class="text-[11px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-semibold">Standard</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Original CNIC</strong> (physical verification at handover)</span>
             </li>
-            <li class="flex items-start gap-3">
-              <span class="text-red-600 font-bold">✓</span>
-              <div>
-                <strong>Family Visits & Outings:</strong> Comfortably transport your family around Lahore at your own pace.
-              </div>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Valid Driving License</strong> (Pakistani computerized)</span>
             </li>
-            <li class="flex items-start gap-3">
-              <span class="text-red-600 font-bold">✓</span>
-              <div>
-                <strong>Business Travel:</strong> Maintain absolute privacy and timeliness for multi-destination corporate visits.
-              </div>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Proof of Address:</strong> Lahore utility bill or local office ID</span>
             </li>
-            <li class="flex items-start gap-3">
-              <span class="text-red-600 font-bold">✓</span>
-              <div>
-                <strong>Monthly & Extended Rentals:</strong> Secure long-term vehicle access for temporary stays in Lahore.
-              </div>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Refundable Security Deposit</strong> (cash or bank transfer)</span>
             </li>
           </ul>
+          <div class="pt-2">
+            <a href={waUrl} target="_blank" class="block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl text-xs transition-colors">
+              Submit Local Verification
+            </a>
+          </div>
         </div>
 
-        <div>
-          <h2 class="text-2xl font-bold text-slate-900 mb-4">How to Inquire and Book</h2>
-          <p class="mb-4">
-            To inquire about self-drive car rental availability in Lahore:
-          </p>
-          <ol class="list-decimal pl-5 space-y-2 font-medium">
-            <li>Call 0321 6616644 or click our WhatsApp link.</li>
-            <li>Specify your rental start date, expected duration, and intended travel scope.</li>
-            <li>Confirm available vehicle models and rental terms directly with our team.</li>
-          </ol>
+        <!-- Tier 2: Overseas Pakistanis & Expats (Huge USP) -->
+        <div class="bg-slate-950 border-2 border-emerald-500/60 rounded-2xl p-6 space-y-4 relative shadow-xl shadow-emerald-950/20">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 font-black text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full">
+            Recommended for Expats
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <span class="font-black text-white text-base">✈️ Overseas Pakistanis & Tourists</span>
+            <span class="text-[11px] bg-emerald-900/60 text-emerald-300 px-2 py-0.5 rounded font-bold">Fast-Track</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Passport / NICOP Copy</strong> (Original shown at pickup)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Foreign Driving License</strong> or International Driving Permit (IDP)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Flight Itinerary / Return Ticket</strong> confirmation</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong class="text-emerald-300">No Local Guarantor Required:</strong> Verified via overseas credentials!</span>
+            </li>
+          </ul>
+          <div class="pt-2">
+            <a href={waUrl} target="_blank" class="block w-full text-center bg-emerald-600 hover:bg-emerald-500 text-white font-black py-2.5 rounded-xl text-xs transition-colors shadow-md">
+              Fast-Track Overseas Clearance
+            </a>
+          </div>
         </div>
-      </div>
 
-      <!-- Sidebar -->
-      <div class="lg:col-span-4 space-y-6">
-        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800 space-y-4">
-          <h3 class="text-xl font-bold border-b border-slate-800 pb-3">Inquire Self Drive</h3>
-          <p class="text-sm text-slate-300">
-            Contact 4WHEELS to check current vehicle availability and rental terms.
-          </p>
-          <a
-            href={BUSINESS_INFO.telLink}
-            class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
-          >
-            📞 Call 0321 6616644
-          </a>
-          <a
-            href={waUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-center transition-colors text-sm"
-          >
-            💬 WhatsApp Message
-          </a>
+        <!-- Tier 3: Corporate & B2B -->
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <span class="font-black text-white text-base">🏢 Corporate & B2B Companies</span>
+            <span class="text-[11px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-semibold">Corporate PO</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Company NTN Certificate</strong> & SECP / Registration copy</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Official Purchase Order (PO)</strong> on company letterhead</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Authorized Nominee CNIC</strong> & valid driving license</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Corporate Credit Terms:</strong> GST / PRA compliant invoicing available</span>
+            </li>
+          </ul>
+          <div class="pt-2">
+            <a href="/corporate-car-rental-lahore/" class="block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl text-xs transition-colors">
+              Explore Corporate Solutions
+            </a>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Security Deposit & Rates Benchmark Table -->
+  <section class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest block mb-1">Pricing & Security Deposit Transparency</span>
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Self-Drive Tiers & Deposit Guidelines</h2>
+      <p class="text-slate-600 text-xs sm:text-sm mt-2">
+        Deposits are 100% refundable upon vehicle return inspection. Rates adjust with fuel index revisions.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto bg-white border border-slate-200 rounded-2xl shadow-sm">
+      <table class="w-full text-left text-xs sm:text-sm text-slate-700">
+        <thead class="bg-slate-900 text-white text-xs uppercase tracking-wider font-extrabold">
+          <tr>
+            <th class="py-3.5 px-4 sm:px-6">Vehicle Tier</th>
+            <th class="py-3.5 px-4">Popular Models</th>
+            <th class="py-3.5 px-4">Approx. Daily Rate</th>
+            <th class="py-3.5 px-4">Refundable Deposit</th>
+            <th class="py-3.5 px-4 sm:px-6 text-right">Quick Action</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="py-4 px-4 sm:px-6 font-bold text-slate-900">Economy Hatchback</td>
+            <td class="py-4 px-4 text-slate-600">Suzuki Cultus, WagonR, Alto 660cc</td>
+            <td class="py-4 px-4 font-bold text-red-600">PKR 4,000 – 5,500</td>
+            <td class="py-4 px-4 text-emerald-700 font-semibold">PKR 25,000 (Refundable)</td>
+            <td class="py-4 px-4 sm:px-6 text-right">
+              <a href={waUrl} target="_blank" class="inline-block bg-slate-900 hover:bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                Book Hatchback
+              </a>
+            </td>
+          </tr>
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="py-4 px-4 sm:px-6 font-bold text-slate-900">Compact Sedan</td>
+            <td class="py-4 px-4 text-slate-600">Toyota Yaris AT, Honda City 1.2/1.5</td>
+            <td class="py-4 px-4 font-bold text-red-600">PKR 7,500 – 9,500</td>
+            <td class="py-4 px-4 text-emerald-700 font-semibold">PKR 35,000 (Refundable)</td>
+            <td class="py-4 px-4 sm:px-6 text-right">
+              <a href={waUrl} target="_blank" class="inline-block bg-slate-900 hover:bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                Book Sedan
+              </a>
+            </td>
+          </tr>
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="py-4 px-4 sm:px-6 font-bold text-slate-900">Executive Sedan</td>
+            <td class="py-4 px-4 text-slate-600">Honda Civic RS/Oriel, Corolla Altis Grande</td>
+            <td class="py-4 px-4 font-bold text-red-600">PKR 12,000 – 16,000</td>
+            <td class="py-4 px-4 text-emerald-700 font-semibold">PKR 50,000 (Refundable)</td>
+            <td class="py-4 px-4 sm:px-6 text-right">
+              <a href={waUrl} target="_blank" class="inline-block bg-slate-900 hover:bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                Book Civic / Altis
+              </a>
+            </td>
+          </tr>
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="py-4 px-4 sm:px-6 font-bold text-slate-900">Crossover / Compact SUV</td>
+            <td class="py-4 px-4 text-slate-600">Kia Sportage, Hyundai Tucson, Haval H6</td>
+            <td class="py-4 px-4 font-bold text-red-600">PKR 14,000 – 18,000</td>
+            <td class="py-4 px-4 text-emerald-700 font-semibold">PKR 60,000 (Refundable)</td>
+            <td class="py-4 px-4 sm:px-6 text-right">
+              <a href={waUrl} target="_blank" class="inline-block bg-slate-900 hover:bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                Book Crossover
+              </a>
+            </td>
+          </tr>
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="py-4 px-4 sm:px-6 font-bold text-slate-900">4x4 Heavy SUV</td>
+            <td class="py-4 px-4 text-slate-600">Toyota Fortuner Legender, Prado TX/TZ</td>
+            <td class="py-4 px-4 font-bold text-red-600">PKR 22,000 – 35,000</td>
+            <td class="py-4 px-4 text-emerald-700 font-semibold">PKR 80,000 – 100,000 (Refundable)</td>
+            <td class="py-4 px-4 sm:px-6 text-right">
+              <a href={waUrl} target="_blank" class="inline-block bg-slate-900 hover:bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                Book Fortuner/Prado
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
   <!-- FAQ Section -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
     <FAQ items={faqs} />
   </div>
 
   <!-- Final CTA -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
     <CTASection
-      heading="Looking for a Self-Drive Car in Lahore?"
-      subheading="Contact 4WHEELS to confirm current rental requirements and vehicle availability."
+      heading="Reserve Your Self-Drive Car in Lahore Today"
+      subheading="Instant WhatsApp confirmation, digital video pre-inspection, and fast-track clearance for Overseas Pakistanis."
       pageType="service"
       pageTitle="Self Drive Car Rental Lahore"
     />
