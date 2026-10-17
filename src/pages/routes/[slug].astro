@@ -41,28 +41,28 @@ const waContextUrl = getContextualWhatsAppUrl({
 
 <Layout title={pageTitle} description={pageDescription} canonicalPath={canonicalPath}>
   <BreadcrumbSchema items={breadcrumbItems} />
-  <main class="bg-slate-950 text-slate-100 min-h-screen pb-16">
+  <main class="bg-slate-50 text-slate-800 min-h-screen pb-16">
     <!-- Breadcrumbs -->
-    <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+    <nav class="bg-white border-b border-slate-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-500" aria-label="Breadcrumb">
       <div class="max-w-5xl mx-auto flex items-center space-x-2">
-        <a href="/" class="hover:text-white">Home</a>
+        <a href="/" class="hover:text-red-600 transition-colors">Home</a>
         <span>›</span>
-        <a href="/routes/" class="hover:text-white">Routes</a>
+        <a href="/routes/" class="hover:text-red-600 transition-colors">Routes</a>
         <span>›</span>
-        <span class="text-slate-200 font-semibold truncate">{route.origin} to {route.destination}</span>
+        <span class="text-slate-800 font-semibold truncate">{route.origin} to {route.destination}</span>
       </div>
     </nav>
 
     <!-- Header Hero -->
-    <section class="bg-slate-900 border-b border-slate-800 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 border-b border-slate-200 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto text-center space-y-4">
-        <span class="inline-block bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+        <span class="inline-block bg-amber-50 text-amber-800 border border-amber-200 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
           🛣️ {route.motorway}
         </span>
-        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+        <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
           {route.title}
         </h1>
-        <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
           {route.overview}
         </p>
 
@@ -97,31 +97,31 @@ const waContextUrl = getContextualWhatsAppUrl({
 
       <!-- Key Route Specs Cards -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs sm:text-sm">
-        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
-          <p class="text-slate-400 font-medium mb-1">📏 Distance</p>
-          <p class="text-white font-extrabold text-base sm:text-lg">{route.distanceKm} km</p>
+        <div class="auto-card bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-xs">
+          <p class="text-slate-500 font-medium mb-1">📏 Distance</p>
+          <p class="text-slate-900 font-extrabold text-base sm:text-lg">{route.distanceKm} km</p>
         </div>
-        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
-          <p class="text-slate-400 font-medium mb-1">⏱️ Approx Duration</p>
-          <p class="text-white font-extrabold text-base sm:text-lg">{route.drivingTimeHours}</p>
+        <div class="auto-card bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-xs">
+          <p class="text-slate-500 font-medium mb-1">⏱️ Approx Duration</p>
+          <p class="text-slate-900 font-extrabold text-base sm:text-lg">{route.drivingTimeHours}</p>
         </div>
-        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
-          <p class="text-slate-400 font-medium mb-1">⛽ Estimated Fuel</p>
-          <p class="text-amber-400 font-extrabold text-base sm:text-lg">~{route.estimatedFuelLiters} L</p>
+        <div class="auto-card bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-xs">
+          <p class="text-slate-500 font-medium mb-1">⛽ Estimated Fuel</p>
+          <p class="text-amber-700 font-extrabold text-base sm:text-lg">~{route.estimatedFuelLiters} L</p>
         </div>
-        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
-          <p class="text-slate-400 font-medium mb-1">💳 Toll Estimate</p>
-          <p class="text-emerald-400 font-extrabold text-base sm:text-lg">PKR {route.estimatedTollPkr}</p>
+        <div class="auto-card bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-xs">
+          <p class="text-slate-500 font-medium mb-1">💳 Toll Estimate</p>
+          <p class="text-emerald-700 font-extrabold text-base sm:text-lg">PKR {route.estimatedTollPkr}</p>
         </div>
       </div>
 
       <!-- Route Highlights -->
       {route.highlights && route.highlights.length > 0 && (
-        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
-          <h2 class="text-base font-bold text-white uppercase tracking-wider text-slate-300">
+        <section class="auto-card bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-xs">
+          <h2 class="text-base font-bold text-slate-900 uppercase tracking-wider">
             🌟 Key Route Stops & Highlights
           </h2>
-          <ul class="space-y-2 text-xs sm:text-sm text-slate-300 list-disc list-inside">
+          <ul class="space-y-2 text-xs sm:text-sm text-slate-700 list-disc list-inside">
             {route.highlights.map(h => (
               <li>{h}</li>
             ))}
@@ -130,13 +130,13 @@ const waContextUrl = getContextualWhatsAppUrl({
       )}
 
       <!-- Recommended Vehicles -->
-      <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
-        <h2 class="text-base font-bold text-white uppercase tracking-wider text-slate-300">
+      <section class="auto-card bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-xs">
+        <h2 class="text-base font-bold text-slate-900 uppercase tracking-wider">
           🚗 Recommended 4WHEELS Vehicles for This Route
         </h2>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
           {route.recommendedVehicles.map(v => (
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center font-bold text-slate-200">
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-center font-bold text-slate-800 hover:border-red-500 transition-colors">
               {v}
             </div>
           ))}

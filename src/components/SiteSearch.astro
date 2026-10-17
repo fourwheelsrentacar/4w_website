@@ -2,22 +2,22 @@
 // SiteSearch.astro - Client-side search modal for 4WHEELS
 ---
 
-<div id="search-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm p-4 sm:p-6 md:p-20 overflow-y-auto" role="dialog" aria-modal="true" aria-label="Search 4WHEELS">
-  <div class="max-w-2xl mx-auto bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden">
+<div id="search-modal" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-sm p-4 sm:p-6 md:p-20 overflow-y-auto" role="dialog" aria-modal="true" aria-label="Search 4WHEELS">
+  <div class="max-w-2xl mx-auto bg-white border border-slate-200 rounded-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] overflow-hidden">
     <!-- Search Header -->
-    <div class="p-4 border-b border-slate-800 flex items-center gap-3">
+    <div class="p-4 border-b border-slate-200 flex items-center gap-3 bg-slate-50/50">
       <span class="text-slate-400 text-lg">🔍</span>
       <input
         type="text"
         id="site-search-input"
         placeholder="Search vehicles, brands, routes, guides, locations, services..."
-        class="flex-1 bg-transparent text-white placeholder-slate-400 focus:outline-none text-base sm:text-lg font-medium"
+        class="flex-1 bg-transparent text-slate-900 placeholder-slate-400 focus:outline-none text-base sm:text-lg font-bold"
         autocomplete="off"
       />
       <button
         type="button"
         id="close-search-modal"
-        class="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors text-sm font-bold"
+        class="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors text-sm font-bold"
         aria-label="Close Search"
       >
         ✕ Esc
@@ -25,27 +25,27 @@
     </div>
 
     <!-- Quick suggestions / Results -->
-    <div id="search-results-container" class="p-4 max-h-[60vh] overflow-y-auto space-y-6">
+    <div id="search-results-container" class="p-5 max-h-[60vh] overflow-y-auto space-y-6">
       <!-- Default Quick Links -->
       <div id="search-quick-links">
-        <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Popular Searches & Brands</p>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
-          <a href="/vehicles/toyota/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Popular Searches & Brands</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs sm:text-sm">
+          <a href="/vehicles/toyota/" class="p-2.5 rounded-xl bg-slate-50 hover:bg-red-50 border border-slate-200 hover:border-red-300 text-slate-700 hover:text-red-700 font-semibold transition-all block">
             🚗 Toyota Brand Page
           </a>
-          <a href="/vehicles/byd/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+          <a href="/vehicles/byd/" class="p-2.5 rounded-xl bg-slate-50 hover:bg-red-50 border border-slate-200 hover:border-red-300 text-slate-700 hover:text-red-700 font-semibold transition-all block">
             ⚡ BYD EV Vehicles
           </a>
-          <a href="/vehicles/kia/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+          <a href="/vehicles/kia/" class="p-2.5 rounded-xl bg-slate-50 hover:bg-red-50 border border-slate-200 hover:border-red-300 text-slate-700 hover:text-red-700 font-semibold transition-all block">
             🚘 Kia Vehicles & Carnival
           </a>
-          <a href="/routes/lahore-to-islamabad/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+          <a href="/routes/lahore-to-islamabad/" class="p-2.5 rounded-xl bg-slate-50 hover:bg-red-50 border border-slate-200 hover:border-red-300 text-slate-700 hover:text-red-700 font-semibold transition-all block">
             🛣️ Lahore to Islamabad
           </a>
-          <a href="/trip-planner/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+          <a href="/trip-planner/" class="p-2.5 rounded-xl bg-slate-50 hover:bg-red-50 border border-slate-200 hover:border-red-300 text-slate-700 hover:text-red-700 font-semibold transition-all block">
             🧭 Trip Planner
           </a>
-          <a href="/self-drive-car-rental-lahore/" class="p-2.5 rounded-lg bg-slate-800/60 hover:bg-red-600/20 border border-slate-700/50 text-slate-200 hover:text-white transition-colors block">
+          <a href="/self-drive-car-rental-lahore/" class="p-2.5 rounded-xl bg-slate-50 hover:bg-red-50 border border-slate-200 hover:border-red-300 text-slate-700 hover:text-red-700 font-semibold transition-all block">
             🔑 Self Drive Lahore
           </a>
         </div>
@@ -56,9 +56,9 @@
     </div>
 
     <!-- Search Footer -->
-    <div class="px-4 py-2.5 bg-slate-950 border-t border-slate-800 text-xs text-slate-400 flex justify-between items-center">
-      <span>Search 4WHEELS Fleet, Brands & Travel Guides</span>
-      <span class="hidden sm:inline">Press <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300">ESC</kbd> to exit</span>
+    <div class="px-5 py-3 bg-slate-50 border-t border-slate-200 text-xs text-slate-500 flex justify-between items-center">
+      <span class="font-medium">Search 4WHEELS Fleet, Brands & Travel Guides</span>
+      <span class="hidden sm:inline">Press <kbd class="px-2 py-0.5 bg-white rounded border border-slate-300 text-slate-700 font-bold shadow-xs">ESC</kbd> to exit</span>
     </div>
   </div>
 </div>
@@ -220,12 +220,12 @@
         for (const [type, items] of Object.entries(grouped)) {
           html += `
             <div>
-              <p class="text-xs font-bold uppercase tracking-wider text-red-400 mb-2">${type}</p>
+              <p class="text-xs font-black uppercase tracking-wider text-red-600 mb-2">${type}</p>
               <div class="space-y-1.5">
                 ${items.map(i => `
-                  <a href="${i.url}" class="block p-3 rounded-lg bg-slate-800/80 hover:bg-slate-800 border border-slate-700/60 text-slate-100 hover:text-red-400 font-medium text-sm transition-colors flex justify-between items-center">
+                  <a href="${i.url}" class="block p-3 rounded-xl bg-slate-50 hover:bg-red-50/70 border border-slate-200 hover:border-red-300 text-slate-800 hover:text-red-700 font-semibold text-sm transition-all flex justify-between items-center shadow-xs">
                     <span>${i.title}</span>
-                    <span class="text-xs text-slate-400 font-mono">→</span>
+                    <span class="text-xs text-red-600 font-bold">→</span>
                   </a>
                 `).join('')}
               </div>

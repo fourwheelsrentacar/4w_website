@@ -169,20 +169,20 @@ const exploreMegaMenu = {
 <!-- Site Search Modal -->
 <SiteSearch />
 
-<header id="main-site-header" class="sticky top-0 z-40 bg-slate-900 text-white shadow-md border-b border-slate-800 transition-all duration-200">
+<header id="main-site-header" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md text-slate-800 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] border-b border-slate-200 transition-all duration-200">
   <!-- Top Utility Bar (Thin 28-34px) -->
-  <div id="utility-bar" class="bg-slate-950 py-1 px-4 text-[11px] sm:text-xs font-medium border-b border-slate-800/80">
+  <div id="utility-bar" class="bg-slate-50 py-1.5 px-4 text-[11px] sm:text-xs font-medium border-b border-slate-200 text-slate-600">
     <div class="max-w-7xl mx-auto flex justify-between items-center gap-2">
-      <div class="flex items-center space-x-2 sm:space-x-3 text-slate-300">
-        <span class="truncate">📍 {BUSINESS_INFO.address.locality}, {BUSINESS_INFO.address.city}</span>
-        <span class="hidden sm:inline text-slate-600">|</span>
-        <span class="hidden sm:inline text-slate-400 font-normal">Serving Lahore Since 2008</span>
+      <div class="flex items-center space-x-2 sm:space-x-3 text-slate-600">
+        <span class="truncate font-semibold">📍 {BUSINESS_INFO.address.locality}, {BUSINESS_INFO.address.city}</span>
+        <span class="hidden sm:inline text-slate-300">|</span>
+        <span class="hidden sm:inline text-slate-500 font-normal">Serving Lahore Since 2008</span>
       </div>
       <div class="flex items-center space-x-3 sm:space-x-4">
-        <a href={BUSINESS_INFO.telLink} class="text-slate-200 hover:text-red-400 transition-colors flex items-center gap-1 font-semibold">
+        <a href={BUSINESS_INFO.telLink} class="text-slate-700 hover:text-red-600 transition-colors flex items-center gap-1 font-bold">
           📞 <span class="hidden xs:inline">Call</span> {BUSINESS_INFO.phoneDisplay}
         </a>
-        <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 font-semibold">
+        <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="text-emerald-700 hover:text-emerald-800 transition-colors flex items-center gap-1 font-bold">
           💬 <span class="hidden xs:inline">WhatsApp</span>
         </a>
       </div>
@@ -198,8 +198,8 @@ const exploreMegaMenu = {
           4WHEELS
         </div>
         <div class="hidden sm:flex flex-col">
-          <span class="text-xs font-bold tracking-tight text-slate-100 uppercase leading-none">Rent a Car</span>
-          <span class="text-[10px] text-slate-400 leading-tight">Lahore</span>
+          <span class="text-xs font-bold tracking-tight text-slate-900 uppercase leading-none">Rent a Car</span>
+          <span class="text-[10px] text-slate-500 font-semibold leading-tight">Lahore</span>
         </div>
       </a>
 
@@ -210,8 +210,8 @@ const exploreMegaMenu = {
         <div class="relative group">
           <button
             type="button"
-            class={`px-3 py-2 rounded-md transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 ${
-              currentPath.startsWith('/fleet') || currentPath.includes('rental') ? 'bg-red-600 text-white font-semibold' : 'text-slate-200 hover:bg-slate-800 hover:text-white'
+            class={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 font-semibold ${
+              currentPath.startsWith('/fleet') || currentPath.includes('rental') ? 'bg-red-600 text-white shadow-sm' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
             }`}
             aria-expanded="false"
             aria-haspopup="true"
@@ -224,14 +224,14 @@ const exploreMegaMenu = {
 
           <!-- Desktop Mega Dropdown Menu -->
           <div class="absolute left-0 top-full pt-2 w-[680px] hidden group-hover:block group-focus-within:block z-50">
-            <div class="bg-slate-900 border border-slate-700/80 rounded-xl shadow-2xl p-6 grid grid-cols-4 gap-6 text-xs">
+            <div class="bg-white border border-slate-200/90 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] ring-1 ring-slate-900/5 p-6 grid grid-cols-4 gap-6 text-xs">
               {rentMegaMenu.sections.map(sec => (
                 <div>
-                  <p class="font-bold text-red-500 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
+                  <p class="font-extrabold text-red-600 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
                   <ul class="space-y-2">
                     {sec.links.map(link => (
                       <li>
-                        <a href={link.href} class="text-slate-300 hover:text-white hover:underline transition-colors block py-0.5">
+                        <a href={link.href} class="text-slate-600 hover:text-red-600 hover:translate-x-0.5 transition-all block py-0.5 font-medium">
                           {link.name}
                         </a>
                       </li>
@@ -239,9 +239,9 @@ const exploreMegaMenu = {
                   </ul>
                 </div>
               ))}
-              <div class="col-span-4 pt-3 border-t border-slate-800 flex justify-between items-center">
-                <span class="text-slate-400 text-xs">Serving all areas of Lahore & intercity travel.</span>
-                <a href={rentMegaMenu.cta.href} class="inline-flex items-center gap-1 font-bold text-red-400 hover:text-red-300 text-xs">
+              <div class="col-span-4 pt-3 border-t border-slate-100 flex justify-between items-center bg-slate-50/80 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                <span class="text-slate-500 text-xs font-medium">Serving all areas of Lahore & intercity travel.</span>
+                <a href={rentMegaMenu.cta.href} class="inline-flex items-center gap-1 font-extrabold text-red-600 hover:text-red-700 text-xs">
                   {rentMegaMenu.cta.name} →
                 </a>
               </div>
@@ -253,8 +253,8 @@ const exploreMegaMenu = {
         <div class="relative group">
           <button
             type="button"
-            class={`px-3 py-2 rounded-md transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 ${
-              currentPath.startsWith('/trip-planner') || currentPath.startsWith('/routes') ? 'bg-red-600 text-white font-semibold' : 'text-slate-200 hover:bg-slate-800 hover:text-white'
+            class={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 font-semibold ${
+              currentPath.startsWith('/trip-planner') || currentPath.startsWith('/routes') ? 'bg-red-600 text-white shadow-sm' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
             }`}
             aria-expanded="false"
             aria-haspopup="true"
@@ -266,14 +266,14 @@ const exploreMegaMenu = {
           </button>
 
           <div class="absolute left-0 top-full pt-2 w-[640px] hidden group-hover:block group-focus-within:block z-50">
-            <div class="bg-slate-900 border border-slate-700/80 rounded-xl shadow-2xl p-6 grid grid-cols-4 gap-6 text-xs">
+            <div class="bg-white border border-slate-200/90 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] ring-1 ring-slate-900/5 p-6 grid grid-cols-4 gap-6 text-xs">
               {planMegaMenu.sections.map(sec => (
                 <div>
-                  <p class="font-bold text-amber-400 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
+                  <p class="font-extrabold text-amber-600 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
                   <ul class="space-y-2">
                     {sec.links.map(link => (
                       <li>
-                        <a href={link.href} class="text-slate-300 hover:text-white hover:underline transition-colors block py-0.5">
+                        <a href={link.href} class="text-slate-600 hover:text-amber-600 hover:translate-x-0.5 transition-all block py-0.5 font-medium">
                           {link.name}
                         </a>
                       </li>
@@ -281,9 +281,9 @@ const exploreMegaMenu = {
                   </ul>
                 </div>
               ))}
-              <div class="col-span-4 pt-3 border-t border-slate-800 flex justify-between items-center">
-                <span class="text-slate-400 text-xs">Calculate fuel, tolls, and rental budget.</span>
-                <a href={planMegaMenu.cta.href} class="inline-flex items-center gap-1 font-bold text-amber-400 hover:text-amber-300 text-xs">
+              <div class="col-span-4 pt-3 border-t border-slate-100 flex justify-between items-center bg-slate-50/80 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                <span class="text-slate-500 text-xs font-medium">Calculate fuel, tolls, and rental budget.</span>
+                <a href={planMegaMenu.cta.href} class="inline-flex items-center gap-1 font-extrabold text-amber-600 hover:text-amber-700 text-xs">
                   {planMegaMenu.cta.name} →
                 </a>
               </div>
@@ -295,8 +295,8 @@ const exploreMegaMenu = {
         <div class="relative group">
           <button
             type="button"
-            class={`px-3 py-2 rounded-md transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 ${
-              currentPath.includes('business') || currentPath.includes('corporate') ? 'bg-red-600 text-white font-semibold' : 'text-slate-200 hover:bg-slate-800 hover:text-white'
+            class={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 font-semibold ${
+              currentPath.includes('business') || currentPath.includes('corporate') ? 'bg-red-600 text-white shadow-sm' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
             }`}
             aria-expanded="false"
             aria-haspopup="true"
@@ -308,14 +308,14 @@ const exploreMegaMenu = {
           </button>
 
           <div class="absolute left-0 top-full pt-2 w-[540px] hidden group-hover:block group-focus-within:block z-50">
-            <div class="bg-slate-900 border border-slate-700/80 rounded-xl shadow-2xl p-6 grid grid-cols-3 gap-6 text-xs">
+            <div class="bg-white border border-slate-200/90 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] ring-1 ring-slate-900/5 p-6 grid grid-cols-3 gap-6 text-xs">
               {businessMegaMenu.sections.map(sec => (
                 <div>
-                  <p class="font-bold text-blue-400 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
+                  <p class="font-extrabold text-blue-600 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
                   <ul class="space-y-2">
                     {sec.links.map(link => (
                       <li>
-                        <a href={link.href} class="text-slate-300 hover:text-white hover:underline transition-colors block py-0.5">
+                        <a href={link.href} class="text-slate-600 hover:text-blue-600 hover:translate-x-0.5 transition-all block py-0.5 font-medium">
                           {link.name}
                         </a>
                       </li>
@@ -323,9 +323,9 @@ const exploreMegaMenu = {
                   </ul>
                 </div>
               ))}
-              <div class="col-span-3 pt-3 border-t border-slate-800 flex justify-between items-center">
-                <span class="text-slate-400 text-xs">Monthly, corporate fleet & group coasters.</span>
-                <a href={businessMegaMenu.cta.href} class="inline-flex items-center gap-1 font-bold text-blue-400 hover:text-blue-300 text-xs">
+              <div class="col-span-3 pt-3 border-t border-slate-100 flex justify-between items-center bg-slate-50/80 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                <span class="text-slate-500 text-xs font-medium">Monthly, corporate fleet & group coasters.</span>
+                <a href={businessMegaMenu.cta.href} class="inline-flex items-center gap-1 font-extrabold text-blue-600 hover:text-blue-700 text-xs">
                   {businessMegaMenu.cta.name} →
                 </a>
               </div>
@@ -337,8 +337,8 @@ const exploreMegaMenu = {
         <div class="relative group">
           <button
             type="button"
-            class={`px-3 py-2 rounded-md transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 ${
-              currentPath.startsWith('/guides') || currentPath.startsWith('/official') || currentPath.startsWith('/locations') ? 'bg-red-600 text-white font-semibold' : 'text-slate-200 hover:bg-slate-800 hover:text-white'
+            class={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-red-500 font-semibold ${
+              currentPath.startsWith('/guides') || currentPath.startsWith('/official') || currentPath.startsWith('/locations') ? 'bg-red-600 text-white shadow-sm' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
             }`}
             aria-expanded="false"
             aria-haspopup="true"
@@ -350,14 +350,14 @@ const exploreMegaMenu = {
           </button>
 
           <div class="absolute right-0 top-full pt-2 w-[540px] hidden group-hover:block group-focus-within:block z-50">
-            <div class="bg-slate-900 border border-slate-700/80 rounded-xl shadow-2xl p-6 grid grid-cols-3 gap-6 text-xs">
+            <div class="bg-white border border-slate-200/90 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] ring-1 ring-slate-900/5 p-6 grid grid-cols-3 gap-6 text-xs">
               {exploreMegaMenu.sections.map(sec => (
                 <div>
-                  <p class="font-bold text-emerald-400 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
+                  <p class="font-extrabold text-emerald-600 uppercase tracking-wider text-[11px] mb-3">{sec.heading}</p>
                   <ul class="space-y-2">
                     {sec.links.map(link => (
                       <li>
-                        <a href={link.href} class="text-slate-300 hover:text-white hover:underline transition-colors block py-0.5">
+                        <a href={link.href} class="text-slate-600 hover:text-emerald-600 hover:translate-x-0.5 transition-all block py-0.5 font-medium">
                           {link.name}
                         </a>
                       </li>
@@ -365,9 +365,9 @@ const exploreMegaMenu = {
                   </ul>
                 </div>
               ))}
-              <div class="col-span-3 pt-3 border-t border-slate-800 flex justify-between items-center">
-                <span class="text-slate-400 text-xs">Guides, official branch verification & news.</span>
-                <a href={exploreMegaMenu.cta.href} class="inline-flex items-center gap-1 font-bold text-emerald-400 hover:text-emerald-300 text-xs">
+              <div class="col-span-3 pt-3 border-t border-slate-100 flex justify-between items-center bg-slate-50/80 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                <span class="text-slate-500 text-xs font-medium">Guides, official branch verification & news.</span>
+                <a href={exploreMegaMenu.cta.href} class="inline-flex items-center gap-1 font-extrabold text-emerald-600 hover:text-emerald-700 text-xs">
                   {exploreMegaMenu.cta.name} →
                 </a>
               </div>
@@ -383,7 +383,7 @@ const exploreMegaMenu = {
         <button
           type="button"
           data-open-search
-          class="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+          class="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
           aria-label="Open Site Search"
         >
           🔍
@@ -392,7 +392,7 @@ const exploreMegaMenu = {
         <!-- Dominant Commercial CTA -->
         <a
           href="/booking/"
-          class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-extrabold px-4 sm:px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-red-600/20 active:scale-95 uppercase tracking-wide whitespace-nowrap"
+          class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-extrabold px-4 sm:px-5 py-2.5 rounded-xl transition-all shadow-md hover:shadow-red-600/20 active:scale-95 uppercase tracking-wide whitespace-nowrap"
         >
           BOOK YOUR TRIP
         </a>
@@ -403,14 +403,14 @@ const exploreMegaMenu = {
         <button
           type="button"
           data-open-search
-          class="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+          class="p-2 text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
           aria-label="Search site"
         >
           🔍
         </button>
         <a
           href={BUSINESS_INFO.telLink}
-          class="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+          class="p-2 text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
           aria-label="Call 4WHEELS"
         >
           ☎
@@ -418,7 +418,7 @@ const exploreMegaMenu = {
         <button
           type="button"
           id="mobile-drawer-toggle"
-          class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-red-500"
+          class="p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-red-500"
           aria-controls="mobile-drawer"
           aria-expanded="false"
           aria-label="Toggle Navigation Drawer"
@@ -432,20 +432,20 @@ const exploreMegaMenu = {
   </div>
 
   <!-- Mobile Drawer Backdrop & Side Panel (85–92vw) -->
-  <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden transition-opacity">
-    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-[88vw] max-w-md bg-slate-900 border-l border-slate-800 shadow-2xl flex flex-col justify-between overflow-y-auto">
+  <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden transition-opacity">
+    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-[88vw] max-w-md bg-white border-l border-slate-200 shadow-2xl flex flex-col justify-between overflow-y-auto">
 
       <!-- Drawer Top Bar -->
       <div>
-        <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
+        <div class="p-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
           <div class="flex items-center space-x-2">
             <div class="bg-red-600 text-white font-black text-base px-2 py-0.5 rounded">4WHEELS</div>
-            <span class="text-xs font-bold text-slate-200">Rent a Car</span>
+            <span class="text-xs font-bold text-slate-900">Rent a Car</span>
           </div>
           <button
             type="button"
             id="close-mobile-drawer"
-            class="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm font-bold"
+            class="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg text-sm font-bold"
             aria-label="Close Navigation Menu"
           >
             ✕
@@ -453,7 +453,7 @@ const exploreMegaMenu = {
         </div>
 
         <!-- Primary Drawer CTA -->
-        <div class="p-4 border-b border-slate-800 bg-slate-900/50">
+        <div class="p-4 border-b border-slate-100 bg-slate-50/50">
           <a
             href="/booking/"
             class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-black py-3 px-4 rounded-xl block transition-all shadow-md text-sm uppercase tracking-wide"
@@ -466,87 +466,87 @@ const exploreMegaMenu = {
         <div class="p-4 space-y-3 text-sm">
 
           <!-- Accordion 1: Rent a Vehicle -->
-          <div class="border-b border-slate-800 pb-2">
+          <div class="border-b border-slate-100 pb-2">
             <button
               type="button"
-              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-100 focus:outline-none"
+              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-900 focus:outline-none"
               data-accordion="acc-rent"
               aria-expanded="false"
             >
               <span>Rent a Vehicle</span>
               <span class="chevron text-slate-400 text-xs transition-transform">▼</span>
             </button>
-            <div id="acc-rent" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-300">
-              <a href="/fleet/" class="block py-1 hover:text-white font-semibold text-red-400">All Fleet</a>
-              <a href="/self-drive-car-rental-lahore/" class="block py-1 hover:text-white">Self Drive Rental</a>
-              <a href="/car-with-driver-lahore/" class="block py-1 hover:text-white">Car With Driver</a>
-              <a href="/daily-car-rental-lahore/" class="block py-1 hover:text-white">Daily Rental</a>
-              <a href="/monthly-car-rental-lahore/" class="block py-1 hover:text-white">Monthly Rental</a>
-              <a href="/lahore-airport-car-rental/" class="block py-1 hover:text-white">Airport Rental</a>
-              <a href="/fleet/buses-coasters/" class="block py-1 hover:text-white">Coasters & Buses</a>
+            <div id="acc-rent" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-600">
+              <a href="/fleet/" class="block py-1 hover:text-red-600 font-semibold text-red-600">All Fleet</a>
+              <a href="/self-drive-car-rental-lahore/" class="block py-1 hover:text-red-600">Self Drive Rental</a>
+              <a href="/car-with-driver-lahore/" class="block py-1 hover:text-red-600">Car With Driver</a>
+              <a href="/daily-car-rental-lahore/" class="block py-1 hover:text-red-600">Daily Rental</a>
+              <a href="/monthly-car-rental-lahore/" class="block py-1 hover:text-red-600">Monthly Rental</a>
+              <a href="/lahore-airport-car-rental/" class="block py-1 hover:text-red-600">Airport Rental</a>
+              <a href="/fleet/buses-coasters/" class="block py-1 hover:text-red-600">Coasters & Buses</a>
             </div>
           </div>
 
           <!-- Accordion 2: Plan a Trip -->
-          <div class="border-b border-slate-800 pb-2">
+          <div class="border-b border-slate-100 pb-2">
             <button
               type="button"
-              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-100 focus:outline-none"
+              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-900 focus:outline-none"
               data-accordion="acc-plan"
               aria-expanded="false"
             >
               <span>Plan a Trip</span>
               <span class="chevron text-slate-400 text-xs transition-transform">▼</span>
             </button>
-            <div id="acc-plan" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-300">
-              <a href="/trip-planner/" class="block py-1 hover:text-white font-semibold text-amber-400">Trip Planner & Cost Estimator</a>
-              <a href="/find-my-vehicle/" class="block py-1 hover:text-white">Find My Vehicle Fit</a>
-              <a href="/compare-vehicles/" class="block py-1 hover:text-white">Vehicle Comparison</a>
-              <a href="/routes/" class="block py-1 hover:text-white">Popular Pakistan Routes</a>
-              <a href="/guides/" class="block py-1 hover:text-white">Destination Guides</a>
-              <a href="/wedding-car-rental-lahore/" class="block py-1 hover:text-white">Wedding Transport</a>
+            <div id="acc-plan" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-600">
+              <a href="/trip-planner/" class="block py-1 hover:text-amber-600 font-semibold text-amber-600">Trip Planner & Cost Estimator</a>
+              <a href="/find-my-vehicle/" class="block py-1 hover:text-red-600">Find My Vehicle Fit</a>
+              <a href="/compare-vehicles/" class="block py-1 hover:text-red-600">Vehicle Comparison</a>
+              <a href="/routes/" class="block py-1 hover:text-red-600">Popular Pakistan Routes</a>
+              <a href="/guides/" class="block py-1 hover:text-red-600">Destination Guides</a>
+              <a href="/wedding-car-rental-lahore/" class="block py-1 hover:text-red-600">Wedding Transport</a>
             </div>
           </div>
 
           <!-- Accordion 3: Business & Groups -->
-          <div class="border-b border-slate-800 pb-2">
+          <div class="border-b border-slate-100 pb-2">
             <button
               type="button"
-              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-100 focus:outline-none"
+              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-900 focus:outline-none"
               data-accordion="acc-business"
               aria-expanded="false"
             >
               <span>Business & Groups</span>
               <span class="chevron text-slate-400 text-xs transition-transform">▼</span>
             </button>
-            <div id="acc-business" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-300">
-              <a href="/corporate-car-rental-lahore/" class="block py-1 hover:text-white font-semibold text-blue-400">Corporate Car Rental</a>
-              <a href="/monthly-car-rental-lahore/" class="block py-1 hover:text-white">Monthly Business Fleet</a>
-              <a href="/corporate-staff-pick-drop-lahore/" class="block py-1 hover:text-white">Staff Pick & Drop</a>
-              <a href="/fleet/buses-coasters/" class="block py-1 hover:text-white">Coaster & Bus Rental</a>
-              <a href="/tour-operator-transport-pakistan/" class="block py-1 hover:text-white">Tour Operators Transport</a>
+            <div id="acc-business" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-600">
+              <a href="/corporate-car-rental-lahore/" class="block py-1 hover:text-blue-600 font-semibold text-blue-600">Corporate Car Rental</a>
+              <a href="/monthly-car-rental-lahore/" class="block py-1 hover:text-red-600">Monthly Business Fleet</a>
+              <a href="/corporate-staff-pick-drop-lahore/" class="block py-1 hover:text-red-600">Staff Pick & Drop</a>
+              <a href="/fleet/buses-coasters/" class="block py-1 hover:text-red-600">Coaster & Bus Rental</a>
+              <a href="/tour-operator-transport-pakistan/" class="block py-1 hover:text-red-600">Tour Operators Transport</a>
             </div>
           </div>
 
           <!-- Accordion 4: Explore -->
-          <div class="border-b border-slate-800 pb-2">
+          <div class="border-b border-slate-100 pb-2">
             <button
               type="button"
-              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-100 focus:outline-none"
+              class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-900 focus:outline-none"
               data-accordion="acc-explore"
               aria-expanded="false"
             >
               <span>Explore</span>
               <span class="chevron text-slate-400 text-xs transition-transform">▼</span>
             </button>
-            <div id="acc-explore" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-300">
-              <a href="/guides/" class="block py-1 hover:text-white font-semibold text-emerald-400">Knowledge Hub & Guides</a>
-              <a href="/locations/" class="block py-1 hover:text-white">Locations Directory</a>
-              <a href="/routes/" class="block py-1 hover:text-white">Pakistan Routes</a>
-              <a href="/faq/" class="block py-1 hover:text-white">Rental FAQ</a>
-              <a href="/official/" class="block py-1 hover:text-white">Official 4WHEELS Verification</a>
-              <a href="/about/" class="block py-1 hover:text-white">About 4WHEELS</a>
-              <a href="/contact/" class="block py-1 hover:text-white">Contact Us</a>
+            <div id="acc-explore" class="hidden pl-3 py-2 space-y-2 text-xs text-slate-600">
+              <a href="/guides/" class="block py-1 hover:text-emerald-600 font-semibold text-emerald-600">Knowledge Hub & Guides</a>
+              <a href="/locations/" class="block py-1 hover:text-red-600">Locations Directory</a>
+              <a href="/routes/" class="block py-1 hover:text-red-600">Pakistan Routes</a>
+              <a href="/faq/" class="block py-1 hover:text-red-600">Rental FAQ</a>
+              <a href="/official/" class="block py-1 hover:text-red-600">Official 4WHEELS Verification</a>
+              <a href="/about/" class="block py-1 hover:text-red-600">About 4WHEELS</a>
+              <a href="/contact/" class="block py-1 hover:text-red-600">Contact Us</a>
             </div>
           </div>
 
@@ -554,19 +554,19 @@ const exploreMegaMenu = {
       </div>
 
       <!-- Mobile Customer Care Area (Bottom of Drawer) -->
-      <div class="p-4 bg-slate-950 border-t border-slate-800 text-xs space-y-3">
-        <p class="font-bold text-slate-200 uppercase tracking-wider text-[11px]">Customer Care</p>
-        <div class="space-y-1.5 text-slate-300">
-          <a href={BUSINESS_INFO.telLink} class="block hover:text-red-400 transition-colors font-semibold">
+      <div class="p-4 bg-slate-50 border-t border-slate-200 text-xs space-y-3">
+        <p class="font-extrabold text-slate-900 uppercase tracking-wider text-[11px]">Customer Care</p>
+        <div class="space-y-1.5 text-slate-600">
+          <a href={BUSINESS_INFO.telLink} class="block hover:text-red-600 transition-colors font-bold text-slate-800">
             📞 Call: {BUSINESS_INFO.phoneDisplay}
           </a>
-          <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="block text-emerald-400 hover:text-emerald-300 transition-colors font-semibold">
+          <a href={BUSINESS_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" class="block text-emerald-700 hover:text-emerald-800 transition-colors font-bold">
             💬 WhatsApp: Chat with Customer Care
           </a>
-          <p class="text-slate-400 text-[11px]">📍 Location: Johar Town Phase 1, Lahore</p>
+          <p class="text-slate-500 text-[11px]">📍 Location: Johar Town Phase 1, Lahore</p>
         </div>
-        <div class="pt-2 border-t border-slate-800/80">
-          <a href="/official/" class="inline-block text-[11px] font-bold text-slate-400 hover:text-white underline">
+        <div class="pt-2 border-t border-slate-200">
+          <a href="/official/" class="inline-block text-[11px] font-bold text-slate-600 hover:text-red-600 underline">
             Official Verification: Verify 4WHEELS →
           </a>
         </div>
@@ -638,9 +638,9 @@ const exploreMegaMenu = {
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
-      if (headerElement) headerElement.classList.add('shadow-xl', 'bg-slate-900/95', 'backdrop-blur-md');
+      if (headerElement) headerElement.classList.add('shadow-md', 'bg-white/98', 'backdrop-blur-md');
     } else {
-      if (headerElement) headerElement.classList.remove('shadow-xl', 'bg-slate-900/95', 'backdrop-blur-md');
+      if (headerElement) headerElement.classList.remove('shadow-md', 'bg-white/98', 'backdrop-blur-md');
     }
   });
 </script>

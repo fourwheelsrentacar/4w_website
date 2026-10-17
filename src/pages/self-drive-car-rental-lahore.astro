@@ -76,33 +76,33 @@ const faqs = [
   <BreadcrumbSchema items={breadcrumbItems} />
 
   <!-- Breadcrumbs -->
-  <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+  <nav class="bg-white border-b border-slate-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-500" aria-label="Breadcrumb">
     <div class="max-w-7xl mx-auto flex items-center space-x-2">
-      <a href="/" class="hover:text-white">Home</a>
+      <a href="/" class="hover:text-red-600 transition-colors">Home</a>
       <span>›</span>
-      <a href="/rent-a-car-lahore/" class="hover:text-white">Rent a Car Lahore</a>
+      <a href="/rent-a-car-lahore/" class="hover:text-red-600 transition-colors">Rent a Car Lahore</a>
       <span>›</span>
-      <span class="text-slate-200 font-semibold truncate">Self Drive Car Rental</span>
+      <span class="text-slate-800 font-semibold truncate">Self Drive Car Rental</span>
     </div>
   </nav>
 
   <!-- Header Banner -->
-  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800 relative overflow-hidden">
+  <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 text-slate-900 py-12 md:py-16 border-b border-slate-200 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl space-y-4">
         <div class="flex flex-wrap items-center gap-2">
-          <span class="bg-red-600 text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
+          <span class="bg-red-50 text-red-600 border border-red-200 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
             Total Independence & Privacy
           </span>
-          <span class="bg-emerald-950/90 border border-emerald-700/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full">
+          <span class="bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">
             ⚡ Overseas Fast-Track Verification (No Local Guarantor)
           </span>
         </div>
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
           Self Drive Car Rental in Lahore
         </h1>
-        <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+        <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
           Experience total freedom across Lahore and Punjab on your own schedule. Transparent requirements, digital pre-inspection video recording to eliminate disputes, and 100% on-the-spot refundable security deposit.
         </p>
         <div class="flex flex-wrap gap-4 pt-2">
@@ -116,7 +116,7 @@ const faqs = [
           </a>
           <a
             href={BUSINESS_INFO.telLink}
-            class="bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-700 text-sm flex items-center gap-2"
+            class="bg-white hover:bg-slate-50 text-slate-800 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-300 text-sm shadow-xs flex items-center gap-2"
           >
             <span>📞 Call Direct: {BUSINESS_INFO.phoneDisplay}</span>
           </a>
@@ -126,49 +126,49 @@ const faqs = [
   </section>
 
   <!-- Competitor Differentiator: 4WHEELS 5-Point Trust Charter -->
-  <section class="py-12 bg-slate-950 border-b border-slate-800 text-white">
+  <section class="py-12 bg-slate-50 border-b border-slate-200 text-slate-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-xs font-extrabold text-red-500 uppercase tracking-widest block mb-1">Zero Friction • Zero Disputes</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">The 4WHEELS 5-Point Self-Drive Charter</h2>
-        <p class="text-slate-400 text-xs sm:text-sm mt-2">
+        <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest block mb-1">Zero Friction • Zero Disputes</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900">The 4WHEELS 5-Point Self-Drive Charter</h2>
+        <p class="text-slate-600 text-xs sm:text-sm mt-2">
           Why drivers choose 4WHEELS over ordinary roadside rental shops in Lahore.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+        <div class="auto-card bg-white border border-slate-200 rounded-2xl p-5 space-y-2 shadow-xs hover:border-red-500 transition-all">
           <span class="text-3xl">📹</span>
-          <h3 class="font-bold text-white text-sm">4K Digital Video Inspection</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
+          <h3 class="font-bold text-slate-900 text-sm">4K Digital Video Inspection</h3>
+          <p class="text-slate-600 text-xs leading-relaxed">
             Continuous walkaround video filmed with you before handover and sent to your WhatsApp. Never worry about existing scratches.
           </p>
         </div>
-        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+        <div class="auto-card bg-white border border-slate-200 rounded-2xl p-5 space-y-2 shadow-xs hover:border-red-500 transition-all">
           <span class="text-3xl">💵</span>
-          <h3 class="font-bold text-white text-sm">Instant Deposit Refund</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
+          <h3 class="font-bold text-slate-900 text-sm">Instant Deposit Refund</h3>
+          <p class="text-slate-600 text-xs leading-relaxed">
             No 30-day waiting delays. Your refundable security deposit is refunded on the spot upon car return inspection.
           </p>
         </div>
-        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+        <div class="auto-card bg-white border border-slate-200 rounded-2xl p-5 space-y-2 shadow-xs hover:border-red-500 transition-all">
           <span class="text-3xl">✈️</span>
-          <h3 class="font-bold text-white text-sm">Overseas Fast-Track</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
+          <h3 class="font-bold text-slate-900 text-sm">Overseas Fast-Track</h3>
+          <p class="text-slate-600 text-xs leading-relaxed">
             Visiting from UK, UAE, USA, or Canada? Show your passport, foreign license, and return flight. No local guarantor needed.
           </p>
         </div>
-        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+        <div class="auto-card bg-white border border-slate-200 rounded-2xl p-5 space-y-2 shadow-xs hover:border-red-500 transition-all">
           <span class="text-3xl">🛠️</span>
-          <h3 class="font-bold text-white text-sm">24/7 Breakdown Backup</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
+          <h3 class="font-bold text-slate-900 text-sm">24/7 Breakdown Backup</h3>
+          <p class="text-slate-600 text-xs leading-relaxed">
             Immediate replacement vehicle dispatched anywhere in Lahore or along Motorway corridors in the event of mechanical trouble.
           </p>
         </div>
-        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+        <div class="auto-card bg-white border border-slate-200 rounded-2xl p-5 space-y-2 shadow-xs hover:border-red-500 transition-all">
           <span class="text-3xl">✨</span>
-          <h3 class="font-bold text-white text-sm">Sanitized & AC Serviced</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
+          <h3 class="font-bold text-slate-900 text-sm">Sanitized & AC Serviced</h3>
+          <p class="text-slate-600 text-xs leading-relaxed">
             Deep-cleaned interior, perfumed AC vents, and 18-point mechanical checks completed before every dispatch.
           </p>
         </div>
@@ -177,73 +177,73 @@ const faqs = [
   </section>
 
   <!-- Clear 3-Tier Document Checklist -->
-  <section class="py-14 bg-slate-900 text-slate-100 border-b border-slate-800">
+  <section class="py-14 bg-white text-slate-900 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest block mb-1">Transparent Rental Requirements</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">What Documents Do You Need to Rent?</h2>
-        <p class="text-slate-400 text-xs sm:text-sm mt-2">
+        <span class="text-xs font-extrabold text-amber-600 uppercase tracking-widest block mb-1">Transparent Rental Requirements</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900">What Documents Do You Need to Rent?</h2>
+        <p class="text-slate-600 text-xs sm:text-sm mt-2">
           Simple, transparent verification tiers based on your residency status.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Tier 1: Pakistani Residents -->
-        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <span class="font-black text-white text-base">🇵🇰 Pakistani Residents</span>
-            <span class="text-[11px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-semibold">Standard</span>
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+            <span class="font-black text-slate-900 text-base">🇵🇰 Pakistani Residents</span>
+            <span class="text-[11px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded font-semibold">Standard</span>
           </div>
-          <ul class="space-y-2.5 text-xs text-slate-300">
+          <ul class="space-y-2.5 text-xs text-slate-700">
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-emerald-600 font-bold">✓</span>
               <span><strong>Original CNIC</strong> (physical verification at handover)</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-emerald-600 font-bold">✓</span>
               <span><strong>Valid Driving License</strong> (Pakistani computerized)</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-emerald-600 font-bold">✓</span>
               <span><strong>Proof of Address:</strong> Lahore utility bill or local office ID</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-emerald-600 font-bold">✓</span>
               <span><strong>Refundable Security Deposit</strong> (cash or bank transfer)</span>
             </li>
           </ul>
           <div class="pt-2">
-            <a href={waUrl} target="_blank" class="block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl text-xs transition-colors">
+            <a href={waUrl} target="_blank" class="block w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs transition-colors shadow-xs">
               Submit Local Verification
             </a>
           </div>
         </div>
 
         <!-- Tier 2: Overseas Pakistanis & Expats (Huge USP) -->
-        <div class="bg-slate-950 border-2 border-emerald-500/60 rounded-2xl p-6 space-y-4 relative shadow-xl shadow-emerald-950/20">
+        <div class="bg-white border-2 border-emerald-500 rounded-2xl p-6 space-y-4 relative shadow-lg">
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 font-black text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full">
             Recommended for Expats
           </div>
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <span class="font-black text-white text-base">✈️ Overseas Pakistanis & Tourists</span>
-            <span class="text-[11px] bg-emerald-900/60 text-emerald-300 px-2 py-0.5 rounded font-bold">Fast-Track</span>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+            <span class="font-black text-slate-900 text-base">✈️ Overseas Pakistanis & Tourists</span>
+            <span class="text-[11px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded font-bold">Fast-Track</span>
           </div>
-          <ul class="space-y-2.5 text-xs text-slate-300">
+          <ul class="space-y-2.5 text-xs text-slate-700">
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-emerald-600 font-bold">✓</span>
               <span><strong>Passport / NICOP Copy</strong> (Original shown at pickup)</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-emerald-600 font-bold">✓</span>
               <span><strong>Foreign Driving License</strong> or International Driving Permit (IDP)</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-emerald-600 font-bold">✓</span>
               <span><strong>Flight Itinerary / Return Ticket</strong> confirmation</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
-              <span><strong class="text-emerald-300">No Local Guarantor Required:</strong> Verified via overseas credentials!</span>
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span><strong class="text-emerald-700">No Local Guarantor Required:</strong> Verified via overseas credentials!</span>
             </li>
           </ul>
           <div class="pt-2">
@@ -254,31 +254,31 @@ const faqs = [
         </div>
 
         <!-- Tier 3: Corporate & B2B -->
-        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <span class="font-black text-white text-base">🏢 Corporate & B2B Companies</span>
-            <span class="text-[11px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-semibold">Corporate PO</span>
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+            <span class="font-black text-slate-900 text-base">🏢 Corporate & B2B Companies</span>
+            <span class="text-[11px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded font-semibold">Corporate PO</span>
           </div>
-          <ul class="space-y-2.5 text-xs text-slate-300">
+          <ul class="space-y-2.5 text-xs text-slate-700">
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-emerald-600 font-bold">✓</span>
               <span><strong>Company NTN Certificate</strong> & SECP / Registration copy</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-emerald-600 font-bold">✓</span>
               <span><strong>Official Purchase Order (PO)</strong> on company letterhead</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-emerald-600 font-bold">✓</span>
               <span><strong>Authorized Nominee CNIC</strong> & valid driving license</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-emerald-600 font-bold">✓</span>
               <span><strong>Corporate Credit Terms:</strong> GST / PRA compliant invoicing available</span>
             </li>
           </ul>
           <div class="pt-2">
-            <a href="/corporate-car-rental-lahore/" class="block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl text-xs transition-colors">
+            <a href="/corporate-car-rental-lahore/" class="block w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs transition-colors shadow-xs">
               Explore Corporate Solutions
             </a>
           </div>
@@ -299,7 +299,7 @@ const faqs = [
 
     <div class="overflow-x-auto bg-white border border-slate-200 rounded-2xl shadow-sm">
       <table class="w-full text-left text-xs sm:text-sm text-slate-700">
-        <thead class="bg-slate-900 text-white text-xs uppercase tracking-wider font-extrabold">
+        <thead class="bg-slate-100 text-slate-700 text-xs uppercase tracking-wider font-extrabold border-b border-slate-200">
           <tr>
             <th class="py-3.5 px-4 sm:px-6">Vehicle Tier</th>
             <th class="py-3.5 px-4">Popular Models</th>

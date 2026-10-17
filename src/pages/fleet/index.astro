@@ -28,41 +28,41 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
   <!-- Configurator Hero Header -->
-  <section class="bg-slate-900 text-white py-10 md:py-14 border-b border-slate-800 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
+  <section class="bg-gradient-to-b from-white via-slate-50 to-slate-100/70 text-slate-900 py-12 md:py-16 border-b border-slate-200 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#0f172a_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-      <span class="inline-block bg-red-600 text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
+      <span class="inline-block bg-red-600 text-white text-[11px] font-black px-3.5 py-1 rounded-full uppercase tracking-widest mb-3 shadow-xs">
         Pakistan's Premier Automotive Rental Directory
       </span>
-      <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-3">
+      <h1 class="text-3xl md:text-5xl font-black text-slate-950 tracking-tight mb-3">
         4WHEELS Fleet & All Vehicle Models
       </h1>
-      <p class="text-slate-300 text-sm md:text-base max-w-3xl mx-auto leading-relaxed mb-6">
+      <p class="text-slate-600 text-sm md:text-base max-w-3xl mx-auto leading-relaxed mb-6 font-medium">
         Browse our comprehensive lineup of {ALL_FLEET_VEHICLES.length} verified executive sedans, luxury SUVs, hybrid crossovers, electric vehicles, and group coaches. Select your preferred color, transmission, and seating layout.
       </p>
 
-      <div class="flex flex-wrap justify-center gap-3 md:gap-4 text-xs font-bold text-slate-300 mb-6">
-        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
-          ⚡ <strong class="text-white">{ALL_FLEET_VEHICLES.length} Models</strong> Available
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4 text-xs font-bold text-slate-700 mb-6">
+        <span class="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200 shadow-xs">
+          ⚡ <strong class="text-slate-900">{ALL_FLEET_VEHICLES.length} Models</strong> Available
         </span>
-        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
-          🚗 <strong class="text-white">{PAKISTAN_BRANDS.length} Official Brands</strong>
+        <span class="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200 shadow-xs">
+          🚗 <strong class="text-slate-900">{PAKISTAN_BRANDS.length} Official Brands</strong>
         </span>
-        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
-          🎨 <strong class="text-white">Multi-Color Variants</strong>
+        <span class="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200 shadow-xs">
+          🎨 <strong class="text-slate-900">Multi-Color Variants</strong>
         </span>
-        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
-          ✅ <strong class="text-white">Self Drive & Chauffeur</strong>
+        <span class="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200 shadow-xs">
+          ✅ <strong class="text-slate-900">Self Drive & Chauffeur</strong>
         </span>
       </div>
 
       <!-- Fuel Fluctuation & Locked Rate Notice Banner -->
-      <div class="max-w-3xl mx-auto bg-amber-500/10 border border-amber-500/40 rounded-2xl p-4 text-left flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-lg">
+      <div class="max-w-3xl mx-auto bg-white border border-amber-300 rounded-2xl p-4 text-left flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
         <div class="flex items-start gap-3">
           <span class="text-xl">⛽</span>
           <div class="text-xs">
-            <span class="font-bold text-amber-400 uppercase tracking-wide block">Notice: Fuel & Petrol Rates Fluctuate Regularly</span>
-            <p class="text-slate-300 mt-0.5 leading-relaxed">
+            <span class="font-black text-amber-700 uppercase tracking-wide block">Notice: Fuel & Petrol Rates Fluctuate Regularly</span>
+            <p class="text-slate-600 mt-0.5 leading-relaxed font-medium">
               Rental rates shown are approximate base guidelines. Daily rental tariffs adjust with ongoing fuel market revisions. For today's exact locked quote, message customer care directly.
             </p>
           </div>
@@ -71,7 +71,7 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
           href="https://wa.me/923216616644?text=Assalam%20o%20Alaikum%204WHEELS,%20please%20send%20me%20today's%20latest%20exact%20locked%20rates%20for%20rental%20vehicles."
           target="_blank"
           rel="noopener noreferrer"
-          class="shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs px-4 py-2.5 rounded-xl transition-colors shadow-md flex items-center gap-1.5 whitespace-nowrap"
+          class="shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5 whitespace-nowrap active:scale-98"
         >
           <span>💬 Get Latest Rate on WhatsApp</span>
         </a>
@@ -80,14 +80,14 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
   </section>
 
   <!-- STEP 1: BROWSE BY BRAND ACCORDION/GRID -->
-  <section class="py-10 bg-slate-950 text-white border-b border-slate-800">
+  <section class="py-10 bg-white text-slate-900 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="border-b border-slate-800 pb-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="border-b border-slate-200 pb-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <span class="text-xs font-extrabold text-red-500 uppercase tracking-widest block mb-1">Step 1 — Choose a Brand</span>
-          <h2 class="text-2xl sm:text-3xl font-black text-white">Explore by Brand ({PAKISTAN_BRANDS.length} Brands in Pakistan)</h2>
+          <span class="text-xs font-black text-red-600 uppercase tracking-widest block mb-1">Step 1 — Choose a Brand</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">Explore by Brand ({PAKISTAN_BRANDS.length} Brands in Pakistan)</h2>
         </div>
-        <a href="#fleet-catalog-section" class="text-xs font-bold text-slate-400 hover:text-white bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 transition-colors">
+        <a href="#fleet-catalog-section" class="text-xs font-bold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3.5 py-1.5 rounded-lg border border-slate-200 transition-colors">
           ↓ Skip to All Models Grid
         </a>
       </div>
@@ -98,12 +98,12 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
           return (
             <a
               href={`/vehicles/${brand.slug}/`}
-              class="bg-slate-900/90 hover:bg-slate-850 rounded-xl p-3 border border-slate-800 hover:border-red-600/80 transition-all text-center flex flex-col items-center justify-center group hover:-translate-y-0.5 hover:shadow-lg"
+              class="bg-slate-50/80 hover:bg-white rounded-xl p-3 border border-slate-200 hover:border-red-500 hover:shadow-md transition-all text-center flex flex-col items-center justify-center group hover:-translate-y-0.5"
             >
-              <span class="text-xs font-extrabold text-white group-hover:text-red-400 transition-colors block">
+              <span class="text-xs font-black text-slate-900 group-hover:text-red-600 transition-colors block">
                 {brand.name}
               </span>
-              <span class="text-[10px] text-slate-400 mt-0.5 block">
+              <span class="text-[10px] text-slate-500 font-medium mt-0.5 block">
                 {brandVehicles.length} {brandVehicles.length === 1 ? 'Model' : 'Models'}
               </span>
             </a>
@@ -114,26 +114,26 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
   </section>
 
   <!-- STEP 2: MASTER CONFIGURATOR & ALL 39 VEHICLES GRID -->
-  <section class="py-10 bg-slate-950 text-white min-h-screen" id="fleet-catalog-section">
+  <section class="py-10 bg-slate-50/60 text-slate-900 min-h-screen" id="fleet-catalog-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <!-- Interactive Configurator Control Center -->
-      <div class="bg-slate-900 rounded-2xl p-5 md:p-6 border border-slate-800 shadow-2xl mb-10 space-y-5">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-slate-800 pb-4 gap-3">
+      <div class="bg-white rounded-3xl p-6 md:p-7 border border-slate-200/90 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.05)] mb-10 space-y-5">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-slate-100 pb-4 gap-3">
           <div>
-            <span class="text-xs font-extrabold text-red-500 uppercase tracking-widest block mb-0.5">Step 2 — Filter & Configure</span>
-            <h2 class="text-xl md:text-2xl font-black text-white flex items-center gap-2">
+            <span class="text-xs font-black text-red-600 uppercase tracking-widest block mb-0.5">Step 2 — Filter & Configure</span>
+            <h2 class="text-xl md:text-2xl font-black text-slate-950 flex items-center gap-2 tracking-tight">
               <span>All 39 Vehicle Models & Color Options</span>
             </h2>
           </div>
           <div class="flex items-center gap-3">
-            <span class="text-xs font-bold bg-slate-800 text-emerald-400 px-3 py-1.5 rounded-lg border border-slate-700" id="vehicle-count-display">
+            <span class="text-xs font-bold bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200 shadow-xs" id="vehicle-count-display">
               39 of 39 Vehicles Displayed
             </span>
             <button
               type="button"
               id="reset-filters-btn"
-              class="text-xs text-slate-400 hover:text-white underline hidden"
+              class="text-xs text-slate-500 hover:text-red-600 underline hidden font-bold"
             >
               Reset Filters
             </button>
@@ -149,7 +149,7 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
             type="text"
             id="fleet-search-input"
             placeholder="Search 39 models, brands, colors, or features (e.g., Prado, Fortuner, BYD Seal, Haval, White, Black, Hybrid, 7-seater)..."
-            class="w-full bg-slate-950 border border-slate-700 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all font-medium"
+            class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all font-semibold"
           />
         </div>
 
@@ -160,8 +160,8 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
               type="button"
               class={`filter-cat-btn text-xs font-bold px-3.5 py-2 rounded-xl transition-all duration-200 border ${
                 cat.key === 'all'
-                  ? 'bg-red-600 text-white border-red-500 shadow-md scale-105'
-                  : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-750 hover:text-white'
+                  ? 'bg-red-600 text-white border-red-500 shadow-md font-black scale-105'
+                  : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200 hover:text-slate-900'
               }`}
               data-cat={cat.key}
             >
@@ -173,29 +173,29 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
         <!-- Secondary Specs & Attributes Filters Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 pt-2 text-xs">
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Brand</label>
-            <select id="filter-brand" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white font-semibold focus:ring-1 focus:ring-red-500 focus:outline-none">
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Brand</label>
+            <select id="filter-brand" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-slate-800 font-bold focus:ring-1 focus:ring-red-500 focus:outline-none">
               {brandsList.map(b => <option value={b}>{b === 'All' ? 'All Brands (21)' : b}</option>)}
             </select>
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Fuel / Powertrain</label>
-            <select id="filter-fuel" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white font-semibold focus:ring-1 focus:ring-red-500 focus:outline-none">
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Fuel / Powertrain</label>
+            <select id="filter-fuel" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-slate-800 font-bold focus:ring-1 focus:ring-red-500 focus:outline-none">
               {fuelTypes.map(f => <option value={f}>{f === 'All' ? 'All Fuel Types' : f}</option>)}
             </select>
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Transmission</label>
-            <select id="filter-transmission" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white font-semibold focus:ring-1 focus:ring-red-500 focus:outline-none">
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Transmission</label>
+            <select id="filter-transmission" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-slate-800 font-bold focus:ring-1 focus:ring-red-500 focus:outline-none">
               {transmissions.map(t => <option value={t}>{t === 'All' ? 'All Transmissions' : t}</option>)}
             </select>
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Rental Mode</label>
-            <select id="filter-mode" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white font-semibold focus:ring-1 focus:ring-red-500 focus:outline-none">
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Rental Mode</label>
+            <select id="filter-mode" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-slate-800 font-bold focus:ring-1 focus:ring-red-500 focus:outline-none">
               <option value="All">All Rental Modes</option>
               <option value="Self Drive">Self Drive Available</option>
               <option value="With Driver">With Chauffeur Only</option>
@@ -203,8 +203,8 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Passenger Capacity</label>
-            <select id="filter-capacity" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white font-semibold focus:ring-1 focus:ring-red-500 focus:outline-none">
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Passenger Capacity</label>
+            <select id="filter-capacity" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-slate-800 font-bold focus:ring-1 focus:ring-red-500 focus:outline-none">
               <option value="All">Any Seating Capacity</option>
               <option value="4">4-5 Seats (Sedan / Hatch)</option>
               <option value="7">7 Seats (SUV / MPV)</option>
@@ -223,8 +223,8 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
 
           return (
             <div
-              class={`vehicle-card bg-slate-900 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-950/30 overflow-hidden flex flex-col justify-between relative ${
-                vehicle.isCoreFleet ? 'border-slate-800 hover:border-red-600/80 ring-0' : 'border-slate-800/80 hover:border-indigo-500/80'
+              class={`vehicle-card bg-white rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl overflow-hidden flex flex-col justify-between relative ${
+                vehicle.isCoreFleet ? 'border-slate-200/90 hover:border-red-500 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)]' : 'border-slate-200/90 hover:border-slate-400 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]'
               }`}
               data-id={vehicle.id}
               data-slug={vehicle.slug}
@@ -244,27 +244,27 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
             >
               <div>
                 <!-- Vehicle Image Stage with Color Photo Switcher -->
-                <div class="relative bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 border-b border-slate-800/80 aspect-[16/9] flex items-center justify-center p-3 overflow-hidden group">
+                <div class="relative bg-gradient-to-b from-slate-50 via-white to-slate-100/60 border-b border-slate-200/80 aspect-[16/9] flex items-center justify-center p-3 overflow-hidden group">
                   <!-- Stage Floor Shadow -->
-                  <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[75%] h-3.5 bg-black/70 blur-md rounded-full pointer-events-none"></div>
+                  <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[75%] h-3.5 bg-slate-900/10 blur-sm rounded-full pointer-events-none"></div>
 
                   <a href={vehicle.detailUrl} class="w-full h-full flex items-center justify-center">
                     <img
                       src={vehicle.heroImage}
                       alt={`${vehicle.brand} ${vehicle.model} ${vehicle.variant} - 4WHEELS Rent a Car Lahore`}
                       loading={index < 6 ? 'eager' : 'lazy'}
-                      class="vehicle-main-img w-[88%] max-h-[85%] object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.65)] transition-all duration-300 group-hover:scale-[1.03]"
+                      class="vehicle-main-img w-[88%] max-h-[85%] object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.12)] transition-all duration-300 group-hover:scale-[1.03]"
                       data-default-src={vehicle.heroImage}
                     />
                   </a>
 
                   <!-- Top Left Badges -->
                   <div class="absolute top-3 left-3 flex gap-1.5 flex-wrap z-20 pointer-events-none">
-                    <span class="bg-slate-950/90 border border-slate-700 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider backdrop-blur-sm shadow-md">
+                    <span class="bg-white/95 border border-slate-200 text-slate-800 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider backdrop-blur-sm shadow-xs">
                       {vehicle.category}
                     </span>
                     {vehicle.engineCc && (
-                      <span class="bg-red-600/90 text-white text-[10px] font-black px-2 py-0.5 rounded tracking-wider backdrop-blur-sm shadow-md">
+                      <span class="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded tracking-wider shadow-xs">
                         {vehicle.engineCc}
                       </span>
                     )}
@@ -273,19 +273,19 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
                   <!-- Top Right Dispatch Badge -->
                   <div class="absolute top-3 right-3 flex flex-col gap-1 items-end z-20 pointer-events-none">
                     {vehicle.isCoreFleet ? (
-                      <span class="bg-emerald-500 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded uppercase tracking-wider shadow-md flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 rounded-full bg-slate-950 animate-ping"></span>
+                      <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-ping"></span>
                         Active Core Fleet
                       </span>
                     ) : (
-                      <span class="bg-indigo-950 text-indigo-300 border border-indigo-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider backdrop-blur-sm shadow-md">
+                      <span class="bg-slate-100 text-slate-700 border border-slate-200 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
                         Catalog Model
                       </span>
                     )}
                   </div>
 
                   <!-- Quick Zoom/Click Tip -->
-                  <div class="absolute bottom-1 right-2 z-20 pointer-events-none text-[9px] text-slate-500 bg-slate-950/80 px-1.5 py-0.5 rounded">
+                  <div class="absolute bottom-1 right-2 z-20 pointer-events-none text-[9px] text-slate-400 bg-white/90 border border-slate-200 px-1.5 py-0.5 rounded">
                     Tap to view details
                   </div>
                 </div>
@@ -295,24 +295,24 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
                   <!-- Title Hierarchy -->
                   <div>
                     <div class="flex items-center justify-between">
-                      <span class="text-[10px] font-bold text-red-500 uppercase tracking-widest">{vehicle.brand}</span>
-                      <span class="text-[10px] font-semibold text-slate-400">{vehicle.modelYear}</span>
+                      <span class="text-[10px] font-black text-red-600 uppercase tracking-widest">{vehicle.brand}</span>
+                      <span class="text-[10px] font-semibold text-slate-500">{vehicle.modelYear}</span>
                     </div>
-                    <a href={vehicle.detailUrl} class="hover:text-red-400 transition-colors block">
-                      <h3 class="text-xl font-extrabold text-white tracking-tight leading-snug">
+                    <a href={vehicle.detailUrl} class="hover:text-red-600 transition-colors block">
+                      <h3 class="text-xl font-black text-slate-900 tracking-tight leading-snug">
                         {vehicle.model}
                       </h3>
                     </a>
-                    <p class="text-xs font-medium text-slate-400 mt-0.5 line-clamp-1">
+                    <p class="text-xs font-semibold text-slate-500 mt-0.5 line-clamp-1">
                       {vehicle.variant}
                     </p>
                   </div>
 
                   <!-- INTERACTIVE COLOR SWATCHES SELECTOR -->
-                  <div class="bg-slate-950/80 border border-slate-800/90 rounded-xl p-2.5 space-y-1.5">
+                  <div class="bg-slate-50 border border-slate-200 rounded-xl p-2.5 space-y-1.5">
                     <div class="flex items-center justify-between text-[11px]">
-                      <span class="text-slate-400 font-bold uppercase tracking-wider text-[9px]">Verified Colors:</span>
-                      <span class="text-white font-bold truncate max-w-[170px] color-indicator-label">
+                      <span class="text-slate-500 font-bold uppercase tracking-wider text-[9px]">Verified Colors:</span>
+                      <span class="text-slate-900 font-bold truncate max-w-[170px] color-indicator-label">
                         {defaultColor}
                       </span>
                     </div>
@@ -323,10 +323,10 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
                           type="button"
                           class={`color-swatch-btn w-6 h-6 rounded-full border transition-all duration-200 relative group/swatch ${
                             cIdx === 0
-                              ? 'ring-2 ring-red-500 ring-offset-2 ring-offset-slate-900 scale-110'
+                              ? 'ring-2 ring-red-500 ring-offset-2 ring-offset-white scale-110'
                               : 'hover:scale-110 opacity-80 hover:opacity-100'
                           }`}
-                          style={`background-color: ${c.hex}; border-color: ${c.border || '#475569'};`}
+                          style={`background-color: ${c.hex}; border-color: ${c.border || '#cbd5e1'};`}
                           data-color-name={c.name}
                           data-color-image={c.imageUrl || vehicle.heroImage}
                           title={c.name}
@@ -338,30 +338,30 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
                     </div>
                   </div>
 
-                  <!-- Technical Specs Grid -->
-                  <div class="grid grid-cols-2 gap-2 text-xs font-medium text-slate-300 bg-slate-950/70 p-3 rounded-xl border border-slate-800">
+                  <!-- Technical Specs Grid (Cockpit Instrument Cluster Style) -->
+                  <div class="grid grid-cols-2 gap-2 text-xs font-semibold text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-200">
                     <div>
-                      <span class="text-[10px] text-slate-500 uppercase font-bold block">Capacity</span>
-                      <span class="text-white font-bold flex items-center gap-1">
+                      <span class="text-[10px] text-slate-400 uppercase font-bold block">Capacity</span>
+                      <span class="text-slate-900 font-bold flex items-center gap-1">
                         👥 {vehicle.seats} Seats
                       </span>
                     </div>
 
                     <div>
-                      <span class="text-[10px] text-slate-500 uppercase font-bold block">Luggage</span>
-                      <span class="text-white font-bold flex items-center gap-1">
+                      <span class="text-[10px] text-slate-400 uppercase font-bold block">Luggage</span>
+                      <span class="text-slate-900 font-bold flex items-center gap-1">
                         🧳 {typeof vehicle.luggage === 'number' ? `${vehicle.luggage} Bags` : vehicle.luggage}
                       </span>
                     </div>
 
                     <div>
-                      <span class="text-[10px] text-slate-500 uppercase font-bold block">Transmission</span>
-                      <span class="text-white font-bold truncate block">{vehicle.transmission}</span>
+                      <span class="text-[10px] text-slate-400 uppercase font-bold block">Transmission</span>
+                      <span class="text-slate-900 font-bold truncate block">{vehicle.transmission}</span>
                     </div>
 
                     <div>
-                      <span class="text-[10px] text-slate-500 uppercase font-bold block">Powertrain</span>
-                      <span class="text-white font-bold truncate block">{vehicle.fuelType}</span>
+                      <span class="text-[10px] text-slate-400 uppercase font-bold block">Powertrain</span>
+                      <span class="text-slate-900 font-bold truncate block">{vehicle.fuelType}</span>
                     </div>
                   </div>
 
@@ -369,22 +369,22 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
               </div>
 
               <!-- Pricing & Action Buttons -->
-              <div class="p-5 pt-0 border-t border-slate-800/80 mt-2 space-y-2">
+              <div class="p-5 pt-0 border-t border-slate-100 mt-2 space-y-2">
                 <!-- Starting Rate Badge with Fuel Volatility Indicator -->
-                <div class="py-2 px-3 rounded-xl bg-emerald-950/40 border border-emerald-900/60 text-xs space-y-1">
+                <div class="py-2 px-3 rounded-xl bg-emerald-50/70 border border-emerald-200 text-xs space-y-1">
                   <div class="flex items-center justify-between">
-                    <span class="text-slate-400 font-medium text-[11px]">Approx. Daily Rate:</span>
-                    <span class="text-emerald-400 font-black text-sm">
-                      PKR {vehicle.startingPricePkr.toLocaleString()}<span class="text-[10px] text-slate-400 font-normal">/day</span>
+                    <span class="text-slate-600 font-medium text-[11px]">Approx. Daily Rate:</span>
+                    <span class="text-emerald-700 font-black text-sm">
+                      PKR {vehicle.startingPricePkr.toLocaleString()}<span class="text-[10px] text-slate-500 font-normal">/day</span>
                     </span>
                   </div>
-                  <div class="flex items-center justify-between text-[10px] text-amber-400/90 pt-0.5 border-t border-emerald-900/30">
+                  <div class="flex items-center justify-between text-[10px] text-amber-700 pt-0.5 border-t border-emerald-200/50">
                     <span class="truncate">⛽ Rates adjust with fuel</span>
                     <a
                       href={`https://wa.me/923216616644?text=${encodeURIComponent(`Assalam o Alaikum 4WHEELS, please share today's exact fuel-locked rate for ${vehicle.brand} ${vehicle.model} (${vehicle.modelYear}).`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-emerald-400 hover:text-emerald-300 font-bold underline shrink-0 ml-1"
+                      class="text-emerald-700 hover:text-emerald-800 font-bold underline shrink-0 ml-1"
                     >
                       Lock Rate on WA →
                     </a>
@@ -394,7 +394,7 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
                 <!-- Book Your Trip CTA with Dynamic Color Query Param -->
                 <a
                   href={`${vehicle.bookingUrl}&color=${encodeURIComponent(defaultColor)}`}
-                  class="vehicle-booking-cta w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm py-3 rounded-xl block text-center shadow-lg transition-all flex items-center justify-center gap-2 group-hover:shadow-red-600/30"
+                  class="vehicle-booking-cta w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm py-3 rounded-xl block text-center shadow-md transition-all flex items-center justify-center gap-2 active:scale-98"
                 >
                   <span>BOOK YOUR TRIP</span>
                   <span>→</span>
@@ -403,14 +403,14 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
                 <div class="grid grid-cols-2 gap-2">
                   <a
                     href={vehicle.detailUrl}
-                    class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-2 rounded-xl text-center border border-slate-700 transition-colors block"
+                    class="bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold text-xs py-2 rounded-xl text-center border border-slate-200 transition-colors block"
                   >
                     Specifications
                   </a>
 
                   <a
                     href="tel:+923216616644"
-                    class="bg-slate-800 hover:bg-slate-750 text-emerald-400 font-bold text-xs py-2 rounded-xl text-center border border-slate-700 transition-colors block"
+                    class="bg-slate-50 hover:bg-slate-100 text-emerald-700 font-bold text-xs py-2 rounded-xl text-center border border-slate-200 transition-colors block"
                   >
                     📞 0321 6616644
                   </a>
@@ -422,32 +422,32 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
       </div>
 
       <!-- No Results State -->
-      <div id="no-results-message" class="hidden text-center py-16 bg-slate-900 rounded-2xl border border-slate-800 max-w-xl mx-auto my-8 p-8 space-y-4">
+      <div id="no-results-message" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 max-w-xl mx-auto my-8 p-8 space-y-4 shadow-sm">
         <div class="text-4xl">🔍</div>
-        <h3 class="text-xl font-bold text-white">No Vehicles Match Your Filter</h3>
-        <p class="text-xs text-slate-400 leading-relaxed">
+        <h3 class="text-xl font-black text-slate-900">No Vehicles Match Your Filter</h3>
+        <p class="text-xs text-slate-500 leading-relaxed font-medium">
           Try adjusting your search keywords, clear category pills, or reset the fuel/capacity filters to browse all vehicles.
         </p>
         <button
           type="button"
           id="clear-all-filters-btn"
-          class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-md transition-all inline-block"
+          class="bg-red-600 hover:bg-red-700 text-white text-xs font-black px-5 py-2.5 rounded-xl shadow-md transition-all inline-block active:scale-98 uppercase"
         >
           Reset All Filters
         </button>
       </div>
 
-      <!-- Live Johar Town Fleet Yard Gallery -->
-      <div class="mt-16 bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-800 pb-5 gap-3">
+      <!-- Live Johar Town Fleet Yard Gallery (Automotive White Theme) -->
+      <div class="mt-16 bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.05)] space-y-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-100 pb-5 gap-3">
           <div>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-400 text-xs font-bold mb-2">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-black mb-2">
               <span>📍 Physical Fleet & Showroom Verification</span>
             </div>
-            <h3 class="text-2xl font-black text-white">
+            <h3 class="text-2xl font-black text-slate-950 tracking-tight">
               Live From Our Johar Town Headquarters & Fleet Yard
             </h3>
-            <p class="text-xs sm:text-sm text-slate-400 mt-1">
+            <p class="text-xs sm:text-sm text-slate-600 mt-1 font-medium">
               Photographed directly on-site at Main Boulevard, Phase 1, Johar Town, Lahore. 100% verified physical vehicles ready for immediate dispatch.
             </p>
           </div>
@@ -456,7 +456,7 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
               href="https://wa.me/923216616644"
               target="_blank"
               rel="noopener noreferrer"
-              class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs px-4 py-2.5 rounded-xl transition-colors shadow-md flex items-center gap-1.5"
+              class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5 active:scale-98"
             >
               <span>💬 WhatsApp 0321-6616644</span>
             </a>
@@ -464,8 +464,8 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 group hover:border-red-600/60 transition-all">
-            <div class="aspect-[4/3] overflow-hidden">
+          <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 group hover:border-red-500 hover:shadow-lg transition-all">
+            <div class="aspect-[4/3] overflow-hidden bg-slate-100">
               <img
                 src="/images/office/4wheels-hq-billboard-wide.webp"
                 alt="4WHEELS Rent a Car Johar Town Lahore Official Billboard 0321-6616644"
@@ -473,14 +473,14 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div class="p-3 text-xs">
-              <p class="font-bold text-white">Johar Town HQ & Billboard</p>
-              <p class="text-[11px] text-slate-400 mt-0.5">Official 0321-6616644 billboard on Main Boulevard</p>
+            <div class="p-3.5 text-xs">
+              <p class="font-black text-slate-900">Johar Town HQ & Billboard</p>
+              <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Official 0321-6616644 billboard on Main Boulevard</p>
             </div>
           </div>
 
-          <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 group hover:border-red-600/60 transition-all">
-            <div class="aspect-[4/3] overflow-hidden">
+          <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 group hover:border-red-500 hover:shadow-lg transition-all">
+            <div class="aspect-[4/3] overflow-hidden bg-slate-100">
               <img
                 src="/images/office/4wheels-fleet-lineup-civics-fortuner.webp"
                 alt="4WHEELS Fleet Yard Lineup Honda Civic 11th Gen, Fortuner Legender, Land Cruiser Prado"
@@ -488,14 +488,14 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div class="p-3 text-xs">
-              <p class="font-bold text-white">Civics & Fortuner Lineup</p>
-              <p class="text-[11px] text-slate-400 mt-0.5">White Civics, Fortuner Legender & Prado ready for dispatch</p>
+            <div class="p-3.5 text-xs">
+              <p class="font-black text-slate-900">Civics & Fortuner Lineup</p>
+              <p class="text-[11px] text-slate-500 mt-0.5 font-medium">White Civics, Fortuner Legender & Prado ready for dispatch</p>
             </div>
           </div>
 
-          <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 group hover:border-red-600/60 transition-all">
-            <div class="aspect-[4/3] overflow-hidden">
+          <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 group hover:border-red-500 hover:shadow-lg transition-all">
+            <div class="aspect-[4/3] overflow-hidden bg-slate-100">
               <img
                 src="/images/office/4wheels-office-entrance-prado-civic.webp"
                 alt="4WHEELS Office Entrance with Black Prado and White Civic"
@@ -503,14 +503,14 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div class="p-3 text-xs">
-              <p class="font-bold text-white">Showroom Front Lineup</p>
-              <p class="text-[11px] text-slate-400 mt-0.5">Customer reception office with Black Prado & White Civic</p>
+            <div class="p-3.5 text-xs">
+              <p class="font-black text-slate-900">Showroom Front Lineup</p>
+              <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Customer reception office with Black Prado & White Civic</p>
             </div>
           </div>
 
-          <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 group hover:border-red-600/60 transition-all">
-            <div class="aspect-[4/3] overflow-hidden">
+          <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 group hover:border-red-500 hover:shadow-lg transition-all">
+            <div class="aspect-[4/3] overflow-hidden bg-slate-100">
               <img
                 src="/images/office/4wheels-fleet-yard-yaris-sportage-pajero.webp"
                 alt="4WHEELS Fleet Yard Toyota Yaris, Kia Sportage and Mitsubishi Pajero SUV"
@@ -518,19 +518,19 @@ const brandsList = ['All', ...PAKISTAN_BRANDS.map(b => b.name)];
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div class="p-3 text-xs">
-              <p class="font-bold text-white">Yaris, Sportage & Pajero</p>
-              <p class="text-[11px] text-slate-400 mt-0.5">Compact sedans and 4x4 SUVs parked in Johar Town yard</p>
+            <div class="p-3.5 text-xs">
+              <p class="font-black text-slate-900">Yaris, Sportage & Pajero</p>
+              <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Compact sedans and 4x4 SUVs parked in Johar Town yard</p>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Fuel & Verification Disclaimer -->
-      <div class="mt-10 bg-slate-900 border border-slate-800 rounded-2xl p-5 text-center text-slate-400 text-xs leading-relaxed max-w-4xl mx-auto space-y-2">
-        <p class="font-bold text-slate-200">ℹ️ 4WHEELS Pricing & Fuel Volatility Notice:</p>
+      <div class="mt-10 bg-white border border-slate-200 rounded-2xl p-5 text-center text-slate-600 text-xs leading-relaxed max-w-4xl mx-auto space-y-2 shadow-xs">
+        <p class="font-black text-slate-900">ℹ️ 4WHEELS Pricing & Fuel Volatility Notice:</p>
         <p>Rental rates shown are approximate base rates. Fuel and petrol prices across Pakistan are subject to ongoing market revisions. Text customer care on WhatsApp for today's exact locked quotation.</p>
-        <p class="text-[11px] text-slate-500">
+        <p class="text-[11px] text-slate-500 font-medium">
           Core active fleet units are available for immediate same-day dispatch from our Johar Town yard. Color availability is confirmed upon booking.
         </p>
       </div>

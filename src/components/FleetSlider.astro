@@ -17,19 +17,19 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-12 bg-slate-900 border-y border-slate-800 text-white overflow-hidden" id="fleet-slider-section">
+<section class="py-14 bg-slate-50/70 border-y border-slate-200 text-slate-900 overflow-hidden" id="fleet-slider-section">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- Header & Controls -->
     <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
       <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-400 text-xs font-extrabold uppercase tracking-wider mb-2">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-black uppercase tracking-wider mb-2">
           <span>🚗 Verified Core Fleet</span>
         </div>
-        <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+        <h2 class="text-2xl sm:text-4xl font-black text-slate-950 tracking-tight">
           {title}
         </h2>
-        <p class="text-xs sm:text-sm text-slate-400 mt-1">
+        <p class="text-xs sm:text-sm text-slate-500 mt-1 font-medium">
           {subtitle}
         </p>
       </div>
@@ -40,7 +40,7 @@ const {
           type="button"
           id="embla-prev"
           aria-label="Previous Vehicle Slide"
-          class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-red-600 text-white border border-slate-700 flex items-center justify-center font-black text-lg transition-colors shadow-md disabled:opacity-40 cursor-pointer"
+          class="w-10 h-10 rounded-xl bg-white hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200 flex items-center justify-center font-black text-lg transition-all shadow-sm hover:shadow-md disabled:opacity-40 cursor-pointer"
         >
           ‹
         </button>
@@ -48,7 +48,7 @@ const {
           type="button"
           id="embla-next"
           aria-label="Next Vehicle Slide"
-          class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-red-600 text-white border border-slate-700 flex items-center justify-center font-black text-lg transition-colors shadow-md disabled:opacity-40 cursor-pointer"
+          class="w-10 h-10 rounded-xl bg-white hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200 flex items-center justify-center font-black text-lg transition-all shadow-sm hover:shadow-md disabled:opacity-40 cursor-pointer"
         >
           ›
         </button>
@@ -59,45 +59,45 @@ const {
     <div class="embla overflow-hidden" id="fleet-embla-viewport">
       <div class="embla__container flex gap-4 sm:gap-6 py-2">
         {vehicles.map((v) => (
-          <div class="embla__slide shrink-0 w-[86%] sm:w-[47%] lg:w-[31%] bg-slate-950 border border-slate-800 hover:border-red-500/80 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 shadow-xl group">
+          <div class="embla__slide shrink-0 w-[86%] sm:w-[47%] lg:w-[31%] bg-white border border-slate-200/90 hover:border-red-500 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_-4px_rgba(224,18,26,0.12)] hover:-translate-y-1 group">
             <div>
-              <!-- Vehicle Image -->
-              <div class="aspect-[16/9] bg-slate-900 rounded-xl overflow-hidden border border-slate-800 p-2 mb-4 relative flex items-center justify-center">
+              <!-- Vehicle Image Stage -->
+              <div class="aspect-[16/9] bg-gradient-to-b from-slate-50 via-white to-slate-100/60 rounded-xl overflow-hidden border border-slate-200/80 p-3 mb-4 relative flex items-center justify-center">
                 <img
                   src={v.heroImage || '/vehicles/fleet/toyota-corolla/hero.webp'}
                   alt={`${v.manufacturer} ${v.model} rental Lahore`}
                   loading="lazy"
                   class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
-                <span class="absolute top-2 left-2 text-[10px] font-extrabold bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded uppercase tracking-wider">
+                <span class="absolute top-2 left-2 text-[10px] font-extrabold bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-full uppercase tracking-wider">
                   ✓ AVAILABLE
                 </span>
-                <span class="absolute bottom-2 right-2 text-[10px] font-bold bg-slate-950/80 text-slate-300 px-2 py-0.5 rounded border border-slate-800">
+                <span class="absolute bottom-2 right-2 text-[10px] font-bold bg-white/90 text-slate-700 px-2 py-0.5 rounded-full border border-slate-200 shadow-xs">
                   {v.yearRange}
                 </span>
               </div>
 
               <!-- Specs & Details -->
               <div class="space-y-2">
-                <span class="text-[10px] font-bold text-red-500 uppercase tracking-wider block">
+                <span class="text-[10px] font-extrabold text-red-600 uppercase tracking-wider block">
                   {v.manufacturer}
                 </span>
-                <h3 class="text-lg font-black text-white group-hover:text-red-400 transition-colors">
+                <h3 class="text-lg font-black text-slate-900 group-hover:text-red-600 transition-colors">
                   {v.manufacturer} {v.model}
                 </h3>
-                <p class="text-xs text-slate-400 line-clamp-2">
+                <p class="text-xs text-slate-500 line-clamp-2 font-medium">
                   {v.headline || v.tagline}
                 </p>
 
-                <!-- Spec Chips -->
+                <!-- Spec Chips (Instrument Cluster Gauges) -->
                 <div class="flex flex-wrap gap-2 pt-2 text-[11px] font-bold">
-                  <span class="bg-slate-900 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800 flex items-center gap-1">
+                  <span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200/80 flex items-center gap-1">
                     👥 {v.seatingCapacity} Seats
                   </span>
-                  <span class="bg-slate-900 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800 flex items-center gap-1">
+                  <span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200/80 flex items-center gap-1">
                     ⚙️ {v.transmission}
                   </span>
-                  <span class="bg-slate-900 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800 flex items-center gap-1">
+                  <span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200/80 flex items-center gap-1">
                     ⛽ {v.fuelType}
                   </span>
                 </div>
@@ -105,16 +105,16 @@ const {
             </div>
 
             <!-- STRICT CTA COMPLIANCE: BOOK YOUR TRIP & CALL ONLY -->
-            <div class="pt-5 border-t border-slate-800/80 mt-4 space-y-2">
+            <div class="pt-5 border-t border-slate-100 mt-4 space-y-2">
               <a
                 href={`/booking/?vehicle=${v.slug}&brand=${encodeURIComponent(v.manufacturer)}&model=${encodeURIComponent(v.model)}`}
-                class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs py-3 rounded-xl block text-center uppercase tracking-wider shadow-lg transition-colors"
+                class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs py-3 rounded-xl block text-center uppercase tracking-wider shadow-md transition-all active:scale-98"
               >
                 🚗 BOOK YOUR TRIP
               </a>
               <a
                 href={BUSINESS_INFO.telLink}
-                class="w-full bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-xs py-2.5 rounded-xl block text-center border border-slate-800 transition-colors"
+                class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs py-2.5 rounded-xl block text-center border border-slate-200 transition-colors"
               >
                 📞 CALL {BUSINESS_INFO.phoneDisplay}
               </a>
@@ -157,7 +157,7 @@ const {
         dot.type = 'button';
         dot.ariaLabel = `Go to slide ${index + 1}`;
         dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-          index === selectedSnap ? 'bg-red-600 w-6' : 'bg-slate-700 hover:bg-slate-500'
+          index === selectedSnap ? 'bg-red-600 w-6' : 'bg-slate-300 hover:bg-slate-400'
         }`;
         dot.addEventListener('click', () => embla.scrollTo(index));
         dotsContainer.appendChild(dot);

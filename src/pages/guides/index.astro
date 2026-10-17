@@ -14,17 +14,17 @@ const canonicalPath = "/guides/";
 ---
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
-  <main class="bg-slate-950 text-slate-100 min-h-screen pb-16">
+  <main class="bg-slate-50 text-slate-800 min-h-screen pb-16">
     <!-- Hero Section -->
-    <section class="bg-slate-900 border-b border-slate-800 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 border-b border-slate-200 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/10 border border-red-500/20 text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-bold uppercase tracking-wider mb-4">
           📚 4WHEELS Knowledge Hub
         </div>
-        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
+        <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight mb-4">
           Pakistan Vehicle Rental & Road Trip Guides
         </h1>
-        <p class="text-slate-300 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
+        <p class="text-slate-600 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
           Expert, first-party advice on renting vehicles in Lahore, comparing sedans vs SUVs, planning motorway travel costs, and booking group transport across Pakistan.
         </p>
 
@@ -33,13 +33,13 @@ const canonicalPath = "/guides/";
           <button
             type="button"
             data-open-search
-            class="w-full bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-slate-300 rounded-xl px-4 py-3.5 flex items-center justify-between text-sm transition-all shadow-md group"
+            class="w-full bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 rounded-xl px-4 py-3.5 flex items-center justify-between text-sm transition-all shadow-xs group"
           >
             <span class="flex items-center gap-2">
               <span class="text-slate-400 group-hover:text-red-400 transition-colors">🔍</span>
               <span>Search guides, rental rules, or vehicle tips...</span>
             </span>
-            <span class="bg-slate-700 text-slate-300 text-xs px-2 py-1 rounded font-mono">Search</span>
+            <span class="bg-slate-100 text-slate-700 border border-slate-200 text-xs px-2 py-1 rounded font-mono">Search</span>
           </button>
         </div>
       </div>
@@ -47,9 +47,9 @@ const canonicalPath = "/guides/";
 
     <!-- Content Categories Pills -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6">
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl overflow-x-auto flex gap-2 no-scrollbar">
+      <div class="auto-card bg-white border border-slate-200 rounded-2xl p-4 shadow-xs overflow-x-auto flex gap-2 no-scrollbar">
         {GUIDE_CATEGORIES.map(cat => (
-          <span class="whitespace-nowrap px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-red-600/20 hover:border-red-500/40 border border-slate-700/60 text-xs font-medium text-slate-200 cursor-pointer transition-colors">
+          <span class="whitespace-nowrap px-3 py-1.5 rounded-lg bg-slate-50 hover:bg-red-50 hover:border-red-300 border border-slate-200 text-xs font-medium text-slate-700 cursor-pointer transition-colors">
             {cat}
           </span>
         ))}
@@ -61,25 +61,25 @@ const canonicalPath = "/guides/";
 
       <!-- Featured Guide Box -->
       {featuredGuide && (
-        <section class="bg-gradient-to-br from-slate-900 to-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        <section class="auto-card bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-xs relative overflow-hidden">
           <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
           <div class="inline-block bg-red-600 text-white text-[11px] font-extrabold uppercase px-3 py-1 rounded mb-4">
             FEATURED GUIDE
           </div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 hover:text-red-400 transition-colors">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 hover:text-red-600 transition-colors">
             <a href={`/guides/${featuredGuide.slug}/`}>{featuredGuide.title}</a>
           </h2>
-          <p class="text-slate-300 text-sm sm:text-base mb-6 leading-relaxed">
+          <p class="text-slate-600 text-sm sm:text-base mb-6 leading-relaxed">
             {featuredGuide.excerpt}
           </p>
 
           <!-- Direct Answer Snippet Preview -->
-          <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-4 mb-6">
-            <p class="text-xs font-bold text-red-400 uppercase tracking-wider mb-1">Direct Answer</p>
-            <p class="text-xs sm:text-sm text-slate-200 italic leading-relaxed">{featuredGuide.directAnswer}</p>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-6">
+            <p class="text-xs font-bold text-red-600 uppercase tracking-wider mb-1">Direct Answer</p>
+            <p class="text-xs sm:text-sm text-slate-700 italic leading-relaxed">{featuredGuide.directAnswer}</p>
           </div>
 
-          <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800 text-xs text-slate-400">
+          <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100 text-xs text-slate-500">
             <div class="flex items-center gap-3">
               <span>✍️ {featuredGuide.author}</span>
               <span>•</span>
@@ -99,22 +99,22 @@ const canonicalPath = "/guides/";
       <section>
         <div class="flex justify-between items-end mb-6">
           <div>
-            <h2 class="text-xl sm:text-2xl font-black text-white">Latest Rental & Travel Guides</h2>
-            <p class="text-xs sm:text-sm text-slate-400">Step-by-step guidance for rental choices and road trip planning</p>
+            <h2 class="text-xl sm:text-2xl font-black text-slate-900">Latest Rental & Travel Guides</h2>
+            <p class="text-xs sm:text-sm text-slate-500">Step-by-step guidance for rental choices and road trip planning</p>
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {recentGuides.map(guide => (
-            <article class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 transition-all shadow-lg hover:shadow-red-900/10">
+            <article class="auto-card bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between hover:border-red-500 shadow-xs hover:shadow-md transition-all">
               <div>
-                <span class="inline-block bg-slate-800 border border-slate-700 text-slate-300 text-[10px] font-bold uppercase px-2.5 py-0.5 rounded mb-3">
+                <span class="inline-block bg-slate-100 border border-slate-200 text-slate-700 text-[10px] font-bold uppercase px-2.5 py-0.5 rounded mb-3">
                   {guide.category}
                 </span>
-                <h3 class="text-lg font-bold text-white mb-2 leading-snug hover:text-red-400 transition-colors">
+                <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug hover:text-red-600 transition-colors">
                   <a href={`/guides/${guide.slug}/`}>{guide.title}</a>
                 </h3>
-                <p class="text-xs text-slate-400 line-clamp-3 mb-4 leading-relaxed">
+                <p class="text-xs text-slate-600 line-clamp-3 mb-4 leading-relaxed">
                   {guide.excerpt}
                 </p>
               </div>

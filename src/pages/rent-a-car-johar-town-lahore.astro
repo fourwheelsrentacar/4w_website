@@ -71,15 +71,15 @@ const joharSchema = {
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
   <script type="application/ld+json" set:html={JSON.stringify(joharSchema)} />
   <BreadcrumbSchema items={breadcrumbItems} />
-  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800">
+  <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 text-slate-900 py-12 md:py-16 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
+      <span class="bg-red-50 text-red-600 border border-red-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
         Local Johar Town Branch
       </span>
-      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
         Rent a Car in Johar Town, Lahore
       </h1>
-      <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-6">
+      <p class="text-slate-600 text-base md:text-lg max-w-3xl mx-auto mb-6">
         Conveniently located at <strong>Plot number 5, Block F1, Johar Town Phase 1, Lahore</strong>. Minutes away from Emporium Mall, Doctor Hospital, Canal Bank Road, and Khayaban-e-Firdousi.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
@@ -106,7 +106,7 @@ const joharSchema = {
             href={BUSINESS_INFO.mapsDirectionsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors inline-flex items-center gap-2 self-start"
+            class="bg-slate-900 hover:bg-red-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors inline-flex items-center gap-2 self-start shadow-xs"
           >
             <span>🗺️ Open in Google Maps</span>
           </a>
@@ -207,7 +207,7 @@ const joharSchema = {
         <a href="/booking/" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm px-8 py-3.5 rounded-xl text-center shadow-lg transition-colors uppercase">
           🚗 Book Your Rental Vehicle
         </a>
-        <a href="/fleet/" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm px-7 py-3.5 rounded-xl text-center transition-colors">
+        <a href="/fleet/" class="w-full sm:w-auto bg-slate-900 hover:bg-red-600 text-white font-bold text-sm px-7 py-3.5 rounded-xl text-center transition-colors shadow-xs">
           Browse All Fleet Cars →
         </a>
       </div>

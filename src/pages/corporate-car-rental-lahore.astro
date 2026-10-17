@@ -117,29 +117,29 @@ const faqs = [
   <BreadcrumbSchema items={breadcrumbItems} />
 
   <!-- Breadcrumbs -->
-  <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+  <nav class="bg-white border-b border-slate-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-500" aria-label="Breadcrumb">
     <div class="max-w-7xl mx-auto flex items-center space-x-2">
-      <a href="/" class="hover:text-white">Home</a>
+      <a href="/" class="hover:text-red-600 transition-colors">Home</a>
       <span>›</span>
-      <a href="/rent-a-car-lahore/" class="hover:text-white">Rent a Car Lahore</a>
+      <a href="/rent-a-car-lahore/" class="hover:text-red-600 transition-colors">Rent a Car Lahore</a>
       <span>›</span>
-      <span class="text-slate-200 font-semibold truncate">Corporate Car Rental</span>
+      <span class="text-slate-800 font-semibold truncate">Corporate Car Rental</span>
     </div>
   </nav>
 
   <!-- Hero Header -->
-  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800 relative overflow-hidden">
+  <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 text-slate-900 py-12 md:py-16 border-b border-slate-200 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-400 text-xs font-bold uppercase tracking-wider mb-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-bold uppercase tracking-wider mb-3">
         <span>🏢 Enterprise Mobility & Fleet Management</span>
         <span class="text-slate-500">•</span>
         <span>Lahore Corporate Hubs</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
         Corporate Car Rental & Fleet Leasing in Lahore
       </h1>
-      <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-6">
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed mb-6">
         Streamlined B2B mobility for multinationals, corporate executives, visiting delegations, and project teams. Tax-compliant NTN invoicing, dedicated account management, and guaranteed backup replacement SLAs.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
@@ -153,7 +153,7 @@ const faqs = [
         </a>
         <a
           href="mailto:4wheels44@gmail.com?subject=Corporate%20Fleet%20RFP%20Inquiry%20-%20Lahore"
-          class="bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-700 text-xs sm:text-sm flex items-center gap-2"
+          class="bg-white hover:bg-slate-50 text-slate-800 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-300 text-xs sm:text-sm shadow-xs flex items-center gap-2"
         >
           <span>✉️ Email Corporate Desk: 4wheels44@gmail.com</span>
         </a>
@@ -162,22 +162,22 @@ const faqs = [
   </section>
 
   <!-- Corporate Pillars Grid -->
-  <section class="py-14 bg-slate-950 text-white border-b border-slate-800">
+  <section class="py-14 bg-slate-50 text-slate-900 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest block mb-1">Corporate Standards</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">Why Leading Companies Partner with 4WHEELS</h2>
-        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+        <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest block mb-1">Corporate Standards</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Why Leading Companies Partner with 4WHEELS</h2>
+        <p class="text-slate-600 text-xs sm:text-sm mt-1">
           Eliminate vehicle depreciation, driver payroll headaches, and fleet maintenance overhead.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {CORPORATE_PILLARS.map(item => (
-          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div class="auto-card bg-white border border-slate-200 rounded-2xl p-5 space-y-3 shadow-xs hover:border-red-500 transition-all">
             <span class="text-3xl">{item.icon}</span>
-            <h3 class="font-bold text-white text-base">{item.title}</h3>
-            <p class="text-slate-400 text-xs leading-relaxed">{item.desc}</p>
+            <h3 class="font-bold text-slate-900 text-base">{item.title}</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">{item.desc}</p>
           </div>
         ))}
       </div>

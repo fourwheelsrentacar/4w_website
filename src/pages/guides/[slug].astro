@@ -49,38 +49,38 @@ const canonicalPath = `/guides/${guide.slug}/`;
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 
-  <main class="bg-slate-950 text-slate-100 min-h-screen pb-16">
+  <main class="bg-slate-50 text-slate-800 min-h-screen pb-16">
     <!-- Breadcrumbs -->
-    <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+    <nav class="bg-white border-b border-slate-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-500" aria-label="Breadcrumb">
       <div class="max-w-5xl mx-auto flex items-center space-x-2">
-        <a href="/" class="hover:text-white">Home</a>
+        <a href="/" class="hover:text-red-600 transition-colors">Home</a>
         <span>›</span>
-        <a href="/guides/" class="hover:text-white">Guides</a>
+        <a href="/guides/" class="hover:text-red-600 transition-colors">Guides</a>
         <span>›</span>
-        <span class="text-slate-200 font-semibold truncate">{guide.title}</span>
+        <span class="text-slate-800 font-semibold truncate">{guide.title}</span>
       </div>
     </nav>
 
     <!-- Article Header Hero -->
-    <header class="bg-slate-900 border-b border-slate-800 py-10 px-4 sm:px-6 lg:px-8">
+    <header class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 border-b border-slate-200 py-10 px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto space-y-4">
         <div class="flex items-center gap-3">
-          <span class="bg-red-600/20 text-red-400 border border-red-500/30 text-[11px] font-extrabold uppercase px-3 py-1 rounded">
+          <span class="bg-red-50 text-red-600 border border-red-200 text-[11px] font-extrabold uppercase px-3 py-1 rounded">
             {guide.category}
           </span>
-          <span class="text-xs text-slate-400">Published: {guide.datePublished}</span>
-          <span class="text-xs text-slate-400">• Updated: {guide.dateModified}</span>
+          <span class="text-xs text-slate-500">Published: {guide.datePublished}</span>
+          <span class="text-xs text-slate-500">• Updated: {guide.dateModified}</span>
         </div>
 
-        <h1 class="text-2xl sm:text-4xl font-black text-white leading-tight">
+        <h1 class="text-2xl sm:text-4xl font-black text-slate-900 leading-tight">
           {guide.title}
         </h1>
 
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
           {guide.excerpt}
         </p>
 
-        <div class="pt-2 text-xs text-slate-400 flex items-center gap-2">
+        <div class="pt-2 text-xs text-slate-500 flex items-center gap-2">
           <span>✍️ By {guide.author}</span>
           <span>•</span>
           <span>Verified by 4WHEELS Customer Care</span>
@@ -91,26 +91,26 @@ const canonicalPath = `/guides/${guide.slug}/`;
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-10">
 
       <!-- Direct Answer Box (GEO / AEO Search Friendly) -->
-      <section class="bg-gradient-to-r from-red-950/40 via-slate-900 to-slate-900 border-l-4 border-red-600 border-y border-r border-slate-800 rounded-xl p-5 sm:p-6 shadow-xl">
-        <p class="text-xs font-black uppercase tracking-wider text-red-400 mb-2 flex items-center gap-1.5">
+      <section class="bg-gradient-to-r from-red-50 via-white to-slate-50 border-l-4 border-red-600 border-y border-r border-slate-200 rounded-xl p-5 sm:p-6 shadow-xs">
+        <p class="text-xs font-black uppercase tracking-wider text-red-600 mb-2 flex items-center gap-1.5">
           <span>⚡ DIRECT ANSWER / KEY SUMMARY</span>
         </p>
-        <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+        <p class="text-sm sm:text-base text-slate-800 font-medium leading-relaxed">
           {guide.directAnswer}
         </p>
       </section>
 
       <!-- Key Facts Table/Grid -->
       {guide.keyFacts && guide.keyFacts.length > 0 && (
-        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg">
-          <h2 class="text-base font-bold text-white mb-4 uppercase tracking-wider text-slate-300">
+        <section class="auto-card bg-white border border-slate-200 rounded-2xl p-6 shadow-xs">
+          <h2 class="text-base font-bold text-slate-900 mb-4 uppercase tracking-wider">
             📊 Quick Fact Sheet
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
             {guide.keyFacts.map(fact => (
-              <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 flex justify-between items-center">
-                <span class="text-slate-400 font-medium">{fact.label}</span>
-                <span class="text-slate-100 font-bold">{fact.value}</span>
+              <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 flex justify-between items-center">
+                <span class="text-slate-500 font-medium">{fact.label}</span>
+                <span class="text-slate-900 font-bold">{fact.value}</span>
               </div>
             ))}
           </div>
@@ -119,9 +119,9 @@ const canonicalPath = `/guides/${guide.slug}/`;
 
       <!-- Table of Contents -->
       {guide.contentSections && guide.contentSections.length > 0 && (
-        <section class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-4 text-xs">
-          <p class="font-bold text-slate-300 uppercase tracking-wider mb-2">Table of Contents</p>
-          <ul class="space-y-1 text-slate-400">
+        <section class="bg-white border border-slate-200 rounded-xl p-4 text-xs shadow-xs">
+          <p class="font-bold text-slate-700 uppercase tracking-wider mb-2">Table of Contents</p>
+          <ul class="space-y-1 text-slate-600">
             {guide.contentSections.map((sec, idx) => (
               <li>
                 <a href={`#sec-${idx}`} class="hover:text-red-400 transition-colors">
@@ -134,13 +134,13 @@ const canonicalPath = `/guides/${guide.slug}/`;
       )}
 
       <!-- Main Article Body Sections -->
-      <article class="space-y-8 text-slate-200 leading-relaxed text-sm sm:text-base">
+      <article class="space-y-8 text-slate-700 leading-relaxed text-sm sm:text-base">
         {guide.contentSections.map((sec, idx) => (
-          <section id={`sec-${idx}`} class="bg-slate-900/40 border border-slate-800/60 rounded-2xl p-6 space-y-3">
-            <h2 class="text-xl font-bold text-white tracking-tight text-red-400">
+          <section id={`sec-${idx}`} class="auto-card bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-xs">
+            <h2 class="text-xl font-bold tracking-tight text-red-600">
               {sec.heading}
             </h2>
-            <p class="text-slate-300 leading-relaxed">
+            <p class="text-slate-700 leading-relaxed">
               {sec.body}
             </p>
           </section>
@@ -149,17 +149,17 @@ const canonicalPath = `/guides/${guide.slug}/`;
 
       <!-- Urdu Summary Block if available -->
       {guide.urduSummary && (
-        <section class="bg-slate-900 border border-emerald-500/30 rounded-2xl p-6 text-right" lang="ur">
-          <p class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">اردو میں مختصر خلاصہ</p>
-          <p class="text-base text-slate-100 leading-loose font-serif">{guide.urduSummary}</p>
+        <section class="auto-card bg-emerald-50/50 border border-emerald-200 rounded-2xl p-6 text-right shadow-xs" lang="ur">
+          <p class="text-xs font-bold text-emerald-800 uppercase tracking-wider mb-2">اردو میں مختصر خلاصہ</p>
+          <p class="text-base text-slate-800 leading-loose font-serif">{guide.urduSummary}</p>
         </section>
       )}
 
       <!-- Commercial Action Banner -->
-      <section class="bg-gradient-to-r from-red-900/50 to-slate-900 border border-red-500/30 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+      <section class="auto-card bg-gradient-to-r from-red-50 via-white to-slate-50 border border-red-200 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
         <div class="space-y-2 text-center sm:text-left">
-          <h3 class="text-lg sm:text-xl font-bold text-white">Need a verified vehicle for your trip?</h3>
-          <p class="text-xs sm:text-sm text-slate-300">
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900">Need a verified vehicle for your trip?</h3>
+          <p class="text-xs sm:text-sm text-slate-600">
             Browse 4WHEELS verified fleet in Lahore or submit a custom trip inquiry via our booking configurator.
           </p>
         </div>
@@ -189,8 +189,8 @@ const canonicalPath = `/guides/${guide.slug}/`;
 
       <!-- Sources Section -->
       {guide.sources && guide.sources.length > 0 && (
-        <footer class="pt-6 border-t border-slate-800 text-xs text-slate-400 space-y-2">
-          <p class="font-bold uppercase tracking-wider text-slate-300">Information Sources & Verification:</p>
+        <footer class="pt-6 border-t border-slate-100 text-xs text-slate-500 space-y-2">
+          <p class="font-bold uppercase tracking-wider text-slate-700">Information Sources & Verification:</p>
           <ul class="list-disc list-inside space-y-1">
             {guide.sources.map(src => (
               <li>{src.title}</li>

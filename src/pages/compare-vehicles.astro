@@ -33,13 +33,13 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/compare-vehicles/`;
   <HeaderComp />
 
   <main>
-    <section class="bg-gradient-to-r from-slate-900 via-zinc-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 text-center">
+    <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 text-slate-900 py-12 md:py-16 px-4 sm:px-6 lg:px-8 text-center border-b border-slate-200">
       <div class="max-w-4xl mx-auto">
-        <span class="bg-brand-red/20 text-brand-red border border-brand-red/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider inline-block mb-3">
+        <span class="bg-red-50 text-red-600 border border-red-200 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider inline-block mb-3">
           Vehicle Comparison Matrix
         </span>
         <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Compare Rental Vehicles</h1>
-        <p class="text-gray-300 text-sm sm:text-base mt-2 max-w-2xl mx-auto">
+        <p class="text-slate-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto">
           Select 2 or 3 vehicles side-by-side to compare seating, luggage room, powertrain specs, and fuel tank capacity.
         </p>
       </div>
@@ -135,14 +135,14 @@ const canonicalUrl = `${BUSINESS_INFO.siteUrl}/compare-vehicles/`;
       let html = '<table class="w-full border-collapse text-left text-xs sm:text-sm">';
 
       // Header
-      html += '<thead><tr class="bg-slate-900 text-white"><th class="p-3 border border-slate-800 font-bold w-1/4">Specification</th>';
+      html += '<thead><tr class="bg-slate-100 text-slate-800"><th class="p-3 border border-slate-200 font-bold w-1/4">Specification</th>';
       selected.forEach(v => {
         html += '<th class="p-3 border border-slate-800 font-extrabold text-center text-brand-red">' +
-          '<div class="mb-2 h-28 flex flex-col items-center justify-center bg-slate-950 rounded p-2 border border-slate-800">' +
+          '<div class="mb-2 h-28 flex flex-col items-center justify-center bg-white rounded p-2 border border-slate-200 shadow-xs">' +
           '<img src="' + v.resolvedImage + '" alt="' + v.brand + ' ' + v.model + '" class="max-h-20 object-contain" />' +
-          '<span class="text-[9px] text-slate-400 mt-1 block truncate max-w-full">' + v.resolvedLabel + '</span>' +
+          '<span class="text-[9px] text-slate-500 mt-1 block truncate max-w-full">' + v.resolvedLabel + '</span>' +
           '</div>' +
-          v.brand + ' ' + v.model + '<br/><span class="text-[10px] text-gray-300 font-normal">' + (v.variant || '') + '</span></th>';
+          v.brand + ' ' + v.model + '<br/><span class="text-[10px] text-slate-500 font-normal">' + (v.variant || '') + '</span></th>';
       });
       html += '</tr></thead><tbody>';
 

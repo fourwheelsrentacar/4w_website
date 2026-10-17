@@ -180,29 +180,29 @@ const faqs = [
   <BreadcrumbSchema items={breadcrumbItems} />
 
   <!-- Breadcrumbs -->
-  <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+  <nav class="bg-white border-b border-slate-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-500" aria-label="Breadcrumb">
     <div class="max-w-7xl mx-auto flex items-center space-x-2">
-      <a href="/" class="hover:text-white">Home</a>
+      <a href="/" class="hover:text-red-600 transition-colors">Home</a>
       <span>›</span>
-      <a href="/rent-a-car-lahore/" class="hover:text-white">Rent a Car Lahore</a>
+      <a href="/rent-a-car-lahore/" class="hover:text-red-600 transition-colors">Rent a Car Lahore</a>
       <span>›</span>
-      <span class="text-slate-200 font-semibold truncate">Outstation Car Rental</span>
+      <span class="text-slate-800 font-semibold truncate">Outstation Car Rental</span>
     </div>
   </nav>
 
   <!-- Hero Header -->
-  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800 relative overflow-hidden">
+  <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 text-slate-900 py-12 md:py-16 border-b border-slate-200 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-400 text-xs font-bold uppercase tracking-wider mb-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-bold uppercase tracking-wider mb-3">
         <span>🛣️ Motorway & Intercity Network</span>
         <span class="text-slate-500">•</span>
         <span>24/7 Dispatch Across Pakistan</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
         Outstation Car Rental from Lahore
       </h1>
-      <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-6">
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed mb-6">
         Seamless, long-distance intercity transportation from Lahore across M-2, M-3, M-4, M-11, and M-15 motorways. Professional chauffeurs, all-inclusive toll estimates, and verified executive sedans, 4x4 SUVs, and Grand Cabin passenger vans.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
@@ -216,7 +216,7 @@ const faqs = [
         </a>
         <a
           href="/routes/"
-          class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-700 text-xs sm:text-sm flex items-center gap-2"
+          class="bg-white hover:bg-slate-50 text-slate-800 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-300 text-xs sm:text-sm shadow-xs flex items-center gap-2"
         >
           <span>🗺️ View All 22 Pakistan Routes</span>
         </a>
@@ -225,24 +225,24 @@ const faqs = [
   </section>
 
   <!-- Competitor Dominator: 10-Route Intercity Drop Matrix -->
-  <section class="py-14 bg-slate-950 text-white border-b border-slate-800">
+  <section class="py-14 bg-slate-50 text-slate-900 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
-          <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest block mb-1">Official Intercity Rate Card</span>
-          <h2 class="text-2xl sm:text-3xl font-black text-white">Lahore Intercity Fixed Drop-Off Rates</h2>
-          <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest block mb-1">Official Intercity Rate Card</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Lahore Intercity Fixed Drop-Off Rates</h2>
+          <p class="text-slate-600 text-xs sm:text-sm mt-1">
             Approximate all-inclusive drop rates including vehicle, fuel, driver, and motorway toll taxes.
           </p>
         </div>
-        <div class="text-xs bg-slate-900 border border-slate-800 rounded-xl p-3 text-slate-300 max-w-md">
-          <strong class="text-amber-400">💡 Pricing Note:</strong> Rates reflect typical market guidelines. Petrol price adjustments and peak holiday dates may alter exact spot quotes.
+        <div class="text-xs bg-white border border-slate-200 rounded-xl p-3 text-slate-600 max-w-md shadow-xs">
+          <strong class="text-amber-600">💡 Pricing Note:</strong> Rates reflect typical market guidelines. Petrol price adjustments and peak holiday dates may alter exact spot quotes.
         </div>
       </div>
 
-      <div class="overflow-x-auto bg-slate-900 border border-slate-800 rounded-2xl shadow-xl">
+      <div class="overflow-x-auto bg-white border border-slate-200 rounded-2xl shadow-xs">
         <table class="w-full text-left text-xs sm:text-sm">
-          <thead class="bg-slate-950 text-slate-300 text-xs uppercase font-black border-b border-slate-800">
+          <thead class="bg-slate-100 text-slate-700 text-xs uppercase font-black border-b border-slate-200">
             <tr>
               <th class="py-3.5 px-4 sm:px-6">Destination</th>
               <th class="py-3.5 px-4">Route & Drive Time</th>
@@ -253,23 +253,23 @@ const faqs = [
               <th class="py-3.5 px-4 sm:px-6 text-right">Quick Book</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60 text-slate-300">
+          <tbody class="divide-y divide-slate-100 text-slate-700">
             {INTERCITY_ROUTES.map(item => (
-              <tr class="hover:bg-slate-800/40 transition-colors">
-                <td class="py-4 px-4 sm:px-6 font-bold text-white">
-                  <a href={`/routes/${item.routeSlug}/`} class="hover:text-red-400 transition-colors">
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="py-4 px-4 sm:px-6 font-bold text-slate-900">
+                  <a href={`/routes/${item.routeSlug}/`} class="hover:text-red-600 transition-colors">
                     {item.destination} →
                   </a>
                   <span class="block text-[11px] text-slate-400 font-normal">{item.distanceKm} km</span>
                 </td>
                 <td class="py-4 px-4">
-                  <span class="text-slate-200 font-semibold">{item.motorway}</span>
-                  <span class="block text-[11px] text-emerald-400">{item.driveTime}</span>
+                  <span class="text-slate-800 font-semibold">{item.motorway}</span>
+                  <span class="block text-[11px] text-emerald-700">{item.driveTime}</span>
                 </td>
-                <td class="py-4 px-4 text-slate-400">{item.approxTolls}</td>
-                <td class="py-4 px-4 font-bold text-amber-400">{item.sedanRate}</td>
-                <td class="py-4 px-4 font-bold text-red-400">{item.suvRate}</td>
-                <td class="py-4 px-4 font-bold text-blue-400">{item.vanRate}</td>
+                <td class="py-4 px-4 text-slate-600">{item.approxTolls}</td>
+                <td class="py-4 px-4 font-bold text-slate-900">{item.sedanRate}</td>
+                <td class="py-4 px-4 font-bold text-red-600">{item.suvRate}</td>
+                <td class="py-4 px-4 font-bold text-slate-900">{item.vanRate}</td>
                 <td class="py-4 px-4 sm:px-6 text-right">
                   <a
                     href={`https://wa.me/923216616644?text=Hi%204WHEELS,%20I%20want%20to%20book%20an%20outstation%20trip%20from%20Lahore%20to%20${encodeURIComponent(item.destination)}.`}

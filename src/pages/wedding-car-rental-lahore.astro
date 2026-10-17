@@ -122,27 +122,27 @@ const faqs = [
   <BreadcrumbSchema items={breadcrumbItems} />
 
   <!-- Breadcrumbs -->
-  <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+  <nav class="bg-white border-b border-slate-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-500" aria-label="Breadcrumb">
     <div class="max-w-7xl mx-auto flex items-center space-x-2">
-      <a href="/" class="hover:text-white">Home</a>
+      <a href="/" class="hover:text-red-600 transition-colors">Home</a>
       <span>›</span>
-      <a href="/rent-a-car-lahore/" class="hover:text-white">Rent a Car Lahore</a>
+      <a href="/rent-a-car-lahore/" class="hover:text-red-600 transition-colors">Rent a Car Lahore</a>
       <span>›</span>
-      <span class="text-slate-200 font-semibold truncate">Wedding Car Rental</span>
+      <span class="text-slate-800 font-semibold truncate">Wedding Car Rental</span>
     </div>
   </nav>
 
   <!-- Hero Banner -->
-  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800 relative overflow-hidden">
+  <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 text-slate-900 py-12 md:py-16 border-b border-slate-200 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <span class="bg-red-600 text-white text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-3 inline-block shadow-md">
+      <span class="bg-red-50 text-red-600 border border-red-200 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-3 inline-block shadow-xs">
         💍 Premier Wedding & Event Mobility
       </span>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
         Wedding Car Rental in Lahore
       </h1>
-      <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-6">
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed mb-6">
         Elevate your wedding celebration with Lahore's finest automotive fleet. From executive groom sedans and decorated bridal rides to VIP Baraat SUV convoys and 29-seater guest transport coasters.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
@@ -156,7 +156,7 @@ const faqs = [
         </a>
         <a
           href={BUSINESS_INFO.telLink}
-          class="bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-700 text-xs sm:text-sm flex items-center gap-2"
+          class="bg-white hover:bg-slate-50 text-slate-800 font-bold px-6 py-3.5 rounded-xl transition-all border border-slate-300 text-xs sm:text-sm shadow-xs flex items-center gap-2"
         >
           <span>📞 Wedding Hotline: {BUSINESS_INFO.phoneDisplay}</span>
         </a>
@@ -165,51 +165,51 @@ const faqs = [
   </section>
 
   <!-- Wedding Fleet Packages Grid -->
-  <section class="py-14 bg-slate-950 text-white border-b border-slate-800">
+  <section class="py-14 bg-slate-50 text-slate-900 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest block mb-1">Tailored for Baraat, Walima & Mehndi</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">4WHEELS Wedding Rental Packages</h2>
-        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+        <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest block mb-1">Tailored for Baraat, Walima & Mehndi</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900">4WHEELS Wedding Rental Packages</h2>
+        <p class="text-slate-600 text-xs sm:text-sm mt-1">
           Designed to take the stress out of wedding transport logistics in Lahore.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {WEDDING_PACKAGES.map(pkg => (
-          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4 hover:border-red-600/60 transition-all flex flex-col justify-between">
+          <div class="auto-card bg-white border border-slate-200 rounded-2xl p-6 space-y-4 hover:border-red-500 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                 <div>
-                  <span class="text-xs font-bold text-red-400 uppercase tracking-wider block">{pkg.tagline}</span>
-                  <h3 class="text-xl font-black text-white mt-0.5">{pkg.title}</h3>
+                  <span class="text-xs font-bold text-red-600 uppercase tracking-wider block">{pkg.tagline}</span>
+                  <h3 class="text-xl font-black text-slate-900 mt-0.5">{pkg.title}</h3>
                 </div>
-                <span class="bg-slate-800 text-amber-300 text-[11px] font-bold px-2.5 py-1 rounded-full border border-slate-700">
+                <span class="bg-amber-50 text-amber-800 text-[11px] font-bold px-2.5 py-1 rounded-full border border-amber-200">
                   {pkg.highlight}
                 </span>
               </div>
 
               <div class="mt-4 mb-3">
-                <span class="text-[11px] text-slate-400 uppercase tracking-wider block">Featured Vehicles:</span>
-                <p class="text-sm font-semibold text-slate-200">{pkg.cars}</p>
+                <span class="text-[11px] text-slate-500 uppercase tracking-wider block">Featured Vehicles:</span>
+                <p class="text-sm font-semibold text-slate-800">{pkg.cars}</p>
               </div>
 
               <div class="mb-4">
-                <span class="text-[11px] text-slate-400 uppercase tracking-wider block">Estimated Daily Rate:</span>
-                <p class="text-lg font-black text-emerald-400">{pkg.dailyRate}</p>
+                <span class="text-[11px] text-slate-500 uppercase tracking-wider block">Estimated Daily Rate:</span>
+                <p class="text-lg font-black text-emerald-700">{pkg.dailyRate}</p>
               </div>
 
-              <ul class="space-y-2 text-xs text-slate-300">
+              <ul class="space-y-2 text-xs text-slate-700">
                 {pkg.features.map(feat => (
                   <li class="flex items-start gap-2">
-                    <span class="text-red-400 font-bold">✓</span>
+                    <span class="text-red-600 font-bold">✓</span>
                     <span>{feat}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div class="pt-4 border-t border-slate-800">
+            <div class="pt-4 border-t border-slate-100">
               <a
                 href={`https://wa.me/923216616644?text=Hi%204WHEELS,%20I%20am%20interested%20in%20the%20wedding%20package:%20${encodeURIComponent(pkg.title)}.`}
                 target="_blank"

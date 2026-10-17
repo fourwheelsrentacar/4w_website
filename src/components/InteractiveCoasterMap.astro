@@ -4,18 +4,18 @@ import { getSeatLayoutBySlug } from '../data/seatLayouts';
 const layout = getSeatLayoutBySlug('toyota-coaster');
 ---
 
-<div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-6 shadow-xl">
-  <div class="border-b border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="auto-card bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-6 shadow-xs">
+  <div class="border-b border-slate-100 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
     <div>
-      <span class="text-[10px] font-black uppercase tracking-widest text-red-500">INTERACTIVE SEAT & GROUP FIT MAP</span>
-      <h3 class="text-xl font-black text-white">Toyota Coaster Saloon Executive (22-Seat)</h3>
+      <span class="text-[10px] font-black uppercase tracking-widest text-red-600">INTERACTIVE SEAT & GROUP FIT MAP</span>
+      <h3 class="text-xl font-black text-slate-900">Toyota Coaster Saloon Executive (22-Seat)</h3>
     </div>
     <span class="text-xs font-bold bg-amber-500 text-slate-950 px-3 py-1 rounded-lg self-start sm:self-center">
       4WHEELS Customized Layout
     </span>
   </div>
 
-  <p class="text-xs text-slate-300 leading-relaxed">
+  <p class="text-xs text-slate-600 leading-relaxed">
     Interactive seat map explaining 4WHEELS executive 22-seat saloon configuration. Hover or tap any seat to inspect capacity, position type, and legroom corridor.
   </p>
 
@@ -162,68 +162,68 @@ const layout = getSeatLayoutBySlug('toyota-coaster');
     <!-- Right Side: Bus Capacity Specs & Group Fit Guidance -->
     <div class="lg:col-span-5 space-y-4">
 
-      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
-        <h4 class="text-xs font-black uppercase tracking-wider text-slate-400 border-b border-slate-800 pb-2">
+      <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-slate-500 border-b border-slate-200 pb-2">
           Coaster Group Capacity Summary
         </h4>
 
         <div class="grid grid-cols-2 gap-3 text-xs">
-          <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+          <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-xs">
             <span class="text-[10px] text-slate-500 font-bold block uppercase">Maximum Occupants</span>
-            <span class="text-2xl font-black text-white">22 Total</span>
-            <span class="text-[10px] text-slate-400 block mt-0.5">(21 Pax + 1 Chauffeur)</span>
+            <span class="text-2xl font-black text-slate-900">22 Total</span>
+            <span class="text-[10px] text-slate-500 block mt-0.5">(21 Pax + 1 Chauffeur)</span>
           </div>
 
-          <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+          <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-xs">
             <span class="text-[10px] text-slate-500 font-bold block uppercase">Aisle & Seating</span>
-            <span class="text-xl font-black text-emerald-400">1 + 2 Saloon</span>
-            <span class="text-[10px] text-slate-400 block mt-0.5">Wide Center Corridor</span>
+            <span class="text-xl font-black text-emerald-600">1 + 2 Saloon</span>
+            <span class="text-[10px] text-slate-500 block mt-0.5">Wide Center Corridor</span>
           </div>
         </div>
 
-        <div class="space-y-2 text-xs pt-1 text-slate-300">
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
+        <div class="space-y-2 text-xs pt-1 text-slate-700">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
             <span>Executive Leather Recliners</span>
-            <span class="font-bold text-white">18 Seats</span>
+            <span class="font-bold text-slate-900">18 Seats</span>
           </div>
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
             <span>Rear Lounge Seats</span>
-            <span class="font-bold text-white">5 Seats</span>
+            <span class="font-bold text-slate-900">5 Seats</span>
           </div>
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
             <span>Front Tour Guide Seat</span>
-            <span class="font-bold text-indigo-400">1 Seat</span>
+            <span class="font-bold text-indigo-600">1 Seat</span>
           </div>
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
             <span>Dual High-Capacity Saloon AC</span>
-            <span class="font-bold text-emerald-400">Included</span>
+            <span class="font-bold text-emerald-600">Included</span>
           </div>
         </div>
       </div>
 
       <!-- Luggage Deck Guidance -->
-      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
-        <h4 class="text-xs font-black uppercase tracking-wider text-slate-400 border-b border-slate-800 pb-2 flex items-center justify-between">
+      <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-slate-500 border-b border-slate-200 pb-2 flex items-center justify-between">
           <span>Coaster Baggage Allowance</span>
-          <span class="text-[10px] font-bold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">
+          <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
             GROUP BAGGAGE
           </span>
         </h4>
 
-        <div class="flex items-center gap-3 bg-slate-900 p-3 rounded-xl border border-slate-800">
+        <div class="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
           <img src="/vehicles/seating/large-bag.svg" alt="Large Bags" class="w-8 h-8" />
           <div class="text-xs">
-            <span class="font-black text-white block">12 to 15 Large Suitcases</span>
-            <span class="text-slate-400 text-[11px]">Dedicated Rear Boot + Overhead Hand Baggage Racks</span>
+            <span class="font-black text-slate-900 block">12 to 15 Large Suitcases</span>
+            <span class="text-slate-500 text-[11px]">Dedicated Rear Boot + Overhead Hand Baggage Racks</span>
           </div>
         </div>
 
-        <p class="text-[11px] text-slate-400 leading-relaxed italic">
+        <p class="text-[11px] text-slate-600 leading-relaxed italic">
           "The 4WHEELS 22-seat executive saloon modification sacrifices 7 factory seats to maximize passenger legroom and expand rear trunk cargo space for weddings and tour groups."
         </p>
       </div>
 
-      <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-[11px] text-slate-400">
+      <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-[11px] text-slate-600">
         <strong>Source Verification:</strong> 4WHEELS Customized Executive Specification & Toyota Indus Official Coaster Datasheet.
       </div>
 

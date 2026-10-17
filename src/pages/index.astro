@@ -34,66 +34,88 @@ const homepageFaqs = [
 ---
 
 <Layout title={title} description={description} canonicalPath="/">
-  <!-- Hero Section -->
-  <section class="bg-slate-900 text-white py-12 md:py-20 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+  <!-- High-Performance Automotive White Hero Section -->
+  <section class="bg-gradient-to-b from-white via-slate-50 to-slate-100/60 text-slate-900 py-12 md:py-20 border-b border-slate-200 relative overflow-hidden">
+    <!-- Precision Background Grid Mesh -->
+    <div class="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#0f172a_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-7 space-y-6">
           <div class="flex flex-wrap items-center gap-2">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-400 text-xs font-semibold">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200 text-slate-700 text-xs font-bold shadow-xs">
               <span>📍 Johar Town Phase 1, Lahore</span>
-              <span class="text-slate-500">•</span>
-              <span>{BUSINESS_INFO.trustBadge}</span>
+              <span class="text-slate-300">•</span>
+              <span class="text-red-600 font-extrabold">{BUSINESS_INFO.trustBadge}</span>
             </div>
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-700/60 text-emerald-400 text-xs font-bold">
+            <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-black shadow-xs">
               <span>⚡ Live Quote &bull; WhatsApp Reply in ~5 Mins</span>
             </div>
           </div>
-          <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
-            Rent a Car in Lahore — <span class="text-red-500">Self Drive</span> or <span class="text-slate-300">With Driver</span>
+
+          <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-slate-950 tracking-tight leading-[1.1]">
+            Rent a Car in Lahore — <span class="text-red-600">Self Drive</span> or <span class="text-slate-800">With Driver</span>
           </h1>
-          <p class="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+
+          <p class="text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed font-medium">
             Choose flexible car rental options in Lahore for daily trips, airport travel, monthly requirements and business use. Reliable local service with direct phone & WhatsApp booking.
           </p>
+
           <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
             <a
               href="/booking/"
-              class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-base px-7 py-3.5 rounded-xl transition-all text-center shadow-lg shadow-red-600/20 uppercase tracking-wider"
+              class="bg-red-600 hover:bg-red-700 text-white font-black text-base px-8 py-4 rounded-xl transition-all text-center shadow-lg shadow-red-600/25 active:scale-98 uppercase tracking-wider"
             >
               🚗 BOOK YOUR TRIP
             </a>
             <a
               href="/trip-planner/"
-              class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-base px-6 py-3.5 rounded-xl transition-all text-center shadow-lg uppercase tracking-wider"
+              class="bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-300 font-extrabold text-base px-7 py-4 rounded-xl transition-all text-center uppercase tracking-wider active:scale-98"
             >
               🧭 PLAN MY TRIP
             </a>
           </div>
         </div>
-        <div class="lg:col-span-5 bg-slate-800/80 border border-slate-700 rounded-2xl p-6 sm:p-8 space-y-4">
-          <div class="text-xs text-red-400 font-bold uppercase tracking-wider">{BUSINESS_INFO.trustBadge}</div>
-          <h2 class="text-xl font-bold text-white border-b border-slate-700 pb-3">Quick Trip Planner & Inquiry</h2>
-          <p class="text-sm text-slate-300">
+
+        <!-- Cockpit Trip Planner & Direct Inquiry Card -->
+        <div class="lg:col-span-5 bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 space-y-5 shadow-[0_20px_50px_rgba(0,0,0,0.06)] ring-1 ring-slate-900/5">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <span class="text-xs text-red-600 font-black uppercase tracking-wider">{BUSINESS_INFO.trustBadge}</span>
+            <span class="text-[11px] font-bold text-slate-400">Direct Showroom Dispatch</span>
+          </div>
+
+          <h2 class="text-xl font-black text-slate-900 tracking-tight">Quick Trip Planner & Inquiry</h2>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
             Configure your rental vehicle, rental dates, and intercity route with our interactive planning tools.
           </p>
-          <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
-            <li class="flex items-center gap-2">✓ Self-drive & Chauffeur options</li>
-            <li class="flex items-center gap-2">✓ Intercity fuel & toll estimates</li>
-            <li class="flex items-center gap-2">✓ Lahore Airport transfers</li>
-            <li class="flex items-center gap-2">✓ Flexible daily & monthly options</li>
+
+          <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 font-medium">
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-600 font-bold">✓</span> Self-drive & Chauffeur options
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-600 font-bold">✓</span> Intercity fuel & toll estimates
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-600 font-bold">✓</span> Lahore Airport transfers
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-600 font-bold">✓</span> Flexible daily & monthly options
+            </li>
           </ul>
-          <div class="pt-2 flex flex-col gap-2">
+
+          <div class="pt-2 flex flex-col gap-2.5">
             <a
               href="/booking/"
-              class="block w-full text-center bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 rounded-lg text-sm transition-colors uppercase"
+              class="block w-full text-center bg-red-600 hover:bg-red-700 text-white font-black py-3 rounded-xl text-sm transition-all shadow-md uppercase tracking-wide active:scale-98"
             >
               Configure Rental
             </a>
             <a
               href="/official/"
-              class="block w-full text-center bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold py-2 rounded-lg text-xs transition-colors border border-slate-600"
+              class="block w-full text-center bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold py-2.5 rounded-xl text-xs transition-colors border border-slate-200"
             >
-              Verify Official 4WHEELS Branch
+              Verify Official 4WHEELS Branch →
             </a>
           </div>
         </div>
@@ -104,35 +126,35 @@ const homepageFaqs = [
   <!-- Popular Vehicles Embla Slider -->
   <FleetSlider title="POPULAR 4WHEELS VEHICLES" />
 
-  <!-- Compact Discovery Sections -->
-  <section class="py-12 bg-slate-950 border-b border-slate-800">
+  <!-- Compact Discovery Sections (Automotive White Grid) -->
+  <section class="py-14 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
       <!-- Discovery 1: Popular Routes -->
       <div>
         <div class="flex justify-between items-end mb-6">
           <div>
-            <h2 class="text-xl sm:text-2xl font-black text-white">Popular Pakistan Routes</h2>
-            <p class="text-xs sm:text-sm text-slate-400">Intercity motorway guides with fuel & toll estimates</p>
+            <h2 class="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">Popular Pakistan Routes</h2>
+            <p class="text-xs sm:text-sm text-slate-500 font-medium">Intercity motorway guides with fuel & toll estimates</p>
           </div>
-          <a href="/routes/" class="text-xs font-bold text-red-400 hover:underline">View All Routes →</a>
+          <a href="/routes/" class="text-xs font-bold text-red-600 hover:text-red-700 hover:underline">View All Routes →</a>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
-          <a href="/routes/lahore-to-islamabad/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
-            <p class="font-bold text-white text-sm">Lahore to Islamabad</p>
-            <p class="text-slate-400">M-2 Motorway • 375 km</p>
+          <a href="/routes/lahore-to-islamabad/" class="bg-slate-50/70 hover:bg-white p-4.5 rounded-2xl border border-slate-200 hover:border-red-500 hover:shadow-lg transition-all block space-y-1 group">
+            <p class="font-black text-slate-900 group-hover:text-red-600 transition-colors text-sm">Lahore to Islamabad</p>
+            <p class="text-slate-500 font-medium">M-2 Motorway • 375 km</p>
           </a>
-          <a href="/routes/lahore-to-murree/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
-            <p class="font-bold text-white text-sm">Lahore to Murree</p>
-            <p class="text-slate-400">Hill Station • 435 km</p>
+          <a href="/routes/lahore-to-murree/" class="bg-slate-50/70 hover:bg-white p-4.5 rounded-2xl border border-slate-200 hover:border-red-500 hover:shadow-lg transition-all block space-y-1 group">
+            <p class="font-black text-slate-900 group-hover:text-red-600 transition-colors text-sm">Lahore to Murree</p>
+            <p class="text-slate-500 font-medium">Hill Station • 435 km</p>
           </a>
-          <a href="/routes/lahore-to-faisalabad/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
-            <p class="font-bold text-white text-sm">Lahore to Faisalabad</p>
-            <p class="text-slate-400">M-3 Motorway • 180 km</p>
+          <a href="/routes/lahore-to-faisalabad/" class="bg-slate-50/70 hover:bg-white p-4.5 rounded-2xl border border-slate-200 hover:border-red-500 hover:shadow-lg transition-all block space-y-1 group">
+            <p class="font-black text-slate-900 group-hover:text-red-600 transition-colors text-sm">Lahore to Faisalabad</p>
+            <p class="text-slate-500 font-medium">M-3 Motorway • 180 km</p>
           </a>
-          <a href="/routes/lahore-to-multan/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
-            <p class="font-bold text-white text-sm">Lahore to Multan</p>
-            <p class="text-slate-400">M-4 Motorway • 345 km</p>
+          <a href="/routes/lahore-to-multan/" class="bg-slate-50/70 hover:bg-white p-4.5 rounded-2xl border border-slate-200 hover:border-red-500 hover:shadow-lg transition-all block space-y-1 group">
+            <p class="font-black text-slate-900 group-hover:text-red-600 transition-colors text-sm">Lahore to Multan</p>
+            <p class="text-slate-500 font-medium">M-4 Motorway • 345 km</p>
           </a>
         </div>
       </div>
@@ -141,23 +163,26 @@ const homepageFaqs = [
       <div>
         <div class="flex justify-between items-end mb-6">
           <div>
-            <h2 class="text-xl sm:text-2xl font-black text-white">Travel & Rental Guides</h2>
-            <p class="text-xs sm:text-sm text-slate-400">First-party advice on renting vehicles in Lahore</p>
+            <h2 class="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">Travel & Rental Guides</h2>
+            <p class="text-xs sm:text-sm text-slate-500 font-medium">First-party advice on renting vehicles in Lahore</p>
           </div>
-          <a href="/guides/" class="text-xs font-bold text-red-400 hover:underline">View Knowledge Hub →</a>
+          <a href="/guides/" class="text-xs font-bold text-red-600 hover:text-red-700 hover:underline">View Knowledge Hub →</a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-          <a href="/guides/how-to-rent-a-car-in-lahore/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
-            <span class="text-[10px] font-bold uppercase text-red-400">Rental Basics</span>
-            <p class="font-bold text-white text-sm">How to Rent a Car in Lahore</p>
+          <a href="/guides/how-to-rent-a-car-in-lahore/" class="bg-slate-50/70 hover:bg-white p-5 rounded-2xl border border-slate-200 hover:border-red-500 hover:shadow-lg transition-all block space-y-1.5 group">
+            <span class="text-[10px] font-black uppercase text-red-600 tracking-wider">Rental Basics</span>
+            <p class="font-black text-slate-900 group-hover:text-red-600 transition-colors text-sm">How to Rent a Car in Lahore</p>
+            <p class="text-slate-500 font-medium text-xs">Requirements, documentation, and best practices for renting cars in Lahore.</p>
           </a>
-          <a href="/guides/self-drive-vs-car-with-driver-lahore/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
-            <span class="text-[10px] font-bold uppercase text-amber-400">Self Drive</span>
-            <p class="font-bold text-white text-sm">Self Drive vs Car With Driver</p>
+          <a href="/guides/self-drive-vs-car-with-driver-lahore/" class="bg-slate-50/70 hover:bg-white p-5 rounded-2xl border border-slate-200 hover:border-red-500 hover:shadow-lg transition-all block space-y-1.5 group">
+            <span class="text-[10px] font-black uppercase text-amber-600 tracking-wider">Self Drive</span>
+            <p class="font-black text-slate-900 group-hover:text-amber-600 transition-colors text-sm">Self Drive vs Car With Driver</p>
+            <p class="text-slate-500 font-medium text-xs">Comparison of freedom, responsibility, and convenience for city and highway travel.</p>
           </a>
-          <a href="/guides/sedan-vs-suv-for-lahore-road-trips/" class="bg-slate-900 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors block space-y-1">
-            <span class="text-[10px] font-bold uppercase text-blue-400">Vehicle Choice</span>
-            <p class="font-bold text-white text-sm">Sedan vs SUV for Road Trips</p>
+          <a href="/guides/sedan-vs-suv-for-lahore-road-trips/" class="bg-slate-50/70 hover:bg-white p-5 rounded-2xl border border-slate-200 hover:border-red-500 hover:shadow-lg transition-all block space-y-1.5 group">
+            <span class="text-[10px] font-black uppercase text-blue-600 tracking-wider">Vehicle Choice</span>
+            <p class="font-black text-slate-900 group-hover:text-blue-600 transition-colors text-sm">Sedan vs SUV for Road Trips</p>
+            <p class="text-slate-500 font-medium text-xs">Choosing between economical sedans and powerful 4x4 SUVs for northern highway travel.</p>
           </a>
         </div>
       </div>
@@ -166,10 +191,10 @@ const homepageFaqs = [
   </section>
 
   <!-- Rental Services Overview -->
-  <section class="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="py-14 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-3xl mx-auto mb-12">
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4">Our Rental Services in Lahore</h2>
-      <p class="text-slate-600 text-base">
+      <h2 class="text-2xl sm:text-4xl font-black text-slate-950 mb-3 tracking-tight">Our Rental Services in Lahore</h2>
+      <p class="text-slate-600 text-sm sm:text-base font-medium">
         4WHEELS offers practical vehicle rental options tailored for individual drivers, families, visitors, and businesses.
       </p>
     </div>
@@ -214,25 +239,25 @@ const homepageFaqs = [
     </div>
   </section>
 
-  <!-- Verified 4WHEELS Headquarters & Physical Fleet Yard -->
-  <section class="py-14 bg-slate-900 text-white border-y border-slate-800">
+  <!-- Verified 4WHEELS Headquarters & Physical Fleet Yard (Showroom White) -->
+  <section class="py-16 bg-slate-50/80 text-slate-900 border-y border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-10">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-400 text-xs font-extrabold uppercase tracking-widest mb-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-black uppercase tracking-widest mb-3">
           <span>📍 Physical Showroom & Fleet Ground Verification</span>
         </div>
-        <h2 class="text-3xl sm:text-4xl font-black mb-3 text-white">
+        <h2 class="text-3xl sm:text-4xl font-black mb-3 text-slate-950 tracking-tight">
           Visit Our Johar Town Office & Fleet Yard
         </h2>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
           100% verified physical presence at Main Boulevard, Phase 1, Johar Town, Lahore. No middlemen, no virtual brokers — inspect real cars in person or book direct dispatch.
         </p>
       </div>
 
       <!-- Real Office & Yard Photos Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-        <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-xl group hover:border-red-600/70 transition-all">
-          <div class="aspect-[4/3] overflow-hidden">
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] group hover:border-red-500 hover:shadow-xl transition-all">
+          <div class="aspect-[4/3] overflow-hidden bg-slate-100">
             <img
               src="/images/office/4wheels-hq-billboard-wide.webp"
               alt="4WHEELS Rent a Car Johar Town Lahore Official Roadside Billboard 0321-6616644"
@@ -240,14 +265,14 @@ const homepageFaqs = [
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
-          <div class="p-3.5 text-xs">
-            <p class="font-extrabold text-white text-sm">Official Johar Town Billboard</p>
-            <p class="text-slate-400 text-[11px] mt-1">Official roadside billboard with direct helpline 0321-6616644</p>
+          <div class="p-4 text-xs">
+            <p class="font-black text-slate-900 text-sm">Official Johar Town Billboard</p>
+            <p class="text-slate-500 text-[11px] mt-1 font-medium">Official roadside billboard with direct helpline 0321-6616644</p>
           </div>
         </div>
 
-        <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-xl group hover:border-red-600/70 transition-all">
-          <div class="aspect-[4/3] overflow-hidden">
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] group hover:border-red-500 hover:shadow-xl transition-all">
+          <div class="aspect-[4/3] overflow-hidden bg-slate-100">
             <img
               src="/images/office/4wheels-fleet-lineup-civics-fortuner.webp"
               alt="4WHEELS Fleet Yard Lineup Honda Civics, Fortuner Legender, Toyota Prado"
@@ -255,14 +280,14 @@ const homepageFaqs = [
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
-          <div class="p-3.5 text-xs">
-            <p class="font-extrabold text-white text-sm">Civics & Fortuner Lineup</p>
-            <p class="text-slate-400 text-[11px] mt-1">White Civic 11th Gen, Fortuner Legender & Prado ready in yard</p>
+          <div class="p-4 text-xs">
+            <p class="font-black text-slate-900 text-sm">Civics & Fortuner Lineup</p>
+            <p class="text-slate-500 text-[11px] mt-1 font-medium">White Civic 11th Gen, Fortuner Legender & Prado ready in yard</p>
           </div>
         </div>
 
-        <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-xl group hover:border-red-600/70 transition-all">
-          <div class="aspect-[4/3] overflow-hidden">
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] group hover:border-red-500 hover:shadow-xl transition-all">
+          <div class="aspect-[4/3] overflow-hidden bg-slate-100">
             <img
               src="/images/office/4wheels-office-entrance-prado-civic.webp"
               alt="4WHEELS Customer Reception Entrance with Black Prado and White Civic"
@@ -270,14 +295,14 @@ const homepageFaqs = [
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
-          <div class="p-3.5 text-xs">
-            <p class="font-extrabold text-white text-sm">Showroom Reception Office</p>
-            <p class="text-slate-400 text-[11px] mt-1">Johar Town office front with Black Prado & White Civic</p>
+          <div class="p-4 text-xs">
+            <p class="font-black text-slate-900 text-sm">Showroom Reception Office</p>
+            <p class="text-slate-500 text-[11px] mt-1 font-medium">Johar Town office front with Black Prado & White Civic</p>
           </div>
         </div>
 
-        <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-xl group hover:border-red-600/70 transition-all">
-          <div class="aspect-[4/3] overflow-hidden">
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] group hover:border-red-500 hover:shadow-xl transition-all">
+          <div class="aspect-[4/3] overflow-hidden bg-slate-100">
             <img
               src="/images/office/4wheels-fleet-yard-yaris-sportage-pajero.webp"
               alt="4WHEELS Fleet Yard Toyota Yaris, Kia Sportage and Mitsubishi Pajero"
@@ -285,20 +310,20 @@ const homepageFaqs = [
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
-          <div class="p-3.5 text-xs">
-            <p class="font-extrabold text-white text-sm">Sedans & 4x4 Yard Lineup</p>
-            <p class="text-slate-400 text-[11px] mt-1">Toyota Yaris, Kia Sportage and Mitsubishi Pajero in fleet yard</p>
+          <div class="p-4 text-xs">
+            <p class="font-black text-slate-900 text-sm">Sedans & 4x4 Yard Lineup</p>
+            <p class="text-slate-500 text-[11px] mt-1 font-medium">Toyota Yaris, Kia Sportage and Mitsubishi Pajero in fleet yard</p>
           </div>
         </div>
       </div>
 
-      <!-- Fuel Fluctuation Disclaimer Banner -->
-      <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <!-- Fuel Fluctuation Disclaimer Banner (White Automotive Style) -->
+      <div class="bg-white border border-amber-300 rounded-2xl p-5 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm">
         <div class="flex items-start gap-3">
           <span class="text-2xl">⛽</span>
           <div class="text-xs">
-            <span class="font-bold text-amber-400 uppercase tracking-wide block">Pricing Policy: Fuel Rates Fluctuate in Pakistan</span>
-            <p class="text-slate-300 mt-1 leading-relaxed">
+            <span class="font-black text-amber-700 uppercase tracking-wide block">Pricing Policy: Fuel Rates Fluctuate in Pakistan</span>
+            <p class="text-slate-600 mt-1 leading-relaxed font-medium">
               Rental rates displayed on our site are approximate base estimates. Due to regular petrol and diesel price adjustments by OGRA, contact customer care on WhatsApp for your guaranteed exact locked rate for today.
             </p>
           </div>
@@ -307,7 +332,7 @@ const homepageFaqs = [
           href="https://wa.me/923216616644?text=Assalam%20o%20Alaikum%204WHEELS,%20please%20send%20me%20today's%20latest%20exact%20rates%20for%20rental%20vehicles."
           target="_blank"
           rel="noopener noreferrer"
-          class="shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs px-5 py-3 rounded-xl transition-colors shadow-lg flex items-center gap-2 whitespace-nowrap"
+          class="shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl transition-all shadow-md flex items-center gap-2 whitespace-nowrap active:scale-98"
         >
           <span>💬 Text WhatsApp for Exact Rate</span>
         </a>
@@ -317,13 +342,13 @@ const homepageFaqs = [
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm font-bold">
         <a
           href="/booking/"
-          class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-8 py-3.5 rounded-xl transition-colors uppercase tracking-wider text-center shadow-lg shadow-red-600/30"
+          class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-8 py-3.5 rounded-xl transition-all uppercase tracking-wider text-center shadow-lg shadow-red-600/25 active:scale-98 font-black"
         >
           🚗 BOOK YOUR TRIP NOW
         </a>
         <a
           href="/official/"
-          class="w-full sm:w-auto bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 px-6 py-3.5 rounded-xl transition-colors text-center"
+          class="w-full sm:w-auto bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 px-6 py-3.5 rounded-xl transition-colors text-center font-bold"
         >
           Verify Official Branch Details →
         </a>
@@ -339,10 +364,10 @@ const homepageFaqs = [
   <!-- Final CTA -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
     <CTASection
-      title="Ready to Plan & Book Your Trip?"
-      description="Use our booking configurator to select dates and vehicles, and receive direct WhatsApp verification from 4WHEELS Customer Care."
-      primaryBtnText="Book Your Trip"
-      primaryBtnHref="/booking/"
+      heading="Ready to Plan & Book Your Trip?"
+      subheading="Use our booking configurator to select dates and vehicles, and receive direct WhatsApp verification from 4WHEELS Customer Care."
+      primaryButtonText="Book Your Trip"
+      primaryButtonHref="/booking/"
     />
   </div>
 </Layout>

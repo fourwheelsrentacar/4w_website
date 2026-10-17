@@ -69,38 +69,38 @@ const serviceSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <BreadcrumbSchema items={breadcrumbItems} />
 
-  <main class="bg-slate-950 text-slate-100 min-h-screen pb-16">
+  <main class="bg-slate-50 text-slate-800 min-h-screen pb-16">
     <!-- Breadcrumbs -->
-    <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400" aria-label="Breadcrumb">
+    <nav class="bg-white border-b border-slate-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-500" aria-label="Breadcrumb">
       <div class="max-w-5xl mx-auto flex items-center space-x-2">
-        <a href="/" class="hover:text-white">Home</a>
+        <a href="/" class="hover:text-red-600 transition-colors">Home</a>
         <span>›</span>
-        <a href="/locations/" class="hover:text-white">Locations</a>
+        <a href="/locations/" class="hover:text-red-600 transition-colors">Locations</a>
         <span>›</span>
-        <span class="text-slate-200 font-semibold truncate">{loc.city}</span>
+        <span class="text-slate-800 font-semibold truncate">{loc.city}</span>
       </div>
     </nav>
 
     <!-- Header Hero -->
-    <section class="bg-slate-900 border-b border-slate-800 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 border-b border-slate-200 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto text-center space-y-4">
         <span class={`inline-block text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider ${
           loc.classification === 'OFFICIAL LOCATION'
             ? 'bg-red-600 text-white'
-            : 'bg-slate-800 text-amber-400 border border-amber-500/30'
+            : 'bg-amber-50 text-amber-800 border border-amber-200'
         }`}>
           {loc.classification}
         </span>
-        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+        <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
           Rent a Car in {loc.city}
         </h1>
-        <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
           {loc.serviceOverview}
         </p>
 
         {loc.classification !== 'OFFICIAL LOCATION' && (
-          <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 max-w-xl mx-auto text-xs text-slate-400">
-            ℹ️ <span class="text-slate-200 font-bold">Location Policy:</span> 4WHEELS primary physical head office is situated exclusively in <span class="text-white font-bold">Johar Town Phase 1, Lahore</span>. Transport for {loc.city} is dispatched as intercity chauffeur service or verified long-term delivery.
+          <div class="bg-white border border-slate-200 rounded-xl p-3.5 max-w-xl mx-auto text-xs text-slate-600 shadow-xs">
+            ℹ️ <span class="text-slate-900 font-bold">Location Policy:</span> 4WHEELS primary physical head office is situated exclusively in <span class="text-slate-900 font-bold">Johar Town Phase 1, Lahore</span>. Transport for {loc.city} is dispatched as intercity chauffeur service or verified long-term delivery.
           </div>
         )}
       </div>
@@ -111,23 +111,23 @@ const serviceSchema = {
 
       <!-- Quick Specs Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
-        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800">
-          <p class="text-slate-400 font-medium mb-1">📍 Distance from Lahore Hub</p>
-          <p class="text-slate-100 font-bold text-base">
+        <div class="auto-card bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
+          <p class="text-slate-500 font-medium mb-1">📍 Distance from Lahore Hub</p>
+          <p class="text-slate-900 font-bold text-base">
             {loc.approxDistanceKmFromLahore === 0 ? 'Main Head Office Hub' : `~${loc.approxDistanceKmFromLahore} km`}
           </p>
         </div>
 
-        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800">
-          <p class="text-slate-400 font-medium mb-1">🛫 Nearest Airport</p>
-          <p class="text-slate-100 font-bold text-base truncate">
+        <div class="auto-card bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
+          <p class="text-slate-500 font-medium mb-1">🛫 Nearest Airport</p>
+          <p class="text-slate-900 font-bold text-base truncate">
             {loc.airport || 'Intercity Express Motorway'}
           </p>
         </div>
 
-        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800">
-          <p class="text-slate-400 font-medium mb-1">🚘 Supported Vehicles</p>
-          <p class="text-slate-100 font-bold text-base truncate">
+        <div class="auto-card bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
+          <p class="text-slate-500 font-medium mb-1">🚘 Supported Vehicles</p>
+          <p class="text-slate-900 font-bold text-base truncate">
             {loc.vehicleTypesAvailable.join(', ')}
           </p>
         </div>
@@ -135,15 +135,15 @@ const serviceSchema = {
 
       <!-- Common Routes -->
       {loc.commonRoutes && loc.commonRoutes.length > 0 && (
-        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
-          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+        <section class="auto-card bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-xs">
+          <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
             <span>🛣️ Frequently Traveled Intercity Routes</span>
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
             {loc.commonRoutes.map(route => (
-              <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-slate-200 flex justify-between items-center">
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-slate-800 flex justify-between items-center">
                 <span>{route}</span>
-                <a href="/trip-planner/" class="text-xs font-bold text-amber-400 hover:text-amber-300">Plan →</a>
+                <a href="/trip-planner/" class="text-xs font-bold text-red-600 hover:text-red-700">Plan →</a>
               </div>
             ))}
           </div>

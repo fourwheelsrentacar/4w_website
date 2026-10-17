@@ -13,15 +13,15 @@ const layout = getSeatLayoutBySlug(vehicleSlug);
 const titleText = vehicleName || layout.vehicleName;
 ---
 
-<div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-6 shadow-xl">
+<div class="auto-card bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-6 shadow-xs">
   {showTitle && (
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-4 gap-2">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
       <div>
-        <span class="text-[10px] font-black uppercase tracking-widest text-red-500">2D CABIN & LUGGAGE DIAGRAM</span>
-        <h3 class="text-xl font-black text-white">{titleText} Capacity Visual</h3>
+        <span class="text-[10px] font-black uppercase tracking-widest text-red-600">2D CABIN & LUGGAGE DIAGRAM</span>
+        <h3 class="text-xl font-black text-slate-900">{titleText} Capacity Visual</h3>
       </div>
       <div class="flex items-center gap-2">
-        <span class="text-xs bg-slate-800 text-slate-300 border border-slate-700 font-bold px-3 py-1 rounded-lg">
+        <span class="text-xs bg-slate-100 text-slate-700 border border-slate-200 font-bold px-3 py-1 rounded-lg">
           {layout.configurationSource}
         </span>
       </div>
@@ -29,18 +29,18 @@ const titleText = vehicleName || layout.vehicleName;
   )}
 
   <!-- Legend & Color Guidance -->
-  <div class="flex flex-wrap items-center gap-3 text-xs bg-slate-950/80 p-3.5 rounded-xl border border-slate-800/80">
+  <div class="flex flex-wrap items-center gap-3 text-xs bg-slate-50 p-3.5 rounded-xl border border-slate-200">
     <div class="flex items-center gap-1.5">
       <span class="w-3.5 h-3.5 rounded bg-red-900 border border-red-500 inline-block"></span>
-      <span class="text-slate-300 font-medium">Driver Position</span>
+      <span class="text-slate-700 font-medium">Driver Position</span>
     </div>
     <div class="flex items-center gap-1.5">
       <span class="w-3.5 h-3.5 rounded bg-slate-800 border border-blue-500 inline-block"></span>
-      <span class="text-slate-300 font-medium">Passenger Position</span>
+      <span class="text-slate-700 font-medium">Passenger Position</span>
     </div>
     <div class="flex items-center gap-1.5">
       <span class="w-3.5 h-3.5 rounded bg-emerald-950 border border-emerald-500 inline-block"></span>
-      <span class="text-slate-300 font-medium">Luggage Zone</span>
+      <span class="text-slate-700 font-medium">Luggage Zone</span>
     </div>
   </div>
 
@@ -237,47 +237,47 @@ const titleText = vehicleName || layout.vehicleName;
     <div class="md:col-span-6 space-y-4">
 
       <!-- Capacity Breakdown Card -->
-      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
-        <h4 class="text-xs font-black uppercase tracking-wider text-slate-400 border-b border-slate-800 pb-2">
+      <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-slate-500 border-b border-slate-200 pb-2">
           1. Cabin Passenger Arrangement
         </h4>
 
         <div class="grid grid-cols-2 gap-3 text-xs">
-          <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+          <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-xs">
             <span class="text-[10px] text-slate-500 font-bold block uppercase">Total Cabin Occupants</span>
-            <span class="text-2xl font-black text-white">{layout.totalOccupants}</span>
-            <span class="text-[10px] text-slate-400 block mt-0.5">({layout.driverIncluded ? 'Includes 1 Driver' : 'Passengers Only'})</span>
+            <span class="text-2xl font-black text-slate-900">{layout.totalOccupants}</span>
+            <span class="text-[10px] text-slate-500 block mt-0.5">({layout.driverIncluded ? 'Includes 1 Driver' : 'Passengers Only'})</span>
           </div>
 
-          <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+          <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-xs">
             <span class="text-[10px] text-slate-500 font-bold block uppercase">Passenger Capacity</span>
-            <span class="text-2xl font-black text-red-500">{layout.maxPassengers} Pax</span>
-            <span class="text-[10px] text-slate-400 block mt-0.5">Maximum Comfort</span>
+            <span class="text-2xl font-black text-red-600">{layout.maxPassengers} Pax</span>
+            <span class="text-[10px] text-slate-500 block mt-0.5">Maximum Comfort</span>
           </div>
         </div>
 
         <!-- Seating Rows Detail List -->
         <div class="space-y-1.5 pt-1 text-xs">
           {layout.rows.map(row => (
-            <div class="flex items-center justify-between bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
-              <span class="font-bold text-slate-300">{row.label || `Row ${row.row}`}</span>
-              <span class="font-black text-slate-100">{row.seats.filter(s => s !== 'aisle').length} Positions</span>
+            <div class="flex items-center justify-between bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
+              <span class="font-bold text-slate-700">{row.label || `Row ${row.row}`}</span>
+              <span class="font-black text-slate-900">{row.seats.filter(s => s !== 'aisle').length} Positions</span>
             </div>
           ))}
         </div>
       </div>
 
       <!-- Luggage Area Card -->
-      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
-        <h4 class="text-xs font-black uppercase tracking-wider text-slate-400 border-b border-slate-800 pb-2 flex items-center justify-between">
+      <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-slate-500 border-b border-slate-200 pb-2 flex items-center justify-between">
           <span>2. Boot & Luggage Space</span>
-          <span class="text-[10px] text-emerald-400 font-bold bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">
+          <span class="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
             VERIFIED FIT
           </span>
         </h4>
 
         <!-- Luggage SVG Icons Visual -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 bg-slate-900 p-3 rounded-xl border border-slate-800 overflow-hidden">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-xs overflow-hidden">
           <div class="flex items-center gap-2 shrink-0">
             {Array.from({ length: Math.min(layout.luggageArea.largeSuitcases, 4) }).map((_, i) => (
               <img src="/vehicles/seating/large-bag.svg" alt="Large Suitcase" class="w-7 h-7" title="Large Suitcase" />
@@ -287,35 +287,35 @@ const titleText = vehicleName || layout.vehicleName;
             ))}
           </div>
 
-          <div class="text-xs font-bold text-slate-200">
+          <div class="text-xs font-bold text-slate-900">
             {layout.luggageArea.largeSuitcases} Large + {layout.luggageArea.cabinBags} Cabin Bags
           </div>
         </div>
 
-        <p class="text-xs text-slate-300 font-medium leading-relaxed">
+        <p class="text-xs text-slate-600 font-medium leading-relaxed">
           {layout.luggageArea.description}
         </p>
 
         <!-- 3rd Row Behavior State Notice if SUV/MPV -->
         {layout.thirdRowBehavior && (
-          <div class="mt-3 bg-amber-950/60 border border-amber-800/80 p-3 rounded-xl space-y-2">
-            <div class="flex items-center justify-between text-xs font-bold text-amber-300">
+          <div class="mt-3 bg-amber-50 border border-amber-200 p-3 rounded-xl space-y-2">
+            <div class="flex items-center justify-between text-xs font-bold text-amber-900">
               <span>🔄 Third-Row Seating vs Cargo Toggle</span>
-              <span class="text-[10px] bg-amber-900 text-amber-100 px-2 py-0.5 rounded">SUV Flexible Boot</span>
+              <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded border border-amber-300">SUV Flexible Boot</span>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] text-slate-200 pt-1">
-              <div class="bg-slate-900/80 p-2 rounded border border-slate-800">
-                <strong class="block text-amber-400">All Seats In Use (7-Seat):</strong>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] text-slate-800 pt-1">
+              <div class="bg-white p-2 rounded border border-amber-200">
+                <strong class="block text-amber-800">All Seats In Use (7-Seat):</strong>
                 <span>{layout.thirdRowBehavior.seatsUpCapacity.luggage.description}</span>
               </div>
-              <div class="bg-slate-900/80 p-2 rounded border border-slate-800">
-                <strong class="block text-emerald-400">Third Row Folded (5-Seat):</strong>
+              <div class="bg-white p-2 rounded border border-emerald-200">
+                <strong class="block text-emerald-800">Third Row Folded (5-Seat):</strong>
                 <span>{layout.thirdRowBehavior.thirdRowFoldedCapacity?.luggage.description}</span>
               </div>
             </div>
 
-            <p class="text-[10px] text-amber-200/80 italic pt-1">
+            <p class="text-[10px] text-amber-800 italic pt-1">
               "{layout.thirdRowBehavior.note}"
             </p>
           </div>
@@ -323,9 +323,9 @@ const titleText = vehicleName || layout.vehicleName;
       </div>
 
       <!-- Source & Disclaimer Box -->
-      <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80 text-[11px] text-slate-400 space-y-1">
+      <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-[11px] text-slate-500 space-y-1">
         <div><strong>Configuration Source:</strong> {layout.sourceNote}</div>
-        <p class="text-[10px] text-slate-500 italic">
+        <p class="text-[10px] text-slate-400 italic">
           *Luggage capacity figures are approximate. Actual bag fit varies depending on suitcase dimensions and passenger carry-ons.
         </p>
       </div>

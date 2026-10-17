@@ -11,40 +11,40 @@ const canonicalPath = "/trip-planner/";
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
   <!-- Hero Section -->
-  <section class="bg-slate-900 text-white py-12 md:py-16 border-b border-slate-800 relative overflow-hidden">
+  <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 text-slate-900 py-12 md:py-16 border-b border-slate-200 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-      <span class="inline-block bg-amber-500 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-widest mb-3 shadow-md">
+      <span class="inline-block bg-red-600 text-white text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-widest mb-3 shadow-sm">
         Interactive Trip Planning & Expense Calculator
       </span>
-      <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-3">
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-3 text-slate-900">
         Plan Your Trip
       </h1>
-      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+      <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
         Specify your origin, destination, travel dates, hotel preferences, and meal choices. Our budget engine calculates approximate fuel, tolls, stay, and rental expenses.
       </p>
     </div>
   </section>
 
   <!-- Trip Planner Form & Estimator Grid -->
-  <section class="py-10 bg-slate-950 text-white min-h-screen">
+  <section class="py-10 bg-slate-50/60 text-slate-900 min-h-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
         <!-- Form Column -->
-        <div class="lg:col-span-7 bg-slate-900 rounded-2xl border border-slate-800 p-6 space-y-6 shadow-xl">
-          <div class="border-b border-slate-800 pb-3">
-            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+        <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 space-y-6 shadow-sm">
+          <div class="border-b border-slate-200 pb-3">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
               <span>🧭 1. Enter Trip Requirements</span>
             </h2>
-            <p class="text-xs text-slate-400 mt-1">Configure your route and travel options to generate planning budget estimates.</p>
+            <p class="text-xs text-slate-500 mt-1">Configure your route and travel options to generate planning budget estimates.</p>
           </div>
 
           <form id="trip-planner-form" class="space-y-5 text-xs">
             <!-- Origin & Destination -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="plan-origin" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
-                  Pick-up Location / City <span class="text-red-500">*</span>
+                <label for="plan-origin" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                  Pick-up Location / City <span class="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
@@ -52,13 +52,13 @@ const canonicalPath = "/trip-planner/";
                   required
                   placeholder="e.g. Johar Town, Lahore or Allama Iqbal Airport"
                   value="Lahore"
-                  class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none"
+                  class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 font-semibold focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none"
                 />
               </div>
 
               <div>
-                <label for="plan-destination-custom" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
-                  Drop-off Location / City <span class="text-red-500">*</span>
+                <label for="plan-destination-custom" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                  Drop-off Location / City <span class="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
@@ -66,17 +66,17 @@ const canonicalPath = "/trip-planner/";
                   required
                   placeholder="e.g. F-7, Islamabad or Mall Road, Murree"
                   value="Islamabad"
-                  class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none"
+                  class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 font-semibold focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none"
                 />
               </div>
             </div>
 
             <!-- Preset Quick Select -->
             <div>
-              <label for="plan-destination-preset" class="block font-semibold text-slate-400 mb-1 text-[11px]">
+              <label for="plan-destination-preset" class="block font-semibold text-slate-500 mb-1 text-[11px]">
                 Quick Select Popular Route (Optional Preset)
               </label>
-              <select id="plan-destination-preset" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none">
+              <select id="plan-destination-preset" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-semibold text-xs focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none">
                 <option value="custom">Custom Location Pair (Enter above)</option>
                 <option value="Islamabad / Rawalpindi" data-dist="375" data-toll="1100" data-dest="Islamabad">Lahore → Islamabad / Rawalpindi (375 km)</option>
                 <option value="Murree / Galiyat" data-dist="435" data-toll="1350" data-dest="Murree">Lahore → Murree / Galiyat (435 km)</option>
@@ -91,19 +91,19 @@ const canonicalPath = "/trip-planner/";
             <!-- Route Type & Distance Override -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block font-bold uppercase tracking-wider text-slate-300 mb-1">Trip Type</label>
+                <label class="block font-bold uppercase tracking-wider text-slate-700 mb-1">Trip Type</label>
                 <div class="grid grid-cols-2 gap-2">
-                  <button type="button" id="btn-return-trip" class="trip-type-btn bg-amber-500 text-slate-950 font-black p-2.5 rounded-xl text-center border border-amber-500 transition-all" data-val="return">Return Trip</button>
-                  <button type="button" id="btn-oneway-trip" class="trip-type-btn bg-slate-800 text-slate-300 font-bold p-2.5 rounded-xl text-center border border-slate-700 hover:bg-slate-750 transition-all" data-val="oneway">One-Way</button>
+                  <button type="button" id="btn-return-trip" class="trip-type-btn bg-red-600 text-white font-black p-2.5 rounded-xl text-center border border-red-600 transition-all shadow-sm" data-val="return">Return Trip</button>
+                  <button type="button" id="btn-oneway-trip" class="trip-type-btn bg-slate-100 text-slate-700 font-bold p-2.5 rounded-xl text-center border border-slate-200 hover:bg-slate-200 transition-all" data-val="oneway">One-Way</button>
                 </div>
                 <input type="hidden" id="plan-triptype" value="return" />
               </div>
 
               <div>
-                <label for="plan-distance" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                <label for="plan-distance" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
                   Estimated Total Distance (km)
                 </label>
-                <input type="number" id="plan-distance" min="10" max="5000" value="750" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-bold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+                <input type="number" id="plan-distance" min="10" max="5000" value="750" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 font-bold focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
                 <p class="text-[10px] text-slate-500 mt-1">Calculated for return distance based on selected route.</p>
               </div>
             </div>
@@ -111,44 +111,44 @@ const canonicalPath = "/trip-planner/";
             <!-- Dates & Duration -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="plan-start-date" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
-                  Start Date <span class="text-red-500">*</span>
+                <label for="plan-start-date" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                  Start Date <span class="text-red-600">*</span>
                 </label>
-                <input type="date" id="plan-start-date" required class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+                <input type="date" id="plan-start-date" required class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 font-semibold focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
               </div>
 
               <div>
-                <label for="plan-end-date" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
-                  End Date <span class="text-red-500">*</span>
+                <label for="plan-end-date" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                  End Date <span class="text-red-600">*</span>
                 </label>
-                <input type="date" id="plan-end-date" required class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+                <input type="date" id="plan-end-date" required class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 font-semibold focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
               </div>
             </div>
 
             <!-- Travelers & Luggage -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="plan-travelers" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                <label for="plan-travelers" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
                   Number of Travelers
                 </label>
-                <input type="number" id="plan-travelers" min="1" max="60" value="5" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-bold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+                <input type="number" id="plan-travelers" min="1" max="60" value="5" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 font-bold focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
               </div>
 
               <div>
-                <label for="plan-luggage" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                <label for="plan-luggage" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
                   Large Bags
                 </label>
-                <input type="number" id="plan-luggage" min="0" max="30" value="4" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-bold focus:ring-1 focus:ring-amber-500 focus:outline-none" />
+                <input type="number" id="plan-luggage" min="0" max="30" value="4" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 font-bold focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
               </div>
             </div>
 
             <!-- Vehicle Selection & Rental Mode -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="plan-vehicle" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                <label for="plan-vehicle" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
                   Preferred Fleet Vehicle
                 </label>
-                <select id="plan-vehicle" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none">
+                <select id="plan-vehicle" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 font-semibold focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none">
                   {FLEET_VEHICLES.map(v => (
                     <option value={v.slug} data-fuel={v.fuelType} data-kml="11" data-seats={v.seats} data-luggage={v.luggage}>
                       {v.manufacturer} {v.model} ({v.category.toUpperCase()})
@@ -158,10 +158,10 @@ const canonicalPath = "/trip-planner/";
               </div>
 
               <div>
-                <label for="plan-mode" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
+                <label for="plan-mode" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
                   Rental Mode
                 </label>
-                <select id="plan-mode" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-semibold focus:ring-1 focus:ring-amber-500 focus:outline-none">
+                <select id="plan-mode" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 font-semibold focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none">
                   <option value="With Driver">With Driver (Chauffeur Service)</option>
                   <option value="Self Drive">Self Drive</option>
                 </select>
@@ -169,13 +169,13 @@ const canonicalPath = "/trip-planner/";
             </div>
 
             <!-- Trip Style & Hotel Planning -->
-            <div class="border-t border-slate-800 pt-4 space-y-4">
-              <h3 class="font-bold text-slate-200 uppercase tracking-wider text-[11px]">Hotel & Food Expenses Planning</h3>
+            <div class="border-t border-slate-200 pt-4 space-y-4">
+              <h3 class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Hotel & Food Expenses Planning</h3>
 
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label for="plan-hotel-category" class="block font-semibold text-slate-400 mb-1">Hotel Band</label>
-                  <select id="plan-hotel-category" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold">
+                  <label for="plan-hotel-category" class="block font-semibold text-slate-500 mb-1">Hotel Band</label>
+                  <select id="plan-hotel-category" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-semibold">
                     <option value="Mid-range">Mid-range (PKR 16,000/night)</option>
                     <option value="Economy">Economy (PKR 7,500/night)</option>
                     <option value="Premium">Premium (PKR 32,000/night)</option>
@@ -185,20 +185,20 @@ const canonicalPath = "/trip-planner/";
                 </div>
 
                 <div>
-                  <label for="plan-rooms" class="block font-semibold text-slate-400 mb-1">Rooms Needed</label>
-                  <input type="number" id="plan-rooms" min="0" max="20" value="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-bold" />
+                  <label for="plan-rooms" class="block font-semibold text-slate-500 mb-1">Rooms Needed</label>
+                  <input type="number" id="plan-rooms" min="0" max="20" value="2" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-bold" />
                 </div>
 
                 <div>
-                  <label for="plan-nights" class="block font-semibold text-slate-400 mb-1">Hotel Nights</label>
-                  <input type="number" id="plan-nights" min="0" max="30" value="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-bold" />
+                  <label for="plan-nights" class="block font-semibold text-slate-500 mb-1">Hotel Nights</label>
+                  <input type="number" id="plan-nights" min="0" max="30" value="2" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-bold" />
                 </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label for="plan-meals" class="block font-semibold text-slate-400 mb-1">Meals Per Person / Day</label>
-                  <select id="plan-meals" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold">
+                  <label for="plan-meals" class="block font-semibold text-slate-500 mb-1">Meals Per Person / Day</label>
+                  <select id="plan-meals" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-semibold">
                     <option value="1500">2 Standard Meals (~PKR 1,500/person/day)</option>
                     <option value="2500">3 Full Meals (~PKR 2,500/person/day)</option>
                     <option value="4000">3 Premium Meals (~PKR 4,000/person/day)</option>
@@ -207,8 +207,8 @@ const canonicalPath = "/trip-planner/";
                 </div>
 
                 <div>
-                  <label for="plan-buffer" class="block font-semibold text-slate-400 mb-1">Contingency Cushion</label>
-                  <select id="plan-buffer" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold">
+                  <label for="plan-buffer" class="block font-semibold text-slate-500 mb-1">Contingency Cushion</label>
+                  <select id="plan-buffer" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-semibold">
                     <option value="0.05">5% Cushion Buffer</option>
                     <option value="0.10">10% Cushion Buffer</option>
                     <option value="0">No Cushion Buffer</option>
@@ -218,19 +218,19 @@ const canonicalPath = "/trip-planner/";
             </div>
 
             <!-- Customer Details for WhatsApp -->
-            <div class="border-t border-slate-800 pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="border-t border-slate-200 pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="plan-name" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
-                  Your Name <span class="text-red-500">*</span>
+                <label for="plan-name" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                  Your Name <span class="text-red-600">*</span>
                 </label>
-                <input type="text" id="plan-name" required placeholder="e.g. Ahmed" value="Ahmed" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold" />
+                <input type="text" id="plan-name" required placeholder="e.g. Ahmed" value="Ahmed" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-semibold focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
               </div>
 
               <div>
-                <label for="plan-phone" class="block font-bold uppercase tracking-wider text-slate-300 mb-1">
-                  Phone / WhatsApp <span class="text-red-500">*</span>
+                <label for="plan-phone" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                  Phone / WhatsApp <span class="text-red-600">*</span>
                 </label>
-                <input type="tel" id="plan-phone" required placeholder="03XXXXXXXXX" value="03001234567" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-semibold" />
+                <input type="tel" id="plan-phone" required placeholder="03XXXXXXXXX" value="03001234567" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-semibold focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
               </div>
             </div>
           </form>
@@ -238,64 +238,64 @@ const canonicalPath = "/trip-planner/";
 
         <!-- Estimator Results Column -->
         <div class="lg:col-span-5 space-y-6">
-          <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sticky top-24 space-y-6 shadow-xl">
-            <div class="border-b border-slate-800 pb-3 flex items-center justify-between">
+          <div class="bg-white rounded-2xl border border-slate-200 p-6 sticky top-24 space-y-6 shadow-sm">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
               <div>
-                <h2 class="text-lg font-black text-white">Estimate Your Trip Budget</h2>
-                <p class="text-[11px] text-slate-400">Approximate Trip Budget Calculation</p>
+                <h2 class="text-lg font-black text-slate-900">Estimate Your Trip Budget</h2>
+                <p class="text-[11px] text-slate-500">Approximate Trip Budget Calculation</p>
               </div>
-              <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Planning Only</span>
+              <span class="bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Planning Only</span>
             </div>
 
             <!-- Vehicle Recommendation Engine Banner -->
-            <div id="vehicle-recommendation-box" class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-xs space-y-1">
-              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest block">💡 Vehicle Trip Fit Recommendation:</span>
-              <div id="recommendation-text" class="font-extrabold text-white text-sm">Toyota Fortuner SUV Recommended</div>
-              <p id="recommendation-reason" class="text-slate-400 text-[11px]">Recommended for 5 passengers + 4 large bags on outstation highway route.</p>
+            <div id="vehicle-recommendation-box" class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs space-y-1">
+              <span class="text-[10px] font-bold text-red-600 uppercase tracking-widest block">💡 Vehicle Trip Fit Recommendation:</span>
+              <div id="recommendation-text" class="font-extrabold text-slate-900 text-sm">Toyota Fortuner SUV Recommended</div>
+              <p id="recommendation-reason" class="text-slate-500 text-[11px]">Recommended for 5 passengers + 4 large bags on outstation highway route.</p>
             </div>
 
             <!-- Breakdown Expense Cards -->
             <div class="space-y-2 text-xs">
-              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
-                <span class="text-slate-300 font-medium">🚘 Estimated Vehicle Rental:</span>
-                <span id="cost-rental" class="font-bold text-white">PKR 45,000</span>
+              <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                <span class="text-slate-600 font-medium">🚘 Estimated Vehicle Rental:</span>
+                <span id="cost-rental" class="font-bold text-slate-900">PKR 45,000</span>
               </div>
 
-              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
-                <span class="text-slate-300 font-medium">⛽ Estimated Fuel Expense:</span>
-                <span id="cost-fuel" class="font-bold text-emerald-400">PKR 18,790</span>
+              <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                <span class="text-slate-600 font-medium">⛽ Estimated Fuel Expense:</span>
+                <span id="cost-fuel" class="font-bold text-emerald-700">PKR 18,790</span>
               </div>
 
-              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
-                <span class="text-slate-300 font-medium">🛣️ Estimated Tolls / M-Tag:</span>
-                <span id="cost-tolls" class="font-bold text-sky-400">PKR 2,700</span>
+              <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                <span class="text-slate-600 font-medium">🛣️ Estimated Tolls / M-Tag:</span>
+                <span id="cost-tolls" class="font-bold text-slate-900">PKR 2,700</span>
               </div>
 
-              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
-                <span class="text-slate-300 font-medium">🏨 Estimated Hotel Expense:</span>
-                <span id="cost-hotel" class="font-bold text-amber-400">PKR 64,000</span>
+              <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                <span class="text-slate-600 font-medium">🏨 Estimated Hotel Expense:</span>
+                <span id="cost-hotel" class="font-bold text-slate-900">PKR 64,000</span>
               </div>
 
-              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
-                <span class="text-slate-300 font-medium">🍽️ Estimated Food Expense:</span>
-                <span id="cost-food" class="font-bold text-slate-200">PKR 37,500</span>
+              <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                <span class="text-slate-600 font-medium">🍽️ Estimated Food Expense:</span>
+                <span id="cost-food" class="font-bold text-slate-900">PKR 37,500</span>
               </div>
 
-              <div class="flex justify-between items-center bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
-                <span class="text-slate-300 font-medium">🛡️ Contingency Cushion Buffer:</span>
-                <span id="cost-buffer" class="font-bold text-slate-400">PKR 8,399</span>
+              <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                <span class="text-slate-600 font-medium">🛡️ Contingency Cushion Buffer:</span>
+                <span id="cost-buffer" class="font-bold text-slate-500">PKR 8,399</span>
               </div>
 
               <!-- Total Sum Card -->
-              <div class="bg-red-950/40 border border-red-800/80 p-4 rounded-xl text-center space-y-1">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-red-400">Estimated Total Trip Budget</span>
-                <div id="cost-total" class="text-2xl font-black text-white">PKR 176,389</div>
-                <p class="text-[10px] text-slate-400 italic">This is a planning estimate, not a final 4WHEELS quotation.</p>
+              <div class="bg-red-50 border border-red-200 p-4 rounded-xl text-center space-y-1">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-red-600">Estimated Total Trip Budget</span>
+                <div id="cost-total" class="text-2xl font-black text-slate-900">PKR 176,389</div>
+                <p class="text-[10px] text-slate-500 italic">This is a planning estimate, not a final 4WHEELS quotation.</p>
               </div>
             </div>
 
             <!-- Dynamic Fuel Rate Dated Badge -->
-            <div class="text-[10px] text-slate-500 bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-0.5">
+            <div class="text-[10px] text-slate-500 bg-slate-50 p-2.5 rounded-lg border border-slate-200 space-y-0.5">
               <div>OGRA Petroleum Price Effective: <strong>16 August 2026</strong> (Petrol: PKR 275.60/L, Diesel: PKR 284.20/L)</div>
               <div>NHA Motorway Toll Tariff Revision: <strong>July 2026</strong></div>
             </div>
@@ -307,7 +307,7 @@ const canonicalPath = "/trip-planner/";
                 target="_blank"
                 rel="noopener noreferrer"
                 id="btn-open-gmaps"
-                class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs py-3 rounded-xl block text-center transition-all flex items-center justify-center gap-2"
+                class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-3 rounded-xl block text-center transition-all flex items-center justify-center gap-2 shadow-xs"
               >
                 <span>🗺️ View Route & Distance on Google Maps</span>
               </a>
@@ -315,7 +315,7 @@ const canonicalPath = "/trip-planner/";
               <button
                 type="button"
                 id="btn-send-plan-whatsapp"
-                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>💬 Send Trip Plan to 4WHEELS</span>
               </button>
@@ -323,7 +323,7 @@ const canonicalPath = "/trip-planner/";
               <a
                 href="tel:+923216616644"
                 id="btn-call-trip-planner"
-                class="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-2.5 rounded-xl block text-center border border-slate-700 transition-colors"
+                class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs py-2.5 rounded-xl block text-center border border-slate-200 transition-colors"
               >
                 📞 Call Trip Planner: 0321 6616644
               </a>
@@ -415,16 +415,16 @@ const canonicalPath = "/trip-planner/";
   // Trip Type Switcher
   btnReturn?.addEventListener('click', () => {
     if (tripTypeInput) tripTypeInput.value = 'return';
-    btnReturn.className = 'trip-type-btn bg-amber-500 text-slate-950 font-black p-2.5 rounded-xl text-center border border-amber-500 transition-all';
-    btnOneway!.className = 'trip-type-btn bg-slate-800 text-slate-300 font-bold p-2.5 rounded-xl text-center border border-slate-700 hover:bg-slate-750 transition-all';
+    btnReturn.className = 'trip-type-btn bg-red-600 text-white font-black p-2.5 rounded-xl text-center border border-red-600 transition-all shadow-sm';
+    btnOneway!.className = 'trip-type-btn bg-slate-100 text-slate-700 font-bold p-2.5 rounded-xl text-center border border-slate-200 hover:bg-slate-200 transition-all';
     updateRouteDistance();
     calculateBudget();
   });
 
   btnOneway?.addEventListener('click', () => {
     if (tripTypeInput) tripTypeInput.value = 'oneway';
-    btnOneway.className = 'trip-type-btn bg-amber-500 text-slate-950 font-black p-2.5 rounded-xl text-center border border-amber-500 transition-all';
-    btnReturn!.className = 'trip-type-btn bg-slate-800 text-slate-300 font-bold p-2.5 rounded-xl text-center border border-slate-700 hover:bg-slate-750 transition-all';
+    btnOneway.className = 'trip-type-btn bg-red-600 text-white font-black p-2.5 rounded-xl text-center border border-red-600 transition-all shadow-sm';
+    btnReturn!.className = 'trip-type-btn bg-slate-100 text-slate-700 font-bold p-2.5 rounded-xl text-center border border-slate-200 hover:bg-slate-200 transition-all';
     updateRouteDistance();
     calculateBudget();
   });

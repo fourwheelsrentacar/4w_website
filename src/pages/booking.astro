@@ -127,7 +127,7 @@ const CATEGORIES = [
     id: 'bus',
     name: 'BUS / COACH',
     tagline: 'Large Delegations • School Tours • 28 to 51 Seats',
-    image: '/vehicles/fleet/toyota-coaster/hero.webp',
+    image: '/vehicles/catalog/yutong/bus.webp',
     popularModel: 'Yutong & Daewoo Executive Coaches'
   }
 ];
@@ -146,61 +146,61 @@ const COLOR_OPTIONS = [
 
 <Layout title={title} description={description} canonicalPath={canonicalPath}>
   <!-- Header Banner -->
-  <section class="bg-slate-900 text-white py-8 sm:py-10 border-b border-slate-800 relative overflow-hidden">
+  <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 text-slate-900 py-10 sm:py-14 border-b border-slate-200 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0121a_1px,transparent_1px)] [background-size:16px_16px]"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-      <span class="bg-red-600 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block shadow-md">
+      <span class="bg-red-600 text-white text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-widest mb-3 inline-block shadow-sm">
         4WHEELS Visual Vehicle Configurator
       </span>
-      <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-2">
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-2 text-slate-900">
         Book Your Trip
       </h1>
-      <p class="text-slate-300 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed">
+      <p class="text-slate-600 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed">
         Select category, brand, model, exact model year/shape, and preferred color with real WebP vehicle photography. Instant reservation via WhatsApp.
       </p>
     </div>
   </section>
 
   <!-- Main Visual Selection Section -->
-  <section class="py-8 sm:py-12 pb-36 lg:pb-16 bg-slate-950 text-white min-h-[90vh] overflow-x-hidden">
+  <section class="py-8 sm:py-12 pb-36 lg:pb-16 bg-slate-50/60 text-slate-900 min-h-[90vh] overflow-x-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <!-- Interactive Stepper Header Bar -->
-      <div class="bg-slate-900 rounded-2xl border border-slate-800 p-4 mb-8 shadow-xl">
+      <div class="bg-white rounded-2xl border border-slate-200/90 p-4 mb-8 shadow-sm">
         <!-- Desktop Stepper Labels -->
-        <div class="hidden md:flex items-center justify-between text-xs font-extrabold text-slate-400">
-          <div id="step-tab-1" class="step-tab flex items-center gap-2 text-red-500 cursor-pointer hover:text-white transition-colors" data-tab-step="1">
-            <span class="w-7 h-7 rounded-full bg-red-600 text-white flex items-center justify-center text-xs shadow-md">1</span>
+        <div class="hidden md:flex items-center justify-between text-xs font-extrabold text-slate-500">
+          <div id="step-tab-1" class="step-tab flex items-center gap-2 text-red-600 cursor-pointer hover:text-slate-900 transition-colors" data-tab-step="1">
+            <span class="w-7 h-7 rounded-full bg-red-600 text-white flex items-center justify-center text-xs shadow-sm">1</span>
             <span>Category</span>
           </div>
-          <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-2" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="2">
-            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">2</span>
+          <div class="h-0.5 flex-1 bg-slate-200 mx-2"></div>
+          <div id="step-tab-2" class="step-tab flex items-center gap-2 cursor-pointer hover:text-slate-900 transition-colors" data-tab-step="2">
+            <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-500 border border-slate-200 flex items-center justify-center text-xs">2</span>
             <span>Brand</span>
           </div>
-          <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-3" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="3">
-            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">3</span>
+          <div class="h-0.5 flex-1 bg-slate-200 mx-2"></div>
+          <div id="step-tab-3" class="step-tab flex items-center gap-2 cursor-pointer hover:text-slate-900 transition-colors" data-tab-step="3">
+            <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-500 border border-slate-200 flex items-center justify-center text-xs">3</span>
             <span>Model</span>
           </div>
-          <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-4" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="4">
-            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">4</span>
+          <div class="h-0.5 flex-1 bg-slate-200 mx-2"></div>
+          <div id="step-tab-4" class="step-tab flex items-center gap-2 cursor-pointer hover:text-slate-900 transition-colors" data-tab-step="4">
+            <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-500 border border-slate-200 flex items-center justify-center text-xs">4</span>
             <span>Year & Color</span>
           </div>
-          <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-5" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="5">
-            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">5</span>
+          <div class="h-0.5 flex-1 bg-slate-200 mx-2"></div>
+          <div id="step-tab-5" class="step-tab flex items-center gap-2 cursor-pointer hover:text-slate-900 transition-colors" data-tab-step="5">
+            <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-500 border border-slate-200 flex items-center justify-center text-xs">5</span>
             <span>Route</span>
           </div>
-          <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-6" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="6">
-            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">6</span>
+          <div class="h-0.5 flex-1 bg-slate-200 mx-2"></div>
+          <div id="step-tab-6" class="step-tab flex items-center gap-2 cursor-pointer hover:text-slate-900 transition-colors" data-tab-step="6">
+            <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-500 border border-slate-200 flex items-center justify-center text-xs">6</span>
             <span>Dates & Details</span>
           </div>
-          <div class="h-0.5 flex-1 bg-slate-800 mx-2"></div>
-          <div id="step-tab-7" class="step-tab flex items-center gap-2 cursor-pointer hover:text-white transition-colors" data-tab-step="7">
-            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">7</span>
+          <div class="h-0.5 flex-1 bg-slate-200 mx-2"></div>
+          <div id="step-tab-7" class="step-tab flex items-center gap-2 cursor-pointer hover:text-slate-900 transition-colors" data-tab-step="7">
+            <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-500 border border-slate-200 flex items-center justify-center text-xs">7</span>
             <span>Review</span>
           </div>
         </div>
@@ -208,10 +208,10 @@ const COLOR_OPTIONS = [
         <!-- Mobile Stepper Header -->
         <div class="md:hidden flex items-center justify-between">
           <div>
-            <span class="text-[10px] font-black text-red-500 uppercase tracking-widest block">Booking Flow</span>
-            <span id="mobile-step-title" class="text-sm font-extrabold text-white">Step 1: WHAT TYPE OF VEHICLE DO YOU NEED?</span>
+            <span class="text-[10px] font-black text-red-600 uppercase tracking-widest block">Booking Flow</span>
+            <span id="mobile-step-title" class="text-sm font-extrabold text-slate-900">Step 1: WHAT TYPE OF VEHICLE DO YOU NEED?</span>
           </div>
-          <span id="mobile-step-counter" class="text-xs font-black bg-red-600 text-white px-3 py-1 rounded-full">
+          <span id="mobile-step-counter" class="text-xs font-black bg-red-600 text-white px-3 py-1 rounded-full shadow-sm">
             1 of 7
           </span>
         </div>
@@ -221,46 +221,46 @@ const COLOR_OPTIONS = [
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
         <!-- LEFT (7 cols): Interactive Visual Selection Panel -->
-        <div class="lg:col-span-7 bg-slate-900 rounded-2xl border border-slate-800 p-5 sm:p-8 shadow-xl">
+        <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-8 shadow-sm">
 
           <!-- STEP 1: CATEGORY -->
           <div id="step-panel-1" class="step-panel space-y-6">
-            <div class="border-b border-slate-800 pb-3 flex items-center justify-between">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
               <div>
-                <h2 class="text-xl font-black text-white uppercase tracking-tight">WHAT TYPE OF VEHICLE DO YOU NEED?</h2>
-                <p class="text-xs text-slate-400">Select a category to view matching real-photo models.</p>
+                <h2 class="text-xl font-black text-slate-900 uppercase tracking-tight">WHAT TYPE OF VEHICLE DO YOU NEED?</h2>
+                <p class="text-xs text-slate-500">Select a category to view matching real-photo models.</p>
               </div>
-              <span class="text-xs text-slate-400 font-bold">Step 1 of 7</span>
+              <span class="text-xs text-slate-500 font-bold">Step 1 of 7</span>
             </div>
 
             <!-- Responsive Category Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="category-cards-grid">
               {CATEGORIES.map(cat => (
                 <div
-                  class="cat-card group bg-slate-950 border border-slate-800 hover:border-red-500 rounded-2xl p-4 cursor-pointer transition-all duration-300 hover:shadow-xl flex flex-col justify-between"
+                  class="cat-card group bg-slate-50 hover:bg-white border border-slate-200 hover:border-red-500 rounded-2xl p-4 cursor-pointer transition-all duration-300 hover:shadow-lg flex flex-col justify-between"
                   data-cat-id={cat.id}
                 >
-                  <div class="aspect-[16/9] w-full rounded-xl overflow-hidden bg-slate-900 border border-slate-800/80 mb-3 relative flex items-center justify-center p-2">
+                  <div class="aspect-[16/9] w-full rounded-xl overflow-hidden bg-gradient-to-b from-slate-100 to-slate-200/50 border border-slate-200/80 mb-3 relative flex items-center justify-center p-2">
                     <img
                       src={cat.image}
                       alt={`${cat.name} rental Lahore`}
                       loading="eager"
                       class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div class="absolute bottom-1.5 right-2 text-[10px] text-slate-300 font-bold bg-slate-950/80 px-2 py-0.5 rounded border border-slate-800">
+                    <div class="absolute bottom-1.5 right-2 text-[10px] text-slate-600 font-bold bg-white/90 px-2 py-0.5 rounded border border-slate-200 shadow-xs">
                       Real WebP Photograph
                     </div>
                   </div>
                   <div>
-                    <h3 class="text-base font-black text-white group-hover:text-red-400 transition-colors">
+                    <h3 class="text-base font-black text-slate-900 group-hover:text-red-600 transition-colors">
                       {cat.name}
                     </h3>
-                    <p class="text-xs text-slate-400 mt-1 leading-snug">
+                    <p class="text-xs text-slate-500 mt-1 leading-snug">
                       {cat.tagline}
                     </p>
-                    <div class="mt-3 flex items-center justify-between border-t border-slate-800/80 pt-2">
-                      <span class="text-[11px] text-amber-400 font-semibold">{cat.popularModel}</span>
-                      <span class="bg-red-600 group-hover:bg-red-700 text-white font-black text-[11px] px-3 py-1 rounded-lg transition-colors">
+                    <div class="mt-3 flex items-center justify-between border-t border-slate-200 pt-2">
+                      <span class="text-[11px] text-slate-700 font-semibold">{cat.popularModel}</span>
+                      <span class="bg-slate-900 group-hover:bg-red-600 text-white font-black text-[11px] px-3 py-1 rounded-lg transition-colors">
                         SELECT →
                       </span>
                     </div>
@@ -272,12 +272,12 @@ const COLOR_OPTIONS = [
 
           <!-- STEP 2: BRAND -->
           <div id="step-panel-2" class="step-panel space-y-6 hidden">
-            <div class="border-b border-slate-800 pb-3 flex items-center justify-between flex-wrap gap-2">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between flex-wrap gap-2">
               <div>
-                <h2 class="text-xl font-black text-white uppercase tracking-tight">CHOOSE A BRAND</h2>
-                <p class="text-xs text-slate-400">Showing matching brands for <span id="selected-cat-label" class="text-red-400 font-bold uppercase">All Categories</span></p>
+                <h2 class="text-xl font-black text-slate-900 uppercase tracking-tight">CHOOSE A BRAND</h2>
+                <p class="text-xs text-slate-500">Showing matching brands for <span id="selected-cat-label" class="text-red-600 font-bold uppercase">All Categories</span></p>
               </div>
-              <button type="button" class="btn-change-cat text-xs text-red-400 font-bold hover:underline">
+              <button type="button" class="btn-change-cat text-xs text-red-600 font-bold hover:underline">
                 ← Change Category
               </button>
             </div>
@@ -288,9 +288,9 @@ const COLOR_OPTIONS = [
                 type="text"
                 id="brand-search-input"
                 placeholder="Search brand (Toyota, Honda, Kia, BYD, Haval, Deepal...)"
-                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-xs font-semibold text-white focus:ring-1 focus:ring-red-500 focus:outline-none"
+                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs font-semibold text-slate-900 placeholder:text-slate-400 focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none"
               />
-              <button type="button" id="btn-toggle-all-brands" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-4 py-3 rounded-xl border border-slate-700 whitespace-nowrap">
+              <button type="button" id="btn-toggle-all-brands" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-4 py-3 rounded-xl border border-slate-200 whitespace-nowrap">
                 VIEW ALL BRANDS
               </button>
             </div>
@@ -298,29 +298,29 @@ const COLOR_OPTIONS = [
             <!-- Brand Tiles Grid / Mobile Chips -->
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="brand-tiles-container">
               <div
-                class="brand-tile bg-red-600/20 border-red-500 border rounded-xl p-3.5 cursor-pointer transition-all flex items-center justify-between"
+                class="brand-tile bg-red-50 border-red-500 border rounded-xl p-3.5 cursor-pointer transition-all flex items-center justify-between"
                 data-brand-slug="all"
               >
                 <div>
-                  <div class="text-sm font-extrabold text-white">ALL BRANDS</div>
-                  <div class="text-[10px] text-slate-300">Show all matching models</div>
+                  <div class="text-sm font-extrabold text-slate-900">ALL BRANDS</div>
+                  <div class="text-[10px] text-slate-500">Show all matching models</div>
                 </div>
                 <span class="text-xs font-black bg-red-600 text-white px-2.5 py-0.5 rounded">All</span>
               </div>
 
               {PAKISTAN_BRANDS.map(b => (
                 <div
-                  class={`brand-tile bg-slate-950 border border-slate-800 hover:border-red-500 rounded-xl p-3.5 cursor-pointer transition-all flex items-center justify-between group ${!b.featured ? 'hidden extra-brand' : ''}`}
+                  class={`brand-tile bg-slate-50 border border-slate-200 hover:border-red-500 rounded-xl p-3.5 cursor-pointer transition-all flex items-center justify-between group ${!b.featured ? 'hidden extra-brand' : ''}`}
                   data-brand-slug={b.slug}
                   data-brand-categories={b.categories.join(',')}
                 >
                   <div>
-                    <div class="text-sm font-extrabold text-white group-hover:text-red-400 transition-colors">
+                    <div class="text-sm font-extrabold text-slate-900 group-hover:text-red-600 transition-colors">
                       {b.name}
                     </div>
-                    <div class="text-[10px] text-slate-400">{b.country}</div>
+                    <div class="text-[10px] text-slate-500">{b.country}</div>
                   </div>
-                  <span class="brand-count-badge text-[10px] font-black bg-slate-800 text-slate-300 group-hover:bg-red-600 group-hover:text-white px-2 py-0.5 rounded">
+                  <span class="brand-count-badge text-[10px] font-black bg-slate-200 text-slate-700 group-hover:bg-red-600 group-hover:text-white px-2 py-0.5 rounded">
                     {b.vehicleCount} models
                   </span>
                 </div>
@@ -328,7 +328,7 @@ const COLOR_OPTIONS = [
             </div>
 
             <div class="pt-2 flex justify-between">
-              <button type="button" class="btn-prev bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs px-5 py-2.5 rounded-xl border border-slate-700">
+              <button type="button" class="btn-prev bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-2.5 rounded-xl border border-slate-200">
                 ← Back
               </button>
             </div>
@@ -336,12 +336,12 @@ const COLOR_OPTIONS = [
 
           <!-- STEP 3: MODEL -->
           <div id="step-panel-3" class="step-panel space-y-6 hidden">
-            <div class="border-b border-slate-800 pb-3 flex items-center justify-between flex-wrap gap-2">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between flex-wrap gap-2">
               <div>
-                <h2 class="text-xl font-black text-white uppercase tracking-tight">CHOOSE MODEL</h2>
-                <p class="text-xs text-slate-400">Select vehicle model to view available model years and body shapes.</p>
+                <h2 class="text-xl font-black text-slate-900 uppercase tracking-tight">CHOOSE MODEL</h2>
+                <p class="text-xs text-slate-500">Select vehicle model to view available model years and body shapes.</p>
               </div>
-              <button type="button" class="btn-change-brand text-xs text-red-400 font-bold hover:underline">
+              <button type="button" class="btn-change-brand text-xs text-red-600 font-bold hover:underline">
                 ← Change Brand
               </button>
             </div>
@@ -352,7 +352,7 @@ const COLOR_OPTIONS = [
             </div>
 
             <div class="pt-2 flex justify-between">
-              <button type="button" class="btn-prev bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs px-5 py-2.5 rounded-xl border border-slate-700">
+              <button type="button" class="btn-prev bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-2.5 rounded-xl border border-slate-200">
                 ← Back
               </button>
             </div>
@@ -360,19 +360,19 @@ const COLOR_OPTIONS = [
 
           <!-- STEP 4: MODEL YEAR / SHAPE & COLOR -->
           <div id="step-panel-4" class="step-panel space-y-6 hidden">
-            <div class="border-b border-slate-800 pb-3 flex items-center justify-between flex-wrap gap-2">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between flex-wrap gap-2">
               <div>
-                <h2 class="text-xl font-black text-white uppercase tracking-tight">CHOOSE MODEL YEAR / SHAPE</h2>
-                <p class="text-xs text-slate-400">Select model year / generation body shape and preferred color.</p>
+                <h2 class="text-xl font-black text-slate-900 uppercase tracking-tight">CHOOSE MODEL YEAR / SHAPE</h2>
+                <p class="text-xs text-slate-500">Select model year / generation body shape and preferred color.</p>
               </div>
-              <button type="button" class="btn-change-model text-xs text-red-400 font-bold hover:underline">
+              <button type="button" class="btn-change-model text-xs text-red-600 font-bold hover:underline">
                 ← Change Model
               </button>
             </div>
 
             <!-- Model Year / Generation Shape Options -->
             <div class="space-y-3">
-              <label class="block text-xs font-black uppercase tracking-wider text-slate-300">
+              <label class="block text-xs font-black uppercase tracking-wider text-slate-700">
                 1. Select Model Year / Body Shape Generation
               </label>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="year-shape-options-container">
@@ -381,8 +381,8 @@ const COLOR_OPTIONS = [
             </div>
 
             <!-- Preferred Color Choice (Optional, Never Blocks) -->
-            <div class="space-y-3 pt-3 border-t border-slate-800">
-              <label class="block text-xs font-black uppercase tracking-wider text-slate-300">
+            <div class="space-y-3 pt-3 border-t border-slate-200">
+              <label class="block text-xs font-black uppercase tracking-wider text-slate-700">
                 2. Preferred Exterior Color <span class="text-slate-500 font-normal lowercase">(Optional preference, subject to rental availability)</span>
               </label>
               <div class="flex flex-wrap gap-2" id="color-swatches-container">
@@ -390,23 +390,23 @@ const COLOR_OPTIONS = [
                   <button
                     type="button"
                     class={`color-swatch-btn text-xs font-bold px-3.5 py-2 rounded-xl border flex items-center gap-2 transition-all ${
-                      c.isDefault ? 'bg-red-600 text-white border-red-500 shadow-md scale-105' : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700'
+                      c.isDefault ? 'bg-red-600 text-white border-red-500 shadow-sm scale-105' : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-slate-300'
                     }`}
                     data-color-id={c.id}
                     data-color-name={c.name}
                   >
-                    <span class="w-3.5 h-3.5 rounded-full border border-white/20 shadow-inner" style={`background-color: ${c.hex}`}></span>
+                    <span class="w-3.5 h-3.5 rounded-full border border-slate-300 shadow-xs" style={`background-color: ${c.hex}`}></span>
                     <span>{c.name}</span>
                   </button>
                 ))}
               </div>
             </div>
 
-            <div class="pt-4 border-t border-slate-800 flex justify-between">
-              <button type="button" class="btn-prev bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs px-5 py-2.5 rounded-xl border border-slate-700">
+            <div class="pt-4 border-t border-slate-200 flex justify-between">
+              <button type="button" class="btn-prev bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-2.5 rounded-xl border border-slate-200">
                 ← Back
               </button>
-              <button type="button" id="btn-confirm-year-color" class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-6 py-3 rounded-xl shadow-lg transition-colors">
+              <button type="button" id="btn-confirm-year-color" class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-6 py-3 rounded-xl shadow-md transition-colors">
                 Continue to Route →
               </button>
             </div>
@@ -414,67 +414,67 @@ const COLOR_OPTIONS = [
 
           <!-- STEP 5: ROUTE & RENTAL MODE -->
           <div id="step-panel-5" class="step-panel space-y-6 hidden">
-            <div class="border-b border-slate-800 pb-3 flex items-center justify-between">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
               <div>
-                <h2 class="text-xl font-black text-white uppercase tracking-tight">5. PICKUP & DROP-OFF ROUTE</h2>
-                <p class="text-xs text-slate-400">Set route locations for verified distance and travel time estimate.</p>
+                <h2 class="text-xl font-black text-slate-900 uppercase tracking-tight">5. PICKUP & DROP-OFF ROUTE</h2>
+                <p class="text-xs text-slate-500">Set route locations for verified distance and travel time estimate.</p>
               </div>
-              <span class="text-xs text-slate-400 font-bold">Step 5 of 7</span>
+              <span class="text-xs text-slate-500 font-bold">Step 5 of 7</span>
             </div>
 
             <!-- Selected Vehicle Banner -->
-            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-center justify-between">
               <div>
-                <span class="text-[10px] font-bold text-red-500 uppercase tracking-wider block">Configured Vehicle</span>
-                <h3 id="preselect-title" class="text-lg font-black text-white">Toyota Corolla</h3>
-                <p id="preselect-subtitle" class="text-xs text-slate-400">2024 Model • Altis X Shape • White Preferred</p>
+                <span class="text-[10px] font-bold text-red-600 uppercase tracking-wider block">Configured Vehicle</span>
+                <h3 id="preselect-title" class="text-lg font-black text-slate-900">Toyota Corolla</h3>
+                <p id="preselect-subtitle" class="text-xs text-slate-500">2024 Model • Altis X Shape • White Preferred</p>
               </div>
-              <button type="button" id="btn-change-vehicle-main" class="text-xs font-bold text-red-400 hover:text-red-300 underline">
+              <button type="button" id="btn-change-vehicle-main" class="text-xs font-bold text-red-600 hover:text-red-700 underline">
                 CHANGE VEHICLE
               </button>
             </div>
 
             <div class="space-y-4">
               <div>
-                <label for="field-mode" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Rental Mode</label>
-                <select id="field-mode" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm font-bold text-white focus:ring-1 focus:ring-red-500 focus:outline-none">
+                <label for="field-mode" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Rental Mode</label>
+                <select id="field-mode" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm font-bold text-slate-900 focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none">
                   <option value="With Driver">With Driver (Chauffeur Service Included)</option>
                   <option value="Self Drive">Self Drive (CNIC & Verification Required)</option>
                 </select>
               </div>
 
               <div>
-                <label for="field-pickup" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
-                  📍 Pickup Location <span class="text-red-500">*</span>
+                <label for="field-pickup" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                  📍 Pickup Location <span class="text-red-600">*</span>
                 </label>
-                <input type="text" id="field-pickup" required placeholder="Address, area, airport, or landmark (e.g. Johar Town, Lahore)" value="Johar Town Phase 1, Lahore" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3.5 text-sm font-semibold text-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
+                <input type="text" id="field-pickup" required placeholder="Address, area, airport, or landmark (e.g. Johar Town, Lahore)" value="Johar Town Phase 1, Lahore" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-sm font-semibold text-slate-900 focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
               </div>
 
               <div>
-                <label for="field-destination" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
-                  🏁 Drop-off Destination <span class="text-red-500">*</span>
+                <label for="field-destination" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                  🏁 Drop-off Destination <span class="text-red-600">*</span>
                 </label>
-                <input type="text" id="field-destination" required placeholder="Destination (e.g. Islamabad F-7 / Lahore Airport / Murree)" value="Islamabad F-7" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3.5 text-sm font-semibold text-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
+                <input type="text" id="field-destination" required placeholder="Destination (e.g. Islamabad F-7 / Lahore Airport / Murree)" value="Islamabad F-7" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-sm font-semibold text-slate-900 focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
               </div>
 
               <!-- Route Calculation Display -->
-              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
                 <div class="flex items-center justify-between flex-wrap gap-2">
-                  <span class="text-xs font-extrabold text-red-500 uppercase tracking-wider flex items-center gap-1.5">
+                  <span class="text-xs font-extrabold text-red-600 uppercase tracking-wider flex items-center gap-1.5">
                     <span>⚡ Route Distance Estimation</span>
                   </span>
-                  <span id="calc-status-badge" class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold px-2 py-0.5 rounded">
+                  <span id="calc-status-badge" class="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold px-2 py-0.5 rounded">
                     4WHEELS Verified Route Database
                   </span>
                 </div>
                 <div class="grid grid-cols-2 gap-4 pt-1">
                   <div>
                     <span class="text-[10px] text-slate-500 uppercase font-bold block">Estimated Distance</span>
-                    <span id="route-calc-distance" class="text-lg font-black text-white">Approx. 375 km</span>
+                    <span id="route-calc-distance" class="text-lg font-black text-slate-900">Approx. 375 km</span>
                   </div>
                   <div>
                     <span class="text-[10px] text-slate-500 uppercase font-bold block">Driving Duration</span>
-                    <span id="route-calc-duration" class="text-lg font-black text-amber-400">4 hrs 30 mins</span>
+                    <span id="route-calc-duration" class="text-lg font-black text-red-600">4 hrs 30 mins</span>
                   </div>
                 </div>
 
@@ -484,7 +484,7 @@ const COLOR_OPTIONS = [
                     href="https://www.google.com/maps/dir/?api=1&origin=Johar+Town+Lahore&destination=Islamabad+F-7&travelmode=driving"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold text-xs py-2 px-3 rounded-lg border border-slate-700 transition-colors w-full"
+                    class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs py-2 px-3 rounded-lg border border-slate-200 transition-colors w-full shadow-xs"
                   >
                     <span>🗺️ CHECK ROUTE ON GOOGLE MAPS</span>
                     <span>↗</span>
@@ -493,11 +493,11 @@ const COLOR_OPTIONS = [
               </div>
             </div>
 
-            <div class="pt-4 border-t border-slate-800 flex justify-between">
-              <button type="button" class="btn-prev bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm px-6 py-3 rounded-xl border border-slate-700">
+            <div class="pt-4 border-t border-slate-200 flex justify-between">
+              <button type="button" class="btn-prev bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm px-6 py-3 rounded-xl border border-slate-200">
                 ← Back
               </button>
-              <button type="button" class="btn-next bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm px-7 py-3 rounded-xl shadow-lg transition-all flex items-center gap-2">
+              <button type="button" class="btn-next bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm px-7 py-3 rounded-xl shadow-md transition-all flex items-center gap-2">
                 <span>Next: Dates & Details</span>
                 <span>→</span>
               </button>
@@ -506,29 +506,29 @@ const COLOR_OPTIONS = [
 
           <!-- STEP 6: DATES & TRIP DETAILS -->
           <div id="step-panel-6" class="step-panel space-y-6 hidden">
-            <div class="border-b border-slate-800 pb-3 flex items-center justify-between">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
               <div>
-                <h2 class="text-xl font-black text-white uppercase tracking-tight">6. RENTAL DATES & TRIP DETAILS</h2>
-                <p class="text-xs text-slate-400">Specify dates, passengers, luggage, and customer information.</p>
+                <h2 class="text-xl font-black text-slate-900 uppercase tracking-tight">6. RENTAL DATES & TRIP DETAILS</h2>
+                <p class="text-xs text-slate-500">Specify dates, passengers, luggage, and customer information.</p>
               </div>
-              <span class="text-xs text-slate-400 font-bold">Step 6 of 7</span>
+              <span class="text-xs text-slate-500 font-bold">Step 6 of 7</span>
             </div>
 
-            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
+            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label for="field-start-date" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Start Date <span class="text-red-500">*</span></label>
-                  <input type="date" id="field-start-date" required class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm font-bold text-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
+                  <label for="field-start-date" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Start Date <span class="text-red-600">*</span></label>
+                  <input type="date" id="field-start-date" required class="w-full bg-white border border-slate-200 rounded-xl p-3 text-sm font-bold text-slate-900 focus:ring-1 focus:ring-red-500 focus:outline-none" />
                 </div>
                 <div>
-                  <label for="field-end-date" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">End Date <span class="text-red-500">*</span></label>
-                  <input type="date" id="field-end-date" required class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm font-bold text-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
+                  <label for="field-end-date" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">End Date <span class="text-red-600">*</span></label>
+                  <input type="date" id="field-end-date" required class="w-full bg-white border border-slate-200 rounded-xl p-3 text-sm font-bold text-slate-900 focus:ring-1 focus:ring-red-500 focus:outline-none" />
                 </div>
               </div>
 
-              <div class="bg-red-950/60 border border-red-800/80 rounded-xl p-3.5 flex items-center justify-between">
-                <span class="text-xs font-bold text-red-200">Total Duration:</span>
-                <span id="display-duration" class="text-sm font-black text-white bg-red-600 px-3 py-1 rounded-lg shadow-md">
+              <div class="bg-red-50 border border-red-200 rounded-xl p-3.5 flex items-center justify-between">
+                <span class="text-xs font-bold text-red-900">Total Duration:</span>
+                <span id="display-duration" class="text-sm font-black text-white bg-red-600 px-3 py-1 rounded-lg shadow-sm">
                   1 Rental Day
                 </span>
               </div>
@@ -536,27 +536,27 @@ const COLOR_OPTIONS = [
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="field-passengers" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Passengers</label>
-                <div class="flex items-center gap-3 bg-slate-800 p-2 rounded-xl border border-slate-700">
-                  <button type="button" id="btn-dec-passengers" class="w-10 h-10 bg-slate-700 text-white font-black text-lg rounded-lg hover:bg-slate-600">-</button>
-                  <input type="number" id="field-passengers" min="1" max="60" value="4" readonly class="w-full bg-transparent text-center font-black text-lg text-white focus:outline-none" />
-                  <button type="button" id="btn-inc-passengers" class="w-10 h-10 bg-slate-700 text-white font-black text-lg rounded-lg hover:bg-slate-600">+</button>
+                <label for="field-passengers" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Passengers</label>
+                <div class="flex items-center gap-3 bg-slate-50 p-2 rounded-xl border border-slate-200">
+                  <button type="button" id="btn-dec-passengers" class="w-10 h-10 bg-slate-200 hover:bg-slate-300 text-slate-800 font-black text-lg rounded-lg transition-colors">-</button>
+                  <input type="number" id="field-passengers" min="1" max="60" value="4" readonly class="w-full bg-transparent text-center font-black text-lg text-slate-900 focus:outline-none" />
+                  <button type="button" id="btn-inc-passengers" class="w-10 h-10 bg-slate-200 hover:bg-slate-300 text-slate-800 font-black text-lg rounded-lg transition-colors">+</button>
                 </div>
               </div>
 
               <div>
-                <label for="field-luggage" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Large Suitcases</label>
-                <div class="flex items-center gap-3 bg-slate-800 p-2 rounded-xl border border-slate-700">
-                  <button type="button" id="btn-dec-luggage" class="w-10 h-10 bg-slate-700 text-white font-black text-lg rounded-lg hover:bg-slate-600">-</button>
-                  <input type="number" id="field-luggage" min="0" max="40" value="2" readonly class="w-full bg-transparent text-center font-black text-lg text-white focus:outline-none" />
-                  <button type="button" id="btn-inc-luggage" class="w-10 h-10 bg-slate-700 text-white font-black text-lg rounded-lg hover:bg-slate-600">+</button>
+                <label for="field-luggage" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Large Suitcases</label>
+                <div class="flex items-center gap-3 bg-slate-50 p-2 rounded-xl border border-slate-200">
+                  <button type="button" id="btn-dec-luggage" class="w-10 h-10 bg-slate-200 hover:bg-slate-300 text-slate-800 font-black text-lg rounded-lg transition-colors">-</button>
+                  <input type="number" id="field-luggage" min="0" max="40" value="2" readonly class="w-full bg-transparent text-center font-black text-lg text-slate-900 focus:outline-none" />
+                  <button type="button" id="btn-inc-luggage" class="w-10 h-10 bg-slate-200 hover:bg-slate-300 text-slate-800 font-black text-lg rounded-lg transition-colors">+</button>
                 </div>
               </div>
             </div>
 
             <div>
-              <label for="field-purpose" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Trip Purpose</label>
-              <select id="field-purpose" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm font-bold text-white focus:ring-1 focus:ring-red-500 focus:outline-none">
+              <label for="field-purpose" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Trip Purpose</label>
+              <select id="field-purpose" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm font-bold text-slate-900 focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none">
                 <option value="Personal / Family Outstation">Personal / Family Outstation</option>
                 <option value="Airport Transfer">Airport Pickup or Drop</option>
                 <option value="Wedding Event Transport">Wedding Transport</option>
@@ -567,25 +567,25 @@ const COLOR_OPTIONS = [
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="field-name" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Full Name <span class="text-red-500">*</span></label>
-                <input type="text" id="field-name" required placeholder="e.g. Ahmed Ali" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm font-bold text-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
+                <label for="field-name" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Full Name <span class="text-red-600">*</span></label>
+                <input type="text" id="field-name" required placeholder="e.g. Ahmed Ali" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm font-semibold text-slate-900 focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
               </div>
               <div>
-                <label for="field-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Phone / WhatsApp <span class="text-red-500">*</span></label>
-                <input type="tel" id="field-phone" required placeholder="03XXXXXXXXX" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm font-bold text-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
+                <label for="field-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Phone / WhatsApp <span class="text-red-600">*</span></label>
+                <input type="tel" id="field-phone" required placeholder="03XXXXXXXXX" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm font-semibold text-slate-900 focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none" />
               </div>
             </div>
 
             <div>
-              <label for="field-notes" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Special Requirements (Optional)</label>
-              <textarea id="field-notes" rows="2" placeholder="Flight number, extra stops, specific model year request..." class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-xs text-white focus:ring-1 focus:ring-red-500 focus:outline-none"></textarea>
+              <label for="field-notes" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Special Requirements (Optional)</label>
+              <textarea id="field-notes" rows="2" placeholder="Flight number, extra stops, specific model year request..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-slate-900 focus:bg-white focus:ring-1 focus:ring-red-500 focus:outline-none"></textarea>
             </div>
 
-            <div class="pt-4 border-t border-slate-800 flex justify-between">
-              <button type="button" class="btn-prev bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm px-6 py-3 rounded-xl border border-slate-700">
+            <div class="pt-4 border-t border-slate-200 flex justify-between">
+              <button type="button" class="btn-prev bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm px-6 py-3 rounded-xl border border-slate-200">
                 ← Back
               </button>
-              <button type="button" class="btn-next bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm px-7 py-3 rounded-xl shadow-lg transition-all flex items-center gap-2">
+              <button type="button" class="btn-next bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm px-7 py-3 rounded-xl shadow-md transition-all flex items-center gap-2">
                 <span>Review Reservation</span>
                 <span>→</span>
               </button>
@@ -594,69 +594,69 @@ const COLOR_OPTIONS = [
 
           <!-- STEP 7: REVIEW & WHATSAPP -->
           <div id="step-panel-7" class="step-panel space-y-6 hidden">
-            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-center justify-between">
               <div>
-                <h2 class="text-lg font-black text-white">7. REVIEW YOUR CONFIGURATION</h2>
-                <p class="text-xs text-slate-400">Review vehicle details before sending inquiry on WhatsApp.</p>
+                <h2 class="text-lg font-black text-slate-900">7. REVIEW YOUR CONFIGURATION</h2>
+                <p class="text-xs text-slate-500">Review vehicle details before sending inquiry on WhatsApp.</p>
               </div>
-              <span class="text-xs bg-red-600 text-white font-bold px-3 py-1 rounded-full">Step 7 of 7</span>
+              <span class="text-xs bg-red-600 text-white font-bold px-3 py-1 rounded-full shadow-sm">Step 7 of 7</span>
             </div>
 
             <!-- Review Summary Card -->
-            <div class="bg-slate-950 rounded-2xl border border-slate-800 p-5 space-y-4 text-xs text-slate-300">
-              <div class="border-b border-slate-800 pb-3 flex items-start justify-between">
+            <div class="bg-slate-50 rounded-2xl border border-slate-200 p-5 space-y-4 text-xs text-slate-700">
+              <div class="border-b border-slate-200 pb-3 flex items-start justify-between">
                 <div>
-                  <span class="font-extrabold text-red-500 uppercase tracking-widest block mb-1">Selected Vehicle & Year</span>
-                  <div class="font-black text-white text-lg" id="review-vehicle-title">Toyota Corolla</div>
+                  <span class="font-extrabold text-red-600 uppercase tracking-widest block mb-1">Selected Vehicle & Year</span>
+                  <div class="font-black text-slate-900 text-lg" id="review-vehicle-title">Toyota Corolla</div>
                   <div class="flex flex-wrap gap-2 mt-1.5">
-                    <span id="review-year-shape" class="bg-slate-800 text-slate-200 px-2.5 py-0.5 rounded font-bold">2024 Model (Altis X Shape)</span>
-                    <span id="review-color-pref" class="bg-slate-800 text-amber-300 px-2.5 py-0.5 rounded font-bold">White Preferred</span>
-                    <span id="review-status-badge" class="bg-emerald-950 text-emerald-400 border border-emerald-800 px-2.5 py-0.5 rounded font-bold">AVAILABLE THROUGH 4WHEELS</span>
+                    <span id="review-year-shape" class="bg-white text-slate-800 border border-slate-200 px-2.5 py-0.5 rounded font-bold shadow-xs">2024 Model (Altis X Shape)</span>
+                    <span id="review-color-pref" class="bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-0.5 rounded font-bold">White Preferred</span>
+                    <span id="review-status-badge" class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-0.5 rounded font-bold">AVAILABLE THROUGH 4WHEELS</span>
                   </div>
                 </div>
               </div>
 
-              <div class="border-b border-slate-800 pb-3 grid grid-cols-2 gap-2">
-                <div><strong class="text-slate-400">Pickup:</strong> <span id="review-pickup" class="text-white font-semibold">Johar Town, Lahore</span></div>
-                <div><strong class="text-slate-400">Drop-off:</strong> <span id="review-destination" class="text-white font-semibold">Islamabad F-7</span></div>
-                <div><strong class="text-slate-400">Distance:</strong> <span id="review-distance" class="text-amber-400 font-bold">375 km</span></div>
-                <div><strong class="text-slate-400">Mode:</strong> <span id="review-mode" class="text-white font-bold">With Driver</span></div>
+              <div class="border-b border-slate-200 pb-3 grid grid-cols-2 gap-2">
+                <div><strong class="text-slate-500">Pickup:</strong> <span id="review-pickup" class="text-slate-900 font-semibold">Johar Town, Lahore</span></div>
+                <div><strong class="text-slate-500">Drop-off:</strong> <span id="review-destination" class="text-slate-900 font-semibold">Islamabad F-7</span></div>
+                <div><strong class="text-slate-500">Distance:</strong> <span id="review-distance" class="text-red-600 font-bold">375 km</span></div>
+                <div><strong class="text-slate-500">Mode:</strong> <span id="review-mode" class="text-slate-900 font-bold">With Driver</span></div>
               </div>
 
-              <div class="border-b border-slate-800 pb-3 grid grid-cols-2 gap-2">
-                <div><strong class="text-slate-400">Start Date:</strong> <span id="review-start-date" class="text-white">Today</span></div>
-                <div><strong class="text-slate-400">End Date:</strong> <span id="review-end-date" class="text-white">Tomorrow</span></div>
-                <div><strong class="text-slate-400">Duration:</strong> <span id="review-duration" class="font-bold text-red-500">1 Day</span></div>
-                <div><strong class="text-slate-400">Occupants:</strong> <span id="review-capacity" class="font-bold text-slate-200">4 Pax, 2 Bags</span></div>
+              <div class="border-b border-slate-200 pb-3 grid grid-cols-2 gap-2">
+                <div><strong class="text-slate-500">Start Date:</strong> <span id="review-start-date" class="text-slate-900">Today</span></div>
+                <div><strong class="text-slate-500">End Date:</strong> <span id="review-end-date" class="text-slate-900">Tomorrow</span></div>
+                <div><strong class="text-slate-500">Duration:</strong> <span id="review-duration" class="font-bold text-red-600">1 Day</span></div>
+                <div><strong class="text-slate-500">Occupants:</strong> <span id="review-capacity" class="font-bold text-slate-800">4 Pax, 2 Bags</span></div>
               </div>
 
               <div class="grid grid-cols-2 gap-2">
-                <div><strong class="text-slate-400">Customer Name:</strong> <span id="review-name" class="text-white font-bold">Ahmed Ali</span></div>
-                <div><strong class="text-slate-400">WhatsApp:</strong> <span id="review-phone" class="text-white font-bold">03XXXXXXXXX</span></div>
+                <div><strong class="text-slate-500">Customer Name:</strong> <span id="review-name" class="text-slate-900 font-bold">Ahmed Ali</span></div>
+                <div><strong class="text-slate-500">WhatsApp:</strong> <span id="review-phone" class="text-slate-900 font-bold">03XXXXXXXXX</span></div>
               </div>
 
               <!-- Review Pricing & Fuel Fluctuation Notice -->
-              <div class="mt-3 pt-3 border-t border-slate-800 bg-emerald-950/40 border border-emerald-900/60 p-3.5 rounded-xl space-y-1.5">
+              <div class="mt-3 pt-3 border-t border-slate-200 bg-emerald-50/80 border border-emerald-200 p-3.5 rounded-xl space-y-1.5">
                 <div class="flex justify-between items-center text-xs">
-                  <span class="text-slate-300 font-bold">Estimated Base Total:</span>
-                  <span id="review-estimated-total" class="text-emerald-400 font-black text-base">PKR 7,500</span>
+                  <span class="text-slate-700 font-bold">Estimated Base Total:</span>
+                  <span id="review-estimated-total" class="text-emerald-700 font-black text-base">PKR 7,500</span>
                 </div>
-                <div class="flex justify-between items-center text-[11px] text-slate-400">
+                <div class="flex justify-between items-center text-[11px] text-slate-500">
                   <span>Approx. Daily Rate:</span>
-                  <span id="review-daily-rate" class="text-white font-bold">PKR 7,500/day</span>
+                  <span id="review-daily-rate" class="text-slate-900 font-bold">PKR 7,500/day</span>
                 </div>
-                <p class="text-[10px] text-amber-400/90 pt-1 border-t border-emerald-900/30 leading-snug">
+                <p class="text-[10px] text-amber-800 pt-1 border-t border-emerald-200 leading-snug">
                   ⛽ Notice: Fuel prices revise frequently in Pakistan. This estimate is indicative. The WhatsApp reservation desk will confirm your exact locked quote for today.
                 </p>
               </div>
             </div>
 
             <!-- 5-Minute Reply Guarantee Banner -->
-            <div class="bg-emerald-950/40 border border-emerald-500/30 rounded-xl p-3.5 flex items-center gap-3">
+            <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5 flex items-center gap-3">
               <span class="text-2xl">⚡</span>
               <div>
-                <span class="text-xs font-bold text-emerald-400 block">Live Quotation on WhatsApp</span>
-                <span class="text-[11px] text-slate-300">Initial response guaranteed within ~5 minutes by our Lahore reservation desk.</span>
+                <span class="text-xs font-bold text-emerald-800 block">Live Quotation on WhatsApp</span>
+                <span class="text-[11px] text-slate-600">Initial response guaranteed within ~5 minutes by our Lahore reservation desk.</span>
               </div>
             </div>
 
@@ -665,7 +665,7 @@ const COLOR_OPTIONS = [
               <button
                 type="button"
                 id="btn-send-whatsapp"
-                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base py-4 rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>💬 SEND INQUIRY ON WHATSAPP (+92 321 6616644)</span>
               </button>
@@ -674,21 +674,21 @@ const COLOR_OPTIONS = [
                 <button
                   type="button"
                   id="btn-copy-inquiry"
-                  class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-3 px-4 rounded-xl text-xs border border-slate-700 flex items-center justify-center gap-1.5 cursor-pointer"
+                  class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 px-4 rounded-xl text-xs border border-slate-200 flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <span>📋 Copy Inquiry</span>
                 </button>
                 <button
                   type="button"
                   id="btn-edit-booking"
-                  class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-3 px-4 rounded-xl text-xs border border-slate-700 flex items-center justify-center gap-1.5 cursor-pointer"
+                  class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 px-4 rounded-xl text-xs border border-slate-200 flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <span>✏️ Edit Booking</span>
                 </button>
               </div>
             </div>
 
-            <div id="copy-toast" class="hidden bg-emerald-950 text-emerald-400 text-xs font-bold px-4 py-2.5 rounded-xl text-center border border-emerald-800">
+            <div id="copy-toast" class="hidden bg-emerald-50 text-emerald-800 text-xs font-bold px-4 py-2.5 rounded-xl text-center border border-emerald-200">
               ✓ Inquiry message copied to clipboard!
             </div>
           </div>
@@ -697,78 +697,78 @@ const COLOR_OPTIONS = [
 
         <!-- RIGHT (5 cols): Sticky Live Vehicle Summary Card -->
         <div id="summary-drawer" class="lg:col-span-5 lg:sticky lg:top-24 space-y-6 hidden lg:block">
-          <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 shadow-xl space-y-5">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h3 class="text-xs font-extrabold text-slate-400 uppercase tracking-widest">Selected Vehicle</h3>
+          <div class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm space-y-5">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+              <h3 class="text-xs font-extrabold text-slate-500 uppercase tracking-widest">Selected Vehicle</h3>
               <span id="summary-badge" class="text-[10px] bg-red-600 text-white font-black px-2 py-0.5 rounded uppercase">
                 AVAILABLE
               </span>
             </div>
 
             <!-- Real Vehicle WebP Photo Stage -->
-            <div class="bg-slate-950 rounded-xl border border-slate-800 h-52 flex flex-col items-center justify-center p-3 relative overflow-hidden group">
+            <div class="bg-gradient-to-b from-slate-100 to-slate-200/40 rounded-xl border border-slate-200 h-52 flex flex-col items-center justify-center p-3 relative overflow-hidden group">
               <img
                 id="summary-visual-img"
                 src="/vehicles/fleet/toyota-corolla/hero.webp"
                 alt="Selected Vehicle Real Photo"
                 class="w-full h-36 object-contain transition-transform duration-300 group-hover:scale-105 relative z-10"
               />
-              <p id="summary-visual-label" class="text-[10px] text-slate-400 font-medium bg-slate-950/90 px-2 py-0.5 rounded border border-slate-800 z-20 text-center truncate max-w-full mt-1">
+              <p id="summary-visual-label" class="text-[10px] text-slate-500 font-medium bg-white/90 px-2 py-0.5 rounded border border-slate-200 z-20 text-center truncate max-w-full mt-1 shadow-xs">
                 Representative model image. Actual rental vehicle/color may vary.
               </p>
             </div>
 
             <div class="space-y-3 text-xs">
               <div>
-                <span id="summary-brand" class="text-[10px] font-bold text-red-500 uppercase tracking-wider block">TOYOTA</span>
-                <h4 id="summary-model" class="text-xl font-black text-white">Toyota Corolla</h4>
-                <p id="summary-specs" class="text-slate-400 text-xs mt-0.5">2024 Model • Automatic • Petrol</p>
+                <span id="summary-brand" class="text-[10px] font-bold text-red-600 uppercase tracking-wider block">TOYOTA</span>
+                <h4 id="summary-model" class="text-xl font-black text-slate-900">Toyota Corolla</h4>
+                <p id="summary-specs" class="text-slate-500 text-xs mt-0.5">2024 Model • Automatic • Petrol</p>
               </div>
 
-              <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800/80 space-y-2">
-                <div class="flex justify-between border-b border-slate-800 pb-1.5">
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-2">
+                <div class="flex justify-between border-b border-slate-200 pb-1.5">
                   <span class="text-slate-500">Year / Shape:</span>
-                  <span id="summary-year-label" class="text-white font-bold truncate max-w-[170px]">2024 Model</span>
+                  <span id="summary-year-label" class="text-slate-900 font-bold truncate max-w-[170px]">2024 Model</span>
                 </div>
-                <div class="flex justify-between border-b border-slate-800 pb-1.5">
+                <div class="flex justify-between border-b border-slate-200 pb-1.5">
                   <span class="text-slate-500">Preferred Color:</span>
-                  <span id="summary-color-label" class="text-amber-300 font-bold">ANY AVAILABLE</span>
+                  <span id="summary-color-label" class="text-slate-900 font-bold">ANY AVAILABLE</span>
                 </div>
-                <div class="flex justify-between border-b border-slate-800 pb-1.5">
+                <div class="flex justify-between border-b border-slate-200 pb-1.5">
                   <span class="text-slate-500">Pickup:</span>
-                  <span id="summary-pickup" class="text-white font-bold truncate max-w-[160px]">Johar Town, Lahore</span>
+                  <span id="summary-pickup" class="text-slate-900 font-bold truncate max-w-[160px]">Johar Town, Lahore</span>
                 </div>
-                <div class="flex justify-between border-b border-slate-800 pb-1.5">
+                <div class="flex justify-between border-b border-slate-200 pb-1.5">
                   <span class="text-slate-500">Drop-off:</span>
-                  <span id="summary-dropoff" class="text-white font-bold truncate max-w-[160px]">Islamabad F-7</span>
+                  <span id="summary-dropoff" class="text-slate-900 font-bold truncate max-w-[160px]">Islamabad F-7</span>
                 </div>
-                <div class="flex justify-between border-b border-slate-800 pb-1.5">
+                <div class="flex justify-between border-b border-slate-200 pb-1.5">
                   <span class="text-slate-500">Est. Distance:</span>
-                  <span id="summary-distance" class="text-amber-400 font-bold">375 km</span>
+                  <span id="summary-distance" class="text-red-600 font-bold">375 km</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="text-slate-500">Duration:</span>
-                  <span id="summary-duration" class="text-red-500 font-extrabold">1 Rental Day</span>
+                  <span id="summary-duration" class="text-red-600 font-extrabold">1 Rental Day</span>
                 </div>
               </div>
 
               <!-- Summary Pricing Card -->
-              <div class="bg-emerald-950/40 p-3 rounded-xl border border-emerald-900/60 space-y-1.5">
+              <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200 space-y-1.5">
                 <div class="flex justify-between items-center text-xs">
-                  <span class="text-slate-400 font-medium">Approx. Daily Rate:</span>
-                  <span id="summary-daily-rate" class="text-emerald-400 font-black text-sm">PKR 7,500/day</span>
+                  <span class="text-slate-600 font-medium">Approx. Daily Rate:</span>
+                  <span id="summary-daily-rate" class="text-emerald-700 font-black text-sm">PKR 7,500/day</span>
                 </div>
                 <div class="flex justify-between items-center text-xs">
-                  <span class="text-slate-400 font-medium">Estimated Base Total:</span>
-                  <span id="summary-total-rate" class="text-white font-extrabold text-sm">PKR 7,500</span>
+                  <span class="text-slate-600 font-medium">Estimated Base Total:</span>
+                  <span id="summary-total-rate" class="text-slate-900 font-extrabold text-sm">PKR 7,500</span>
                 </div>
-                <p class="text-[10px] text-amber-400/90 pt-1 border-t border-emerald-900/30 leading-snug">
+                <p class="text-[10px] text-amber-800 pt-1 border-t border-emerald-200 leading-snug">
                   ⛽ Subject to daily fuel revisions. Locked rate verified on WhatsApp.
                 </p>
               </div>
             </div>
 
-            <button type="button" id="btn-change-vehicle-summary" class="w-full bg-slate-800 hover:bg-slate-750 text-red-400 font-extrabold text-xs py-2.5 rounded-xl block text-center border border-slate-700 transition-colors">
+            <button type="button" id="btn-change-vehicle-summary" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold text-xs py-2.5 rounded-xl block text-center border border-slate-200 transition-colors">
               ✏️ CHANGE VEHICLE / CATEGORY
             </button>
           </div>
@@ -779,17 +779,17 @@ const COLOR_OPTIONS = [
   </section>
 
   <!-- Mobile Bottom Sticky Navigation Bar -->
-  <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 p-3 shadow-2xl flex items-center justify-between gap-2">
-    <button type="button" class="btn-prev bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs px-4 py-3 rounded-xl border border-slate-700">
+  <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 shadow-2xl flex items-center justify-between gap-2">
+    <button type="button" class="btn-prev bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-4 py-3 rounded-xl border border-slate-200">
       ← Back
     </button>
 
-    <button type="button" id="btn-toggle-mobile-drawer" class="text-xs font-bold text-slate-200 flex items-center gap-1.5 bg-slate-950 px-3 py-2.5 rounded-xl border border-slate-800">
+    <button type="button" id="btn-toggle-mobile-drawer" class="text-xs font-bold text-slate-900 flex items-center gap-1.5 bg-slate-50 px-3 py-2.5 rounded-xl border border-slate-200">
       <span>📋 Summary</span>
       <span id="drawer-arrow-icon">▲</span>
     </button>
 
-    <button type="button" class="btn-next bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow-lg flex items-center gap-1">
+    <button type="button" class="btn-next bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow-md flex items-center gap-1">
       <span>Continue</span>
       <span>→</span>
     </button>
@@ -848,9 +848,9 @@ const COLOR_OPTIONS = [
 
     if (filtered.length === 0) {
       container.innerHTML = `
-        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 text-center space-y-3">
-          <div class="text-amber-400 font-bold text-sm">No exact models found for this brand & category filter.</div>
-          <button type="button" id="btn-reset-filters" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl">
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center space-y-3">
+          <div class="text-slate-800 font-bold text-sm">No exact models found for this brand & category filter.</div>
+          <button type="button" id="btn-reset-filters" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow-sm">
             Show All Models
           </button>
         </div>
@@ -868,15 +868,15 @@ const COLOR_OPTIONS = [
     filtered.forEach((v: any) => {
       const isFleet = v.isFleetConfirmed || v.status === '4WHEELS Core Fleet';
       const statusBadge = isFleet
-        ? `<span class="bg-emerald-950 text-emerald-400 border border-emerald-800 text-[10px] font-black px-2.5 py-0.5 rounded uppercase">✓ AVAILABLE THROUGH 4WHEELS</span>`
-        : `<span class="bg-amber-950 text-amber-300 border border-amber-800 text-[10px] font-black px-2.5 py-0.5 rounded uppercase">⚡ REQUEST THIS MODEL</span>`;
+        ? `<span class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-black px-2.5 py-0.5 rounded uppercase">✓ AVAILABLE THROUGH 4WHEELS</span>`
+        : `<span class="bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-black px-2.5 py-0.5 rounded uppercase">⚡ REQUEST THIS MODEL</span>`;
 
       const card = document.createElement('div');
-      card.className = 'model-card bg-slate-950 border border-slate-800 hover:border-red-500 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 transition-all duration-300 group';
+      card.className = 'model-card bg-slate-50 hover:bg-white border border-slate-200 hover:border-red-500 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 transition-all duration-300 group shadow-xs hover:shadow-md';
       card.setAttribute('data-vehicle-id', v.id);
 
       card.innerHTML = `
-        <div class="w-full sm:w-48 aspect-[16/9] bg-slate-900 rounded-xl overflow-hidden border border-slate-800 flex items-center justify-center p-2 relative shrink-0">
+        <div class="w-full sm:w-48 aspect-[16/9] bg-gradient-to-b from-slate-100 to-slate-200/50 rounded-xl overflow-hidden border border-slate-200 flex items-center justify-center p-2 relative shrink-0">
           <img
             src="${v.heroPhoto || '/vehicles/fleet/toyota-corolla/hero.webp'}"
             alt="${v.brand} ${v.model}"
@@ -888,25 +888,25 @@ const COLOR_OPTIONS = [
         <div class="flex-1 space-y-2 w-full">
           <div class="flex items-center justify-between flex-wrap gap-2">
             ${statusBadge}
-            <span class="text-[10px] text-slate-400 font-bold uppercase">${v.category}</span>
+            <span class="text-[10px] text-slate-500 font-bold uppercase">${v.category}</span>
           </div>
 
           <div>
-            <h3 class="text-base sm:text-lg font-black text-white group-hover:text-red-400 transition-colors">
+            <h3 class="text-base sm:text-lg font-black text-slate-900 group-hover:text-red-600 transition-colors">
               ${v.brand} ${v.model}
             </h3>
-            <p class="text-xs text-slate-400">${v.variant || v.tagline}</p>
+            <p class="text-xs text-slate-500">${v.variant || v.tagline}</p>
           </div>
 
           <div class="flex flex-wrap gap-2 text-[11px] font-bold">
-            <span class="bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">${v.transmission}</span>
-            <span class="bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">${v.fuelType}</span>
-            <span class="bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">${v.seats} Seats</span>
+            <span class="bg-white text-slate-700 px-2 py-0.5 rounded border border-slate-200 shadow-2xs">${v.transmission}</span>
+            <span class="bg-white text-slate-700 px-2 py-0.5 rounded border border-slate-200 shadow-2xs">${v.fuelType}</span>
+            <span class="bg-white text-slate-700 px-2 py-0.5 rounded border border-slate-200 shadow-2xs">${v.seats} Seats</span>
           </div>
         </div>
 
         <div class="w-full sm:w-auto shrink-0 pt-2 sm:pt-0">
-          <button type="button" class="btn-select-model w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow-md cursor-pointer" data-id="${v.id}">
+          <button type="button" class="btn-select-model w-full sm:w-auto bg-slate-900 group-hover:bg-red-600 text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow-sm transition-colors cursor-pointer" data-id="${v.id}">
             VIEW YEARS / SHAPES →
           </button>
         </div>
@@ -961,21 +961,21 @@ const COLOR_OPTIONS = [
       const isSelected = index === 0;
       const card = document.createElement('div');
       card.className = `year-shape-card border rounded-2xl p-4 cursor-pointer transition-all duration-300 flex items-center gap-4 ${
-        isSelected ? 'bg-red-600/20 border-red-500 ring-1 ring-red-500' : 'bg-slate-950 border-slate-800 hover:border-slate-700'
+        isSelected ? 'bg-red-50 border-red-500 ring-1 ring-red-500 shadow-sm' : 'bg-slate-50 border-slate-200 hover:border-slate-300 hover:bg-white'
       }`;
       card.setAttribute('data-group-id', g.id);
 
       card.innerHTML = `
-        <div class="w-28 h-20 bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shrink-0 flex items-center justify-center p-1">
+        <div class="w-28 h-20 bg-white rounded-xl overflow-hidden border border-slate-200 shrink-0 flex items-center justify-center p-1">
           <img src="${g.heroPhoto}" alt="${g.customerLabel}" class="w-full h-full object-contain" />
         </div>
         <div class="flex-1">
-          <span class="text-[10px] font-black text-red-400 uppercase tracking-wider block">${g.generation}</span>
-          <h4 class="text-sm font-black text-white">${g.customerLabel}</h4>
-          <p class="text-[11px] text-slate-400 mt-0.5">${g.startYear}–${g.endYear} Production</p>
+          <span class="text-[10px] font-black text-red-600 uppercase tracking-wider block">${g.generation}</span>
+          <h4 class="text-sm font-black text-slate-900">${g.customerLabel}</h4>
+          <p class="text-[11px] text-slate-500 mt-0.5">${g.startYear}–${g.endYear} Production</p>
         </div>
         <div class="shrink-0">
-          <span class="radio-indicator w-5 h-5 rounded-full border border-slate-600 flex items-center justify-center ${isSelected ? 'border-red-500 bg-red-600 text-white' : ''}">
+          <span class="radio-indicator w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center text-xs font-black ${isSelected ? 'border-red-500 bg-red-600 text-white' : ''}">
             ${isSelected ? '✓' : ''}
           </span>
         </div>
@@ -983,19 +983,19 @@ const COLOR_OPTIONS = [
 
       card.addEventListener('click', () => {
         document.querySelectorAll('.year-shape-card').forEach(c => {
-          c.classList.remove('bg-red-600/20', 'border-red-500', 'ring-1', 'ring-red-500');
-          c.classList.add('bg-slate-950', 'border-slate-800');
+          c.classList.remove('bg-red-50', 'border-red-500', 'ring-1', 'ring-red-500', 'shadow-sm');
+          c.classList.add('bg-slate-50', 'border-slate-200');
           const radio = c.querySelector('.radio-indicator');
           if (radio) {
-            radio.className = 'radio-indicator w-5 h-5 rounded-full border border-slate-600 flex items-center justify-center';
+            radio.className = 'radio-indicator w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center text-xs font-black';
             radio.textContent = '';
           }
         });
-        card.classList.remove('bg-slate-950', 'border-slate-800');
-        card.classList.add('bg-red-600/20', 'border-red-500', 'ring-1', 'ring-red-500');
+        card.classList.remove('bg-slate-50', 'border-slate-200');
+        card.classList.add('bg-red-50', 'border-red-500', 'ring-1', 'ring-red-500', 'shadow-sm');
         const radio = card.querySelector('.radio-indicator');
         if (radio) {
-          radio.className = 'radio-indicator w-5 h-5 rounded-full border border-red-500 bg-red-600 text-white flex items-center justify-center';
+          radio.className = 'radio-indicator w-5 h-5 rounded-full border border-red-500 bg-red-600 text-white flex items-center justify-center text-xs font-black';
           radio.textContent = '✓';
         }
         selectedYearGroupObj = g;
@@ -1012,11 +1012,11 @@ const COLOR_OPTIONS = [
   document.querySelectorAll('.color-swatch-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.color-swatch-btn').forEach(b => {
-        b.classList.remove('bg-red-600', 'text-white', 'border-red-500', 'shadow-md', 'scale-105');
-        b.classList.add('bg-slate-950', 'text-slate-300', 'border-slate-800');
+        b.classList.remove('bg-red-600', 'text-white', 'border-red-500', 'shadow-sm', 'scale-105');
+        b.classList.add('bg-slate-50', 'text-slate-700', 'border-slate-200');
       });
-      btn.classList.remove('bg-slate-950', 'text-slate-300', 'border-slate-800');
-      btn.classList.add('bg-red-600', 'text-white', 'border-red-500', 'shadow-md', 'scale-105');
+      btn.classList.remove('bg-slate-50', 'text-slate-700', 'border-slate-200');
+      btn.classList.add('bg-red-600', 'text-white', 'border-red-500', 'shadow-sm', 'scale-105');
 
       selectedColorName = btn.getAttribute('data-color-name') || 'ANY AVAILABLE COLOR';
       updateSummary();
@@ -1043,11 +1043,11 @@ const COLOR_OPTIONS = [
       if (bSlug) {
         selectedBrand = bSlug;
         document.querySelectorAll('.brand-tile').forEach(t => {
-          t.classList.remove('bg-red-600/20', 'border-red-500');
-          t.classList.add('bg-slate-950', 'border-slate-800');
+          t.classList.remove('bg-red-50', 'border-red-500');
+          t.classList.add('bg-slate-50', 'border-slate-200');
         });
-        tile.classList.remove('bg-slate-950', 'border-slate-800');
-        tile.classList.add('bg-red-600/20', 'border-red-500');
+        tile.classList.remove('bg-slate-50', 'border-slate-200');
+        tile.classList.add('bg-red-50', 'border-red-500');
         renderModelCards();
         showStep(3);
       }
@@ -1161,14 +1161,17 @@ const COLOR_OPTIONS = [
       const stepIdx = idx + 1;
       const circle = tab.querySelector('span:first-child');
       if (stepIdx === stepNumber) {
-        tab.classList.add('text-red-500');
-        if (circle) circle.className = 'w-7 h-7 rounded-full bg-red-600 text-white flex items-center justify-center text-xs';
+        tab.classList.add('text-red-600');
+        tab.classList.remove('text-slate-500');
+        if (circle) circle.className = 'w-7 h-7 rounded-full bg-red-600 text-white flex items-center justify-center text-xs shadow-sm';
       } else if (stepIdx < stepNumber) {
-        tab.classList.remove('text-red-500');
-        if (circle) circle.className = 'w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs';
+        tab.classList.remove('text-red-600');
+        tab.classList.remove('text-slate-500');
+        if (circle) circle.className = 'w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs shadow-sm';
       } else {
-        tab.classList.remove('text-red-500');
-        if (circle) circle.className = 'w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs';
+        tab.classList.remove('text-red-600');
+        tab.classList.add('text-slate-500');
+        if (circle) circle.className = 'w-7 h-7 rounded-full bg-slate-100 text-slate-500 border border-slate-200 flex items-center justify-center text-xs';
       }
     });
 
@@ -1267,8 +1270,8 @@ const COLOR_OPTIONS = [
     if (sBadge) {
       sBadge.textContent = isFleet ? 'AVAILABLE THROUGH 4WHEELS' : 'REQUEST MODEL';
       sBadge.className = isFleet
-        ? 'text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold px-2 py-0.5 rounded uppercase'
-        : 'text-[10px] bg-amber-950 text-amber-300 border border-amber-800 font-bold px-2 py-0.5 rounded uppercase';
+        ? 'text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold px-2 py-0.5 rounded uppercase'
+        : 'text-[10px] bg-amber-50 text-amber-800 border border-amber-200 font-bold px-2 py-0.5 rounded uppercase';
     }
 
     if (sPickup) sPickup.textContent = pickup;

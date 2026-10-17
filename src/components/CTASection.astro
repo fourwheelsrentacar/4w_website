@@ -43,26 +43,26 @@ const whatsappLink = primaryButtonHref || getContextualWhatsAppUrl({
 });
 ---
 
-<section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12 md:py-16 px-4 rounded-2xl my-8 text-center max-w-7xl mx-auto shadow-xl border border-slate-700/50">
+<section class="bg-gradient-to-b from-white via-slate-50 to-slate-100/80 text-slate-900 py-12 md:py-16 px-6 rounded-3xl my-8 text-center max-w-7xl mx-auto shadow-[0_10px_35px_-5px_rgba(0,0,0,0.06)] border border-slate-200/90 relative overflow-hidden">
   <div class="max-w-3xl mx-auto space-y-6">
     <div class="flex flex-wrap items-center justify-center gap-2">
-      <span class="inline-block bg-slate-800 text-red-400 text-xs font-semibold px-3 py-1 rounded-full border border-slate-700">
+      <span class="inline-block bg-white text-red-600 text-xs font-black px-3.5 py-1 rounded-full border border-red-200 shadow-xs uppercase tracking-wider">
         {BUSINESS_INFO.trustBadge}
       </span>
-      <span class="inline-flex items-center gap-1.5 bg-emerald-950/90 text-emerald-400 border border-emerald-700/60 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+      <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold px-3.5 py-1 rounded-full shadow-xs">
         ⚡ Live Quotation &bull; Reply Within 5 Minutes
       </span>
     </div>
-    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-950 tracking-tight">
       {heading}
     </h2>
-    <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
+    <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium">
       {subheading}
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
       <a
         href={BUSINESS_INFO.telLink}
-        class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white text-base font-bold px-8 py-3.5 rounded-xl transition-all shadow-lg hover:shadow-red-600/30 text-center flex items-center justify-center gap-2"
+        class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white text-base font-extrabold px-8 py-3.5 rounded-xl transition-all shadow-md text-center flex items-center justify-center gap-2 active:scale-98"
       >
         <span>📞 Call {BUSINESS_INFO.phoneDisplay}</span>
       </a>
@@ -70,7 +70,7 @@ const whatsappLink = primaryButtonHref || getContextualWhatsAppUrl({
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white text-base font-bold px-8 py-3.5 rounded-xl transition-all shadow-lg hover:shadow-emerald-600/30 text-center flex items-center justify-center gap-2"
+        class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white text-base font-extrabold px-8 py-3.5 rounded-xl transition-all shadow-lg hover:shadow-emerald-600/30 text-center flex items-center justify-center gap-2 active:scale-98"
       >
         <span>{whatsappText}</span>
       </a>

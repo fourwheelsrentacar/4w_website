@@ -23,87 +23,87 @@ const advisories = PRESS_RELEASES.filter(p => p.category === 'Customer Advisory'
 <Layout title={pageTitle} description={pageDescription} canonicalPath="/official/">
 
   <!-- Hero Section -->
-  <section class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+  <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 text-slate-900 py-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200">
     <div class="max-w-4xl mx-auto text-center">
-      <div class="inline-block bg-red-600 text-white font-extrabold text-xs uppercase px-3 py-1 rounded tracking-wider mb-4">
+      <div class="inline-block bg-red-600 text-white font-extrabold text-xs uppercase px-3.5 py-1 rounded-full tracking-wider mb-4 shadow-sm">
         Official Brand Verification Hub
       </div>
-      <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-4 text-white">
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-4 text-slate-900">
         Official 4WHEELS Rent a Car
       </h1>
-      <p class="text-lg sm:text-xl text-red-400 font-semibold mb-6">
+      <p class="text-lg sm:text-xl text-red-600 font-semibold mb-6">
         Serving Lahore Since 2008
       </p>
-      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+      <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
         Before sending payment or confirming a rental, customers can verify the website, telephone number, booking details or representative through official 4WHEELS customer care.
       </p>
     </div>
   </section>
 
   <!-- Main Verification Grid -->
-  <section class="py-12 bg-slate-950 text-slate-100">
+  <section class="py-12 bg-slate-50/60 text-slate-900">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
       <!-- Official Details Card -->
-      <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl">
-        <h2 class="text-2xl font-black text-white mb-6 pb-3 border-b border-slate-800 flex items-center gap-2">
-          <span class="text-red-500">✓</span> Authoritative Official Channels
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <h2 class="text-2xl font-black text-slate-900 mb-6 pb-3 border-b border-slate-200 flex items-center gap-2">
+          <span class="text-red-600">✓</span> Authoritative Official Channels
         </h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Website</span>
-            <a href="https://www.4wheelspk.com/" class="text-red-400 font-extrabold text-base hover:underline break-all">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-2xs">
+            <span class="text-slate-500 font-bold uppercase text-[10px] block mb-1">Official Website</span>
+            <a href="https://www.4wheelspk.com/" class="text-red-600 font-extrabold text-base hover:underline break-all">
               https://www.4wheelspk.com/
             </a>
           </div>
 
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Booking Portal</span>
-            <a href="/booking/" class="text-white font-extrabold text-base hover:underline break-all">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-2xs">
+            <span class="text-slate-500 font-bold uppercase text-[10px] block mb-1">Official Booking Portal</span>
+            <a href="/booking/" class="text-slate-900 font-extrabold text-base hover:underline break-all">
               https://www.4wheelspk.com/booking/
             </a>
           </div>
 
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Fleet Directory</span>
-            <a href="/fleet/" class="text-white font-extrabold text-base hover:underline break-all">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-2xs">
+            <span class="text-slate-500 font-bold uppercase text-[10px] block mb-1">Official Fleet Directory</span>
+            <a href="/fleet/" class="text-slate-900 font-extrabold text-base hover:underline break-all">
               https://www.4wheelspk.com/fleet/
             </a>
           </div>
 
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Phone & Voice</span>
-            <a href="tel:+923216616644" class="text-red-400 font-extrabold text-base hover:underline">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-2xs">
+            <span class="text-slate-500 font-bold uppercase text-[10px] block mb-1">Official Phone & Voice</span>
+            <a href="tel:+923216616644" class="text-red-600 font-extrabold text-base hover:underline">
               0321 6616644
             </a>
-            <span class="text-slate-400 text-xs block">(International: +92 321 6616644)</span>
+            <span class="text-slate-500 text-xs block">(International: +92 321 6616644)</span>
           </div>
 
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official WhatsApp</span>
-            <a href={waUrl} target="_blank" rel="noopener noreferrer" class="text-emerald-400 font-extrabold text-base hover:underline">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-2xs">
+            <span class="text-slate-500 font-bold uppercase text-[10px] block mb-1">Official WhatsApp</span>
+            <a href={waUrl} target="_blank" rel="noopener noreferrer" class="text-emerald-700 font-extrabold text-base hover:underline">
               +92 321 6616644
             </a>
           </div>
 
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Email</span>
-            <a href="mailto:4wheels44@gmail.com" class="text-white font-extrabold text-base hover:underline">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-2xs">
+            <span class="text-slate-500 font-bold uppercase text-[10px] block mb-1">Official Email</span>
+            <a href="mailto:4wheels44@gmail.com" class="text-slate-900 font-extrabold text-base hover:underline">
               4wheels44@gmail.com
             </a>
           </div>
 
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 sm:col-span-2">
-            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Physical Head Office</span>
-            <p class="text-white font-extrabold text-sm">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 sm:col-span-2 shadow-2xs">
+            <span class="text-slate-500 font-bold uppercase text-[10px] block mb-1">Official Physical Head Office</span>
+            <p class="text-slate-900 font-extrabold text-sm">
               5, F1, Block F1, Johar Town Phase 1, Lahore, Pakistan
             </p>
           </div>
 
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 sm:col-span-2">
-            <span class="text-slate-400 font-bold uppercase text-[10px] block mb-1">Official Facebook Page</span>
-            <a href="https://www.facebook.com/4wheelrentacar/" target="_blank" rel="noopener noreferrer" class="text-blue-400 font-extrabold text-xs hover:underline break-all">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 sm:col-span-2 shadow-2xs">
+            <span class="text-slate-500 font-bold uppercase text-[10px] block mb-1">Official Facebook Page</span>
+            <a href="https://www.facebook.com/4wheelrentacar/" target="_blank" rel="noopener noreferrer" class="text-blue-600 font-extrabold text-xs hover:underline break-all">
               https://www.facebook.com/4wheelrentacar/
             </a>
           </div>
@@ -113,50 +113,50 @@ const advisories = PRESS_RELEASES.filter(p => p.category === 'Customer Advisory'
       <!-- Verification UX Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-2 shadow-2xs">
           <div class="text-xl">🌐</div>
-          <h3 class="text-base font-black text-white">VERIFY OUR WEBSITE</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <h3 class="text-base font-black text-slate-900">VERIFY OUR WEBSITE</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
             Check your browser address bar to ensure you are visiting <strong>www.4wheelspk.com</strong>. All canonical sitemaps, vehicle specs, and booking forms originate strictly from this domain.
           </p>
         </div>
 
-        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-2 shadow-2xs">
           <div class="text-xl">📞</div>
-          <h3 class="text-base font-black text-white">VERIFY OUR PHONE / WHATSAPP</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <h3 class="text-base font-black text-slate-900">VERIFY OUR PHONE / WHATSAPP</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
             All voice calls and official WhatsApp messages originate exclusively from <strong>0321 6616644</strong> (+92 321 6616644). Never transfer deposits to messages from unverified numbers.
           </p>
         </div>
 
-        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-2 shadow-2xs">
           <div class="text-xl">📍</div>
-          <h3 class="text-base font-black text-white">VERIFY OUR LOCATION</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <h3 class="text-base font-black text-slate-900">VERIFY OUR LOCATION</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
             Our official headquarters and primary vehicle dispatch hub is situated at Plot number 5, Block F1, Johar Town Phase 1, Lahore. Any other claimed physical location should be verified with customer care.
           </p>
         </div>
 
-        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-2 shadow-2xs">
           <div class="text-xl">📋</div>
-          <h3 class="text-base font-black text-white">VERIFY A BOOKING</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Confirm that your booking was configured through <a href="/booking/" class="text-red-400 font-bold hover:underline">/booking/</a> or directly confirmed by 4WHEELS Customer Care at 0321 6616644.
+          <h3 class="text-base font-black text-slate-900">VERIFY A BOOKING</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Confirm that your booking was configured through <a href="/booking/" class="text-red-600 font-bold hover:underline">/booking/</a> or directly confirmed by 4WHEELS Customer Care at 0321 6616644.
           </p>
         </div>
 
-        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-2 shadow-2xs">
           <div class="text-xl">👔</div>
-          <h3 class="text-base font-black text-white">VERIFY A REPRESENTATIVE</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <h3 class="text-base font-black text-slate-900">VERIFY A REPRESENTATIVE</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
             All chauffeur assignments and corporate account representatives are issued directly from our Johar Town headquarters.
           </p>
         </div>
 
-        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-2 shadow-2xs">
           <div class="text-xl">💳</div>
-          <h3 class="text-base font-black text-white">VERIFY A PAYMENT REQUEST</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <h3 class="text-base font-black text-slate-900">VERIFY A PAYMENT REQUEST</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
             Always verify bank account details and booking payment requests via voice call or official WhatsApp (0321 6616644) before completing bank transfers.
           </p>
         </div>
@@ -164,19 +164,19 @@ const advisories = PRESS_RELEASES.filter(p => p.category === 'Customer Advisory'
       </div>
 
       <!-- Physical Showroom & Fleet Ground Verification Gallery -->
-      <div class="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-3xl space-y-6 shadow-2xl">
-        <div class="border-b border-slate-800 pb-4">
-          <span class="text-xs font-bold text-red-500 uppercase tracking-widest block mb-1">Physical Verification</span>
-          <h3 class="text-xl sm:text-2xl font-black text-white">
+      <div class="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl space-y-6 shadow-sm">
+        <div class="border-b border-slate-200 pb-4">
+          <span class="text-xs font-bold text-red-600 uppercase tracking-widest block mb-1">Physical Verification</span>
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900">
             Authentic Photographs of Our Johar Town Head Office & Fleet
           </h3>
-          <p class="text-xs sm:text-sm text-slate-300 mt-1">
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">
             Confirm our physical infrastructure on Main Boulevard, Phase 1, Johar Town, Lahore. We maintain real owned and managed vehicles in our yard with our official telephone <strong>0321-6616644</strong> clearly marked.
           </p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800">
+          <div class="bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
             <img
               src="/images/office/4wheels-hq-billboard-wide.webp"
               alt="4WHEELS Rent a Car Billboard 0321-6616644 on Main Boulevard Johar Town Lahore"
@@ -184,12 +184,12 @@ const advisories = PRESS_RELEASES.filter(p => p.category === 'Customer Advisory'
               loading="lazy"
             />
             <div class="p-3 text-xs">
-              <span class="font-bold text-white block">Official Main Boulevard Billboard</span>
-              <span class="text-slate-400 text-[11px]">Notice telephone: 0321-6616644</span>
+              <span class="font-bold text-slate-900 block">Official Main Boulevard Billboard</span>
+              <span class="text-slate-500 text-[11px]">Notice telephone: 0321-6616644</span>
             </div>
           </div>
 
-          <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800">
+          <div class="bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
             <img
               src="/images/office/4wheels-office-entrance-prado-civic.webp"
               alt="4WHEELS Office Entrance with Black Prado and White Civic"
@@ -197,12 +197,12 @@ const advisories = PRESS_RELEASES.filter(p => p.category === 'Customer Advisory'
               loading="lazy"
             />
             <div class="p-3 text-xs">
-              <span class="font-bold text-white block">Office Front Reception</span>
-              <span class="text-slate-400 text-[11px]">Walk-in customer desk & parked fleet</span>
+              <span class="font-bold text-slate-900 block">Office Front Reception</span>
+              <span class="text-slate-500 text-[11px]">Walk-in customer desk & parked fleet</span>
             </div>
           </div>
 
-          <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800">
+          <div class="bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
             <img
               src="/images/office/4wheels-fleet-lineup-civics-fortuner.webp"
               alt="4WHEELS Fleet Yard White Civics and Fortuner Legender"
@@ -210,12 +210,12 @@ const advisories = PRESS_RELEASES.filter(p => p.category === 'Customer Advisory'
               loading="lazy"
             />
             <div class="p-3 text-xs">
-              <span class="font-bold text-white block">Active Yard Fleet</span>
-              <span class="text-slate-400 text-[11px]">Civic 11th Gen, Fortuner Legender & Prado</span>
+              <span class="font-bold text-slate-900 block">Active Yard Fleet</span>
+              <span class="text-slate-500 text-[11px]">Civic 11th Gen, Fortuner Legender & Prado</span>
             </div>
           </div>
 
-          <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800">
+          <div class="bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
             <img
               src="/images/office/4wheels-fleet-yard-yaris-sportage-pajero.webp"
               alt="4WHEELS Fleet Yard Toyota Yaris, Kia Sportage and Mitsubishi Pajero"
@@ -223,12 +223,12 @@ const advisories = PRESS_RELEASES.filter(p => p.category === 'Customer Advisory'
               loading="lazy"
             />
             <div class="p-3 text-xs">
-              <span class="font-bold text-white block">SUV & Sedan Yard Section</span>
-              <span class="text-slate-400 text-[11px]">Toyota Yaris, Sportage & Mitsubishi Pajero</span>
+              <span class="font-bold text-slate-900 block">SUV & Sedan Yard Section</span>
+              <span class="text-slate-500 text-[11px]">Toyota Yaris, Sportage & Mitsubishi Pajero</span>
             </div>
           </div>
 
-          <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800">
+          <div class="bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
             <img
               src="/images/office/4wheels-hq-front-showroom.webp"
               alt="4WHEELS Johar Town Headquarter Showroom Street View"
@@ -236,12 +236,12 @@ const advisories = PRESS_RELEASES.filter(p => p.category === 'Customer Advisory'
               loading="lazy"
             />
             <div class="p-3 text-xs">
-              <span class="font-bold text-white block">Street Front View</span>
-              <span class="text-slate-400 text-[11px]">Direct road access on Johar Town Main Boulevard</span>
+              <span class="font-bold text-slate-900 block">Street Front View</span>
+              <span class="text-slate-500 text-[11px]">Direct road access on Johar Town Main Boulevard</span>
             </div>
           </div>
 
-          <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800">
+          <div class="bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
             <img
               src="/images/office/4wheels-fleet-yard-lineup-day.webp"
               alt="4WHEELS Fleet Yard Lineup Daytime Photo"
@@ -249,51 +249,50 @@ const advisories = PRESS_RELEASES.filter(p => p.category === 'Customer Advisory'
               loading="lazy"
             />
             <div class="p-3 text-xs">
-              <span class="font-bold text-white block">Full Fleet Dispatch Yard</span>
-              <span class="text-slate-400 text-[11px]">Prepped, sanitized vehicles ready for dispatch</span>
+              <span class="font-bold text-slate-900 block">Full Fleet Dispatch Yard</span>
+              <span class="text-slate-500 text-[11px]">Prepped, sanitized vehicles ready for dispatch</span>
             </div>
           </div>
         </div>
       </div>
 
-
       <!-- Similar-Name Notice & Brand Protection Block -->
-      <div class="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-2xl space-y-4">
-        <h3 class="text-lg font-black text-white flex items-center gap-2">
+      <div class="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl space-y-4 shadow-2xs">
+        <h3 class="text-lg font-black text-slate-900 flex items-center gap-2">
           <span>🏛️ SIMILAR-NAME BUSINESSES & BRAND PROTECTION</span>
         </h3>
-        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
           Other businesses and online properties may use similar "4 Wheels", "4Wheels" or "4 Wheel Rent a Car" naming. Similar naming does not establish affiliation with 4WHEELS Rent a Car.
         </p>
-        <p class="text-xs sm:text-sm text-slate-200 font-bold bg-slate-950 p-4 rounded-xl border border-slate-800 leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-800 font-bold bg-slate-50 p-4 rounded-xl border border-slate-200 leading-relaxed">
           Customers should verify any website, branch, representative or payment instruction through www.4wheelspk.com or official customer care at 0321 6616644.
         </p>
       </div>
 
       <!-- Latest Customer Advisories Section -->
-      <div class="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-2xl space-y-6">
-        <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-          <h3 class="text-lg font-black text-white uppercase tracking-wider">
+      <div class="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl space-y-6 shadow-sm">
+        <div class="flex justify-between items-center border-b border-slate-200 pb-3">
+          <h3 class="text-lg font-black text-slate-900 uppercase tracking-wider">
             📢 LATEST CUSTOMER ADVISORIES
           </h3>
-          <a href="/press/" class="text-xs font-bold text-red-400 hover:underline">View Press Centre →</a>
+          <a href="/press/" class="text-xs font-bold text-red-600 hover:underline">View Press Centre →</a>
         </div>
 
         <div class="space-y-4">
           {advisories.map(adv => (
-            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1.5">
-              <div class="flex items-center justify-between text-[11px] text-slate-400">
-                <span class="bg-red-950 text-red-400 border border-red-800 px-2 py-0.5 rounded font-bold uppercase">{adv.category}</span>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1.5 shadow-2xs">
+              <div class="flex items-center justify-between text-[11px] text-slate-500">
+                <span class="bg-red-50 text-red-700 border border-red-200 px-2 py-0.5 rounded font-bold uppercase">{adv.category}</span>
                 <span>{adv.datePublished}</span>
               </div>
-              <h4 class="text-sm sm:text-base font-black text-white hover:text-red-400 transition-colors">
+              <h4 class="text-sm sm:text-base font-black text-slate-900 hover:text-red-600 transition-colors">
                 <a href={`/press/${adv.slug}/`}>{adv.title}</a>
               </h4>
-              <p class="text-xs text-slate-300 leading-relaxed line-clamp-2">
+              <p class="text-xs text-slate-600 leading-relaxed line-clamp-2">
                 {adv.summary}
               </p>
               <div class="pt-2">
-                <a href={`/press/${adv.slug}/`} class="text-xs font-bold text-red-400 hover:underline inline-flex items-center gap-1">
+                <a href={`/press/${adv.slug}/`} class="text-xs font-bold text-red-600 hover:underline inline-flex items-center gap-1">
                   <span>Read Official Advisory</span>
                   <span>→</span>
                 </a>

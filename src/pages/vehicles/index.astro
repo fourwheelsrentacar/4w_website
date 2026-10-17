@@ -43,42 +43,42 @@ const directoryBreadcrumb = {
   />
   <script type="application/ld+json" set:html={JSON.stringify(directoryBreadcrumb)} />
 </head>
-<body class="bg-slate-950 text-white font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col">
   <HeaderComp />
 
   <main class="flex-grow">
     <!-- Breadcrumbs -->
-    <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400">
+    <nav class="bg-slate-100/80 border-b border-slate-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-500">
       <div class="max-w-7xl mx-auto flex items-center gap-2">
-        <a href="/" class="hover:text-red-500 transition-colors">Home</a>
+        <a href="/" class="hover:text-red-600 transition-colors">Home</a>
         <span>/</span>
-        <span class="font-bold text-white">Vehicles Directory</span>
+        <span class="font-bold text-slate-900">Vehicles Directory</span>
       </div>
     </nav>
 
     <!-- Directory Hero Header -->
-    <section class="bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-200">
       <div class="max-w-7xl mx-auto text-center space-y-4">
-        <span class="text-xs font-black uppercase tracking-widest text-red-500 bg-red-950/80 border border-red-800/80 px-3.5 py-1.5 rounded-full inline-block">
+        <span class="text-xs font-black uppercase tracking-widest text-red-600 bg-red-50 border border-red-200 px-3.5 py-1.5 rounded-full inline-block shadow-2xs">
           Official Pakistan Vehicle Directory
         </span>
-        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
-          Explore Pakistan Vehicle Brands & <span class="text-red-500">Rental Catalog</span>
+        <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+          Explore Pakistan Vehicle Brands & <span class="text-red-600">Rental Catalog</span>
         </h1>
-        <p class="text-slate-300 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+        <p class="text-slate-600 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
           Browse active automotive manufacturers in Pakistan. Select a brand below to view available 4WHEELS core fleet vehicles alongside request-on-demand Pakistan catalog models.
         </p>
 
         <div class="pt-4 flex flex-wrap justify-center gap-3">
           <a
-            href="/build-your-rental/"
-            class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl transition-all shadow-lg flex items-center gap-2"
+            href="/booking/"
+            class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl transition-all shadow-md flex items-center gap-2"
           >
-            🚘 Build Your Rental Configurator
+            🚘 Visual Vehicle Configurator
           </a>
           <a
-            href="/find-my-vehicle/"
-            class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs px-5 py-3 rounded-xl border border-slate-700 transition-colors flex items-center gap-2"
+            href="/trip-fit-planner/"
+            class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs px-5 py-3 rounded-xl border border-slate-200 transition-colors flex items-center gap-2 shadow-2xs"
           >
             🧭 Find My Trip Fit Vehicle
           </a>
@@ -88,12 +88,12 @@ const directoryBreadcrumb = {
 
     <!-- EXPLORE BY BRAND GRID -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="border-b border-slate-800 pb-4 mb-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="border-b border-slate-200 pb-4 mb-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-2">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-black text-white">Browse By Brand ({PAKISTAN_BRANDS.length})</h2>
-          <p class="text-xs text-slate-400 mt-1">Select a brand landing page to explore dedicated models, specs, and rental request options.</p>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Browse By Brand ({PAKISTAN_BRANDS.length})</h2>
+          <p class="text-xs text-slate-500 mt-1">Select a brand landing page to explore dedicated models, specs, and rental request options.</p>
         </div>
-        <span class="text-xs font-bold text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+        <span class="text-xs font-bold text-slate-700 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-2xs">
           21 Active Pakistan Brands
         </span>
       </div>
@@ -104,18 +104,18 @@ const directoryBreadcrumb = {
           return (
             <a
               href={`/vehicles/${brand.slug}/`}
-              class="bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-red-600/80 rounded-2xl p-5 text-center transition-all shadow-md group flex flex-col justify-between"
+              class="bg-white hover:bg-slate-50 border border-slate-200 hover:border-red-500 rounded-2xl p-5 text-center transition-all shadow-2xs hover:shadow-md group flex flex-col justify-between"
             >
               <div>
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-1">{brand.country}</span>
-                <h3 class="text-lg sm:text-xl font-black text-white group-hover:text-red-500 transition-colors">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">{brand.country}</span>
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 group-hover:text-red-600 transition-colors">
                   {brand.name}
                 </h3>
               </div>
 
-              <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                <span class="text-slate-400 font-medium">{brandModelCount} {brandModelCount === 1 ? 'Model' : 'Models'}</span>
-                <span class="text-red-500 font-extrabold group-hover:translate-x-0.5 transition-transform">→</span>
+              <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
+                <span class="text-slate-500 font-medium">{brandModelCount} {brandModelCount === 1 ? 'Model' : 'Models'}</span>
+                <span class="text-red-600 font-extrabold group-hover:translate-x-0.5 transition-transform">→</span>
               </div>
             </a>
           );
@@ -125,16 +125,16 @@ const directoryBreadcrumb = {
 
     <!-- ACTUAL 4WHEELS FLEET HIGHLIGHTS -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div class="border-b border-slate-800 pb-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="border-b border-slate-200 pb-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2.5 py-1 rounded">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded shadow-2xs">
             PHYSICAL LAHORE INVENTORY
           </span>
-          <h2 class="text-2xl sm:text-3xl font-black text-white mt-2">
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">
             Confirmed 4WHEELS Core Fleet Vehicles
           </h2>
         </div>
-        <a href="/fleet/" class="text-xs font-bold text-red-500 hover:underline">
+        <a href="/fleet/" class="text-xs font-bold text-red-600 hover:underline">
           View Dedicated Fleet Gallery →
         </a>
       </div>
@@ -142,7 +142,7 @@ const directoryBreadcrumb = {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {confirmedFleet.map(car => (
           <div
-            class="bg-slate-900 rounded-2xl border border-slate-800 hover:border-red-600/80 overflow-hidden transition-all shadow-xl flex flex-col justify-between cursor-pointer group"
+            class="bg-white rounded-2xl border border-slate-200 hover:border-red-500 overflow-hidden transition-all shadow-xs hover:shadow-md flex flex-col justify-between cursor-pointer group"
             onclick={`if (!event.target.closest('a')) window.location.href='/vehicles/${car.brandSlug}/${car.slug}/'`}
           >
             <div>
@@ -150,23 +150,23 @@ const directoryBreadcrumb = {
 
               <div class="p-5 space-y-3">
                 <div class="flex items-center justify-between">
-                  <span class="text-[10px] font-black uppercase tracking-wider text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">
+                  <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded shadow-2xs">
                     ✓ AVAILABLE THROUGH 4WHEELS
                   </span>
-                  <span class="text-xs font-bold text-slate-400">{car.bodyType}</span>
+                  <span class="text-xs font-bold text-slate-500">{car.bodyType}</span>
                 </div>
 
-                <h3 class="text-lg font-black text-white group-hover:text-red-500 transition-colors">{car.brand} {car.model}</h3>
-                <p class="text-xs text-slate-400">{car.variant}</p>
+                <h3 class="text-lg font-black text-slate-900 group-hover:text-red-600 transition-colors">{car.brand} {car.model}</h3>
+                <p class="text-xs text-slate-500">{car.variant}</p>
 
-                <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800/80 text-xs space-y-1">
+                <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 text-xs space-y-1">
                   <div class="flex justify-between">
-                    <span class="text-slate-400">Powertrain:</span>
-                    <span class="font-bold text-white">{car.fuelType} ({car.engine || 'Spec'})</span>
+                    <span class="text-slate-500">Powertrain:</span>
+                    <span class="font-bold text-slate-900">{car.fuelType} ({car.engine || 'Spec'})</span>
                   </div>
                   <div class="flex justify-between">
-                    <span class="text-slate-400">Max Capacity:</span>
-                    <span class="font-bold text-white">Up to {car.maxPassengers} Occupants</span>
+                    <span class="text-slate-500">Max Capacity:</span>
+                    <span class="font-bold text-slate-900">Up to {car.maxPassengers} Occupants</span>
                   </div>
                 </div>
               </div>
@@ -175,13 +175,13 @@ const directoryBreadcrumb = {
             <div class="p-5 pt-0 grid grid-cols-2 gap-2">
               <a
                 href={`/vehicles/${car.brandSlug}/${car.slug}/`}
-                class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-2.5 rounded-xl text-center border border-slate-700 transition-colors"
+                class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs py-2.5 rounded-xl text-center border border-slate-200 transition-colors"
               >
                 Specs & Details
               </a>
               <a
-                href={`/build-your-rental/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
-                class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs py-2.5 rounded-xl text-center transition-colors shadow-md"
+                href={`/booking/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
+                class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs py-2.5 rounded-xl text-center transition-colors shadow-sm"
               >
                 Book Your Trip
               </a>
@@ -193,14 +193,14 @@ const directoryBreadcrumb = {
 
     <!-- PAKISTAN REQUEST CATALOG HIGHLIGHTS -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div class="border-b border-slate-800 pb-4 mb-6">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-sky-400 bg-sky-950/80 border border-sky-800/80 px-2.5 py-1 rounded">
+      <div class="border-b border-slate-200 pb-4 mb-6">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-slate-700 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded">
           PAKISTAN MARKET REQUEST CATALOG
         </span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white mt-2">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">
           Request Catalog Models ({catalogVehicles.length})
         </h2>
-        <p class="text-xs text-slate-400 mt-1">
+        <p class="text-xs text-slate-500 mt-1">
           Officially introduced models in Pakistan. Choose any model below to request customized availability through 4WHEELS.
         </p>
       </div>
@@ -208,7 +208,7 @@ const directoryBreadcrumb = {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {catalogVehicles.map(car => (
           <div
-            class="bg-slate-900 rounded-2xl border border-slate-800 hover:border-sky-500/80 overflow-hidden transition-all shadow-xl flex flex-col justify-between cursor-pointer group"
+            class="bg-white rounded-2xl border border-slate-200 hover:border-slate-400 overflow-hidden transition-all shadow-xs hover:shadow-md flex flex-col justify-between cursor-pointer group"
             onclick={`if (!event.target.closest('a')) window.location.href='/vehicles/${car.brandSlug}/${car.slug}/'`}
           >
             <div>
@@ -216,23 +216,23 @@ const directoryBreadcrumb = {
 
               <div class="p-5 space-y-3">
                 <div class="flex items-center justify-between">
-                  <span class="text-[10px] font-black uppercase tracking-wider text-sky-400 bg-sky-950 border border-sky-800 px-2 py-0.5 rounded">
+                  <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
                     REQUEST THIS MODEL
                   </span>
-                  <span class="text-xs font-bold text-slate-400">{car.bodyType}</span>
+                  <span class="text-xs font-bold text-slate-500">{car.bodyType}</span>
                 </div>
 
-                <h3 class="text-lg font-black text-white group-hover:text-sky-400 transition-colors">{car.brand} {car.model}</h3>
-                <p class="text-xs text-slate-400">{car.variant}</p>
+                <h3 class="text-lg font-black text-slate-900 group-hover:text-red-600 transition-colors">{car.brand} {car.model}</h3>
+                <p class="text-xs text-slate-500">{car.variant}</p>
 
-                <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800/80 text-xs space-y-1">
+                <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 text-xs space-y-1">
                   <div class="flex justify-between">
-                    <span class="text-slate-400">Powertrain:</span>
-                    <span class="font-bold text-white">{car.fuelType}</span>
+                    <span class="text-slate-500">Powertrain:</span>
+                    <span class="font-bold text-slate-900">{car.fuelType}</span>
                   </div>
                   <div class="flex justify-between">
-                    <span class="text-slate-400">Range / Tank:</span>
-                    <span class="font-bold text-emerald-400">{car.electricRange || car.fuelTankCapacity || car.engine}</span>
+                    <span class="text-slate-500">Range / Tank:</span>
+                    <span class="font-bold text-emerald-700">{car.electricRange || car.fuelTankCapacity || car.engine}</span>
                   </div>
                 </div>
               </div>
@@ -241,13 +241,13 @@ const directoryBreadcrumb = {
             <div class="p-5 pt-0 grid grid-cols-2 gap-2">
               <a
                 href={`/vehicles/${car.brandSlug}/${car.slug}/`}
-                class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-2.5 rounded-xl text-center border border-slate-700 transition-colors"
+                class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs py-2.5 rounded-xl text-center border border-slate-200 transition-colors"
               >
                 View Specs
               </a>
               <a
-                href={`/build-your-rental/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
-                class="bg-sky-600 hover:bg-sky-700 text-white font-extrabold text-xs py-2.5 rounded-xl text-center transition-colors shadow-md"
+                href={`/booking/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
+                class="bg-slate-900 hover:bg-red-600 text-white font-extrabold text-xs py-2.5 rounded-xl text-center transition-colors shadow-xs"
               >
                 Request Model
               </a>
@@ -259,8 +259,8 @@ const directoryBreadcrumb = {
 
     <!-- TRADEMARK NOTICE -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div class="bg-slate-900/80 rounded-2xl p-5 text-xs text-slate-400 border border-slate-800 leading-relaxed">
-        <strong class="text-white">Trademark & Technical Reference Notice:</strong> Automotive manufacturer names, logos, and model designations are used strictly for vehicle identification and technical reference. 4WHEELS Rent a Car is an independent rental operator. Listing catalog models does not imply authorized dealership status or physical ownership of every catalog vehicle.
+      <div class="bg-slate-100/90 rounded-2xl p-5 text-xs text-slate-600 border border-slate-200 leading-relaxed shadow-2xs">
+        <strong class="text-slate-900">Trademark & Technical Reference Notice:</strong> Automotive manufacturer names, logos, and model designations are used strictly for vehicle identification and technical reference. 4WHEELS Rent a Car is an independent rental operator. Listing catalog models does not imply authorized dealership status or physical ownership of every catalog vehicle.
       </div>
     </section>
 

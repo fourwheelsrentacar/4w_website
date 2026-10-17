@@ -532,7 +532,7 @@ export const PAKISTAN_VEHICLE_CATALOG: CatalogVehicle[] = [
     isFleetConfirmed: false,
     tagline: 'Official Pakistan BYD Sealion 7 flagship electric performance SUV with ultra-fast charging.',
     description: 'Flagship pure electric SUV officially launched in Pakistan by BYD Mega Motors, featuring ocean-inspired aesthetics and Blade battery safety.',
-    heroPhoto: '/vehicles/fleet/byd-sealion6/hero.webp',
+    heroPhoto: '/vehicles/fleet/byd-sealion7/hero.webp',
     customerLabel: '2025–2026 Sealion 7 EV Shape'
   },
 

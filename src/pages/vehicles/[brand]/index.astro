@@ -65,46 +65,46 @@ const breadcrumbSchema = {
   />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </head>
-<body class="bg-slate-950 text-white font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col">
   <HeaderComp />
 
   <main class="flex-grow">
     <!-- Breadcrumb Navigation -->
-    <nav class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-400">
+    <nav class="bg-slate-100/80 border-b border-slate-200 py-3 px-4 sm:px-6 lg:px-8 text-xs text-slate-500">
       <div class="max-w-7xl mx-auto flex items-center gap-2">
-        <a href="/" class="hover:text-red-500 transition-colors">Home</a>
+        <a href="/" class="hover:text-red-600 transition-colors">Home</a>
         <span>/</span>
-        <a href="/vehicles/" class="hover:text-red-500 transition-colors">Vehicles</a>
+        <a href="/vehicles/" class="hover:text-red-600 transition-colors">Vehicles</a>
         <span>/</span>
-        <span class="font-bold text-white">{brandMeta.name}</span>
+        <span class="font-bold text-slate-900">{brandMeta.name}</span>
       </div>
     </nav>
 
     <!-- Brand Header Section -->
-    <section class="bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <section class="bg-gradient-to-b from-slate-50 via-white to-slate-100/60 py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-200">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-8">
         <div class="space-y-3 max-w-3xl">
           <div class="flex items-center gap-3">
-            <span class="text-xs font-black uppercase tracking-widest text-red-500 bg-red-950/80 border border-red-800/80 px-3 py-1 rounded-full">
+            <span class="text-xs font-black uppercase tracking-widest text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-full shadow-2xs">
               {brandMeta.country} Automotive
             </span>
-            <span class="text-xs font-bold text-slate-400">
+            <span class="text-xs font-bold text-slate-500">
               Verified: {brandMeta.lastVerified}
             </span>
           </div>
 
-          <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
             {brandMeta.name} Vehicles in Pakistan
           </h1>
 
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
             {brandMeta.description || `Explore ${brandMeta.name} models available in Pakistan. Compare technical specifications, seating, boot space, and submit rental requests through 4WHEELS Rent a Car Lahore.`}
           </p>
 
           <div class="flex flex-wrap items-center gap-2 pt-2">
-            <span class="text-xs text-slate-400 font-semibold">Categories:</span>
+            <span class="text-xs text-slate-500 font-semibold">Categories:</span>
             {brandMeta.categories.map(cat => (
-              <span class="bg-slate-800 text-slate-300 text-xs font-bold px-2.5 py-1 rounded-md border border-slate-700 uppercase">
+              <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-md border border-slate-200 uppercase">
                 {cat}
               </span>
             ))}
@@ -112,10 +112,10 @@ const breadcrumbSchema = {
         </div>
 
         <!-- Distributor Box -->
-        <div class="bg-slate-900/90 border border-slate-800 p-5 rounded-2xl text-xs space-y-3 min-w-[280px] shadow-xl">
-          <div class="border-b border-slate-800 pb-2">
-            <span class="text-slate-400 font-medium block">Official Distributor / Assembly:</span>
-            <span class="font-extrabold text-white text-sm">{brandMeta.distributor || `${brandMeta.name} Pakistan`}</span>
+        <div class="bg-white border border-slate-200 p-5 rounded-2xl text-xs space-y-3 min-w-[280px] shadow-sm">
+          <div class="border-b border-slate-200 pb-2">
+            <span class="text-slate-500 font-medium block">Official Distributor / Assembly:</span>
+            <span class="font-extrabold text-slate-900 text-sm">{brandMeta.distributor || `${brandMeta.name} Pakistan`}</span>
           </div>
 
           <div class="pt-1">
@@ -123,7 +123,7 @@ const breadcrumbSchema = {
               href={brandMeta.officialPakistanSource}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-red-400 font-bold text-xs px-4 py-2.5 rounded-xl border border-slate-700 transition-colors w-full justify-center"
+              class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-red-600 font-bold text-xs px-4 py-2.5 rounded-xl border border-slate-200 transition-colors w-full justify-center shadow-2xs"
             >
               <span>Visit Official {brandMeta.name} Website</span>
               <span>↗</span>
@@ -140,17 +140,17 @@ const breadcrumbSchema = {
     <!-- Section 1: Confirmed 4WHEELS Core Fleet Vehicles -->
     {confirmedFleet.length > 0 && (
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="border-b border-slate-800 pb-4 mb-6">
+        <div class="border-b border-slate-200 pb-4 mb-6">
           <div class="flex items-center gap-2">
             <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2.5 py-1 rounded">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded shadow-2xs">
               AVAILABLE THROUGH 4WHEELS
             </span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-black text-white mt-2">
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">
             Confirmed 4WHEELS Fleet Units ({confirmedFleet.length})
           </h2>
-          <p class="text-xs text-slate-400 mt-1">
+          <p class="text-xs text-slate-500 mt-1">
             Physical vehicles maintained in 4WHEELS active inventory in Lahore with verified photos and immediate booking options.
           </p>
         </div>
@@ -158,7 +158,7 @@ const breadcrumbSchema = {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {confirmedFleet.map(car => (
             <div
-              class="bg-slate-900 rounded-2xl border border-slate-800 hover:border-red-600/80 overflow-hidden transition-all shadow-xl flex flex-col justify-between cursor-pointer group"
+              class="bg-white rounded-2xl border border-slate-200 hover:border-red-500 overflow-hidden transition-all shadow-xs hover:shadow-md flex flex-col justify-between cursor-pointer group"
               onclick={`if (!event.target.closest('a')) window.location.href='/vehicles/${car.brandSlug}/${car.slug}/'`}
             >
               <div>
@@ -166,24 +166,24 @@ const breadcrumbSchema = {
 
                 <div class="p-5 space-y-3">
                   <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-black uppercase tracking-wider text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">
+                    <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded shadow-2xs">
                       ✓ AVAILABLE THROUGH 4WHEELS
                     </span>
-                    <span class="text-xs font-bold text-slate-400">{car.bodyType}</span>
+                    <span class="text-xs font-bold text-slate-500">{car.bodyType}</span>
                   </div>
 
-                  <h3 class="text-xl font-black text-white group-hover:text-red-500 transition-colors">{car.brand} {car.model}</h3>
-                  <p class="text-xs font-semibold text-slate-400">{car.variant}</p>
-                  <p class="text-xs text-slate-300 line-clamp-2">{car.tagline}</p>
+                  <h3 class="text-xl font-black text-slate-900 group-hover:text-red-600 transition-colors">{car.brand} {car.model}</h3>
+                  <p class="text-xs font-semibold text-slate-500">{car.variant}</p>
+                  <p class="text-xs text-slate-600 line-clamp-2">{car.tagline}</p>
 
-                  <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800/80 text-xs space-y-1.5">
+                  <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 text-xs space-y-1.5">
                     <div class="flex justify-between">
-                      <span class="text-slate-400">Powertrain:</span>
-                      <span class="font-bold text-white">{car.fuelType} ({car.engine || 'Verified Engine'})</span>
+                      <span class="text-slate-500">Powertrain:</span>
+                      <span class="font-bold text-slate-900">{car.fuelType} ({car.engine || 'Verified Engine'})</span>
                     </div>
                     <div class="flex justify-between">
-                      <span class="text-slate-400">Passengers / Luggage:</span>
-                      <span class="font-bold text-white">Up to {car.maxPassengers} Occupants | {car.bootCapacity || 'Trunk'}</span>
+                      <span class="text-slate-500">Passengers / Luggage:</span>
+                      <span class="font-bold text-slate-900">Up to {car.maxPassengers} Occupants | {car.bootCapacity || 'Trunk'}</span>
                     </div>
                   </div>
                 </div>
@@ -191,14 +191,14 @@ const breadcrumbSchema = {
 
               <div class="p-5 pt-0 grid grid-cols-2 gap-2">
                 <a
-                  href={`/build-your-rental/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
-                  class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs py-3 rounded-xl text-center transition-colors shadow-md"
+                  href={`/booking/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
+                  class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs py-3 rounded-xl text-center transition-colors shadow-sm"
                 >
                   Book Your Trip
                 </a>
                 <a
                   href="tel:+923216616644"
-                  class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-3 rounded-xl text-center border border-slate-700 transition-colors"
+                  class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs py-3 rounded-xl text-center border border-slate-200 transition-colors"
                 >
                   📞 Call
                 </a>
@@ -212,17 +212,17 @@ const breadcrumbSchema = {
     <!-- Section 2: Pakistan Request Catalog Models -->
     {requestCatalog.length > 0 && (
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="border-b border-slate-800 pb-4 mb-6">
+        <div class="border-b border-slate-200 pb-4 mb-6">
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-sky-500"></span>
-            <span class="text-xs font-extrabold uppercase tracking-widest text-sky-400 bg-sky-950/80 border border-sky-800/80 px-2.5 py-1 rounded">
+            <span class="w-3 h-3 rounded-full bg-slate-400"></span>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-slate-700 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded">
               OTHER PAKISTAN MODELS YOU CAN REQUEST
             </span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-black text-white mt-2">
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">
             {brandMeta.name} Pakistan Request Catalog ({requestCatalog.length})
           </h2>
-          <p class="text-xs text-slate-400 mt-1">
+          <p class="text-xs text-slate-500 mt-1">
             Officially introduced models in Pakistan. Select any car below to request customized rental availability through 4WHEELS.
           </p>
         </div>
@@ -230,7 +230,7 @@ const breadcrumbSchema = {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {requestCatalog.map(car => (
             <div
-              class="bg-slate-900 rounded-2xl border border-slate-800 hover:border-sky-500/80 overflow-hidden transition-all shadow-xl flex flex-col justify-between cursor-pointer group"
+              class="bg-white rounded-2xl border border-slate-200 hover:border-slate-400 overflow-hidden transition-all shadow-xs hover:shadow-md flex flex-col justify-between cursor-pointer group"
               onclick={`if (!event.target.closest('a')) window.location.href='/vehicles/${car.brandSlug}/${car.slug}/'`}
             >
               <div>
@@ -238,24 +238,24 @@ const breadcrumbSchema = {
 
                 <div class="p-5 space-y-3">
                   <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-black uppercase tracking-wider text-sky-400 bg-sky-950 border border-sky-800 px-2 py-0.5 rounded">
+                    <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
                       REQUEST THIS MODEL
                     </span>
-                    <span class="text-xs font-bold text-slate-400">{car.bodyType}</span>
+                    <span class="text-xs font-bold text-slate-500">{car.bodyType}</span>
                   </div>
 
-                  <h3 class="text-xl font-black text-white group-hover:text-sky-400 transition-colors">{car.brand} {car.model}</h3>
-                  <p class="text-xs font-semibold text-slate-400">{car.variant}</p>
-                  <p class="text-xs text-slate-300 line-clamp-2">{car.tagline}</p>
+                  <h3 class="text-xl font-black text-slate-900 group-hover:text-red-600 transition-colors">{car.brand} {car.model}</h3>
+                  <p class="text-xs font-semibold text-slate-500">{car.variant}</p>
+                  <p class="text-xs text-slate-600 line-clamp-2">{car.tagline}</p>
 
-                  <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800/80 text-xs space-y-1.5">
+                  <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 text-xs space-y-1.5">
                     <div class="flex justify-between">
-                      <span class="text-slate-400">Powertrain:</span>
-                      <span class="font-bold text-white">{car.fuelType}</span>
+                      <span class="text-slate-500">Powertrain:</span>
+                      <span class="font-bold text-slate-900">{car.fuelType}</span>
                     </div>
                     <div class="flex justify-between">
-                      <span class="text-slate-400">{car.fuelType === 'Electric' ? 'Battery / Range:' : 'Fuel Tank / Spec:'}</span>
-                      <span class="font-bold text-emerald-400">
+                      <span class="text-slate-500">{car.fuelType === 'Electric' ? 'Battery / Range:' : 'Fuel Tank / Spec:'}</span>
+                      <span class="font-bold text-emerald-700">
                         {car.fuelType === 'Electric' ? `${car.batteryCapacity} | ${car.electricRange}` : car.fuelTankCapacity || car.engine}
                       </span>
                     </div>
@@ -266,13 +266,13 @@ const breadcrumbSchema = {
               <div class="p-5 pt-0 grid grid-cols-2 gap-2">
                 <a
                   href={`/vehicles/${car.brandSlug}/${car.slug}/`}
-                  class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-bold text-xs py-3 rounded-xl text-center border border-slate-700 transition-colors"
+                  class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs py-3 rounded-xl text-center border border-slate-200 transition-colors"
                 >
                   View Specs
                 </a>
                 <a
-                  href={`/build-your-rental/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
-                  class="bg-sky-600 hover:bg-sky-700 text-white font-extrabold text-xs py-3 rounded-xl text-center transition-colors shadow-md"
+                  href={`/booking/?vehicle=${car.slug}&brand=${encodeURIComponent(car.brand)}&model=${encodeURIComponent(car.model)}&category=${car.category}`}
+                  class="bg-slate-900 hover:bg-red-600 text-white font-extrabold text-xs py-3 rounded-xl text-center transition-colors shadow-xs"
                 >
                   Request Model
                 </a>
@@ -285,20 +285,20 @@ const breadcrumbSchema = {
 
     <!-- FAQ Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 space-y-6">
-        <h2 class="text-2xl font-black text-white">Frequently Asked Questions — {brandMeta.name} Rentals</h2>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-6 shadow-sm">
+        <h2 class="text-2xl font-black text-slate-900">Frequently Asked Questions — {brandMeta.name} Rentals</h2>
 
-        <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-300">
+        <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
           <div class="space-y-2">
-            <h3 class="font-bold text-white">Are all {brandMeta.name} models available for immediate rental in Lahore?</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Vehicles marked as <strong class="text-emerald-400">AVAILABLE THROUGH 4WHEELS</strong> belong to our active core fleet in Lahore. Models marked as <strong class="text-sky-400">REQUEST THIS MODEL</strong> are part of the official Pakistan catalog and can be arranged upon advance inquiry.
+            <h3 class="font-bold text-slate-900">Are all {brandMeta.name} models available for immediate rental in Lahore?</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Vehicles marked as <strong class="text-emerald-700">AVAILABLE THROUGH 4WHEELS</strong> belong to our active core fleet in Lahore. Models marked as <strong class="text-slate-800">REQUEST THIS MODEL</strong> are part of the official Pakistan catalog and can be arranged upon advance inquiry.
             </p>
           </div>
 
           <div class="space-y-2">
-            <h3 class="font-bold text-white">Can I rent {brandMeta.name} vehicles for northern area tours and long trips?</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
+            <h3 class="font-bold text-slate-900">Can I rent {brandMeta.name} vehicles for northern area tours and long trips?</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
               Yes, 4WHEELS provides intercity and northern travel options across Pakistan with experienced drivers, full highway toll estimation, and well-maintained vehicles.
             </p>
           </div>
