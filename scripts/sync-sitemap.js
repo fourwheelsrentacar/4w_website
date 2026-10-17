@@ -44,8 +44,7 @@ function getMetaForUrl(url) {
   if (
     url.includes('/booking/') ||
     url.includes('/fleet/') ||
-    url.includes('/rent-a-car-') ||
-    url.includes('/attach-your-car/')
+    url.includes('/rent-a-car-')
   ) {
     return { priority: '0.9', changefreq: 'daily' };
   }

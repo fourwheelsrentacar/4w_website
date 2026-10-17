@@ -89,38 +89,7 @@ async function run() {
     await bookingMobile.screenshot({ path: path.join(SCREENSHOT_DIR, 'booking-mobile-responsive.png') });
     console.log('Saved booking-mobile-responsive.png');
 
-    // 4. Attach Your Car / Investor Page Desktop
-    console.log('Capturing Attach Your Car & Overseas Investor page desktop...');
-    const investorPage = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-    await investorPage.goto('http://localhost:4321/attach-your-car/', { waitUntil: 'load' });
-    await investorPage.waitForTimeout(600);
-    await investorPage.screenshot({ path: path.join(SCREENSHOT_DIR, 'attach-your-car-hero.png') });
-
-    const overseasSection = investorPage.locator('text=Live Abroad? Put Your Car in Pakistan to Work').first();
-    if (await overseasSection.count() > 0) {
-      await overseasSection.scrollIntoViewIfNeeded();
-      await investorPage.waitForTimeout(500);
-      await investorPage.screenshot({ path: path.join(SCREENSHOT_DIR, 'attach-your-car-overseas.png') });
-      console.log('Saved attach-your-car-overseas.png');
-    }
-
-    const calcSection = investorPage.locator('#calculator-section');
-    if (await calcSection.count() > 0) {
-      await calcSection.scrollIntoViewIfNeeded();
-      await investorPage.waitForTimeout(500);
-      await investorPage.screenshot({ path: path.join(SCREENSHOT_DIR, 'attach-your-car-calculator.png') });
-      console.log('Saved attach-your-car-calculator.png');
-    }
-
-    // 5. Attach Your Car Mobile
-    console.log('Capturing Attach Your Car mobile...');
-    const investorMobile = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true });
-    await investorMobile.goto('http://localhost:4321/attach-your-car/', { waitUntil: 'load' });
-    await investorMobile.waitForTimeout(600);
-    await investorMobile.screenshot({ path: path.join(SCREENSHOT_DIR, 'attach-your-car-mobile.png') });
-    console.log('Saved attach-your-car-mobile.png');
-
-    // 6. Fleet Page with Fuel Notice & Mitsubishi Pajero
+    // 4. Fleet Page with Fuel Notice & Mitsubishi Pajero
     console.log('Capturing fleet page with Pajero & fuel notice...');
     const fleetPage = await browser.newPage({ viewport: { width: 1440, height: 900 } });
     await fleetPage.goto('http://localhost:4321/fleet/', { waitUntil: 'load' });

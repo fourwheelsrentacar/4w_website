@@ -14,8 +14,7 @@ export default defineConfig({
     '/book': '/booking/',
     '/reserve': '/booking/',
     '/reservation': '/booking/',
-    '/get-a-quote': '/booking/',
-    '/investor': '/attach-your-car/'
+    '/get-a-quote': '/booking/'
   },
   integrations: [
     sitemap({
@@ -27,8 +26,7 @@ export default defineConfig({
         } else if (
           url.includes('/booking/') ||
           url.includes('/fleet/') ||
-          url.includes('/rent-a-car-') ||
-          url.includes('/attach-your-car/')
+          url.includes('/rent-a-car-')
         ) {
           item.changefreq = 'daily';
           item.priority = 0.9;
