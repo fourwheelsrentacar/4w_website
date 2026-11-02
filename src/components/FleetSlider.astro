@@ -5,7 +5,7 @@ import { BUSINESS_INFO } from '../data/business';
 interface Props {
   title?: string;
   subtitle?: string;
-  vehicles?: Vehicle[];
+  vehicles?: any[];
   autoplay?: boolean;
 }
 
@@ -15,6 +15,21 @@ const {
   vehicles = FLEET_VEHICLES.slice(0, 8),
   autoplay = false
 } = Astro.props;
+
+const sliderItems = vehicles.map((v: any) => ({
+  id: v.id,
+  slug: v.slug,
+  brand: v.manufacturer || v.brand,
+  model: v.model,
+  variant: v.variant || '',
+  img: v.heroImage || v.vehicleImage?.imageUrl || v.images?.[0] || `/vehicles/fleet/${v.slug}/hero.webp`,
+  year: v.yearRange || v.modelYear || '2024–2026',
+  tagline: v.headline || v.tagline || v.description || 'Verified 4WHEELS core rental fleet vehicle.',
+  seats: v.seatingCapacity || v.seats || 5,
+  transmission: v.transmission || 'Automatic',
+  fuelType: v.fuelType || 'Petrol',
+  alt: v.imageAlt || `${v.manufacturer || v.brand} ${v.model} ${v.variant || ''} rental in Lahore with driver or self-drive`
+}));
 ---
 
 <section class="py-14 bg-slate-50/70 border-y border-slate-200 text-slate-900 overflow-hidden" id="fleet-slider-section">
@@ -58,14 +73,14 @@ const {
     <!-- Embla Carousel Viewport -->
     <div class="embla overflow-hidden" id="fleet-embla-viewport">
       <div class="embla__container flex gap-4 sm:gap-6 py-2">
-        {vehicles.map((v) => (
+        {sliderItems.map((v) => (
           <div class="embla__slide shrink-0 w-[86%] sm:w-[47%] lg:w-[31%] bg-white border border-slate-200/90 hover:border-red-500 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_-4px_rgba(224,18,26,0.12)] hover:-translate-y-1 group">
             <div>
               <!-- Vehicle Image Stage -->
               <div class="aspect-[16/9] bg-gradient-to-b from-slate-50 via-white to-slate-100/60 rounded-xl overflow-hidden border border-slate-200/80 p-3 mb-4 relative flex items-center justify-center">
                 <img
-                  src={v.heroImage || '/vehicles/fleet/toyota-corolla/hero.webp'}
-                  alt={`${v.manufacturer} ${v.model} rental Lahore`}
+                  src={v.img}
+                  alt={v.alt}
                   loading="lazy"
                   class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
@@ -73,26 +88,26 @@ const {
                   ✓ AVAILABLE
                 </span>
                 <span class="absolute bottom-2 right-2 text-[10px] font-bold bg-white/90 text-slate-700 px-2 py-0.5 rounded-full border border-slate-200 shadow-xs">
-                  {v.yearRange}
+                  {v.year}
                 </span>
               </div>
 
               <!-- Specs & Details -->
               <div class="space-y-2">
                 <span class="text-[10px] font-extrabold text-red-600 uppercase tracking-wider block">
-                  {v.manufacturer}
+                  {v.brand}
                 </span>
                 <h3 class="text-lg font-black text-slate-900 group-hover:text-red-600 transition-colors">
-                  {v.manufacturer} {v.model}
+                  {v.brand} {v.model}
                 </h3>
                 <p class="text-xs text-slate-500 line-clamp-2 font-medium">
-                  {v.headline || v.tagline}
+                  {v.tagline}
                 </p>
 
                 <!-- Spec Chips (Instrument Cluster Gauges) -->
                 <div class="flex flex-wrap gap-2 pt-2 text-[11px] font-bold">
                   <span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200/80 flex items-center gap-1">
-                    👥 {v.seatingCapacity} Seats
+                    👥 {v.seats} Seats
                   </span>
                   <span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200/80 flex items-center gap-1">
                     ⚙️ {v.transmission}
@@ -107,7 +122,7 @@ const {
             <!-- STRICT CTA COMPLIANCE: BOOK YOUR TRIP & CALL ONLY -->
             <div class="pt-5 border-t border-slate-100 mt-4 space-y-2">
               <a
-                href={`/booking/?vehicle=${v.slug}&brand=${encodeURIComponent(v.manufacturer)}&model=${encodeURIComponent(v.model)}`}
+                href={`/booking/?vehicle=${v.slug}&brand=${encodeURIComponent(v.brand)}&model=${encodeURIComponent(v.model)}`}
                 class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs py-3 rounded-xl block text-center uppercase tracking-wider shadow-md transition-all active:scale-98"
               >
                 🚗 BOOK YOUR TRIP

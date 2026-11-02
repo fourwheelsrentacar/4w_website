@@ -243,7 +243,7 @@ const COLOR_OPTIONS = [
                   <div class="aspect-[16/9] w-full rounded-xl overflow-hidden bg-gradient-to-b from-slate-100 to-slate-200/50 border border-slate-200/80 mb-3 relative flex items-center justify-center p-2">
                     <img
                       src={cat.image}
-                      alt={`${cat.name} rental Lahore`}
+                      alt={`4WHEELS ${cat.name} rental category in Lahore - popular models ${cat.popularModel}`}
                       loading="eager"
                       class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                     />
@@ -710,7 +710,7 @@ const COLOR_OPTIONS = [
               <img
                 id="summary-visual-img"
                 src="/vehicles/fleet/toyota-corolla/hero.webp"
-                alt="Selected Vehicle Real Photo"
+                alt="Selected Rental Vehicle Studio Visual - 4WHEELS Rent a Car Lahore"
                 class="w-full h-36 object-contain transition-transform duration-300 group-hover:scale-105 relative z-10"
               />
               <p id="summary-visual-label" class="text-[10px] text-slate-500 font-medium bg-white/90 px-2 py-0.5 rounded border border-slate-200 z-20 text-center truncate max-w-full mt-1 shadow-xs">
@@ -879,7 +879,7 @@ const COLOR_OPTIONS = [
         <div class="w-full sm:w-48 aspect-[16/9] bg-gradient-to-b from-slate-100 to-slate-200/50 rounded-xl overflow-hidden border border-slate-200 flex items-center justify-center p-2 relative shrink-0">
           <img
             src="${v.heroPhoto || '/vehicles/fleet/toyota-corolla/hero.webp'}"
-            alt="${v.brand} ${v.model}"
+            alt="${v.brand} ${v.model} ${v.variant || ''} - 4WHEELS Rent a Car Lahore"
             loading="lazy"
             class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
           />
@@ -967,7 +967,7 @@ const COLOR_OPTIONS = [
 
       card.innerHTML = `
         <div class="w-28 h-20 bg-white rounded-xl overflow-hidden border border-slate-200 shrink-0 flex items-center justify-center p-1">
-          <img src="${g.heroPhoto}" alt="${g.customerLabel}" class="w-full h-full object-contain" />
+          <img src="${g.heroPhoto}" alt="${g.modelName} ${g.customerLabel} (${g.generation}) - 4WHEELS Rent a Car Lahore" class="w-full h-full object-contain" />
         </div>
         <div class="flex-1">
           <span class="text-[10px] font-black text-red-600 uppercase tracking-wider block">${g.generation}</span>
